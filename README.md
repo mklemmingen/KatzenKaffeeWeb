@@ -5,6 +5,7 @@ This Website is a Design by Martin Lauterbach and Meinhard Holzknecht.
 The goal of this Devleopment is the following reqirements:
 
 - enable dynamic story telling by letting the User experience a immersive virtual cat cafe
+- enable the learning about sustainable ("Nachhaltige") feeding and keeping of cats {Module Requirement meet this way}
 - enable the petting of cats
 - enable the feeding of cats
 - enable the playing with cats
