@@ -1,5 +1,21 @@
 # Getting Started with Create React App
 
+This Website is a Design by Martin Lauterbach and Meinhard Holzknecht. 
+
+The goal of this Devleopment is the following reqirements:
+
+- enable dynamic story telling by letting the User experience a immersive virtual cat cafe
+- enable the petting of cats
+- enable the feeding of cats
+- enable the playing with cats
+- enable the listening to lofi music with player
+- (optional) enable the playing of simple javascript minigames
+
+the Cat cafe is supposed to be a interactive lofi background website. 
+It could be possible to mirror the lofi girl stream. 
+
+------------------------------------------------------------------------------------------------------
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
