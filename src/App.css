@@ -35,6 +35,14 @@ nav {
   gap: 15px;
 }
 
+.nav-links {
+  margin: 0 10px;
+}
+
+.CatCafe {
+
+}
+
 .App-link {
   color: #5D415A;
   text-decoration: none;

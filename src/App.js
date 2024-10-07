@@ -1,12 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer'; // Assuming you have a Footer component
-import Support from './Support'; // Your Support page component
-import Cafe from './Cafe'; // Your Cafe page component
-import LearningCorner from './LearningCorner'; // Your Learning Corner page component
-import Home from './Home'; // Assuming you have a Home component
-import Register from './Register';
+import Header from './pageModules/Header';
+import Footer from './pageModules/Footer';
+import Support from './pages/Support';
+import Cafe from './pages/Cafe';
+import LearningCorner from './pages/LearningCorner';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Datenschutz from './pages/Datenschutz';
+import Impressum from './pages/Impressum';
+import ErrorPage from './pages/ErrorPage';
 import './App.css'
 
 function App() {
@@ -20,6 +23,9 @@ function App() {
                     <Route path="/learning-corner" element={<LearningCorner />} />
                     <Route path="/" element={<Home />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/datenschutz" element={<Datenschutz />} />
+                    <Route path="/impressum" element={<Impressum />} />
+                    <Route path="*" element={<ErrorPage />} />
                 </Routes>
                 <Footer />
             </div>

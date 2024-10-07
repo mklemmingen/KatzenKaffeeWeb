@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import logo from './svg/cat-halloween-kitty-svgrepo-com.svg';
-import LoginModal from './LoginModal';
-import MusicPlayerModal from './MusicPlayerModal';
+import LoginModal from '../LoginModal';
+import MusicPlayerModal from '../MusicPlayerModal';
 import { useNavigate } from 'react-router-dom';
 
 function Header() {
@@ -16,13 +15,13 @@ function Header() {
     return (
         <header className="App-header">
             <div className="logo-container">
-                <img src={logo} className="App-logo" alt="logo" />
-                <a href="/" className="App-logo">MeinKatzenKaffe.de</a>
+                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo" />
+                <a href="/" className="App-logo">KatzenKaffee.de</a>
             </div>
             <div className="nav-links">
-                <a href="/cafe" className="App-link">Rein in's Cafe</a>
+                <a href="/Cafe" className="App-link">Rein in's Cafe</a>
                 <a href="/learning-corner" className="App-link">Verantwortung übernehmen</a>
-                <a href="/support" className="App-link">Support</a>
+                <a href="/Support" className="App-link">Support</a>
             </div>
             <div className="button-container">
                 <button className="App-button music-button" onClick={() => setMusicPlayerModalOpen(true)}>Musik-Player</button>

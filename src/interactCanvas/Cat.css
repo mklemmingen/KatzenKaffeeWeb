@@ -1,0 +1,5 @@
+img {
+    width: 100px;
+    height: auto;
+    transform-origin: center bottom;
+}
