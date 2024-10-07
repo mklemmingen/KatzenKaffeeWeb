@@ -17,8 +17,17 @@
   color: #5D415A;
 }
 
+.App-header a {
+  margin: 0 10px;
+  /* Adds 10px margin on the left and right of each link */
+}
+
 .App-logo {
-  height: 40px;
+  width: 1em; /* Adjust the width to fit the size of a letter */
+  height: auto; /* Maintain the aspect ratio */
+  font-family: "Fjord", cursive ;
+  color: #5D415A;
+  text-decoration: none;
 }
 
 nav {
@@ -37,6 +46,23 @@ nav {
   color: #5D415A;
   padding: 10px 20px;
   cursor: pointer;
+  margin: 10px;
+  border-radius: 8px;
+}
+
+.login-button {
+  background-color: white;
+  color: #5D415A;
+}
+
+.register-button {
+  background-color: #5D415A;
+  color: white;
+}
+
+.music-button {
+  background-color: #5D415A;
+  color: #ffffff;
 }
 
 .App-footer {
@@ -47,4 +73,27 @@ nav {
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+
+.Modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.Overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.75);
 }
