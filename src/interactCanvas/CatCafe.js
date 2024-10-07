@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Cat from './Cat';
 
 const CatCafe = () => {
-    const [cats, setCats] = useState([
-        { x: 0, z: 0 },
-        { x: 2, z: 1 },
-        { x: 4, z: 2 },
-    ]);
+    const [cat, setCat] = useState({ x: 0, z: 0 });
+    const [catState, setCatState] = useState('idle'); // idle, sleeping, licking, moving, interacting
+    const [canInteract, setCanInteract] = useState(true); // Track if the cat can be interacted with
 
-    const moveCat = (cat) => {
+    const moveCat = () => {
         const directions = [
             { x: 0, z: -1 },
             { x: 0, z: 1 },
@@ -23,15 +21,31 @@ const CatCafe = () => {
                 cat.z + d.z < 5
         );
         const move = validMoves[Math.floor(Math.random() * validMoves.length)];
-        return { x: cat.x + move.x, z: cat.z + move.z };
+        setCat({ x: cat.x + move.x, z: cat.z + move.z });
+        setCatState('moving');
     };
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCats((prevCats) => prevCats.map((cat) => moveCat(cat)));
-        }, 1000);
-        return () => clearInterval(interval);
-    }, []);
+        const randomTime = Math.random() * 5000 + 2000; // Random time between 2 and 7 seconds
+        const timer = setTimeout(() => {
+            moveCat();
+        }, randomTime);
+        return () => clearTimeout(timer);
+    }, [cat]);
+
+    const handleCatClick = () => {
+        setCatState('interacting');
+        setCanInteract(false); // Disable interaction
+        // Play meow sound
+        const audio = new Audio('assets/snd/meow.mp3');
+        audio.play();
+
+        // Re-enable interaction after 5-10 seconds
+        const cooldownTime = Math.random() * 5000 + 5000; // Random time between 5 and 10 seconds
+        setTimeout(() => {
+            setCanInteract(true);
+        }, cooldownTime);
+    };
 
     return (
         <div style={{
@@ -41,15 +55,16 @@ const CatCafe = () => {
             overflow: 'hidden',
             perspective: '1000px',
             backgroundImage: `url(${'./assets/img/virtuellesKatzenCafeHintergrundbild.jpg'})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
         }}>
-            {cats.map((cat, index) => (
-                <Cat key={index} src={'./assets/svg/cat-5-svgrepo-com.svg'} position={cat} />
-            ))}
+            <Cat position={cat} onClick={handleCatClick} canInteract={canInteract} />
         </div>
     );
 };
 
 export default CatCafe;
-

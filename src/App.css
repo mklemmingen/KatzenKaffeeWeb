@@ -1,5 +1,45 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+  --primary-color: #5D415A;
+  --secondary-color: #F5F5F5;
+  --accent-color: #5D410A;
+  --text-color: #333;
+  --background-color: #f9f9f9;
+  --font-family: 'Roboto', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.container {
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -12,89 +52,136 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #F5F5F5;
+  background-color: var(--secondary-color);
   padding: 20px;
-  color: #5D415A;
+  color: var(--primary-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap; /* Allow wrapping */
 }
 
 .App-header a {
   margin: 0 10px;
-  /* Adds 10px margin on the left and right of each link */
 }
 
 .App-logo {
-  width: 1em; /* Adjust the width to fit the size of a letter */
+  width: 75px; /* Adjust the width to fit the size of a letter */
   height: auto; /* Maintain the aspect ratio */
-  font-family: "Fjord", cursive ;
-  color: #5D415A;
+  font-family: 'Pacifico', cursive; /* Use the new font */
+  color: var(--primary-color);
   text-decoration: none;
+  font-size: 2em; /* Adjust the font size to match the icon size */
 }
 
-nav {
+.logo-container {
   display: flex;
-  gap: 15px;
+  align-items: center;
+  flex: 1; /* Allow the logo container to grow */
+  min-width: 200px; /* Ensure the logo container has a minimum width */
+}
+
+.logo-container img {
+  width: 75px; /* Ensure the icon size matches the text size */
+  height: 75px;
+  margin-right: 10px; /* Add some space between the icon and the text */
 }
 
 .nav-links {
   margin: 0 10px;
+  font-family: var(--font-family);
+  font-size: 1.2em;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex: 2; /* Allow the nav links to take up more space */
+  min-width: 300px; /* Ensure the nav links have a minimum width */
 }
 
-.CatCafe {
+.nav-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
+.nav-links a:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+.nav-links a:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  flex: 1; /* Allow the button container to grow */
+  justify-content: flex-end; /* Align buttons to the right */
+  min-width: 200px; /* Ensure the button container has a minimum width */
 }
 
 .App-link {
-  color: #5D415A;
+  color: var(--primary-color);
   text-decoration: none;
 }
 
 .App-button {
   background-color: white;
   border: none;
-  color: #5D415A;
+  color: var(--primary-color);
   padding: 10px 20px;
   cursor: pointer;
   margin: 10px;
   border-radius: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.App-button:hover {
+  background-color: var(--primary-color);
+  color: #ffffff;
 }
 
 .login-button {
   background-color: white;
-  color: #5D415A;
+  color: var(--primary-color);
 }
 
 .register-button {
-  background-color: #5D415A;
+  background-color: var(--primary-color);
   color: white;
 }
 
 .music-button {
-  background-color: #5D415A;
+  background-color: var(--primary-color);
   color: #ffffff;
 }
 
 .App-footer {
-  background-color: #F5F5F5;
-  color: #5D415A;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
   padding: 10px;
   text-align: center;
-  position: fixed;
+  position: relative;
   width: 100%;
   bottom: 0;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Centering and styling for the modal */
 .Modal {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  right: auto;
-  bottom: auto;
-  margin-right: -50%;
-  transform: translate(-50%, -50%);
-  background: white;
+  position: relative; /* Ensure it stays centered */
+  background: var(--secondary-color); /* Use your secondary color */
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-width: 500px; /* Ensure it doesn't exceed a certain width */
+  width: 100%; /* Make it responsive */
+  z-index: 1000; /* Ensure it appears above other elements */
+  text-align: center; /* Center text inside the modal */
+  font-family: var(--font-family); /* Use your font family */
+  color: var(--primary-color); /* Use your primary color */
 }
 
 .Overlay {
@@ -103,5 +190,99 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,0.75);
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999; /* Ensure it appears below the modal */
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--secondary-color);
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0; /* Align to the right */
+  padding: 10px;
+  border-radius: 8px;
+}
+
+/* Show the dropdown content when the dropdown is open */
+.dropdown .dropdown-content {
+  display: block;
+}
+
+/* Style the dropdown button */
+.App-button.music-button {
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+/* Style the dropdown content */
+.music-player-modal {
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Accessibility and Responsive Design */
+@media (max-width: 1024px) {
+  .App-header {
+    flex-direction: column;
+    align-items: center;
+    height: auto; /* Allow height to adjust */
+  }
+
+  .logo-container, .nav-links, .button-container {
+    width: 100%; /* Make each section take full width */
+    justify-content: center; /* Center content */
+    margin-bottom: 10px; /* Add space between sections */
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .App-button {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .dummy-cat-cafe {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .dummy-cat-cafe h2 {
+    font-size: 2em;
+    color: #5D415A;
+  }
+
+  .dummy-cat-cafe button {
+    padding: 10px 20px;
+    background-color: #5D415A;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .dummy-cat-cafe button:hover {
+    background-color: #3B2A3A;
+  }
 }
