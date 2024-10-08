@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import useHandleVerantwortungClick from '../hooks/useHandleVerantwortungclick'; // Import the custom hook
 import { MusicPlayerContext } from '../App'; // Import the music player context
 
-function Header({ playerRef }) {
+function Header() {
     const navigate = useNavigate();
-    const { handleMusicPlayerOpen, handleMusicPlayerClose } = useContext(MusicPlayerContext);
+    const { handleMusicPlayerOpen, handleMusicPlayerClose, playerRef } = useContext(MusicPlayerContext);
     const handleVerantwortungClick = useHandleVerantwortungClick();
 
     useEffect(() => {
@@ -22,10 +22,6 @@ function Header({ playerRef }) {
     const handleRegisterClick = () => {
         navigate('/register');
     };
-
-    const handleEnterCafeClick= () => {
-        navigate('/cafe');
-    }
 
     const handlePlay = () => {
         if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
@@ -64,7 +60,7 @@ function Header({ playerRef }) {
                 <Link to="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
             <div className="nav-links">
-                <button className="App-link" onClick={handleEnterCafeClick}>Rein in's Cafe</button>
+                <Link to="/cafe" className="App-link">Rein in's Cafe</Link>
                 <button className="App-link" onClick={handleVerantwortungClick}>Verantwortung übernehmen</button>
                 <Link to="/Support" className="App-link">Support</Link>
             </div>

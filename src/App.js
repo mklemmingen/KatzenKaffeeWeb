@@ -1,5 +1,5 @@
-import React, { useState, useRef, createContext } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useRef, createContext, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './pageModules/Header';
 import Footer from './pageModules/Footer';
 import Support from './pages/Support';
@@ -21,9 +21,12 @@ export const OverlayContext = createContext({
 });
 
 const AppContent = () => {
+    const location = useLocation();
+    const isCafeRoute = location.pathname === '/cafe';
+
     return (
         <div className="App">
-            <Header />
+            {!isCafeRoute && <Header />}
             <div className="content">
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -35,7 +38,7 @@ const AppContent = () => {
                     <Route path="/cafe" element={<Cafe />} />
                 </Routes>
             </div>
-            <Footer />
+            {!isCafeRoute && <Footer />}
         </div>
     );
 };
@@ -52,11 +55,17 @@ const App = () => {
         setMusicPlayerOpen(false);
     };
 
+    useEffect(() => {
+        if (playerRef.current) {
+            playerRef.current.playVideo();
+            playerRef.current.unMute();
+        }
+    }, []);
+
     return (
         <Router>
-            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen,
-                handleMusicPlayerClose, playerRef }}>
-                <OverlayContext.Provider value={{useHandleVerantwortungClick}}>
+            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen, handleMusicPlayerClose, playerRef }}>
+                <OverlayContext.Provider value={{ useHandleVerantwortungClick }}>
                     <YouTubePlayer videoId="jfKfPfyJRdk" onReady={(player) => (playerRef.current = player)} />
                     <AppContent />
                 </OverlayContext.Provider>

@@ -1,16 +1,8 @@
 import React from 'react';
-import {useNavigate} from 'react-router-dom';
 import './InfoBlock.css';
 
 // to use the History from infoblock
-const InfoBlock = ({ iconSrc, headerText, textBlock, route }) => {
-    const navigate = useNavigate();
-
-
-// to handle clicks in onEvent Listeners
-    const handleClick = () => {
-        navigate(route);
-    };
+const InfoBlock = ({ iconSrc, headerText, textBlock}) => {
 
     return (
         <div className={"info-block"}>
@@ -20,7 +12,6 @@ const InfoBlock = ({ iconSrc, headerText, textBlock, route }) => {
             <div className={"text-content"}>
                 <h2>{headerText}</h2>
                 <p>{textBlock}</p>
-                <button onClick={handleClick}>Mehr Erfahren!</button>
             </div>
         </div>
     );

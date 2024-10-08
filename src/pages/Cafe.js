@@ -1,10 +1,10 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MusicPlayerContext } from '../App';
 
 function Cafe() {
     const navigate = useNavigate();
-    const {handleMusicPlayerOpen, handleMusicPlayerClose, playerRef} = useContext(MusicPlayerContext);
+    const { handleMusicPlayerOpen, handleMusicPlayerClose, playerRef } = useContext(MusicPlayerContext);
 
     useEffect(() => {
         if (playerRef && playerRef.current && playerRef.current.pauseVideo && playerRef.current.unMute) {
@@ -12,7 +12,6 @@ function Cafe() {
             playerRef.current.unMute();
         }
     }, [playerRef]);
-
 
     const handlePlay = () => {
         if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
@@ -51,8 +50,7 @@ function Cafe() {
     return (
         <div>
             <div className="logo-container">
-                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo"
-                     onClick={handleLogoClick}/>
+                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo" onClick={handleLogoClick} />
                 <Link to="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
             <div className="button-container">
@@ -66,8 +64,6 @@ function Cafe() {
                     </div>
                 </div>
             </div>
-            <h1>Datenschutz</h1>
-            <p>its important!</p>
         </div>
     );
 }

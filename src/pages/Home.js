@@ -1,14 +1,15 @@
 import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import InfoBlock from "../pageModules/InfoBlock";
 import { OverlayContext } from '../App';
 import './Home.css'; // Ensure you have a CSS file for Home-specific styles
 
 const Home = () => {
     const { isOverlayOpen, setOverlayOpen } = useContext(OverlayContext);
-    const [isCafeView, setCafeView] = useState(false);
+    const navigate = useNavigate();
 
     const handleEnterCafe = () => {
-        setCafeView(true);
+        navigate('/cafe');
     };
 
     const handleVerantwortungClick = () => {
@@ -41,7 +42,6 @@ const Home = () => {
                           sogar Insektenprotein als nachhaltige Alternative zu herkömmlichem Fleisch
                           an. Denken Sie auch daran, lokale Produkte zu bevorzugen, um den CO2-
                           Fußabdruck zu reduzieren."
-                        route="/learning-corner"
                     />
                     <InfoBlock
                         iconSrc="assets/svg/cat-litter-box-svgrepo-com.svg"
@@ -50,7 +50,6 @@ const Home = () => {
                           machen. Vermeiden Sie Streu aus Ton oder Silikat, da deren Abbau
                           umweltschädlich ist. Stattdessen können Sie auf biologisch abbaubare
                           Optionen wie Holzpellets, Maiskörner oder recyceltes Papier zurückgreifen."
-                        route="/learning-corner"
                     />
                     <InfoBlock
                         iconSrc="assets/svg/cat-travel-bag-svgrepo-com.svg"
@@ -60,7 +59,6 @@ const Home = () => {
                           ein Glöckchen am Halsband anbringen, das die Vögel warnt. Eine weitere
                           Möglichkeit ist es, Ihre Katze in einem gesicherten Außenbereich oder an der
                           Leine nach draußen zu lassen, um ihre Jagdaktivitäten zu kontrollieren."
-                        route="/learning-corner"
                     />
                     <InfoBlock
                         iconSrc="assets/svg/cat-tree-svgrepo-com.svg"
@@ -70,7 +68,6 @@ const Home = () => {
                           regelmäßige Spielzeiten mit Ihnen können helfen, Ihre Katze geistig fit und
                           glücklich zu halten. Auch das Schaffen von Rückzugsorten, an denen sich Ihre
                           Katze sicher und geborgen fühlt, trägt zur mentalen Gesundheit bei."
-                        route="/learning-corner"
                     />
                 </div>
             </div>
@@ -82,4 +79,3 @@ const Home = () => {
 };
 
 export default Home;
-
