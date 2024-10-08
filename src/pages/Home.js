@@ -1,14 +1,27 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import InfoBlock from "../pageModules/InfoBlock";
-import { useNavigate } from 'react-router-dom';
+import { OverlayContext } from '../App';
 import './Home.css'; // Ensure you have a CSS file for Home-specific styles
 
 const Home = () => {
-    const navigate = useNavigate();
+    const { isOverlayOpen, setOverlayOpen } = useContext(OverlayContext);
+    const [isCafeView, setCafeView] = useState(false);
 
     const handleEnterCafe = () => {
-        navigate('/Cafe');
+        setCafeView(true);
     };
+
+    const handleVerantwortungClick = () => {
+        document.getElementById('verantwortung-section').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    if (isOverlayOpen) {
+        return (
+            <div className="cafe-view">
+                <img src="./assets/img/virtuellesKatzenCafeHintergrundbild.jpg" alt="Cat Cafe" className="cafe-image" />
+            </div>
+        );
+    }
 
     return (
         <div>
@@ -61,8 +74,14 @@ const Home = () => {
                     />
                 </div>
             </div>
+            <div id="verantwortung-section">
+                <h2>Verantwortung übernehmen</h2>
+                <p>Hier finden Sie Informationen darüber, wie Sie verantwortungsvoll mit Katzen umgehen können.</p>
+                {/* Add more content as needed */}
+            </div>
         </div>
     );
 };
 
 export default Home;
+

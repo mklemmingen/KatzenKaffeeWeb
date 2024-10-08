@@ -1,50 +1,102 @@
-import React, { useState } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import LoginModal from '../LoginModal';
-import MusicPlayerModal from '../MusicPlayerModal';
+import useHandleVerantwortungClick from '../hooks/useHandleVerantwortungclick'; // Import the custom hook
+import useHandleEnterCafeClick from '../hooks/useHandleEnterCafeClick'; // Import the new custom hook
+import useOverlay from '../hooks/useOverlay'; // Import the overlay hook
+import { MusicPlayerContext } from '../App'; // Import the music player context
 
-function Header({ playerRef, onMusicPlayerOpen }) {
-    const [isLoginModalOpen, setLoginModalOpen] = useState(false);
-    const [isMusicPlayerModalOpen, setMusicPlayerModalOpen] = useState(false);
-    const [isDropdownOpen, setDropdownOpen] = useState(false);
-    const navigate = useNavigate();
+function Header({ playerRef }) {
+    const navigate = useNavigate(); // Add this line to define navigate
+    const { handleMusicPlayerOpen, handleMusicPlayerClose } = useContext(MusicPlayerContext);
+    const handleVerantwortungClick = useHandleVerantwortungClick();
+    const handleEnterCafeClick = useHandleEnterCafeClick();
+    const { isOverlayOpen, toggleOverlay } = useOverlay();
+
+    useEffect(() => {
+        if (playerRef && playerRef.current && playerRef.current.pauseVideo && playerRef.current.unMute) {
+            playerRef.current.pauseVideo();
+            playerRef.current.unMute();
+        }
+    }, [playerRef]);
+
+    const handleLogoClick = () => {
+        toggleOverlay(); // Close the overlay
+        navigate('/');
+    };
 
     const handleRegisterClick = () => {
         navigate('/register');
     };
 
-    const toggleDropdown = () => {
-        setDropdownOpen(!isDropdownOpen);
+    const handlePlay = () => {
+        if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
+            const state = playerRef.current.getPlayerState();
+            if (state !== 1) { // 1 is the state for playing
+                playerRef.current.playVideo();
+            }
+        }
+    };
+
+    const handlePause = () => {
+        if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
+            const state = playerRef.current.getPlayerState();
+            if (state === 1) { // 1 is the state for playing
+                playerRef.current.pauseVideo();
+            }
+        }
+    };
+
+    const handleMute = () => {
+        if (playerRef && playerRef.current && playerRef.current.isMuted && !playerRef.current.isMuted()) {
+            playerRef.current.mute();
+        }
+    };
+
+    const handleUnmute = () => {
+        if (playerRef && playerRef.current && playerRef.current.isMuted && playerRef.current.isMuted()) {
+            playerRef.current.unMute();
+        }
     };
 
     return (
         <header className="App-header">
             <div className="logo-container">
-                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo" />
-                <Link to="/" className="App-logo">KatzenKaffee.de</Link>
+                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo" onClick={handleLogoClick} />
+                <Link to="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
             <div className="nav-links">
-                <Link to="/Cafe" className="App-link">Rein in's Cafe</Link>
-                <Link to="/learning-corner" className="App-link">Verantwortung übernehmen</Link>
+                <button className="App-link" onClick={handleEnterCafeClick}>Rein in's Cafe</button>
+                <button className="App-link" onClick={handleVerantwortungClick}>Verantwortung übernehmen</button>
                 <Link to="/Support" className="App-link">Support</Link>
             </div>
             <div className="button-container">
                 <div className="dropdown">
-                    <button className="App-button music-button" onClick={toggleDropdown}>Musik-Player</button>
-                    {isDropdownOpen && (
-                        <div className="dropdown-content">
-                            <MusicPlayerModal
-                                isOpen={isMusicPlayerModalOpen}
-                                onRequestClose={() => setMusicPlayerModalOpen(false)}
-                                playerRef={playerRef}
-                            />
-                        </div>
-                    )}
+                    <button className="App-button music-button">Musik-Player</button>
+                    <div className="dropdown-content">
+                        <button onClick={handlePlay}>Play</button>
+                        <button onClick={handlePause}>Pause</button>
+                        <button onClick={handleMute}>Mute</button>
+                        <button onClick={handleUnmute}>Unmute</button>
+                    </div>
                 </div>
-                <button className="App-button login-button" onClick={() => setLoginModalOpen(true)}>Login</button>
+                <div className="dropdown">
+                    <button className="App-button login-button">Login</button>
+                    <div className="dropdown-content">
+                        <form>
+                            <label>
+                                Username:
+                                <input type="text" name="username" />
+                            </label>
+                            <label>
+                                Password:
+                                <input type="password" name="password" />
+                            </label>
+                            <button type="submit">Bestätigen</button>
+                        </form>
+                    </div>
+                </div>
                 <button className="App-button register-button" onClick={handleRegisterClick}>Register</button>
             </div>
-            <LoginModal isOpen={isLoginModalOpen} onRequestClose={() => setLoginModalOpen(false)} />
         </header>
     );
 }
