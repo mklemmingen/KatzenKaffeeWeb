@@ -75,9 +75,7 @@ const Home = () => {
                 </div>
             </div>
             <div id="verantwortung-section">
-                <h2>Verantwortung übernehmen</h2>
-                <p>Hier finden Sie Informationen darüber, wie Sie verantwortungsvoll mit Katzen umgehen können.</p>
-                {/* Add more content as needed */}
+
             </div>
         </div>
     );

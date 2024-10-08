@@ -11,8 +11,7 @@ import ErrorPage from './pages/ErrorPage';
 import YouTubePlayer from './YoutubePlayer';
 import './App.css';
 import useHandleVerantwortungClick from './hooks/useHandleVerantwortungclick';
-import useHandleEnterCafeClick from './hooks/useHandleEnterCafeClick';
-import useOverlay from "./hooks/useOverlay";
+import Cafe from "./pages/Cafe";
 
 // context for the music player and overlay
 export const MusicPlayerContext = createContext();
@@ -33,6 +32,7 @@ const AppContent = () => {
                     <Route path="/datenschutz" element={<Datenschutz />} />
                     <Route path="/impressum" element={<Impressum />} />
                     <Route path="*" element={<ErrorPage />} />
+                    <Route path="/cafe" element={<Cafe />} />
                 </Routes>
             </div>
             <Footer />
@@ -54,8 +54,9 @@ const App = () => {
 
     return (
         <Router>
-            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen, handleMusicPlayerClose, playerRef }}>
-                <OverlayContext.Provider value={{ useOverlay, useHandleVerantwortungClick, useHandleEnterCafeClick }}>
+            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen,
+                handleMusicPlayerClose, playerRef }}>
+                <OverlayContext.Provider value={{useHandleVerantwortungClick}}>
                     <YouTubePlayer videoId="jfKfPfyJRdk" onReady={(player) => (playerRef.current = player)} />
                     <AppContent />
                 </OverlayContext.Provider>

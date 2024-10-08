@@ -1,12 +1,10 @@
-import React, { useEffect, useContext } from 'react';
+import React, {useContext, useEffect} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import useHandleVerantwortungClick from '../hooks/useHandleVerantwortungclick'; // Import the custom hook
-import { MusicPlayerContext } from '../App'; // Import the music player context
+import { MusicPlayerContext } from '../App';
 
-function Header({ playerRef }) {
+function Cafe() {
     const navigate = useNavigate();
-    const { handleMusicPlayerOpen, handleMusicPlayerClose } = useContext(MusicPlayerContext);
-    const handleVerantwortungClick = useHandleVerantwortungClick();
+    const {handleMusicPlayerOpen, handleMusicPlayerClose, playerRef} = useContext(MusicPlayerContext);
 
     useEffect(() => {
         if (playerRef && playerRef.current && playerRef.current.pauseVideo && playerRef.current.unMute) {
@@ -15,17 +13,6 @@ function Header({ playerRef }) {
         }
     }, [playerRef]);
 
-    const handleLogoClick = () => {
-        navigate('/');
-    };
-
-    const handleRegisterClick = () => {
-        navigate('/register');
-    };
-
-    const handleEnterCafeClick= () => {
-        navigate('/cafe');
-    }
 
     const handlePlay = () => {
         if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
@@ -57,16 +44,16 @@ function Header({ playerRef }) {
         }
     };
 
+    const handleLogoClick = () => {
+        navigate('/');
+    };
+
     return (
-        <header className="App-header">
+        <div>
             <div className="logo-container">
-                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo" onClick={handleLogoClick} />
+                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo"
+                     onClick={handleLogoClick}/>
                 <Link to="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
-            </div>
-            <div className="nav-links">
-                <button className="App-link" onClick={handleEnterCafeClick}>Rein in's Cafe</button>
-                <button className="App-link" onClick={handleVerantwortungClick}>Verantwortung übernehmen</button>
-                <Link to="/Support" className="App-link">Support</Link>
             </div>
             <div className="button-container">
                 <div className="dropdown">
@@ -78,26 +65,11 @@ function Header({ playerRef }) {
                         <button onClick={handleUnmute}>Unmute</button>
                     </div>
                 </div>
-                <div className="dropdown">
-                    <button className="App-button login-button">Login</button>
-                    <div className="dropdown-content">
-                        <form>
-                            <label>
-                                Username:
-                                <input type="text" name="username" />
-                            </label>
-                            <label>
-                                Password:
-                                <input type="password" name="password" />
-                            </label>
-                            <button type="submit">Bestätigen</button>
-                        </form>
-                    </div>
-                </div>
-                <button className="App-button register-button" onClick={handleRegisterClick}>Register</button>
             </div>
-        </header>
+            <h1>Datenschutz</h1>
+            <p>its important!</p>
+        </div>
     );
 }
 
-export default Header;
+export default Cafe;
