@@ -1,3 +1,27 @@
+To-DO:
+
+- Support
+- Datenschutz
+- Impressum
+
+- InfoBlock Home
+    - DIY Cat Toys, Header: DIY Katzenspielzeug, Content: Share ideas for making cat toys from recycled materials like old t-shirts, cardboard boxes, and wine corks. Include simple tutorials and the benefits of reducing waste.
+    - Energy-Efficient Cat Care, Header: Energieeffiziente Katzenpflege, Content: Offer tips on how to save energy while caring for cats, such as using energy-efficient appliances for washing cat bedding and choosing eco-friendly grooming products.
+    - Supporting Local Shelters Header: Unterstützung lokaler Tierheime Content: Encourage visitors to support local animal shelters through donations, volunteering, or adopting pets. Highlight the positive impact on the community and the environment
+
+- Video Game
+    - Interactive Learning Stations
+        - Feature: Place interactive stations around the café where users can click to learn about different aspects of sustainable cat care. For example, a station near the food bowls could provide information on sustainable cat food.
+    - Mini-Games
+        - Feature: Include mini-games that teach sustainability concepts. For example, a recycling sorting game where users sort different types of cat litter into the correct bins, or a game where users create DIY cat toys from virtual recycled materials.
+    - Sustainability Quizzes
+        - Feature: Implement short quizzes that users can take to test their knowledge about sustainable living and cat care. Offer virtual rewards or badges for completing the quizzes.
+    - Cat Interaction
+        - Laser Pointer that lets the cat run to the cursor
+        - clicking the cat creates a purr and an animation
+        - the cat walks around and lays down to sleep every so often
+
+
 # Getting Started with Create React App
 
 This Website is a Design by Martin Lauterbach and Meinhard Holzknecht. 
