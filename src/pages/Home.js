@@ -1,35 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import InfoBlock from "../pageModules/InfoBlock";
-import { OverlayContext } from '../App';
 import './Home.css'; // Ensure you have a CSS file for Home-specific styles
 
 const Home = () => {
-    const { isOverlayOpen, setOverlayOpen } = useContext(OverlayContext);
-    const navigate = useNavigate();
-
-    const handleEnterCafe = () => {
-        navigate('/cafe');
-    };
-
-    const handleVerantwortungClick = () => {
-        document.getElementById('verantwortung-section').scrollIntoView({ behavior: 'smooth' });
-    };
-
-    if (isOverlayOpen) {
-        return (
-            <div className="cafe-view">
-                <img src="./assets/img/virtuellesKatzenCafeHintergrundbild.jpg" alt="Cat Cafe" className="cafe-image" />
-            </div>
-        );
-    }
 
     return (
         <div>
-            <div className="dummy-cat-cafe">
-                <div className="miniature-cat-cafe">
-                    <button className="enter-cafe-button" onClick={handleEnterCafe}>Das Kaffee betreten</button>
-                </div>
+            <div className="game-view">
+                <iframe
+                    src="../CatCafeGame/game.html"
+                    title="LibGDX Game"
+                    className="game-iframe"
+                />
             </div>
             <div className="container">
                 <div className="info-blocks-container">
@@ -71,9 +53,7 @@ const Home = () => {
                     />
                 </div>
             </div>
-            <div id="verantwortung-section">
-
-            </div>
+            <div id="verantwortung-section"></div>
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 function Footer() {
     return (
         <footer className="App-footer">
-            <p>© Studis, 2024. We love Cats!</p>
+            <p>©Marty, 2024. We love Cats!</p>
             <div className="nav-links">
                 <Link to="/datenschutz" className="App-link">Datenschutz</Link>
                 <Link to="/impressum" className="App-link">Impressum</Link>
