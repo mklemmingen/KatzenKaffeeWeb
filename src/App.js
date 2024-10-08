@@ -1,31 +1,68 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './Header';
-import Footer from './Footer'; // Assuming you have a Footer component
-import Support from './Support'; // Your Support page component
-import Cafe from './Cafe'; // Your Cafe page component
-import LearningCorner from './LearningCorner'; // Your Learning Corner page component
-import Home from './Home'; // Assuming you have a Home component
-import Register from './Register';
-import './App.css'
+import React, { useState, useRef, createContext, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Header from './pageModules/Header';
+import Footer from './pageModules/Footer';
+import Support from './pages/Support';
+import Home from './pages/Home';
+import Datenschutz from './pages/Datenschutz';
+import Impressum from './pages/Impressum';
+import ErrorPage from './pages/ErrorPage';
+import YouTubePlayer from './YoutubePlayer';
+import './App.css';
 
-function App() {
+// context for the music player and overlay
+export const MusicPlayerContext = createContext();
+export const OverlayContext = createContext({
+    isOverlayOpen: false,
+    setOverlayOpen: () => {}
+});
+
+const AppContent = () => {
+
+    return (
+        <div className="App">
+            <Header />
+            <div className="content">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/support" element={<Support />} />
+                    <Route path="/datenschutz" element={<Datenschutz />} />
+                    <Route path="/impressum" element={<Impressum />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
+            </div>
+            <Footer />
+        </div>
+    );
+};
+
+const App = () => {
+    const [isMusicPlayerOpen, setMusicPlayerOpen] = useState(false);
+    const playerRef = useRef(null);
+
+    const handleMusicPlayerOpen = () => {
+        setMusicPlayerOpen(true);
+    };
+
+    const handleMusicPlayerClose = () => {
+        setMusicPlayerOpen(false);
+    };
+
+    useEffect(() => {
+        if (playerRef.current) {
+            playerRef.current.playVideo();
+            playerRef.current.unMute();
+        }
+    }, []);
+
     return (
         <Router>
-            <div className="App">
-                <Header />
-                <Routes>
-                    <Route path="/support" element={<Support />} />
-                    <Route path="/cafe" element={<Cafe />} />
-                    <Route path="/learning-corner" element={<LearningCorner />} />
-                    <Route path="/" element={<Home />} />
-                    <Route path="/register" element={<Register />} />
-                </Routes>
-                <Footer />
-            </div>
+            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen, handleMusicPlayerClose, playerRef }}>
+                <YouTubePlayer videoId="jfKfPfyJRdk" onReady={(player) => (playerRef.current = player)} />
+                <AppContent />
+            </MusicPlayerContext.Provider>
         </Router>
     );
-}
+};
 
 export default App;
-

@@ -1,0 +1,83 @@
+/* home.css */
+
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #5D415A;
+    --secondary-color: #F5F5F5;
+    --accent-color: #5D410A;
+    --text-color: #333;
+    --background-color: #f9f9f9;
+    --font-family: 'Roboto', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family), serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.App {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+}
+
+.welcome-note {
+    position: relative;
+    height: 20%;
+    width: 40%;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+
+.welcome-note h1 {
+    font-family: 'Pacifico', serif;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.welcome-note p {
+    font-family: var(--font-family);
+    color: var(--text-color);
+    font-size: 1.2em;
+    line-height: 1.4;
+}
+
+.game-iframe {
+    position: relative;
+    width: 70%;
+    height: 40%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20%;
+    border: 3px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}

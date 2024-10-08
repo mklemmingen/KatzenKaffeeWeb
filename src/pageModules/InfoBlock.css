@@ -1,0 +1,102 @@
+/* Define a modern color palette */
+:root {
+    --primary-color: #5D415A;
+    --secondary-color: #F5F5F5;
+    --accent-color: #5D410A;
+    --text-color: #333;
+    --background-color: #ffffff;
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-family: 'Roboto', Arial, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Container for the entire info block */
+.info-block {
+    display: flex;
+    align-items: flex-start;
+    border: 1px solid var(--border-color);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    background-color: var(--secondary-color);
+    margin: 16px;
+    flex: 1 1 calc(50% - 32px);
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+/* Container for the icon */
+.icon {
+    margin-right: 16px;
+}
+
+/* Styling for the icon image */
+.icon img {
+    width: 75px;
+    height: 75px;
+}
+
+/* Container for the text content */
+.text-content {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Styling for the header */
+.text-content h2 {
+    margin: 0 0 8px;
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+/* Styling for the paragraph text */
+.text-content p {
+    margin: 0 0 16px;
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+/* Styling for the button */
+.text-content button {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: flex-end;
+}
+
+.text-content button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+/* Container for the row of info blocks */
+.info-blocks-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
