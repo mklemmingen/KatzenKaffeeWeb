@@ -18,12 +18,34 @@ export const OverlayContext = createContext({
 });
 
 const AppContent = () => {
+    const [experiences, setExperiences] = useState([]);
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const experience = event.target.elements.experience.value; // Adjust this to match your form field name
+
+        fetch('/api/submitExperience', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ experience }),
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                setExperiences(prevExperiences => [...prevExperiences, experience]);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    };
     return (
         <div className="App">
-            <Header className="header" />
+            <Header className="header" handleSubmit={handleSubmit} />
             <div className="content">
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home experiences={experiences} setExperiences={setExperiences} handleSubmit={handleSubmit} />} />
                     <Route path="/support" element={<Support />} />
                     <Route path="/datenschutz" element={<Datenschutz />} />
                     <Route path="/impressum" element={<Impressum />} />

@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import InfoBlock from "../pageModules/InfoBlock";
 import CatAnimation from './CatAnimation';
 import './Home.css'; // Ensure you have a CSS file for Home-specific styles
 
-const Home = () => {
+const Home = ({ experiences, setExperiences, handleSubmit }) => {
+    useEffect(() => {
+        fetch('/api/getExperiences')
+            .then(response => response.json())
+            .then(data => {
+                setExperiences(data);
+            })
+            .catch(error => {
+                console.error('Error fetching experiences:', error);
+            });
+    }, [setExperiences]);
+
     return (
         <div>
             <CatAnimation numberOfCats={5} />
@@ -47,7 +58,15 @@ const Home = () => {
                     />
                 </div>
             </div>
-            <div id="verantwortung-section"></div>
+            <div id="user-experiences">
+                {experiences.map((experience, index) => (
+                    <textarea
+                        key={index}
+                        value={experience}
+                        readOnly
+                    />
+                ))}
+            </div>
         </div>
     );
 };

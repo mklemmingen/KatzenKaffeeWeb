@@ -71,12 +71,11 @@ body {
 .game-iframe {
     position: relative;
     width: 70%;
-    height: 40%;
+    height: 30%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20%;
     border: 3px solid var(--border-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);

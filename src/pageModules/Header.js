@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MusicPlayerContext } from '../App'; // Import the music player context
 
-function Header() {
+function Header({ handleSubmit }) { // Accept handleSubmit as a prop
     const navigate = useNavigate();
     const { handleMusicPlayerOpen, handleMusicPlayerClose, playerRef } = useContext(MusicPlayerContext);
 
@@ -45,29 +45,6 @@ function Header() {
         if (playerRef && playerRef.current && playerRef.current.isMuted && playerRef.current.isMuted()) {
             playerRef.current.unMute();
         }
-    };
-
-    // Future method to handle form submission
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // TODO: Implement the logic to transfer the answer to the backend database
-        // and add this information to a textbox at the bottom of the Home component.
-        // Example path: POST request to /api/submitExperience
-        // fetch('/api/submitExperience', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ experience: event.target.elements.value }),
-        // })
-        // .then(response => response.json())
-        // .then(data => {
-        //     // Handle the response data
-        //     console.log('Success:', data);
-        // })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        // });
     };
 
     return (
