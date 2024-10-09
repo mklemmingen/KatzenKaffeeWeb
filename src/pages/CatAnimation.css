@@ -1,0 +1,21 @@
+/* CatAnimation.css */
+.cat-animation-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Ensure it stays in the background */
+    image-rendering: pixelated; /* Optional: Ensures sharp rendering */
+}
+
+/* Home.css */
+.container {
+    position: relative;
+    z-index: 1; /* Ensure the container is above the canvas */
+}
+
+.info-blocks-container {
+    position: relative;
+    z-index: 2; /* Ensure the info blocks are above the canvas */
+}

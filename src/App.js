@@ -1,5 +1,5 @@
 import React, { useState, useRef, createContext, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './pageModules/Header';
 import Footer from './pageModules/Footer';
 import Support from './pages/Support';
@@ -18,10 +18,9 @@ export const OverlayContext = createContext({
 });
 
 const AppContent = () => {
-
     return (
         <div className="App">
-            <Header />
+            <Header className="header" />
             <div className="content">
                 <Routes>
                     <Route path="/" element={<Home />} />
@@ -31,7 +30,7 @@ const AppContent = () => {
                     <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </div>
-            <Footer />
+            <Footer className="footer" />
         </div>
     );
 };

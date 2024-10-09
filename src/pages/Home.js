@@ -1,18 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import InfoBlock from "../pageModules/InfoBlock";
+import CatAnimation from './CatAnimation';
 import './Home.css'; // Ensure you have a CSS file for Home-specific styles
 
 const Home = () => {
-
     return (
         <div>
-            <div className="game-view">
-                <iframe
-                    src="../CatCafeGame/game.html"
-                    title="LibGDX Game"
-                    className="game-iframe"
-                />
-            </div>
+            <CatAnimation numberOfCats={5} />
             <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock

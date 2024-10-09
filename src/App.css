@@ -17,6 +17,12 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: var(--font-family), serif;
   background-color: var(--background-color);
@@ -29,10 +35,28 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow: hidden;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .content {
   flex: 1;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  overflow: hidden;
 }
 
 .container {
@@ -237,6 +261,7 @@ body {
 .dropdown {
   position: relative;
   display: inline-block;
+  z-index: 999;
 }
 
 .dropdown-content {

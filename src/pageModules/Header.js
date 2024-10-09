@@ -79,10 +79,7 @@ function Header() {
             </div>
             <div className="welcome-note">
                 <p>
-                    Entspannen, Musik hören, Katzen streicheln und mit Ihnen spielen. Einfach relaxen.
-                </p>
-                <p>
-                    Lernen, wie man Katzen nachhaltig hält.
+                    Entspannen, Musik hören, Zeit mit Katzen verbringen und schauen, wie man das Nachhaltig macht.
                 </p>
             </div>
             <div className="button-container">
