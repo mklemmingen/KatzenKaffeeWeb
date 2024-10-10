@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import InfoBlock from "../pageModules/InfoBlock";
 import CatAnimation from './CatAnimation';
 import './Home.css'; // Ensure you have a CSS file for Home-specific styles
+import './CatAnimation.css'; // Ensure you have a CSS file for CatAnimation-specific styles
 
 const Home = ({ experiences, setExperiences, handleSubmit }) => {
     useEffect(() => {
@@ -17,7 +18,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
 
     return (
         <div>
-            <CatAnimation numberOfCats={5} />
+            <CatAnimation numberOfCats={10} />
             <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock

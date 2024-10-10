@@ -18,34 +18,30 @@ const spriteFiles = [
     'white_0.png', 'white_grey_0.png', 'white_grey_1.png', 'yellow_0.png'
 ];
 
-
-
 const tileWidth = 32;
 const tileHeight = 32;
-const categoryHeight = 32;
 const scale = 2;
 const categories = [
-    { name: 'sitting', startX: 0, startY: categoryHeight - tileHeight },
-    { name: 'looking', startX: 128, startY: categoryHeight - tileHeight },
-    { name: 'laying', startX: 256, startY: categoryHeight - tileHeight },
-    { name: 'walking', startX: 384, startY: categoryHeight - tileHeight },
-    { name: 'running', startX: 512, startY: categoryHeight - tileHeight }
+    { name: 'sitting', startX: 0, startY: tileHeight },
+    { name: 'looking', startX: 128, startY: tileHeight },
+    { name: 'laying', startX: 256, startY: tileHeight },
+    { name: 'walking', startX: 384, startY: tileHeight },
+    { name: 'running', startX: 512, startY: tileHeight }
 ];
 const directions = [
-    { name: 'south', index: 0 },
-    { name: 'south-west', index: 1 },
-    { name: 'west', index: 2 },
-    { name: 'north-west', index: 3 },
-    { name: 'north', index: 4 },
-    { name: 'north-east', index: 5 },
-    { name: 'east', index: 6 },
-    { name: 'south-east', index: 7 }
+    { name: 'south', index: 0, angle: Math.PI / 2 },
+    { name: 'south-west', index: 1, angle: (3 * Math.PI) / 4 },
+    { name: 'west', index: 2, angle: Math.PI },
+    { name: 'north-west', index: 3, angle: (5 * Math.PI) / 4 },
+    { name: 'north', index: 4, angle: (3 * Math.PI) / 2 },
+    { name: 'north-east', index: 5, angle: (7 * Math.PI) / 4 },
+    { name: 'east', index: 6, angle: 0 },
+    { name: 'south-east', index: 7, angle: Math.PI / 4 }
 ];
 const meowSounds = [
     '/assets/snd/meow.mp3',
     '/assets/snd/meow2.mp3',
     '/assets/snd/meow3.mp3',
-    '/assets/snd/meow4.mp3',
     '/assets/snd/meow5.mp3',
     '/assets/snd/meow6.mp3'
 ];
@@ -53,8 +49,22 @@ const meowSounds = [
 const speeds = {
     laying: 0,
     sitting: 0,
+    looking: 0,
     walking: 1,
     running: 2
+};
+
+const getDirectionFromAngle = (angle) => {
+    const normalizedAngle = (angle + 2 * Math.PI) % (2 * Math.PI);
+    if (normalizedAngle >= 0 && normalizedAngle < Math.PI / 8) return 'west';
+    if (normalizedAngle >= Math.PI / 8 && normalizedAngle < Math.PI / 4) return 'south-west';
+    if (normalizedAngle >= Math.PI / 4 && normalizedAngle < 3 * Math.PI / 4) return 'south';
+    if (normalizedAngle >= 3 * Math.PI / 4 && normalizedAngle < 5 * Math.PI / 6) return 'south-east';
+    if (normalizedAngle >= 5 * Math.PI / 6 && normalizedAngle < 7 * Math.PI / 6) return 'east';
+    if (normalizedAngle >= 7 * Math.PI / 6 && normalizedAngle < 5 * Math.PI / 4) return 'north-east';
+    if (normalizedAngle >= 5 * Math.PI / 4 && normalizedAngle < 7 * Math.PI / 4) return 'north';
+    if (normalizedAngle >= 7 * Math.PI / 4 && normalizedAngle < 15 * Math.PI / 8) return 'north-west';
+    return 'west';
 };
 
 const extractTiles = (spriteSheet, categories) => {
@@ -64,23 +74,21 @@ const extractTiles = (spriteSheet, categories) => {
     canvas.width = tileWidth;
     canvas.height = tileHeight;
 
-    categories.forEach((category, catIndex) => { // for each category
+    categories.forEach((category) => {
         tiles[category.name] = {};
-        directions.forEach((direction, dirIndex) => { // for each direction
-            tiles[category.name][direction] = [];
-            for (let row = 0; row < 2; row++) { // each animation is 2 rows
-                for (let col = 0; col < 4; col++) { // each animation is 8 frames in 2 rows max
-                    const sx = category.startX + col * tileWidth // startX is the x position of the category and col in frame
-                    // startY is in the lower left corner of a frame. To get there, subtract pngHeight by categoryHeight
-                    // for categoryTitle, and by all the directions we have already processed, and by the row we are on
-                    const sy = spriteSheet.height - categoryHeight + tileHeight * 2 * direction.index + row * tileHeight;
+        directions.forEach((direction) => {
+            tiles[category.name][direction.name] = [];
+            for (let row = 0; row < 2; row++) {
+                for (let col = 0; col < 4; col++) {
+                    const sx = category.startX + col * tileWidth;
+                    const sy = spriteSheet.height - tileHeight * 2 * direction.index - row * tileHeight;
                     if (sx < 768) {
                         ctx.clearRect(0, 0, tileWidth, tileHeight);
                         ctx.drawImage(spriteSheet, sx, sy, tileWidth, tileHeight, 0, 0, tileWidth, tileHeight);
                         const imageData = ctx.getImageData(0, 0, tileWidth, tileHeight);
                         const isEmpty = !imageData.data.some(channel => channel !== 0);
                         if (!isEmpty) {
-                            tiles[category.name][direction].push({ sx, sy, width: tileWidth, height: tileHeight });
+                            tiles[category.name][direction.name].push({ sx, sy, width: tileWidth, height: tileHeight });
                         }
                     }
                 }
@@ -92,9 +100,9 @@ const extractTiles = (spriteSheet, categories) => {
 
 const CatAnimation = ({ numberOfCats }) => {
     const canvasRef = useRef(null);
-    const frameRate = 8; // frames per second
-    const frameDuration = 1000 / frameRate; // duration of each frame in milliseconds
-    let lastFrameTime = 0;
+    const frameRate = 8;
+    const frameDuration = 1000 / frameRate;
+    const lastFrameTime = useRef(0);
 
     const getRandomMeowSound = () => {
         const randomIndex = Math.floor(Math.random() * meowSounds.length);
@@ -103,14 +111,11 @@ const CatAnimation = ({ numberOfCats }) => {
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas) return; // Ensure canvas is not null
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
 
-        // Set canvas dimensions to match the actual size
         canvas.width = canvas.clientWidth;
         canvas.height = canvas.clientHeight;
-
-        // Disable image smoothing
         ctx.imageSmoothingEnabled = false;
 
         const cats = Array.from({ length: numberOfCats }, () => ({
@@ -119,12 +124,14 @@ const CatAnimation = ({ numberOfCats }) => {
             direction: directions[Math.floor(Math.random() * directions.length)],
             frame: 0,
             sprite: new Image(),
-            category: categories[Math.floor(Math.random() * categories.length)], // Randomly assign category
+            category: categories[Math.floor(Math.random() * categories.length)], // Ensure category is set
             tiles: {},
             speed: speeds['walking'],
             delay: 0,
-            targetX: null,
-            targetY: null
+            targetX: Math.random() * canvas.width,
+            targetY: Math.random() * canvas.height,
+            stateTimer: 0,
+            lastMeowTime: 0
         }));
 
         const loadSprites = () => {
@@ -153,94 +160,138 @@ const CatAnimation = ({ numberOfCats }) => {
 
         loadSprites();
 
+        // 09.10.24: Added null checks before accessing category property
         const animate = (timestamp) => {
-            if (timestamp - lastFrameTime < frameDuration) {
+            if (timestamp - lastFrameTime.current < frameDuration) {
                 requestAnimationFrame(animate);
                 return;
             }
-            lastFrameTime = timestamp;
+            lastFrameTime.current = timestamp;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             cats.forEach(cat => {
-                const tile = cat.tiles[cat.category.name][cat.direction][cat.frame];
-                if (tile) {
-                    ctx.drawImage(
-                        cat.sprite,
-                        tile.sx,
-                        tile.sy,
-                        tile.width,
-                        tile.height,
-                        cat.x,
-                        cat.y,
-                        tile.width * scale,
-                        tile.height * scale
-                    );
+                if (!cat.category) {
+                    console.error('Cat category is undefined:', cat);
+                    return;
                 }
+                const tilesForCategory = cat.tiles[cat.category.name];
+                if (tilesForCategory) {
+                    const tilesForDirection = tilesForCategory[cat.direction.name];
+                    if (tilesForDirection) {
+                        const tile = tilesForDirection[cat.frame];
+                        if (tile) {
+                            ctx.drawImage(
+                                cat.sprite,
+                                tile.sx,
+                                tile.sy,
+                                tile.width,
+                                tile.height,
+                                cat.x,
+                                cat.y,
+                                tile.width * scale,
+                                tile.height * scale
+                            );
+                        }
 
-                // Update frame
-                cat.frame = (cat.frame + 1) % cat.tiles[cat.category.name][cat.direction].length;
+                        if (cat.category.name !== 'laying' && cat.category.name !== 'sitting' && cat.category.name !== 'looking') {
+                            cat.frame = (cat.frame + 1) % tilesForDirection.length;
 
-                // Update position
-                const directionIndex = directions.indexOf(cat.direction);
-                const angle = (directionIndex * Math.PI) / 4;
-                cat.x += Math.cos(angle) * cat.speed;
-                cat.y += Math.sin(angle) * cat.speed;
+                            const angle = Math.atan2(cat.targetY - cat.y, cat.targetX - cat.x);
+                            cat.direction = directions.find(dir => dir.name === getDirectionFromAngle(angle));
+                            cat.x += Math.cos(angle) * cat.speed;
+                            cat.y += Math.sin(angle) * cat.speed;
 
-                // Fix boundary conditions
-                if (cat.x < 0 || cat.x > canvas.width - tileWidth * scale) {
-                    cat.direction = directions[(directions.indexOf(cat.direction) + 4) % directions.length];
-                }
-                if (cat.y < 0 || cat.y > canvas.height - tileHeight * scale) {
-                    cat.direction = directions[(directions.indexOf(cat.direction) + 4) % directions.length];
+                            if (Math.abs(cat.x - cat.targetX) < 1 && Math.abs(cat.y - cat.targetY) < 1) {
+                                changeBehavior(cat);
+                                cat.targetX = Math.random() * canvas.width;
+                                cat.targetY = Math.random() * canvas.height;
+                            }
+                        } else {
+                            cat.stateTimer -= frameDuration;
+                            if (cat.stateTimer <= 0) {
+                                changeBehavior(cat);
+                            }
+                        }
+                    }
                 }
             });
             requestAnimationFrame(animate);
         };
 
-        const changeDirection = (cat) => {
-            cat.direction = directions[(directions.indexOf(cat.direction) + 1) % directions.length];
-            cat.frame = 0;
-        };
-
-        const changeBehavior = (cat) => {
-            const behaviors = ['laying', 'sitting', 'walking', 'running'];
-            const currentBehavior = behaviors.indexOf(cat.category.name);
-            const nextBehavior = behaviors[(currentBehavior + 1) % behaviors.length];
-            cat.category = categories.find(category => category.name === nextBehavior);
-            cat.speed = speeds[nextBehavior];
+        const chooseTarget = (cat) => {
+            cat.targetX = Math.random() * canvas.width;
+            cat.targetY = Math.random() * canvas.height;
+            cat.category = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running'));
+            cat.speed = speeds[cat.category.name];
+            cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
         };
 
         const handleClick = (event) => {
+            console.log('Canvas clicked'); // Log to verify click detection
+
             const rect = canvas.getBoundingClientRect();
-            const x = event.clientX - rect.left;
-            const y = event.clientY - rect.top;
+            const scaleX = canvas.width / rect.width;
+            const scaleY = canvas.height / rect.height;
+            const x = (event.clientX - rect.left) * scaleX;
+            const y = (event.clientY - rect.top) * scaleY;
+
+            console.log(`Canvas dimensions: (${rect.width}, ${rect.height})`); // Log canvas dimensions
+            console.log(`Click coordinates: (${x}, ${y})`); // Log click coordinates
 
             cats.forEach(cat => {
-                if (
-                    x >= cat.x && x <= cat.x + tileWidth * scale &&
-                    y >= cat.y && y <= cat.y + tileHeight * scale
-                ) {
-                    const meowAudio = new Audio(getRandomMeowSound());
-                    meowAudio.play();
-                    changeDirection(cat);
-                    if (cat.category.name === 'laying' || cat.category.name === 'sitting') {
-                        changeBehavior(cat);
+                console.log(`Cat position: (${cat.x}, ${cat.y})`); // Log cat position
+                console.log(`Cat bounds: (${cat.x}, ${cat.y}, ${cat.x + tileWidth * scale}, ${cat.y + tileHeight * scale})`); // Log cat bounds
+
+                const catRight = cat.x + tileWidth * scale;
+                const catBottom = cat.y + tileHeight * scale;
+
+                console.log(`Checking if (${x}, ${y}) is within (${cat.x}, ${cat.y}, ${catRight}, ${catBottom})`);
+
+                if (x >= cat.x && x <= catRight && y >= cat.y && y <= catBottom) {
+                    console.log('Cat clicked:', cat); // Log to verify cat detection
+
+                    const currentTime = Date.now();
+                    if (currentTime - cat.lastMeowTime >= 10000) { // Check if 10 seconds have passed
+                        const meowSound = new Audio(getRandomMeowSound());
+                        meowSound.play();
+                        cat.lastMeowTime = currentTime;
                     }
+                    chooseTarget(cat);
                 }
             });
         };
 
+        const changeBehavior = (cat) => {
+            const behaviors = ['laying', 'sitting', 'looking', 'walking', 'running'];
+            const currentBehavior = behaviors.indexOf(cat.category.name);
+            const nextBehavior = behaviors[(currentBehavior + 1) % behaviors.length];
+            cat.category = categories.find(category => category.name === nextBehavior);
+            cat.speed = speeds[nextBehavior];
+            cat.frame = 0; // Reset frame to ensure animation starts from the beginning
+            cat.stateTimer = Math.random() * 5000 + 2000; // Set a random state timer between 2 and 7 seconds
+        };
+
+        const updateAnimationBasedOnDirection = () => {
+            cats.forEach(cat => {
+                const angle = Math.atan2(cat.targetY - cat.y, cat.targetX - cat.x);
+                const newDirection = directions.find(dir => dir.name === getDirectionFromAngle(angle));
+                if (cat.direction !== newDirection) {
+                    cat.direction = newDirection;
+                    cat.frame = 0; // Reset frame to ensure animation starts from the beginning
+                }
+            });
+        };
+
+        // Interval to check direction and change animation if needed
+        const directionInterval = setInterval(updateAnimationBasedOnDirection, 500);
+
         canvas.addEventListener('click', handleClick);
 
-        const interval = setInterval(() => {
-            cats.forEach(changeDirection);
-        }, 2000);
-
         return () => {
-            clearInterval(interval);
+            clearInterval(directionInterval);
             canvas.removeEventListener('click', handleClick);
         };
-    }, [numberOfCats]);
+    }, [numberOfCats, frameDuration]);
 
     return <canvas ref={canvasRef} className="cat-animation-canvas"></canvas>;
 };

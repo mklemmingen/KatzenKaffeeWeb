@@ -5,14 +5,14 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* Ensure it stays in the background */
+    z-index: 2; /* Lowered to ensure header and footer are clickable */
     image-rendering: pixelated; /* Optional: Ensures sharp rendering */
 }
 
 /* Home.css */
 .container {
     position: relative;
-    z-index: 1; /* Ensure the container is above the canvas */
+    z-index: 2; /* Ensure the container is above the canvas */
 }
 
 .info-blocks-container {
