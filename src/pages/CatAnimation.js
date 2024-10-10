@@ -119,21 +119,25 @@ const CatAnimation = ({ numberOfCats }) => {
         canvas.height = canvas.clientHeight;
         ctx.imageSmoothingEnabled = false;
 
-        const cats = Array.from({ length: numberOfCats }, () => ({
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            direction: directions[Math.floor(Math.random() * directions.length)],
-            frame: 0,
-            sprite: new Image(),
-            category: categories[Math.floor(Math.random() * categories.length)], // Ensure category is set
-            tiles: {},
-            speed: speeds['walking'],
-            delay: 0,
-            targetX: Math.random() * canvas.width,
-            targetY: Math.random() * canvas.height,
-            stateTimer: 0,
-            lastMeowTime: 0
-        }));
+        const cats = Array.from({ length: numberOfCats }, () => {
+            const category = categories[Math.floor(Math.random() * categories.length)];
+            const direction = directions[Math.floor(Math.random() * directions.length)];
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                direction: direction || directions[0], // Added Fallback to a default direction
+                frame: 0,
+                sprite: new Image(),
+                category: category || categories[0], // Added Fallback to a default category
+                tiles: {},
+                speed: speeds['walking'],
+                delay: 0,
+                targetX: Math.random() * canvas.width,
+                targetY: Math.random() * canvas.height,
+                stateTimer: 0,
+                lastMeowTime: 0
+            };
+        });
 
         const loadSprites = () => {
             let loadedCount = 0;
