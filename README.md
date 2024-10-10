@@ -1,4 +1,6 @@
-To-DO:
+Current active Team members: Martin Lauterbach, Meinhard Holzknecht
+
+To-DO ------------------------------------------------------------------
 
 - Support
 - Datenschutz
@@ -13,6 +15,7 @@ To-DO:
 
 - remove redundant classes from all .css files from previous cat cafe dev iterations. see app.css
 
+-------------------------------------------------------------------------
 
 # Getting Started with Create React App
 
