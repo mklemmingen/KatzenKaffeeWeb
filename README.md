@@ -11,6 +11,8 @@ To-DO:
 
 - Add cat toy pngs and targetable food bowls via timer to the catAnimation
 
+- remove redundant classes from all .css files from previous cat cafe dev iterations. see app.css
+
 
 # Getting Started with Create React App
 
