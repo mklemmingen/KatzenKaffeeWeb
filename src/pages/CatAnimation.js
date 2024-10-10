@@ -160,6 +160,19 @@ const CatAnimation = ({ numberOfCats }) => {
 
         loadSprites();
 
+        const chooseTarget = (cat) => {
+            cat.targetX = Math.random() * canvas.width;
+            cat.targetY = Math.random() * canvas.height;
+            const newCategory = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running'));
+            if (newCategory) {
+                cat.category = newCategory;
+                cat.speed = speeds[cat.category.name];
+                cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
+            } else {
+                console.error('Failed to assign a new category to the cat:', cat);
+            }
+        };
+
         // 09.10.24: Added null checks before accessing category property
         const animate = (timestamp) => {
             if (timestamp - lastFrameTime.current < frameDuration) {
@@ -216,14 +229,6 @@ const CatAnimation = ({ numberOfCats }) => {
                 }
             });
             requestAnimationFrame(animate);
-        };
-
-        const chooseTarget = (cat) => {
-            cat.targetX = Math.random() * canvas.width;
-            cat.targetY = Math.random() * canvas.height;
-            cat.category = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running'));
-            cat.speed = speeds[cat.category.name];
-            cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
         };
 
         const handleClick = (event) => {
