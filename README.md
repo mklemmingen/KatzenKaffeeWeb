@@ -9,7 +9,7 @@ To-DO:
     - Energy-Efficient Cat Care, Header: Energieeffiziente Katzenpflege, Content: Offer tips on how to save energy while caring for cats, such as using energy-efficient appliances for washing cat bedding and choosing eco-friendly grooming products.
     - Supporting Local Shelters Header: Unterstützung lokaler Tierheime Content: Encourage visitors to support local animal shelters through donations, volunteering, or adopting pets. Highlight the positive impact on the community and the environment
 
-- Bugfix the sprite loading of the background cats, and make clickable and not move into footer/header
+- Add cat toy pngs and targetable food bowls via timer to the catAnimation
 
 
 # Getting Started with Create React App
