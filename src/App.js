@@ -22,7 +22,7 @@ const AppContent = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const experience = event.target.elements.experience.value; // Adjust this to match your form field name
+        const experience = event.target.elements.experience.value;
 
         fetch('/api/submitExperience', {
             method: 'POST',
@@ -45,7 +45,8 @@ const AppContent = () => {
             <Header className="header" handleSubmit={handleSubmit} />
             <div className="content">
                 <Routes>
-                    <Route path="/" element={<Home experiences={experiences} setExperiences={setExperiences} handleSubmit={handleSubmit} />} />
+                    <Route path="/" element={<Home experiences={experiences} setExperiences={setExperiences}
+                                                   handleSubmit={handleSubmit} />} />
                     <Route path="/support" element={<Support />} />
                     <Route path="/datenschutz" element={<Datenschutz />} />
                     <Route path="/impressum" element={<Impressum />} />
@@ -78,7 +79,8 @@ const App = () => {
 
     return (
         <Router>
-            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen, handleMusicPlayerClose, playerRef }}>
+            <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen,
+                handleMusicPlayerClose, playerRef }}>
                 <YouTubePlayer videoId="jfKfPfyJRdk" onReady={(player) => (playerRef.current = player)} />
                 <AppContent />
             </MusicPlayerContext.Provider>

@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import InfoBlock from "../pageModules/InfoBlock";
 import CatAnimation from './CatAnimation';
-import './Home.css'; // Ensure you have a CSS file for Home-specific styles
-import './CatAnimation.css'; // Ensure you have a CSS file for CatAnimation-specific styles
+import './Home.css';
+import './CatAnimation.css';
 
 const Home = ({ experiences, setExperiences, handleSubmit }) => {
     useEffect(() => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import './InfoBlock.css';
 
-// to use the History from infoblock
 const InfoBlock = ({ iconSrc, headerText, textBlock}) => {
 
     return (

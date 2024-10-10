@@ -67,6 +67,7 @@ const getDirectionFromAngle = (angle) => {
     return 'west';
 };
 
+// method is optimized by the use of a canvas element and by the file in assets/cats that prepares the spritesheets
 const extractTiles = (spriteSheet, categories) => {
     const tiles = {};
     const canvas = document.createElement('canvas');
@@ -231,6 +232,7 @@ const CatAnimation = ({ numberOfCats }) => {
             requestAnimationFrame(animate);
         };
 
+        // this was a complete mess of a method to write, but it works
         const handleClick = (event) => {
             console.log('Canvas clicked'); // Log to verify click detection
 
