@@ -1,10 +1,11 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MusicPlayerContext } from '../App'; // Import the music player context
 
-function Header({ handleSubmit }) { // Accept handleSubmit as a prop
+function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a prop
     const navigate = useNavigate();
     const { handleMusicPlayerOpen, handleMusicPlayerClose, playerRef } = useContext(MusicPlayerContext);
+    const [isHighContrast, setIsHighContrast] = useState(false);
 
     useEffect(() => {
         if (playerRef && playerRef.current && playerRef.current.pauseVideo && playerRef.current.unMute) {
@@ -12,6 +13,11 @@ function Header({ handleSubmit }) { // Accept handleSubmit as a prop
             playerRef.current.unMute();
         }
     }, [playerRef]);
+
+    const handleToggle = () => {
+        setIsHighContrast(!isHighContrast);
+        onToggleTheme(!isHighContrast);
+    };
 
     const handleLogoClick = () => {
         navigate('/');
@@ -47,6 +53,21 @@ function Header({ handleSubmit }) { // Accept handleSubmit as a prop
         }
     };
 
+    const quotes = [
+        "In ancient times Cats were worshipped as Gods; they have not forgotten this. - Terry Pratchett",
+        "Time spent with cats is never wasted. - Sigmund Freud",
+        "Cats rule the world. - Jim Davis",
+        "A cat has absolute emotional honesty. - Ernest Hemingway",
+        "The smallest feline is a masterpiece. - Leonardo da Vinci",
+        "Cats are connoisseurs of comfort. - James Herriot",
+        "A meow massages the heart. - Stuart McMillan",
+        "Cats choose us; we don't own them. - Kristin Cast",
+        "A cat is a puzzle for which there is no solution. - Hazel Nicholson",
+        "Cats leave paw prints in your heart, forever and always."
+    ];
+
+    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
     return (
         <header className="App-header">
             <div className="logo-container">
@@ -56,10 +77,17 @@ function Header({ handleSubmit }) { // Accept handleSubmit as a prop
             </div>
             <div className="welcome-note">
                 <p>
-                    Entspannen, Musik hören, Zeit mit Katzen verbringen und schauen, wie man das Nachhaltig macht.
+                    <p>{randomQuote}</p>
                 </p>
             </div>
             <div className="button-container">
+                <div>
+                    <label htmlFor="contrast-switch">Kontrastmodi</label>
+                    <label className="switch">
+                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
+                        <span className="slider"></span>
+                    </label>
+                </div>
                 <div className="dropdown">
                     <button className="App-button music-button">Musik-Player</button>
                     <div className="dropdown-content">

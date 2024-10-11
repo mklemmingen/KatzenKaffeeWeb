@@ -1,4 +1,4 @@
-import React, { useState, useRef, createContext, useEffect } from 'react';
+import React, { useState, useRef, createContext, useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './pageModules/Header';
 import Footer from './pageModules/Footer';
@@ -9,7 +9,8 @@ import Impressum from './pages/Impressum';
 import ErrorPage from './pages/ErrorPage';
 import YouTubePlayer from './YoutubePlayer';
 import Credits from './pages/Credits';
-import './App.css';
+import CatAnimation from './pageModules/CatAnimation';
+import './pagestyles/App.css';
 
 // context for the music player and overlay
 export const MusicPlayerContext = createContext();
@@ -19,7 +20,14 @@ export const OverlayContext = createContext({
 });
 
 const AppContent = () => {
+    const [numberOfCats, setNumberOfCats] = useState(5);
     const [experiences, setExperiences] = useState([]);
+    const [isHighContrast, setIsHighContrast] = useState(false);
+
+    const handleToggleTheme = (isHighContrast) => {
+        setIsHighContrast(isHighContrast);
+        document.documentElement.setAttribute('data-theme', isHighContrast ? 'high-contrast' : 'normal');
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -41,9 +49,17 @@ const AppContent = () => {
                 console.error('Error:', error);
             });
     };
+
+    useEffect(() => {
+        const cpuCores = navigator.hardwareConcurrency;
+        const cats = Math.min(10, Math.max(5, cpuCores));
+        setNumberOfCats(cats);
+    }, []);
+
     return (
         <div className="App">
-            <Header className="header" handleSubmit={handleSubmit} />
+            <Header className="header" handleSubmit={handleSubmit} onToggleTheme={handleToggleTheme}/>
+            <CatAnimation numberOfCats={numberOfCats} />
             <div className="content">
                 <Routes>
                     <Route path="/" element={<Home experiences={experiences} setExperiences={setExperiences}

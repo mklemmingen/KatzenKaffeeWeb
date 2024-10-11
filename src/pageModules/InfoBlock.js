@@ -1,16 +1,30 @@
 import React from 'react';
-import './InfoBlock.css';
+import '../pagestyles/InfoBlock.css';
 
-const InfoBlock = ({ iconSrc, headerText, textBlock}) => {
+const InfoBlock = ({ iconSrc, headerText, textBlock, targetId }) => {
+    const handleButtonClick = () => {
+        try {
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                targetElement.focus();
+            } else {
+                throw new Error(`Element with ID ${targetId} not found`);
+            }
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
 
     return (
-        <div className={"info-block"}>
-            <div className={"icon"}>
-                <img src={iconSrc} alt="Icon"/>
+        <div className="info-block">
+            <div className="icon">
+                <img src={iconSrc} alt="Icon" />
             </div>
-            <div className={"text-content"}>
+            <div className="text-content">
                 <h2>{headerText}</h2>
                 <p>{textBlock}</p>
+                <button onClick={handleButtonClick}>Zur Kategorie</button>
             </div>
         </div>
     );

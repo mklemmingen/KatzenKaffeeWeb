@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import './CatAnimation.css';
+import '../pagestyles/CatAnimation.css';
 
 const spriteFiles = [
     'black_0.png', 'black_1.png', 'black_2.png', 'black_3.png', 'black_4.png',
@@ -179,6 +179,7 @@ const CatAnimation = ({ numberOfCats }) => {
         };
 
         // 09.10.24: Added null checks before accessing category property
+        // 10.10.24: New target after target reached
         const animate = (timestamp) => {
             if (timestamp - lastFrameTime.current < frameDuration) {
                 requestAnimationFrame(animate);
@@ -217,15 +218,17 @@ const CatAnimation = ({ numberOfCats }) => {
                                 cat.frame = 1; // repeat animation
                             }
 
-                            const angle = Math.atan2(cat.targetY - cat.y, cat.targetX - cat.x);
-                            cat.direction = directions.find(dir => dir.name === getDirectionFromAngle(angle));
-                            cat.x += Math.cos(angle) * cat.speed;
-                            cat.y += Math.sin(angle) * cat.speed;
+                            const distanceX = cat.targetX - cat.x;
+                            const distanceY = cat.targetY - cat.y;
+                            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-                            if (Math.abs(cat.x - cat.targetX) < 1 && Math.abs(cat.y - cat.targetY) < 1) {
-                                changeBehavior(cat);
-                                cat.targetX = Math.random() * canvas.width;
-                                cat.targetY = Math.random() * canvas.height;
+                            if (distance > 10) {
+                                const angle = Math.atan2(distanceY, distanceX);
+                                cat.direction = directions.find(dir => dir.name === getDirectionFromAngle(angle));
+                                cat.x += Math.cos(angle) * cat.speed;
+                                cat.y += Math.sin(angle) * cat.speed;
+                            } else {
+                                chooseTarget(cat); // Choose a new target once the cat reaches its current target
                             }
                         } else {
                             cat.stateTimer -= frameDuration;
