@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import InfoBlock from "../pageModules/InfoBlock";
 import CatAnimation from './CatAnimation';
 import './Home.css';
 import './CatAnimation.css';
 
 const Home = ({ experiences, setExperiences, handleSubmit }) => {
+    const [numberOfCats, setNumberOfCats] = useState(5);
+
     useEffect(() => {
+        const cpuCores = navigator.hardwareConcurrency;
+        const cats = Math.min(10, Math.max(5, cpuCores));
+        setNumberOfCats(cats);
+
         fetch('/api/getExperiences')
             .then(response => response.json())
             .then(data => {
@@ -18,7 +24,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
 
     return (
         <div>
-            <CatAnimation numberOfCats={10} />
+            <CatAnimation numberOfCats={numberOfCats} />
             <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock
