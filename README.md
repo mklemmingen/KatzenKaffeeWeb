@@ -5,6 +5,7 @@ To-DO ------------------------------------------------------------------
 - Support
 - Datenschutz
 - Impressum
+- Credits
 
 - InfoBlock Home
     - DIY Cat Toys, Header: DIY Katzenspielzeug, Content: Share ideas for making cat toys from recycled materials like old t-shirts, cardboard boxes, and wine corks. Include simple tutorials and the benefits of reducing waste.
