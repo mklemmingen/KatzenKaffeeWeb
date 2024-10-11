@@ -50,20 +50,20 @@ const speeds = {
     laying: 0,
     sitting: 0,
     looking: 0,
-    walking: 1,
-    running: 2
+    walking: 3,
+    running: 6
 };
 
 const getDirectionFromAngle = (angle) => {
     const normalizedAngle = (angle + 2 * Math.PI) % (2 * Math.PI);
     if (normalizedAngle >= 0 && normalizedAngle < Math.PI / 8) return 'west';
-    if (normalizedAngle >= Math.PI / 8 && normalizedAngle < Math.PI / 4) return 'south-west';
-    if (normalizedAngle >= Math.PI / 4 && normalizedAngle < 3 * Math.PI / 4) return 'south';
-    if (normalizedAngle >= 3 * Math.PI / 4 && normalizedAngle < 5 * Math.PI / 6) return 'south-east';
-    if (normalizedAngle >= 5 * Math.PI / 6 && normalizedAngle < 7 * Math.PI / 6) return 'east';
-    if (normalizedAngle >= 7 * Math.PI / 6 && normalizedAngle < 5 * Math.PI / 4) return 'north-east';
-    if (normalizedAngle >= 5 * Math.PI / 4 && normalizedAngle < 7 * Math.PI / 4) return 'north';
-    if (normalizedAngle >= 7 * Math.PI / 4 && normalizedAngle < 15 * Math.PI / 8) return 'north-west';
+    if (normalizedAngle >= Math.PI / 8 && normalizedAngle < 3 * Math.PI / 8) return 'south-west';
+    if (normalizedAngle >= 3 * Math.PI / 8 && normalizedAngle < 5 * Math.PI / 8) return 'south';
+    if (normalizedAngle >= 5 * Math.PI / 8 && normalizedAngle < 7 * Math.PI / 8) return 'south-east';
+    if (normalizedAngle >= 7 * Math.PI / 8 && normalizedAngle < 9 * Math.PI / 8) return 'east';
+    if (normalizedAngle >= 9 * Math.PI / 8 && normalizedAngle < 11 * Math.PI / 8) return 'north-east';
+    if (normalizedAngle >= 11 * Math.PI / 8 && normalizedAngle < 13 * Math.PI / 8) return 'north';
+    if (normalizedAngle >= 13 * Math.PI / 8 && normalizedAngle < 15 * Math.PI / 8) return 'north-west';
     return 'west';
 };
 
@@ -213,6 +213,9 @@ const CatAnimation = ({ numberOfCats }) => {
 
                         if (cat.category.name !== 'laying' && cat.category.name !== 'sitting' && cat.category.name !== 'looking') {
                             cat.frame = (cat.frame + 1) % tilesForDirection.length;
+                            if (cat.frame === 0) {
+                                cat.frame = 1; // repeat animation
+                            }
 
                             const angle = Math.atan2(cat.targetY - cat.y, cat.targetX - cat.x);
                             cat.direction = directions.find(dir => dir.name === getDirectionFromAngle(angle));
