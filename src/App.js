@@ -8,6 +8,7 @@ import Datenschutz from './pages/Datenschutz';
 import Impressum from './pages/Impressum';
 import ErrorPage from './pages/ErrorPage';
 import YouTubePlayer from './YoutubePlayer';
+import Credits from './pages/Credits';
 import './App.css';
 
 // context for the music player and overlay
@@ -51,6 +52,7 @@ const AppContent = () => {
                     <Route path="/datenschutz" element={<Datenschutz />} />
                     <Route path="/impressum" element={<Impressum />} />
                     <Route path="*" element={<ErrorPage />} />
+                    <Route path="/credits" element={<Credits />} />
                 </Routes>
             </div>
             <Footer className="footer" />
