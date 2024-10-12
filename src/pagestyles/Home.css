@@ -98,6 +98,15 @@ body {
 
 .section-content {
     flex: 1 1 70%;
+    text-align: left;
+}
+
+.section-content ul {
+    margin-left: 3em;
+}
+
+.section-content p {
+    margin-bottom: 1em;
 }
 
 /* Home.css */
@@ -106,4 +115,8 @@ body {
     margin: 10px;  /* Adjust the margin as needed */
     padding: 5px;  /* Adjust the padding as needed */
     max-width: 300px; /* Set a maximum width */
+}
+
+.source-buffer {
+    margin-bottom: 2em;
 }
