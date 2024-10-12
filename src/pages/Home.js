@@ -4,6 +4,7 @@ import '../pagestyles/Home.css';
 import '../pagestyles/CatAnimation.css';
 import CatBirdImpact from "../pageModules/CatBirdImpact";
 import BookRecommendation from '../pageModules/BookRecommendation';
+import MoodBoard from "../pageModules/MoodBoard";
 
 
 const Home = ({ experiences, setExperiences, handleSubmit }) => {
@@ -181,7 +182,26 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         nachhaltige Spielzeuge aus recycelten Materialien oder DIY-Projekte zu erstellen, um die Umwelt
                         zu schonen und gleichzeitig Ihre Katze zu unterhalten.
                     </p>
-
+                    <MoodBoard
+                        imageUrls={[
+                            'assets/img/CatToy1.webp',
+                            'assets/img/CatToy2.webp',
+                            'assets/img/CatToy3.webp',
+                            'assets/img/CatToy4.webp',
+                            'assets/img/CatToy5.webp',
+                            'assets/img/CatToy6.webp',
+                            'assets/img/CatToy7.webp'
+                        ]}
+                        imageLinks={[
+                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                            'https://rawznaturalpetfood.com/diy-cat-toys/'
+                        ]}
+                    />
                 </div>
             </div>
         </div>
