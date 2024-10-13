@@ -6,7 +6,7 @@ import { Tooltip as ReactTooltip } from 'react-tooltip';
 // TODO : Change with actual data, this is currently estimated data, because the author only releases his
 // TODO: data to "reasonable" requests - so I didnt even bother to ask
 
-// Register the required components
+// Registered the required components
 ChartJS.register(ArcElement, BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 
 const FilterComponent = ({ onChange }) => (

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Draggable from 'react-draggable';
 import '../pagestyles/MoodBoard.css';
 
 const MoodBoard = ({ imageUrls, externalLink }) => {
@@ -17,11 +16,9 @@ const MoodBoard = ({ imageUrls, externalLink }) => {
         <section className="mood-board-section">
             <div className="mood-board">
                 {imageUrls.map((url, index) => (
-                    <Draggable key={index}>
-                        <div className="mood-board-item">
-                            <img src={url} alt={`Moodboard-Bild ${index}`} />
-                        </div>
-                    </Draggable>
+                    <div className="mood-board-item">
+                        <img src={url} alt={`Moodboard-Bild ${index}`} />
+                    </div>
                 ))}
                 <a href={externalLink} target="_blank" rel="noopener noreferrer" className="external-link-button">
                     DIY-Tutorial (Link zu Extern 11/10/24)

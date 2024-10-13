@@ -59,7 +59,7 @@ const AppContent = () => {
     return (
         <div className="App">
             <Header className="header" handleSubmit={handleSubmit} onToggleTheme={handleToggleTheme}/>
-            <CatAnimation numberOfCats={numberOfCats} />
+            <CatAnimation numberOfCats={numberOfCats} className="cat-background"/>
             <div className="content">
                 <Routes>
                     <Route path="/" element={<Home experiences={experiences} setExperiences={setExperiences}

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { MusicPlayerContext } from '../App'; // Import the music player context
+import { MusicPlayerContext } from '../App';
 
 function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a prop
     const navigate = useNavigate();
