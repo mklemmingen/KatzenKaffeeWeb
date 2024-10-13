@@ -11,9 +11,11 @@
     --font-family: 'Roboto', Arial, sans-serif;
     --high-contrast-text: #000;
     --high-contrast-bg: #fff;
+    --text-no-background: #333;
 }
 
 [data-theme='high-contrast'] {
+    --text-no-background: #fff;
     --primary-color: #000;
     --secondary-color: #fff;
     --accent-color: #ff1;
@@ -46,7 +48,14 @@ h2 {
 }
 
 p {
-    color: var(--text-color) !important;
+    color: var(--text-no-background) !important;
+    text-align: center !important;
+    margin: 10px 0 !important;
+    z-index: 5 !important;
+}
+
+.credits p {
+    color: var(--text-no-background) !important;
     text-align: center !important;
     margin: 10px 0 !important;
     z-index: 5 !important;
@@ -75,6 +84,12 @@ p {
     text-align: left !important;
     z-index: 5 !important;
     cursor: pointer !important;
+}
+
+.credits li:hover {
+    color: var(--accent-color) !important;
+    resize: both !important;
+    z-index: 5 !important;
 }
 
 .link-class {
