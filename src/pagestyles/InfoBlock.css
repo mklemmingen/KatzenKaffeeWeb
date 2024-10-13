@@ -1,13 +1,6 @@
-/* Defining  color palette */
 :root {
-    --primary-color: #5D415A;
-    --secondary-color: #F5F5F5;
-    --accent-color: #5D410A;
-    --text-color: #333;
-    --background-color: #ffffff;
     --border-color: #e0e0e0;
     --shadow-color: rgba(0, 0, 0, 0.1);
-    --font-family: 'Roboto', Arial, sans-serif;
 }
 
 * {
@@ -40,6 +33,12 @@ body {
 
 .info-block .text-content p {
     text-align: left;
+    color: var(--text-color);
+}
+
+.info-block .text-content h2 {
+    text-align: left;
+    color: var(--text-color);
 }
 
 .info-block:hover {

@@ -16,4 +16,5 @@
 .info-blocks-container {
     position: relative;
     z-index: 2; /* Ensures the info blocks are above the canvas */
+    color: var(--text-color);
 }
