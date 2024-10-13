@@ -61,8 +61,8 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         um Langeweile zu vermeiden. Ein Kratzbaum, interaktive Spielzeuge und regelmäßige Spielzeiten
                         mit Ihnen können helfen, Ihre Katze geistig fit und glücklich zu halten. Auch das Schaffen
                         von Rückzugsorten, an denen sich Ihre Katze sicher und geborgen fühlt, trägt zur mentalen
-                        Gesundheit bei. Erwägen Sie zudem, nachhaltige Spielzeuge aus recycelten Materialien oder
-                        DIY-Projekte zu erstellen, um die Umwelt zu schonen und gleichzeitig Ihre Katze zu unterhalten."
+                        Gesundheit bei. Spielzeuge aus recycelten Materialien oder
+                        DIY-Projekte zu erstellen, schont die Umwelt"
                         targetId={'mental-health'}
                     />
                 </div>

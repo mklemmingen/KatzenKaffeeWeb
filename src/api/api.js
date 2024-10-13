@@ -6,7 +6,7 @@ const port = 3000;
 // Middleware
 app.use(bodyParser.json());
 
-// In-memory storage for experiences (replace with your database logic)
+// In-memory storage for experiences (TODO: replace with database logic)
 let experiences = [];
 
 // Endpoint to submit a new experience

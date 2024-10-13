@@ -1,0 +1,79 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    --primary-color: #5D415A;
+    --secondary-color: #F5F5F5;
+    --accent-color: #5D410A;
+    --text-color: #333;
+    --background-color: #f9f9f9;
+    --font-family: 'Roboto', Arial, sans-serif;
+    --high-contrast-text: #000;
+    --high-contrast-bg: #fff;
+}
+
+[data-theme='high-contrast'] {
+    --primary-color: #000;
+    --secondary-color: #fff;
+    --accent-color: #ff1;
+    --text-color: #000;
+    --background-color: #000;
+}
+
+
+body {
+    font-family: var(--font-family), serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    line-height: 1.6 !important;
+    z-index: 5 !important;
+}
+
+h1 {
+    color: var(--primary-color) !important;
+    text-align: center !important;
+    margin-top: 20px !important;
+    z-index: 5 !important;
+}
+
+h2 {
+    color: var(--accent-color) !important;
+    margin-bottom: 10px !important;
+    z-index: 5 !important;
+}
+
+p {
+    color: var(--text-color) !important;
+    text-align: center !important;
+    margin: 10px 0 !important;
+    z-index: 5 !important;
+}
+
+.credits {
+    background-color: var(--secondary-color) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    margin: 20px auto !important;
+    padding: 20px !important;
+    max-width: 600px !important;
+    z-index: 5 !important;
+}
+
+.credits ul {
+    list-style-type: none !important;
+    padding: 0 !important;
+    z-index: 5 !important;
+}
+
+.credits li {
+    background-color: var(--background-color) !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    margin: 10px 0 !important;
+    padding: 10px !important;
+    text-align: left !important;
+    z-index: 5 !important;
+}

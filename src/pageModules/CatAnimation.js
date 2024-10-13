@@ -67,7 +67,7 @@ const getDirectionFromAngle = (angle) => {
     return 'west';
 };
 
-// method is optimized by the use of a canvas element and by the file in assets/cats that prepares the spritesheets
+// method is optimized by the use of a canvas element
 const extractTiles = (spriteSheet, categories) => {
     const tiles = {};
     const canvas = document.createElement('canvas');

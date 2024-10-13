@@ -50,6 +50,24 @@ body {
   overflow: hidden;
 }
 
+.cat-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    image-rendering: pixelated;
+}
+
+.content {
+  flex: 1;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  overflow: hidden;
+  z-index: 2;
+}
+
 .header {
   position: sticky;
   top: 0;
@@ -360,7 +378,6 @@ input:checked + .slider:before {
   background-color: var(--accent-color);
 }
 
-/* Style the dropdown button */
 .App-button.music-button {
   background-color: var(--primary-color);
   color: #ffffff;
@@ -382,7 +399,7 @@ input:checked + .slider:before {
   margin: 10px;
 }
 
-/* Accessibility and Responsive Design */
+/* Accessibility and Responsive Design starts here */
 @media (max-width: 1024px) {
   .App-header {
     flex-direction: column;
