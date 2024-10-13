@@ -166,8 +166,14 @@ const CatAnimation = ({ numberOfCats }) => {
         loadSprites();
 
         const chooseTarget = (cat) => {
-            cat.targetX = Math.random() * canvas.width;
-            cat.targetY = Math.random() * canvas.height;
+            const canvas = canvasRef.current;
+            const rect = canvas.getBoundingClientRect();
+            const viewWidth = rect.width;
+            const viewHeight = rect.height;
+
+            cat.targetX = Math.random() * viewWidth;
+            cat.targetY = Math.random() * viewHeight;
+
             const newCategory = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running'));
             if (newCategory) {
                 cat.category = newCategory;
