@@ -1,4 +1,3 @@
-/* CatAnimation.css */
 .cat-animation-canvas {
     position: absolute;
     top: 0;
@@ -9,7 +8,6 @@
     image-rendering: pixelated;
 }
 
-/* Home.css */
 .container {
     position: relative;
     z-index: 2; /* Ensures the container is above the canvas */
