@@ -58,7 +58,7 @@ p {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     margin: 20px auto !important;
     padding: 20px !important;
-    max-width: 600px !important;
+    max-width: 60% !important;
     z-index: 5 !important;
 }
 
@@ -69,11 +69,22 @@ p {
 }
 
 .credits li {
-    background-color: var(--background-color) !important;
-    border: 1px solid #ddd !important;
-    border-radius: 4px !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 10px 0 !important;
     padding: 10px !important;
     text-align: left !important;
+    z-index: 5 !important;
+    cursor: pointer !important;
+}
+
+.link-class {
+    color: var(--accent-color) !important;
+    text-decoration: none !important;
+    z-index: 5 !important;
+}
+
+.titel-class {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
     z-index: 5 !important;
 }
