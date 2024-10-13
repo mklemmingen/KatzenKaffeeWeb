@@ -101,11 +101,18 @@ body {
     text-align: left;
 }
 
+.section-content h2 {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
 .section-content ul {
+    align-self: center;
     margin-left: 3em;
 }
 
 .section-content p {
+    align-self: flex-start;
     margin-bottom: 1em;
 }
 

@@ -169,18 +169,20 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                 </div>
                 <CatBirdImpact className="diagram"/>
             </div>
-            <div id={'mental-health'} className="section">
+            <div id="mental-health" className="section">
                 <div className="section-content">
                     <h2>Mentale Gesundheit von Katzen -> DIY-/Bio-Spielzeuge!</h2>
                     <p>
-                        Sorgen Sie für ausreichend Spielzeug und Beschäftigungsmöglichkeiten, um Langeweile zu
-                        vermeiden.
-                        Ein Kratzbaum, interaktive Spielzeuge und regelmäßige Spielzeiten mit Ihnen können helfen,
-                        Ihre Katze geistig fit und glücklich zu halten. Auch das Schaffen von Rückzugsorten, an denen
-                        sich Ihre
-                        Katze sicher und geborgen fühlt, trägt zur mentalen Gesundheit bei. Erwägen Sie zudem,
-                        nachhaltige Spielzeuge aus recycelten Materialien oder DIY-Projekte zu erstellen, um die Umwelt
-                        zu schonen und gleichzeitig Ihre Katze zu unterhalten.
+                        Katzen lieben Abwechslung und Beschäftigung. Ein Kratzbaum und interaktive Spielzeuge können
+                        helfen, Ihre Katze geistig fit und glücklich zu halten. <br/>
+                        Regelmäßige Spielzeiten sind wichtig. Sie fördern die Bindung zwischen Ihnen und Ihrer Katze und
+                        sorgen für körperliche und geistige Auslastung.
+                    </p>
+                    <p>
+                        Rückzugsorte bieten Ihrer Katze Sicherheit und Geborgenheit. Diese Plätze sind wichtig für ihre
+                        mentale Gesundheit und ermöglichen ihr, sich zu entspannen. <br/>
+                        Nachhaltige Spielzeuge aus recycelten Materialien oder DIY-Projekte sind eine tolle Möglichkeit,
+                        die Umwelt zu schonen und Ihre Katze zu unterhalten.
                     </p>
                     <MoodBoard
                         imageUrls={[
@@ -188,24 +190,18 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                             'assets/img/CatToy2.webp',
                             'assets/img/CatToy3.webp',
                             'assets/img/CatToy4.webp',
-                            'assets/img/CatToy5.webp',
                             'assets/img/CatToy6.webp',
                             'assets/img/CatToy7.webp'
                         ]}
-                        imageLinks={[
-                            'https://rawznaturalpetfood.com/diy-cat-toys/',
-                            'https://rawznaturalpetfood.com/diy-cat-toys/',
-                            'https://rawznaturalpetfood.com/diy-cat-toys/',
-                            'https://rawznaturalpetfood.com/diy-cat-toys/',
-                            'https://rawznaturalpetfood.com/diy-cat-toys/',
-                            'https://rawznaturalpetfood.com/diy-cat-toys/',
+                        externalLink={
                             'https://rawznaturalpetfood.com/diy-cat-toys/'
-                        ]}
+                        }
                     />
                 </div>
-            </div>
         </div>
-    );
+</div>
+)
+    ;
 };
 
 export default Home;
