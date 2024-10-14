@@ -1,4 +1,4 @@
-Current active Team members: Martin Lauterbach, Meinhard Holzknecht
+Current active Team members: Martin Lauterbach, Meinhard Holzknecht, Michael Nägele
 
 To-DO ------------------------------------------------------------------
 
