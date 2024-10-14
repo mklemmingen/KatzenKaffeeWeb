@@ -5,6 +5,7 @@ import '../pagestyles/CatAnimation.css';
 import CatBirdImpact from "../pageModules/CatBirdImpact";
 import BookRecommendation from '../pageModules/BookRecommendation';
 import MoodBoard from "../pageModules/MoodBoard";
+import Introduction from "../pageModules/Introduction";
 
 
 const Home = ({ experiences, setExperiences, handleSubmit }) => {
@@ -22,6 +23,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
 
     return (
         <div>
+            <Introduction />
             <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock

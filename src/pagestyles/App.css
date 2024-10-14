@@ -52,13 +52,13 @@ body {
 }
 
 .cat-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: auto;
-    height: auto;
-    z-index: 1;
-    image-rendering: pixelated;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  z-index: 1;
+  image-rendering: pixelated;
 }
 
 .content {
@@ -472,5 +472,4 @@ input:checked + .slider:before {
     background-color: var(--accent-color);
     transform: translateY(-2px);
   }
-
 }
