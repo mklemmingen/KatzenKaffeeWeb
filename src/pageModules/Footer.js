@@ -12,7 +12,7 @@ function Footer() {
 
     return (
         <footer className="App-footer">
-            <p>©Marty&Meinhard, 2024. We love Cats!</p>
+            <p>©Marty&Meinhard&Michael, 2024. We love Cats!</p>
             <div className="nav-links">
                 <Link to="/" className="App-link" onClick={scrollToTop}>Zurück zur Home-Page</Link>
                 <Link to="/datenschutz" className="App-link">Datenschutz</Link>

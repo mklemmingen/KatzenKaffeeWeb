@@ -23,7 +23,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
 
     return (
         <div>
-            <Introduction />
+            <Introduction/>
             <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock
@@ -106,71 +106,62 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                 <div className="section-content">
                     <h2>Schutz der Vogelwelt</h2>
                     <p>
-                        Katzen sind natürliche Jäger und ihre Jagd auf Vögel kann lokale Vogelpopulationen gefährden.
-                        Studien zeigen, dass Katzen jährlich 1,3–4 Milliarden Vögel und 6,3–22,3 Milliarden Säugetiere
-                        allein in den USA töten (Loss et al. 2013, Nature Communications).
+                        Katzen sind von Natur aus Jäger. Ihr Jagdinstinkt ist tief verwurzelt und sie können ihn nicht
+                        einfach abstellen. Leider führt dies dazu, dass sie viele Vögel fangen und töten. Studien
+                        zeigen, dass Katzen jedes Jahr <strong>1,3–4 Milliarden Vögel</strong> und <strong>6,3–22,3
+                        Milliarden Säugetiere</strong> allein in den USA töten.
                     </p>
                     <p>
-                        Hauskatzen (Felis catus) sind weltweit eingeführte Raubtiere und gehören zu den 100 schlimmsten
-                        invasiven Arten der Welt.
-                        Freilaufende Katzen haben zum Aussterben von 33 modernen Vogel-, Säugetier- und Reptilienarten
-                        beigetragen.
-                        Es gibt Hinweise darauf, dass Katzen auch auf dem Festland die Populationen von Vögeln und
-                        Säugetieren lokal reduzieren und einen erheblichen Anteil an der Gesamtmortalität von Wildtieren
-                        verursachen.
+                        Hauskatzen (Felis catus) sind weltweit verbreitet und gelten als Raubtiere. Dabei gehören sie,
+                        da Sie an den meisten Orten nicht von Natur aus schon da waren, zu den <strong>100
+                        schlimmsten invasiven Arten der Welt</strong>. Freilaufende Katzen haben so zum Beispiel
+                        bereits zum Aussterben von <strong>33 Vogel-, Säugetier- und Reptilienarten</strong> auf
+                        Inseln beigetragen. Auch auf dem Festland können sie die Populationen von Vögeln und
+                        Säugetieren stark verringern.
                     </p>
                     <p>
-                        Trotz dieser schädlichen Auswirkungen werden die Richtlinien für das Management von
-                        freilaufenden Katzenpopulationen und die Regulierung des Verhaltens von Haustierbesitzern eher
-                        durch Tierschutzfragen als durch ökologische Auswirkungen bestimmt.
-                        Projekte zur Verwaltung freilaufender Katzen, wie z.B. Trap-Neuter-Return (TNR)-Kolonien, sind
-                        potenziell schädlich für Wildtierpopulationen und werden oft ohne Berücksichtigung
-                        wissenschaftlicher Beweise durchgeführt.
+                        In Deutschland gibt es Gesetze und Initiativen, um die Anzahl der streunenden Katzen zu
+                        kontrollieren. Eine wichtige Maßnahme ist die <strong>Kastrationspflicht</strong>. Das bedeutet,
+                        dass Katzen, die draußen herumlaufen, kastriert werden müssen, damit sie sich nicht weiter
+                        vermehren. Diese Regelung gibt es in vielen Städten und Gemeinden.
                     </p>
                     <p>
-                        Ein Hauptgrund für den derzeit nicht-wissenschaftlichen Ansatz zur Verwaltung freilaufender
-                        Katzen ist, dass die Gesamtmortalität durch Katzenprädation oft als vernachlässigbar im
-                        Vergleich zu anderen anthropogenen Bedrohungen angesehen wird.
-                        Die Bewertung der Bedeutung einer Mortalitätsquelle für den Naturschutz erfordert jedoch die
-                        Identifizierung der getöteten Arten und die Schätzung der Gesamtzahl der Todesfälle.
+                        Außerdem gibt es Projekte wie <strong>Catch-Neuter-Return (CNR)</strong>. Dabei werden
+                        streunende Katzen eingefangen, kastriert und dann wieder freigelassen. So wird verhindert, dass
+                        sie sich weiter vermehren und die Zahl der Streuner wächst.
                     </p>
-                    <p>
-                        Schätzungen der jährlichen Vogelsterblichkeit in den USA durch Prädation durch alle Katzen,
-                        einschließlich sowohl in Besitz befindliche als auch wilder Katzen, liegen in den Hunderten von
-                        Millionen.
-                        Diese Größenordnung würde Katzen zu den Hauptquellen der anthropogenen Vogelsterblichkeit
-                        zählen; jedoch wird angenommen, dass Kollisionen mit Fenstern und Gebäuden noch größere
-                        Sterblichkeit verursachen.
-                    </p>
-                    <p className="source-buffer">
-                        Quelle: <a href="https://www.nature.com/articles/ncomms2380?WT.mc_id=FBK_NCOMMS#abstract"
-                                   target="_blank" rel="noopener noreferrer">Nature Communications</a>
-                    </p>
-                    <h3>Tipps zum Schutz der Vogelwelt</h3>
+                    <h3>Tipps für ein nachhaltiges Miteinander</h3>
                     <ul>
                         <li>Bringen Sie Ihrer Katze ein Glöckchen am Halsband an, um Vögel zu warnen.</li>
                         <li>Lassen Sie Ihre Katze in einem gesicherten Außenbereich oder an der Leine nach draußen.</li>
-                        <li>Fördern Sie das Bewusstsein für die ökologischen Auswirkungen von freilaufenden Katzen.</li>
+                        <li>Das Adoptieren von ehamaligern Streunern in Tierheimen sorgt dafür, dass noch
+                            mehr Streuner dort aufgenommen werden können</li>
                     </ul>
+                    <h3>Wohnungskatze vs. Freigängerkatze</h3>
+                    <p>
+                        Es gibt einen großen Unterschied zwischen Wohnungskatzen und Freigängerkatzen. Wohnungskatzen
+                        bleiben immer drinnen und haben weniger Möglichkeiten, Vögel und andere Tiere zu jagen. Sie sind
+                        sicherer vor Gefahren wie Autos und anderen Tieren, aber sie brauchen viel Beschäftigung und
+                        Spielzeug, um glücklich und gesund zu bleiben.
+                    </p>
+                    <p>
+                        Freigängerkatzen dürfen nach draußen und können ihre natürlichen Instinkte ausleben. Das
+                        bedeutet aber auch, dass sie Vögel und andere kleine Tiere jagen. Außerdem sind sie draußen
+                        vielen Gefahren ausgesetzt. Es ist wichtig, dass Katzenbesitzer die Vor- und Nachteile beider
+                        Haltungsformen abwägen und Maßnahmen ergreifen, um die Umwelt zu schützen.
+                    </p>
                     <BookRecommendation
                         imageUrl="https://directory.doabooks.org/bitstream/handle/20.500.12854/113510/9781557538888.jpg?sequence=1&isAllowed=y"
                         bookUrl="https://directory.doabooks.org/handle/20.500.12854/113510"
                         title="Cats and Conservationists: Die Debatte darüber, wem die Natur gehört"
-                        description="Cats and Conservationists ist die erste multidisziplinäre Analyse
-                        der hitzigen Debatte über freilaufende Katzen. Das Buch, das in Englisch verfasst ist,
-                        beleuchtet den Konflikt zwischen Naturschützern und Katzenliebhabern, die sich sowohl
-                        über die ökologischen Schäden durch die Katzen als auch über die besten Vorgehensweisen
-                        uneinig sind. Diese leidenschaftliche und lebhafte Auseinandersetzung wirft auch
-                        größere Fragen auf, wie wir Wissenschaft interpretieren, unterschiedliche
-                        Perspektiven einbeziehen und konkurrierende Werte ausbalancieren, um konstruktive
-                        Dialoge zu fördern. Das Buch zielt darauf ab, die Zusammenarbeit zwischen
-                        Wissenschaftlern, Politikern, Naturschützern und Tierschutzorganisationen zu
-                        erleichtern, um freilaufende Katzen zu managen und den von ihnen verursachten
-                        Schaden zu minimieren."
+                        description="Cats and Conservationists ist die erste Analyse der Debatte über freilaufende Katzen. Das Buch beleuchtet den Konflikt zwischen Naturschützern und Katzenliebhabern, die sich über die Schäden durch die Katzen und die besten Vorgehensweisen uneinig sind. Es zeigt, wie wir Wissenschaft interpretieren und unterschiedliche Perspektiven einbeziehen können, um konstruktive Dialoge zu fördern. Das Buch zielt darauf ab, die Zusammenarbeit zwischen Wissenschaftlern, Politikern, Naturschützern und Tierschutzorganisationen zu erleichtern, um freilaufende Katzen zu managen und den von ihnen verursachten Schaden zu minimieren."
                     />
                 </div>
-                <CatBirdImpact className="diagram"/>
+                <div className="chart-container">
+                    <CatBirdImpact className="diagram"/>
+                </div>
             </div>
+
             <div id="mental-health" className="section">
                 <div className="section-content">
                     <h2>Mentale Gesundheit von Katzen -> DIY-/Bio-Spielzeuge!</h2>
@@ -200,10 +191,10 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         }
                     />
                 </div>
+            </div>
         </div>
-</div>
-)
-    ;
+    )
+        ;
 };
 
 export default Home;

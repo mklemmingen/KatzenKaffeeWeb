@@ -22,6 +22,18 @@
     max-width: 100%;
     margin: 0.5em;
     object-fit: contain;
+    z-index: 4000;
+    transition: transform 0.1s;
+    transform-style: preserve-3d; /* 3D effect */
+}
+
+.book-image-container {
+    perspective: 1000px;
+}
+
+.book-image-container:hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+    cursor: pointer;
 }
 
 .book-description {

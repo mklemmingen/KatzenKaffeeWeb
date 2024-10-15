@@ -40,15 +40,21 @@ body {
     transform: translateY(-5px);
 }
 
-/* Container for the icon */
 .icon {
     margin-right: 16px;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Styling for the icon image */
 .icon img {
     width: 75px;
     height: 75px;
+    border-radius: 50%;
 }
 
 /* Container for the text content */
