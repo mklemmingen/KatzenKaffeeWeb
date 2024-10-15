@@ -73,9 +73,7 @@ body {
     align-items: flex-start;
     margin: 20px auto;
     padding: 20px;
-    background-color: var(--secondary-color);
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20%;
     max-width: 1200px;
 }
 

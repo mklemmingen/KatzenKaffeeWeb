@@ -11,7 +11,6 @@
 
 body {
     font-family: var(--font-family);
-    background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
 }
@@ -20,11 +19,7 @@ body {
 .info-block {
     display: flex;
     align-items: flex-start;
-    border: 1px solid var(--border-color);
     padding: 16px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    background-color: var(--secondary-color);
     margin: 16px;
     flex: 1 1 calc(50% - 32px);
     box-sizing: border-box;
@@ -43,7 +38,6 @@ body {
 
 .info-block:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px var(--shadow-color);
 }
 
 /* Container for the icon */
