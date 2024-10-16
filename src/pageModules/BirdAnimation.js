@@ -103,6 +103,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
             } else if (bird.category !== 'sitting') {
                 bird.category = 'sitting';
                 bird.speed = speeds['sitting'];
+                bird.stateTimer = Math.random() * 5000;
             }
 
             bird.stateTimer -= frameDuration;
