@@ -6,6 +6,8 @@ import CatBirdImpact from "../pageModules/CatBirdImpact";
 import BookRecommendation from '../pageModules/BookRecommendation';
 import MoodBoard from "../pageModules/MoodBoard";
 import Introduction from "../pageModules/Introduction";
+import BirdAnimation from "../pageModules/BirdAnimation";
+import CatAnimation from "../pageModules/CatAnimation";
 
 
 const Home = ({ experiences, setExperiences, handleSubmit }) => {
@@ -29,42 +31,54 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                     <InfoBlock
                         iconSrc="assets/svg/cat-food-svgrepo-com.svg"
                         headerText="Nachhaltige Ernährung"
-                        textBlock="Eine nachhaltige Ernährung für Katzen beginnt mit der Auswahl von Futter,
+                        textBlock=""
+                        /*
+                        Eine nachhaltige Ernährung für Katzen beginnt mit der Auswahl von Futter,
                           das umweltfreundlich produziert wird. Achten Sie auf Bio-Zutaten und
                           vermeiden Sie Produkte mit unnötigen Zusatzstoffen. Einige Marken bieten
                           sogar Insektenprotein als nachhaltige Alternative zu herkömmlichem Fleisch
                           an. Denken Sie auch daran, lokale Produkte zu bevorzugen, um den CO2-
-                          Fußabdruck zu reduzieren."
+                          Fußabdruck zu reduzieren.
+                         */
                         targetId={'sustainable-diet'}
                     />
                     <InfoBlock
                         iconSrc="assets/svg/cat-litter-box-svgrepo-com.svg"
                         headerText="Umweltfreundliches Katzenstreu"
-                        textBlock="Die Wahl des richtigen Katzenstreus kann einen großen Unterschied
+                        textBlock=""
+                        /*
+                        Die Wahl des richtigen Katzenstreus kann einen großen Unterschied
                           machen. Vermeiden Sie Streu aus Ton oder Silikat, da deren Abbau
                           umweltschädlich ist. Stattdessen können Sie auf biologisch abbaubare
-                          Optionen wie Holzpellets, Maiskörner oder recyceltes Papier zurückgreifen."
+                          Optionen wie Holzpellets, Maiskörner oder recyceltes Papier zurückgreifen.
+                         */
                         targetId={'cat-litter'}
                     />
                     <InfoBlock
                         iconSrc="assets/svg/cat-travel-bag-svgrepo-com.svg"
                         headerText="Schutz der Vogelwelt"
-                        textBlock="Katzen sind natürliche Jäger, und ihre Jagd auf Vögel kann lokale
+                        textBlock=""
+                        /*
+                        Katzen sind natürliche Jäger, und ihre Jagd auf Vögel kann lokale
                           Vogelpopulationen gefährden. Um dies zu verhindern, können Sie Ihrer Katze
                           ein Glöckchen am Halsband anbringen, das die Vögel warnt. Eine weitere
                           Möglichkeit ist es, Ihre Katze in einem gesicherten Außenbereich oder an der
-                          Leine nach draußen zu lassen, um ihre Jagdaktivitäten zu kontrollieren."
+                          Leine nach draußen zu lassen, um ihre Jagdaktivitäten zu kontrollieren.
+                         */
                         targetId={'bird-protection'}
                     />
                     <InfoBlock
                         iconSrc="assets/svg/cat-tree-svgrepo-com.svg"
                         headerText="Mentale Gesundheit & Spielzeug"
-                        textBlock="Sorgen Sie für ausreichend Spielzeug und Beschäftigungsmöglichkeiten,
+                        textBlock=""
+                        /*
+                        Sorgen Sie für ausreichend Spielzeug und Beschäftigungsmöglichkeiten,
                         um Langeweile zu vermeiden. Ein Kratzbaum, interaktive Spielzeuge und regelmäßige Spielzeiten
                         mit Ihnen können helfen, Ihre Katze geistig fit und glücklich zu halten. Auch das Schaffen
                         von Rückzugsorten, an denen sich Ihre Katze sicher und geborgen fühlt, trägt zur mentalen
                         Gesundheit bei. Spielzeuge aus recycelten Materialien oder
-                        DIY-Projekte zu erstellen, schont die Umwelt"
+                        DIY-Projekte zu erstellen, schont die Umwelt
+                         */
                         targetId={'mental-health'}
                     />
                 </div>
@@ -135,7 +149,8 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         <li>Bringen Sie Ihrer Katze ein Glöckchen am Halsband an, um Vögel zu warnen.</li>
                         <li>Lassen Sie Ihre Katze in einem gesicherten Außenbereich oder an der Leine nach draußen.</li>
                         <li>Das Adoptieren von ehamaligern Streunern in Tierheimen sorgt dafür, dass noch
-                            mehr Streuner dort aufgenommen werden können</li>
+                            mehr Streuner dort aufgenommen werden können
+                        </li>
                     </ul>
                     <h3>Wohnungskatze vs. Freigängerkatze</h3>
                     <p>
@@ -160,41 +175,51 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                 <div className="chart-container">
                     <CatBirdImpact className="diagram"/>
                 </div>
-            </div>
-
-            <div id="mental-health" className="section">
-                <div className="section-content">
-                    <h2>Mentale Gesundheit von Katzen -> DIY-/Bio-Spielzeuge!</h2>
-                    <p>
-                        Katzen lieben Abwechslung und Beschäftigung. Ein Kratzbaum und interaktive Spielzeuge können
-                        helfen, Ihre Katze geistig fit und glücklich zu halten. <br/>
-                        Regelmäßige Spielzeiten sind wichtig. Sie fördern die Bindung zwischen Ihnen und Ihrer Katze und
-                        sorgen für körperliche und geistige Auslastung.
-                    </p>
-                    <p>
-                        Rückzugsorte bieten Ihrer Katze Sicherheit und Geborgenheit. Diese Plätze sind wichtig für ihre
-                        mentale Gesundheit und ermöglichen ihr, sich zu entspannen. <br/>
-                        Nachhaltige Spielzeuge aus recycelten Materialien oder DIY-Projekte sind eine tolle Möglichkeit,
-                        die Umwelt zu schonen und Ihre Katze zu unterhalten.
-                    </p>
-                    <MoodBoard
-                        imageUrls={[
-                            'assets/img/CatToy1.webp',
-                            'assets/img/CatToy2.webp',
-                            'assets/img/CatToy3.webp',
-                            'assets/img/CatToy4.webp',
-                            'assets/img/CatToy6.webp',
-                            'assets/img/CatToy7.webp'
-                        ]}
-                        externalLink={
-                            'https://rawznaturalpetfood.com/diy-cat-toys/'
-                        }
-                    />
+                <div className="animation-container">
+                    <div className="bird-animation-container">
+                        <BirdAnimation numberOfBirds={8}/>
+                    </div>
+                    <CatAnimation numberOfCats={2} className="little-hunters"/>
+                </div>
+                <div id="mental-health" className="section">
+                    <div className="section-content">
+                        <h2>Mentale Gesundheit von Katzen -> DIY-/Bio-Spielzeuge!</h2>
+                        <p>
+                            Katzen lieben Abwechslung und Beschäftigung. Ein Kratzbaum und interaktive Spielzeuge
+                            können
+                            helfen, Ihre Katze geistig fit und glücklich zu halten. <br/>
+                            Regelmäßige Spielzeiten sind wichtig. Sie fördern die Bindung zwischen Ihnen und Ihrer
+                            Katze
+                            und
+                            sorgen für körperliche und geistige Auslastung.
+                        </p>
+                        <p>
+                            Rückzugsorte bieten Ihrer Katze Sicherheit und Geborgenheit. Diese Plätze sind wichtig
+                            für
+                            ihre
+                            mentale Gesundheit und ermöglichen ihr, sich zu entspannen. <br/>
+                            Nachhaltige Spielzeuge aus recycelten Materialien oder DIY-Projekte sind eine tolle
+                            Möglichkeit,
+                            die Umwelt zu schonen und Ihre Katze zu unterhalten.
+                        </p>
+                        <MoodBoard
+                            imageUrls={[
+                                'assets/img/CatToy1.webp',
+                                'assets/img/CatToy2.webp',
+                                'assets/img/CatToy3.webp',
+                                'assets/img/CatToy4.webp',
+                                'assets/img/CatToy6.webp',
+                                'assets/img/CatToy7.webp'
+                            ]}
+                            externalLink={
+                                'https://rawznaturalpetfood.com/diy-cat-toys/'
+                            }
+                        />
+                    </div>
                 </div>
             </div>
         </div>
-    )
-        ;
+    );
 };
 
 export default Home;
