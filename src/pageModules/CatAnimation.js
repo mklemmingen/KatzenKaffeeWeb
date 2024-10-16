@@ -99,6 +99,23 @@ const extractTiles = (spriteSheet, categories) => {
     return tiles;
 };
 
+class Cat {
+    constructor(sprite, category, direction, x, y, speed, targetX, targetY, stateTimer, lastMeowTime) {
+        this.sprite = sprite;
+        this.category = category;
+        this.direction = direction;
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.targetX = targetX;
+        this.targetY = targetY;
+        this.stateTimer = stateTimer;
+        this.lastMeowTime = lastMeowTime;
+        this.frame = 0;
+        this.tiles = {};
+    }
+}
+
 const CatAnimation = ({ numberOfCats }) => {
     const canvasRef = useRef(null);
     const frameRate = 8;

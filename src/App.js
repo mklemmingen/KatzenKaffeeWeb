@@ -52,7 +52,7 @@ const AppContent = () => {
 
     useEffect(() => {
         const cpuCores = navigator.hardwareConcurrency;
-        const cats = Math.min(10, Math.max(5, cpuCores));
+        const cats = Math.min(5, Math.max(2, cpuCores));
         setNumberOfCats(cats);
     }, []);
 

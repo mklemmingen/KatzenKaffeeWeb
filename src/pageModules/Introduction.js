@@ -37,7 +37,7 @@ const Introduction = () => {
                     </span>
                 </p>
                 <div className="cat-gif">
-                    <img src="https://media.tenor.com/VkGE6OgHhTMAAAAi/maxwell-maxwell-cat.gif" alt="Cat GIF"/>
+                    <img src="https://media1.tenor.com/m/u5Hg9SEis_sAAAAC/coffee-vec50.gif" alt="Cat GIF"/>
                     </div>
             </div>
         </div>
