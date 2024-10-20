@@ -81,10 +81,11 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
                 </p>
             </div>
             <div className="button-container">
+                <Link to="/abgabe4" className={"App-button"}>Abgabe 4</Link>
                 <div>
                     <label htmlFor="contrast-switch">Kontrastmodi</label>
                     <label className="switch">
-                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
+                        <input id="contrast-switch" type= "checkbox" checked={isHighContrast} onChange={handleToggle}/>
                         <span className="slider"></span>
                     </label>
                 </div>

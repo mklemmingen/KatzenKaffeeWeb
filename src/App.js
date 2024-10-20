@@ -11,6 +11,7 @@ import YouTubePlayer from './YoutubePlayer';
 import Credits from './pages/Credits';
 import CatAnimation from './pageModules/CatAnimation';
 import './pagestyles/App.css';
+import Aufgabe4 from "./pages/Aufgabe4";
 
 // context for the music player and overlay
 export const MusicPlayerContext = createContext();
@@ -69,6 +70,7 @@ const AppContent = () => {
                     <Route path="/impressum" element={<Impressum />} />
                     <Route path="*" element={<ErrorPage />} />
                     <Route path="/credits" element={<Credits />} />
+                    <Route path="/abgabe4" element={<Aufgabe4/>} />
                 </Routes>
             </div>
             <Footer className="footer" />

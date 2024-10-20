@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import '../pagestyles/CatAnimation.css';
 
 const spriteFiles = [
@@ -184,6 +184,10 @@ const CatAnimation = ({ numberOfCats }) => {
 
         const chooseTarget = (cat) => {
             const canvas = canvasRef.current;
+            if (!canvas) {
+                console.error('Canvas is null at new cat target Choosing. Null-Reference Handled. Returning.');
+                return;
+            }
             const rect = canvas.getBoundingClientRect();
             const viewWidth = rect.width;
             const viewHeight = rect.height;
@@ -191,14 +195,10 @@ const CatAnimation = ({ numberOfCats }) => {
             cat.targetX = Math.random() * viewWidth;
             cat.targetY = Math.random() * viewHeight;
 
-            const newCategory = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running'));
-            if (newCategory) {
-                cat.category = newCategory;
-                cat.speed = speeds[cat.category.name];
-                cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
-            } else {
-                console.error('Failed to assign a new category to the cat:', cat);
-            }
+            const newCategory = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running')) || categories[0];
+            cat.category = newCategory;
+            cat.speed = speeds[cat.category.name];
+            cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
         };
 
         // 09.10.24: Added null checks before accessing category property
