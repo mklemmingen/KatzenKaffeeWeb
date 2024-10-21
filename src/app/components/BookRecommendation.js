@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import '../pagestyles/BookRecommendation.css';
+import '../styles/BookRecommendation.css';
+import Image from 'next/Image';
 
 const BookRecommendation = ({ imageUrl, bookUrl, title, description }) => {
     const imageRef = useRef(null);
@@ -35,7 +36,7 @@ const BookRecommendation = ({ imageUrl, bookUrl, title, description }) => {
             <h3><a href={bookUrl} target="_blank" rel="noopener noreferrer">{title}</a></h3>
             <div className="pic-text-container">
                 <div className="book-image-container">
-                    <img
+                    <Image
                         src={imageUrl}
                         alt={title}
                         className="book-image"
@@ -43,6 +44,8 @@ const BookRecommendation = ({ imageUrl, bookUrl, title, description }) => {
                         onMouseMove={handleMouseMove}
                         onMouseLeave={handleMouseLeave}
                         ref={imageRef}
+                        width={800}
+                        height={1212}
                     />
                 </div>
                 <p className="book-description">{description}</p>

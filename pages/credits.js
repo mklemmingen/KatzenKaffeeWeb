@@ -1,5 +1,5 @@
 import React from 'react';
-import '../pagestyles/Credits.css';
+import '@/app/styles/Credits.css';
 
 function Credits() {
     const handleLinkClick = (url) => {

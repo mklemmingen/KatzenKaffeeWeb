@@ -1,18 +1,37 @@
-import React, { useEffect, useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { MusicPlayerContext } from '../App';
+'use client';
 
-function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a prop
-    const navigate = useNavigate();
-    const {playerRef } = useContext(MusicPlayerContext);
+import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import dynamic from 'next/dynamic';
+
+// Dynamically import react-youtube to ensure it only loads on the client side
+const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
+
+function Header({ handleSubmit, onToggleTheme }) {
+    const router = useRouter();
+    const playerRef = useRef(null);
     const [isHighContrast, setIsHighContrast] = useState(false);
+    const [randomQuote, setRandomQuote] = useState('');
 
     useEffect(() => {
-        if (playerRef && playerRef.current && playerRef.current.pauseVideo && playerRef.current.unMute) {
+        if (typeof window !== 'undefined' && playerRef.current) {
             playerRef.current.pauseVideo();
             playerRef.current.unMute();
         }
     }, [playerRef]);
+
+    useEffect(() => {
+        const quotes = [
+            "A cat has absolute emotional honesty. - Ernest Hemingway",
+            "The smallest feline is a masterpiece. - Leonardo da Vinci",
+            "Cats are connoisseurs of comfort. - James Herriot",
+            "A meow massages the heart. - Stuart McMillan",
+            "Cats choose us; we don't own them. - Kristin Cast",
+        ];
+        setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)]);
+    }, []);
 
     const handleToggle = () => {
         setIsHighContrast(!isHighContrast);
@@ -20,11 +39,11 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
     };
 
     const handleLogoClick = () => {
-        navigate('/');
+        router.push('/');
     };
 
     const handlePlay = () => {
-        if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
+        if (playerRef.current?.getPlayerState) {
             const state = playerRef.current.getPlayerState();
             if (state !== 1) { // 1 is the state for playing
                 playerRef.current.playVideo();
@@ -33,7 +52,7 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
     };
 
     const handlePause = () => {
-        if (playerRef && playerRef.current && playerRef.current.getPlayerState) {
+        if (playerRef.current?.getPlayerState) {
             const state = playerRef.current.getPlayerState();
             if (state === 1) { // 1 is the state for playing
                 playerRef.current.pauseVideo();
@@ -42,45 +61,37 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
     };
 
     const handleMute = () => {
-        if (playerRef && playerRef.current && playerRef.current.isMuted && !playerRef.current.isMuted()) {
+        if (playerRef.current?.isMuted && !playerRef.current.isMuted()) {
             playerRef.current.mute();
         }
     };
 
     const handleUnmute = () => {
-        if (playerRef && playerRef.current && playerRef.current.isMuted && playerRef.current.isMuted()) {
+        if (playerRef.current?.isMuted && playerRef.current.isMuted()) {
             playerRef.current.unMute();
         }
     };
 
-    const quotes = [
-        "A cat has absolute emotional honesty. - Ernest Hemingway",
-        "The smallest feline is a masterpiece. - Leonardo da Vinci",
-        "Cats are connoisseurs of comfort. - James Herriot",
-        "A meow massages the heart. - Stuart McMillan",
-        "Cats choose us; we don't own them. - Kristin Cast",
-    ];
-
-    const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+    const onPlayerReady = (event) => {
+        playerRef.current = event.target;
+        playerRef.current.mute(); // Start muted
+    };
 
     return (
         <header className="App-header">
             <div className="logo-container">
-                <img src={"assets/svg/cat-halloween-kitty-svgrepo-com.svg"} className="App-logo" alt="logo"
-                     onClick={handleLogoClick}/>
-                <Link to="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
+                <Image src="/assets/svg/cat-halloween-kitty-svgrepo-com.svg" className="App-logo" alt="logo" onClick={handleLogoClick} width={50} height={50} />
+                <Link href="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
             <div className="welcome-note">
-                <p>
-                    <p>{randomQuote}</p>
-                </p>
+                <p>{randomQuote}</p>
             </div>
             <div className="button-container">
-                <Link to="/abgabe4" className={"App-button"}> Kommentare </Link>
+                <Link href="/comments" className="App-button">Kommentare</Link>
                 <div>
                     <label htmlFor="contrast-switch">Kontrastmodi</label>
                     <label className="switch">
-                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
+                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle} />
                         <span className="slider"></span>
                     </label>
                 </div>
@@ -99,13 +110,24 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
                         <form onSubmit={handleSubmit}>
                             <label>
                                 <p>Teile hier deine Erfahrung, wenn du willst, und wir zeigen Sie allen Besuchern</p>
-                                <input type="text" name="experience"/>
+                                <input type="text" name="experience" />
                             </label>
                             <button type="submit">Eingabe Bestätigen</button>
                         </form>
                     </div>
                 </div>
             </div>
+            <YouTube
+                videoId="jfKfPfyJRdk"
+                opts={{
+                    height: '0',
+                    width: '0',
+                    playerVars: {
+                        autoplay: 1,
+                    },
+                }}
+                onReady={onPlayerReady}
+            />
         </header>
     );
 }

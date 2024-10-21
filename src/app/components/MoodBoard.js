@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import '../pagestyles/MoodBoard.css';
+import '../styles/MoodBoard.css';
+import Image from 'next/image';
 
 const MoodBoard = ({ imageUrls, externalLink }) => {
     useEffect(() => {
@@ -16,8 +17,8 @@ const MoodBoard = ({ imageUrls, externalLink }) => {
         <section className="mood-board-section">
             <div className="mood-board">
                 {imageUrls.map((url, index) => (
-                    <div className="mood-board-item">
-                        <img src={url} alt={`Moodboard-Bild ${index}`} />
+                    <div key={index} className="mood-board-item">
+                        <Image src={url} alt={`Moodboard-Bild ${index}`} width={300} height={100} />
                     </div>
                 ))}
                 <a href={externalLink} target="_blank" rel="noopener noreferrer" className="external-link-button">

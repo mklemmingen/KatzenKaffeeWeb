@@ -4,20 +4,29 @@
     font-family: var(--font-family), serif;
     padding: 20px;
     color: var(--text-color);
+    margin-top: 5%;
+}
+
+.intro_header_and_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+}
+
+.introduction .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .introduction h1 {
     font-family: 'Pacifico', serif;
     font-size: 2.5em;
     color: var(--primary-color);
-    text-align: center;
     margin-bottom: 20px;
-}
-
-.introduction .content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .introduction p {
@@ -25,15 +34,13 @@
     font-size: 1.2em;
     text-align: justify;
     margin: 0 10px;
-    flex: 1;
     max-width: 40%;
-    max-height: 30%;
 }
 
 .cat-gif {
     text-align: center;
     flex: 1;
-    margin-left: 0;
+    margin-left: 20px;
     max-width: 30%;
     max-height: 30%;
 }
