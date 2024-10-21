@@ -23,9 +23,24 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
             });
     }, [setExperiences]);
 
+    // Button that can be added to the page anywhere, that alignes center and throws the view back onto
+    // "start"
+    const BackToStartButton = () => {
+        return (
+            <button
+                className="back-to-start-button"
+                onClick={() => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+            >
+                Zurück zum Anfang
+            </button>
+        );
+    };
+
     return (
         <div>
-            <Introduction/>
+            <Introduction id="start"/>
             <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock
@@ -81,16 +96,19 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                          */
                         targetId={'mental-health'}
                     />
-                </div>
-            </div>
-            <div id="user-experiences">
-                {experiences.map((experience, index) => (
-                    <textarea
-                        key={index}
-                        value={experience}
-                        readOnly
+                    <InfoBlock
+                        iconSrc="assets/svg/cat-bed-svgrepo-com.svg"
+                        headerText="Energie-effiziente Pflege"
+                        textBlock=""
+                        targetId={'energy-efficient-cat-care'}
                     />
-                ))}
+                    <InfoBlock
+                        iconSrc="assets/svg/cat-litter-sand-svgrepo-com.svg"
+                        headerText="Tierheime unterstützen"
+                        textBlock=""
+                        targetId={'shelter-support'}
+                    />
+                </div>
             </div>
             <div id={'sustainable-diet'} className="section">
                 <div className="section-content">
@@ -103,6 +121,17 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         an.
                         Denken Sie auch daran, lokale Produkte zu bevorzugen, um den CO2-Fußabdruck zu reduzieren.
                     </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                        magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                        et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                        no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    </p>
+                    <BackToStartButton/>
                 </div>
             </div>
             <div id={'cat-litter'} className="section">
@@ -114,6 +143,17 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         Stattdessen können Sie auf biologisch abbaubare Optionen wie Holzpellets,
                         Maiskörner oder recyceltes Papier zurückgreifen.
                     </p>
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                        sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                        magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                        et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                        no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                        consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+                        Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                    </p>
+                    <BackToStartButton/>
                 </div>
             </div>
             <div id={'bird-protection'} className="section">
@@ -171,6 +211,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         title="Cats and Conservationists: Die Debatte darüber, wem die Natur gehört"
                         description="Cats and Conservationists ist die erste Analyse der Debatte über freilaufende Katzen. Das Buch beleuchtet den Konflikt zwischen Naturschützern und Katzenliebhabern, die sich über die Schäden durch die Katzen und die besten Vorgehensweisen uneinig sind. Es zeigt, wie wir Wissenschaft interpretieren und unterschiedliche Perspektiven einbeziehen können, um konstruktive Dialoge zu fördern. Das Buch zielt darauf ab, die Zusammenarbeit zwischen Wissenschaftlern, Politikern, Naturschützern und Tierschutzorganisationen zu erleichtern, um freilaufende Katzen zu managen und den von ihnen verursachten Schaden zu minimieren."
                     />
+                    <BackToStartButton/>
                 </div>
                 <div className="chart-container">
                     <CatBirdImpact className="diagram"/>
@@ -215,7 +256,58 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                                 'https://rawznaturalpetfood.com/diy-cat-toys/'
                             }
                         />
+                        <BackToStartButton/>
                     </div>
+                </div>
+                <div id="energy-efficient-cat-care" className="section">
+                    <div className="section-content">
+                        <h2>Energie-effiziente Pflege</h2>
+                        <p>
+                            TODO
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                            sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                            magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                            et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                            rebum.
+                            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        </p>
+                        <BackToStartButton/>
+                    </div>
+                </div>
+                <div id="shelter-support" className="section">
+                    <div className="section-content">
+                        <h2> Tierheime unterstützen -> Katzen aus der Natur raus</h2>
+                        <p>
+                            TODO
+                        </p>
+                        <p>
+                            Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+                            sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                            magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+                            et justo duo dolores et ea rebum. Stet clita kasd gubergren,
+                            no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
+                            consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+                            magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+                            rebum.
+                            Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                        </p>
+                        <BackToStartButton/>
+                    </div>
+                </div>
+                <div id="user-experiences">
+                    {experiences.map((experience, index) => (
+                        <textarea
+                            key={index}
+                            value={experience}
+                            readOnly
+                        />
+                    ))}
+                    <BackToStartButton/>
                 </div>
             </div>
         </div>

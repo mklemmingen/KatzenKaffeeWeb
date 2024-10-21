@@ -81,7 +81,7 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
                 </p>
             </div>
             <div className="button-container">
-                <Link to="/abgabe4" className={"App-button"}>Abgabe 4</Link>
+                <Link to="/abgabe4" className={"App-button"}> Kommentare </Link>
                 <div>
                     <label htmlFor="contrast-switch">Kontrastmodi</label>
                     <label className="switch">

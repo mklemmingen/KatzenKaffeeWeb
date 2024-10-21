@@ -63,6 +63,26 @@
     text-align: left !important;
 }
 
+.back-to-start-button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 20px 0;
+    font: var(--font-family), serif;
+    color: var(--primary-color);
+    background-color: var(--secondary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-start-button:hover {
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+}
+
 .chart-container {
     flex: 1 1 auto;
     margin: 10px;
