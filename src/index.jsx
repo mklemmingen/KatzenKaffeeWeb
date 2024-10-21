@@ -41,6 +41,7 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
 
     return (
         <div>
+            <CatAnimation numberOfCats={5}/>
             <Introduction id="start"/>
             <div className="container">
                 <div className="info-blocks-container">

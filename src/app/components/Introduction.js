@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
 import '../styles/Introduction.css';
 import Image from 'next/image';
+import CatAnimation from "@/app/components/CatAnimation";
 
 const Introduction = () => {
     const [visitorCount, setVisitorCount] = useState(0);
@@ -27,19 +28,22 @@ const Introduction = () => {
     return (
         <div className="introduction">
             <div className="content">
-                <p>
+                <div className="intro_header_and_text">
                     <h1>Nachhaltige Katzenhaltung</h1>
-                    Katzen sind wunderbare Begleiter, aber es ist wichtig, sie nachhaltig zu halten.
-                    Dies bedeutet, auf ihre Gesundheit zu achten, umweltfreundliche Produkte zu verwenden und
-                    sicherzustellen, dass sie keine negativen Auswirkungen auf die Umwelt haben.
-                    <span>
+                    <p>
+                        Katzen sind wunderbare Begleiter, aber es ist wichtig, sie nachhaltig zu halten.
+                        Dies bedeutet, auf ihre Gesundheit zu achten, umweltfreundliche Produkte zu verwenden und
+                        sicherzustellen, dass sie keine negativen Auswirkungen auf die Umwelt haben.
+                        <span>
                         <br/>
                         Sie sind der {visitorCount} Besucher dieser Seite.
                     </span>
-                </p>
+                    </p>
+                </div>
                 <div className="cat-gif">
-                    <Image src="https://media1.tenor.com/m/u5Hg9SEis_sAAAAC/coffee-vec50.gif" alt="Cat GIF" width={20} height={20} />
-                    </div>
+                    <Image src="https://media1.tenor.com/m/u5Hg9SEis_sAAAAC/coffee-vec50.gif" alt="Cat GIF" width={20}
+                           height={20}/>
+                </div>
             </div>
         </div>
     );

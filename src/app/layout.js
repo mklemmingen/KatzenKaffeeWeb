@@ -21,39 +21,15 @@ const geistMono = localFont({
     weight: "100 900",
 });
 
-// Context for the music player
-export const MusicPlayerContext = createContext();
-
 export default function RootLayout({ children }) {
-    const [isMusicPlayerOpen, setMusicPlayerOpen] = useState(false);
-    const playerRef = useRef(null);
-
-    const handleMusicPlayerOpen = () => {
-        setMusicPlayerOpen(true);
-    };
-
-    const handleMusicPlayerClose = () => {
-        setMusicPlayerOpen(false);
-    };
-
-    useEffect(() => {
-        if (playerRef.current) {
-            playerRef.current.playVideo();
-            playerRef.current.unMute();
-        }
-    }, []);
 
     return (
         <html lang="en">
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <MusicPlayerContext.Provider value={{ isMusicPlayerOpen, handleMusicPlayerOpen, handleMusicPlayerClose, playerRef }}>
-            <YouTubePlayer videoId="jfKfPfyJRdk" onReady={(player) => (playerRef.current = player)} />
-            <Header />
-            <ScrollProgress />
-            <CatAnimation />
-            <main>{children}</main>
-            <Footer />
-        </MusicPlayerContext.Provider>
+        <Header />
+        <ScrollProgress />
+        <main>{children}</main>
+        <Footer />
         </body>
         </html>
     );

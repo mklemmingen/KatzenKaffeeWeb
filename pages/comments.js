@@ -27,7 +27,7 @@ const Comments = () => {
         const interval = setInterval(fetchComments, 60000);
 
         return () => clearInterval(interval);
-    }, [images]);
+    }, []);
 
     return (
         <div className="aufgabe4-container">
