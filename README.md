@@ -5,16 +5,7 @@ To-DO ------------------------------------------------------------------
 - Support
 - Datenschutz
 - Impressum
-- Credits
-
-- InfoBlock Home
-    - DIY Cat Toys, Header: DIY Katzenspielzeug, Content: Share ideas for making cat toys from recycled materials like old t-shirts, cardboard boxes, and wine corks. Include simple tutorials and the benefits of reducing waste.
-    - Energy-Efficient Cat Care, Header: Energieeffiziente Katzenpflege, Content: Offer tips on how to save energy while caring for cats, such as using energy-efficient appliances for washing cat bedding and choosing eco-friendly grooming products.
-    - Supporting Local Shelters Header: Unterstützung lokaler Tierheime Content: Encourage visitors to support local animal shelters through donations, volunteering, or adopting pets. Highlight the positive impact on the community and the environment
-
-- Add cat toy pngs and targetable food bowls via timer to the catAnimation
-
-- remove redundant classes from all .css files from previous cat cafe dev iterations. see app.css
+- Fill up the InfoBlocks with Information and interative components
 
 -------------------------------------------------------------------------
 
