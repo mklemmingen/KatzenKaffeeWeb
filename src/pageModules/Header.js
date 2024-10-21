@@ -4,7 +4,7 @@ import { MusicPlayerContext } from '../App';
 
 function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a prop
     const navigate = useNavigate();
-    const { handleMusicPlayerOpen, handleMusicPlayerClose, playerRef } = useContext(MusicPlayerContext);
+    const {playerRef } = useContext(MusicPlayerContext);
     const [isHighContrast, setIsHighContrast] = useState(false);
 
     useEffect(() => {
@@ -54,16 +54,11 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
     };
 
     const quotes = [
-        "In ancient times Cats were worshipped as Gods; they have not forgotten this. - Terry Pratchett",
-        "Time spent with cats is never wasted. - Sigmund Freud",
-        "Cats rule the world. - Jim Davis",
         "A cat has absolute emotional honesty. - Ernest Hemingway",
         "The smallest feline is a masterpiece. - Leonardo da Vinci",
         "Cats are connoisseurs of comfort. - James Herriot",
         "A meow massages the heart. - Stuart McMillan",
         "Cats choose us; we don't own them. - Kristin Cast",
-        "A cat is a puzzle for which there is no solution. - Hazel Nicholson",
-        "Cats leave paw prints in your heart, forever and always."
     ];
 
     const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
@@ -85,7 +80,7 @@ function Header({ handleSubmit, onToggleTheme }) { // Accept handleSubmit as a p
                 <div>
                     <label htmlFor="contrast-switch">Kontrastmodi</label>
                     <label className="switch">
-                        <input id="contrast-switch" type= "checkbox" checked={isHighContrast} onChange={handleToggle}/>
+                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
                         <span className="slider"></span>
                     </label>
                 </div>
