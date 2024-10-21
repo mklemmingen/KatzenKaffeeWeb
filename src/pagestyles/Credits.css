@@ -26,9 +26,6 @@ p {
 }
 
 .credits {
-    background-color: var(--secondary-color) !important;
-    border-radius: 8px !important;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
     margin: 20px auto !important;
     padding: 20px !important;
     max-width: 60% !important;
@@ -42,7 +39,6 @@ p {
 }
 
 .credits li {
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin: 10px 0 !important;
     padding: 10px !important;
     text-align: left !important;

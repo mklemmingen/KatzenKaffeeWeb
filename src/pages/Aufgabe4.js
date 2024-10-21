@@ -13,10 +13,10 @@ function Aufgabe4() {
     // email: string
     // body: string
 
-    // fetch the data from the API
-    // store the data in a state variable
-    // display the first 10 comments
-    // display the name, email, and body of each comment
+    // fetchin the data from the API
+    // storing the data in a state variable
+    // displaying the first 10 comments
+    // displaying the name, email, and body of each comment
 
     const [comments, setComments] = useState([]);
 
@@ -37,7 +37,7 @@ function Aufgabe4() {
         'horse.png', 'lion.png', 'monkey.png', 'rabbit.png', 'tiger.png'
     ];
 
-    useEffect(() => {
+    const fetchComments = () => {
         fetch('https://jsonplaceholder.typicode.com/comments')
             .then(response => response.json())
             .then(data => {
@@ -47,6 +47,13 @@ function Aufgabe4() {
                 }));
                 setComments(commentsWithImages);
             });
+    };
+
+    useEffect(() => {
+        fetchComments();
+        const interval = setInterval(fetchComments, 60000); // Refetching every 60 seconds to optimize
+
+        return () => clearInterval(interval); // Cleaning interval up on component unmount for dev-mode
     }, []);
 
     return (
