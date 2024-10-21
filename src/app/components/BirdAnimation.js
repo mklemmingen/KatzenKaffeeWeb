@@ -1,28 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+'use client';
+
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import '../pagestyles/BirdAnimation.css';
-import CatAnimation from "./CatAnimation";
+import '../styles/BirdAnimation.css';
 
 const birdSprites = {
-    blueJay: 'assets/birds/spritesheet_blue jay.png',
-    cardinal: 'assets/birds/spritesheet_cardinal.png',
-    cedarWaxwing: 'assets/birds/spritesheet_cedar waxwing.png',
-    chickadee: 'assets/birds/spritesheet_chickadee.png',
-    crow: 'assets/birds/spritesheet_crow.png',
-    houseFinch: 'assets/birds/spritesheet_house finch.png',
-    hummingbird: 'assets/birds/spritesheet_hummingbird.png',
-    magpie: 'assets/birds/spritesheet_magpie.png',
-    redRobin: 'assets/birds/spritesheet_red robin.png',
-    stellersJay: 'assets/birds/spritesheet_steller\'s jay.png',
-    whiteDove: 'assets/birds/spritesheet_white dove.png',
-    woodThrush: 'assets/birds/spritesheet_wood thrush.png'
+    blueJay: '/assets/birds/spritesheet_blue jay.png',
+    cardinal: '/assets/birds/spritesheet_cardinal.png',
+    cedarWaxwing: '/assets/birds/spritesheet_cedar waxwing.png',
+    chickadee: '/assets/birds/spritesheet_chickadee.png',
+    crow: '/assets/birds/spritesheet_crow.png',
+    houseFinch: '/assets/birds/spritesheet_house finch.png',
+    hummingbird: '/assets/birds/spritesheet_hummingbird.png',
+    magpie: '/assets/birds/spritesheet_magpie.png',
+    redRobin: '/assets/birds/spritesheet_red robin.png',
+    stellersJay: '/assets/birds/spritesheet_steller\'s jay.png',
+    whiteDove: '/assets/birds/spritesheet_white dove.png',
+    woodThrush: '/assets/birds/spritesheet_wood thrush.png'
 };
 
 const categories = {
-    flying: 1,
-    walking: 4,
+    flying: 4,
+    walking: 2,
     sitting: 3,
-    damage: 2
+    damage: 1
 };
 
 const speeds = {
@@ -69,7 +70,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
         setBirds(selectedBirds);
     }, [numberOfBirds]);
 
-    const chooseNewTarget = (bird) => {
+    const chooseNewTarget = useCallback((bird) => {
         const biasFactor = 0.3;
         const centerX = window.innerWidth * 0.5;
         const centerY = window.innerHeight * 0.5;
@@ -81,9 +82,9 @@ const BirdAnimation = ({ numberOfBirds }) => {
         bird.category = Math.random() < 0.5 ? 'walking' : 'flying';
         bird.speed = speeds[bird.category];
         bird.stateTimer = Math.random() * 5000 + 5000;
-    };
+    }, []);
 
-    const animate = (timestamp) => {
+    const animate = useCallback((timestamp) => {
         if (timestamp - lastFrameTime.current < frameDuration) {
             requestAnimationFrame(animate);
             return;
@@ -116,11 +117,11 @@ const BirdAnimation = ({ numberOfBirds }) => {
         }));
 
         requestAnimationFrame(animate);
-    };
+    }, [frameDuration, chooseNewTarget]);
 
     useEffect(() => {
-        requestAnimationFrame(animate);
-    }, []);
+        animate();
+    }, [animate]);
 
     return (
         <div className="bird-animation-container">

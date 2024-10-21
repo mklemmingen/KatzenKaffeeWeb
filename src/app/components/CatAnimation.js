@@ -1,5 +1,7 @@
+'use client';
+
 import React, {useEffect, useRef} from 'react';
-import '../pagestyles/CatAnimation.css';
+import '../styles/CatAnimation.css';
 
 const spriteFiles = [
     'black_0.png', 'black_1.png', 'black_2.png', 'black_3.png', 'black_4.png',

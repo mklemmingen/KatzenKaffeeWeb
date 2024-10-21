@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
-import '../pagestyles/Introduction.css';
+import '../styles/Introduction.css';
+import Image from 'next/image';
 
 const Introduction = () => {
     const [visitorCount, setVisitorCount] = useState(0);
@@ -37,7 +38,7 @@ const Introduction = () => {
                     </span>
                 </p>
                 <div className="cat-gif">
-                    <img src="https://media1.tenor.com/m/u5Hg9SEis_sAAAAC/coffee-vec50.gif" alt="Cat GIF"/>
+                    <Image src="https://media1.tenor.com/m/u5Hg9SEis_sAAAAC/coffee-vec50.gif" alt="Cat GIF" width={20} height={20} />
                     </div>
             </div>
         </div>

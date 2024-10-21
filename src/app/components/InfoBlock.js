@@ -1,5 +1,6 @@
 import React from 'react';
-import '../pagestyles/InfoBlock.css';
+import '../styles/InfoBlock.css';
+import Image from 'next/image';
 
 const InfoBlock = ({ iconSrc, headerText, textBlock, targetId }) => {
     const handleButtonClick = () => {
@@ -19,7 +20,7 @@ const InfoBlock = ({ iconSrc, headerText, textBlock, targetId }) => {
     return (
         <div className="info-block">
             <div className="icon">
-                <img src={iconSrc} alt="Icon" />
+                <Image src={iconSrc} alt="Icon" width={20} height={20} />
             </div>
             <div className="text-content">
                 <h2>{headerText}</h2>

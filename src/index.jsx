@@ -1,16 +1,17 @@
+'use client';
+
 import React, { useEffect } from 'react';
-import InfoBlock from "../pageModules/InfoBlock";
-import '../pagestyles/Home.css';
-import '../pagestyles/CatAnimation.css';
-import CatBirdImpact from "../pageModules/CatBirdImpact";
-import BookRecommendation from '../pageModules/BookRecommendation';
-import MoodBoard from "../pageModules/MoodBoard";
-import Introduction from "../pageModules/Introduction";
-import BirdAnimation from "../pageModules/BirdAnimation";
-import CatAnimation from "../pageModules/CatAnimation";
+import InfoBlock from '@/app/components/InfoBlock';
+import '@/app/styles/Home.css';
+import CatBirdImpact from '@/app/components/CatBirdImpact';
+import BookRecommendation from '@/app/components/BookRecommendation';
+import MoodBoard from '@/app/components/MoodBoard';
+import Introduction from '@/app/components/Introduction';
+import BirdAnimation from '@/app/components/BirdAnimation';
+import CatAnimation from '@/app/components/CatAnimation';
 
 
-const Home = ({ experiences, setExperiences, handleSubmit }) => {
+const Index = ({ experiences, setExperiences, handleSubmit }) => {
 
     useEffect(() => {
         fetch('/api/getExperiences')
@@ -224,7 +225,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                 </div>
                 <div id="mental-health" className="section">
                     <div className="section-content">
-                        <h2>Mentale Gesundheit von Katzen -> DIY-/Bio-Spielzeuge!</h2>
+                        <h2>Mentale Gesundheit von Katzen -&gt; DIY-/Bio-Spielzeuge!</h2>
                         <p>
                             Katzen lieben Abwechslung und Beschäftigung. Ein Kratzbaum und interaktive Spielzeuge
                             können
@@ -245,12 +246,12 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                         </p>
                         <MoodBoard
                             imageUrls={[
-                                'assets/img/CatToy1.webp',
-                                'assets/img/CatToy2.webp',
-                                'assets/img/CatToy3.webp',
-                                'assets/img/CatToy4.webp',
-                                'assets/img/CatToy6.webp',
-                                'assets/img/CatToy7.webp'
+                                'https://rawznaturalpetfood.com/wp-content/uploads/Diy-cat-toys-.png',
+                                'https://rawznaturalpetfood.com/wp-content/uploads/Homemade-cat-toys--1024x557.png',
+                                'https://rawznaturalpetfood.com/wp-content/uploads/Best-homemade-cat-toys--1024x557.png',
+                                'https://rawznaturalpetfood.com/wp-content/uploads/Diy-cat-toys-to-keep-them-busy--1024x557.png',
+                                'https://rawznaturalpetfood.com/wp-content/uploads/diy-catnip-toys--1024x557.png',
+                                'https://rawznaturalpetfood.com/wp-content/uploads/Easy-diy-cat-toys-1024x592.png'
                             ]}
                             externalLink={
                                 'https://rawznaturalpetfood.com/diy-cat-toys/'
@@ -281,7 +282,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                 </div>
                 <div id="shelter-support" className="section">
                     <div className="section-content">
-                        <h2> Tierheime unterstützen -> Katzen aus der Natur raus</h2>
+                        <h2> Tierheime unterstützen -&gt; Katzen aus der Natur raus</h2>
                         <p>
                             TODO
                         </p>
@@ -300,7 +301,7 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
                     </div>
                 </div>
                 <div id="user-experiences">
-                    {experiences.map((experience, index) => (
+                    {Array.isArray(experiences) && experiences.map((experience, index) => (
                         <textarea
                             key={index}
                             value={experience}
@@ -314,4 +315,4 @@ const Home = ({ experiences, setExperiences, handleSubmit }) => {
     );
 };
 
-export default Home;
+export default Index;
