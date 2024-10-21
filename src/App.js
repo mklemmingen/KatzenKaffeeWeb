@@ -12,6 +12,7 @@ import Credits from './pages/Credits';
 import CatAnimation from './pageModules/CatAnimation';
 import './pagestyles/App.css';
 import Aufgabe4 from "./pages/Aufgabe4";
+import ScrollProgress from './pageModules/ScrollProgress';
 
 // context for the music player and overlay
 export const MusicPlayerContext = createContext();
@@ -60,6 +61,7 @@ const AppContent = () => {
     return (
         <div className="App">
             <Header className="header" handleSubmit={handleSubmit} onToggleTheme={handleToggleTheme}/>
+            <ScrollProgress />
             <CatAnimation numberOfCats={numberOfCats} className="cat-background"/>
             <div className="content">
                 <Routes>

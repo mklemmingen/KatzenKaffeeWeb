@@ -12,3 +12,8 @@
     width: 3em;
     height: 3em;
 }
+
+.bird-animation-frame {
+    width: 100%;
+    height: 100%;
+}
