@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/InfoBlock.css';
 import Image from 'next/image';
+import "../globals.css";
 
 const InfoBlock = ({ iconSrc, headerText, textBlock, targetId }) => {
     const handleButtonClick = () => {
@@ -9,6 +10,7 @@ const InfoBlock = ({ iconSrc, headerText, textBlock, targetId }) => {
             if (targetElement) {
                 targetElement.scrollIntoView({ behavior: 'smooth' });
                 targetElement.focus();
+                console.log(`Scrolled to element with ID ${targetId}`);
             } else {
                 throw new Error(`Element with ID ${targetId} not found`);
             }

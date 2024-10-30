@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import "../globals.css";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
@@ -77,24 +78,28 @@ function Header({ handleSubmit, onToggleTheme }) {
         playerRef.current.mute(); // Start muted
     };
 
+    /*
+    Currently removed:
+    <div className="welcome-note">
+        <p>{randomQuote}</p>
+    </div>
+     */
+
     return (
         <header className="App-header">
             <div className="logo-container">
                 <Image src="/assets/svg/cat-halloween-kitty-svgrepo-com.svg" className="App-logo" alt="logo" onClick={handleLogoClick} width={50} height={50} />
                 <Link href="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
-            <div className="welcome-note">
-                <p>{randomQuote}</p>
-            </div>
             <div className="button-container">
-                <Link href="/comments" className="App-button">Kommentare</Link>
                 <div>
                     <label htmlFor="contrast-switch">Kontrastmodi</label>
                     <label className="switch">
-                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle} />
+                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
                         <span className="slider"></span>
                     </label>
                 </div>
+                <Link href="/comments" className="App-button">Kommentare</Link>
                 <div className="dropdown">
                     <button className="App-button music-button">Musik-Player</button>
                     <div className="dropdown-content">
@@ -110,7 +115,7 @@ function Header({ handleSubmit, onToggleTheme }) {
                         <form onSubmit={handleSubmit}>
                             <label>
                                 <p>Teile hier deine Erfahrung, wenn du willst, und wir zeigen Sie allen Besuchern</p>
-                                <input type="text" name="experience" />
+                                <input type="text" name="experience"/>
                             </label>
                             <button type="submit">Eingabe Bestätigen</button>
                         </form>

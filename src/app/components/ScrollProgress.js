@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import "../globals.css";
 
 const ScrollProgress = () => {
     const [scrollPosition, setScrollPosition] = useState(0);

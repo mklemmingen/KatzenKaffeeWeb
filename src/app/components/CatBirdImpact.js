@@ -2,6 +2,7 @@ import React from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, BarElement, Tooltip, Legend, CategoryScale, LinearScale } from 'chart.js';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import "../globals.css";
 
 ChartJS.register(BarElement, Tooltip, Legend, CategoryScale, LinearScale);
 

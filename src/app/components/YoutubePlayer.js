@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import "../globals.css";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });

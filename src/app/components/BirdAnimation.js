@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/BirdAnimation.css';
-
+import "../globals.css"
 const birdSprites = {
     blueJay: '/assets/birds/spritesheet_blue jay.png',
     cardinal: '/assets/birds/spritesheet_cardinal.png',

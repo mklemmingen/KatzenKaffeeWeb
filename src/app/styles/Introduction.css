@@ -5,6 +5,8 @@
     padding: 20px;
     color: var(--text-color);
     margin-top: 5%;
+    margin-bottom: 15%;
+    z-index: 0;
 }
 
 .intro_header_and_text {
@@ -13,6 +15,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    width: 60%;
     flex: 1;
 }
 
@@ -24,9 +27,15 @@
 
 .introduction h1 {
     font-family: 'Pacifico', serif;
-    font-size: 2.5em;
+    font-size: 8em;
     color: var(--primary-color);
     margin-bottom: 20px;
+}
+
+.introduction h2 {
+    font-family: 'Pacifico', serif;
+    font-size: 8em;
+    color: var(--primary-color);
 }
 
 .introduction p {
@@ -35,19 +44,4 @@
     text-align: justify;
     margin: 0 10px;
     max-width: 40%;
-}
-
-.cat-gif {
-    text-align: center;
-    flex: 1;
-    margin-left: 20px;
-    max-width: 30%;
-    max-height: 30%;
-}
-
-.cat-gif img {
-    border-radius: 10px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    width: 50%;
-    height: auto;
 }
