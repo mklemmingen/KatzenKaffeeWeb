@@ -1,54 +1,30 @@
-'use client';
+import React from 'react';
+import CatAnimation from "@/app/components/CatAnimation";
+import Introduction from "@/app/components/Introduction";
+import InfoBlock from "@/app/components/InfoBlock";
+import BookRecommendation from "@/app/components/BookRecommendation";
+import CatBirdImpact from "@/app/components/CatBirdImpact";
+import BirdAnimation from "@/app/components/BirdAnimation";
+import MoodBoard from "@/app/components/MoodBoard";
 
-import React, { useEffect } from 'react';
-import InfoBlock from '@/app/components/InfoBlock';
-import '@/app/styles/Home.css';
-import CatBirdImpact from '@/app/components/CatBirdImpact';
-import BookRecommendation from '@/app/components/BookRecommendation';
-import MoodBoard from '@/app/components/MoodBoard';
-import Introduction from '@/app/components/Introduction';
-import BirdAnimation from '@/app/components/BirdAnimation';
-import CatAnimation from '@/app/components/CatAnimation';
-
-
-const Index = ({ experiences, setExperiences, handleSubmit }) => {
-
-    useEffect(() => {
-        fetch('/api/getExperiences')
-            .then(response => response.json())
-            .then(data => {
-                setExperiences(data);
-            })
-            .catch(error => {
-                console.error('Error fetching experiences:', error);
-            });
-    }, [setExperiences]);
-
-    // Button that can be added to the page anywhere, that alignes center and throws the view back onto
-    // "start"
+function Hero() {
     const BackToStartButton = () => {
         return (
             <button
                 className="back-to-start-button"
                 onClick={() => {
-                    console.log('Scrolling back to start');
-                    // window scroll to id "categories"
-                    const categories = document.getElementById('categories');
-                    if (categories) {
-                        categories.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
             >
                 Zurück zum Anfang
             </button>
         );
     };
-
     return (
         <div>
             <CatAnimation numberOfCats={5}/>
             <Introduction id="start"/>
-            <div className="container" id="categories">
+            <div className="container">
                 <div className="info-blocks-container">
                     <InfoBlock
                         iconSrc="assets/svg/cat-food-svgrepo-com.svg"
@@ -196,7 +172,7 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                 </div>
                 <div className="animation-container">
                     <div className="bird-animation-container">
-                        <BirdAnimation numberOfBirds={3}/>
+                        <BirdAnimation numberOfBirds={8}/>
                     </div>
                     <CatAnimation numberOfCats={2} className="little-hunters"/>
                 </div>
@@ -277,19 +253,9 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                         <BackToStartButton/>
                     </div>
                 </div>
-                <div id="user-experiences">
-                    {Array.isArray(experiences) && experiences.map((experience, index) => (
-                        <textarea
-                            key={index}
-                            value={experience}
-                            readOnly
-                        />
-                    ))}
-                    <BackToStartButton/>
-                </div>
             </div>
         </div>
     );
-};
+}
 
-export default Index;
+export default Hero;

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/MoodBoard.css';
 import Image from 'next/image';
+import "../globals.css";
 
 const MoodBoard = ({ imageUrls, externalLink }) => {
     useEffect(() => {

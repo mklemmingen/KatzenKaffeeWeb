@@ -3,6 +3,9 @@ import 'chart.js/auto';
 import '../styles/Introduction.css';
 import Image from 'next/image';
 import CatAnimation from "@/app/components/CatAnimation";
+import "../globals.css";
+import {B612} from "next/dist/compiled/@next/font/dist/google";
+import BirdAnimation from "@/app/components/BirdAnimation";
 
 const Introduction = () => {
     const [visitorCount, setVisitorCount] = useState(0);
@@ -25,24 +28,28 @@ const Introduction = () => {
         setVisitorCount(count);
     }, []);
 
+    /*
+     <p>
+        Katzen sind wunderbare Begleiter und können uns viel Freude bereiten <br/>
+        Sie sind Teil unserer Welt und wir sind Teil ihrer Welt. <br/>
+        Gemeinsam leben wir in einer riesigen und komplexen Natur. <br/>
+        Wie können wir also nachhaltig mit unseren Katzen leben? <br/>
+        <br/>
+        Sie sind der {visitorCount} Besucher dieser Seite.
+        <br/>
+        <br/>
+        Jetzt lernen, wie man nachhaltig hält! Einfach entlang scrollen
+       </p>
+     */
+
     return (
         <div className="introduction">
+            <CatAnimation numberOfCats={3}/>
+            <BirdAnimation numberOfBirds={3}/>
             <div className="content">
                 <div className="intro_header_and_text">
                     <h1>Nachhaltige Katzenhaltung</h1>
-                    <p>
-                        Katzen sind wunderbare Begleiter, aber es ist wichtig, sie nachhaltig zu halten.
-                        Dies bedeutet, auf ihre Gesundheit zu achten, umweltfreundliche Produkte zu verwenden und
-                        sicherzustellen, dass sie keine negativen Auswirkungen auf die Umwelt haben.
-                        <span>
-                        <br/>
-                        Sie sind der {visitorCount} Besucher dieser Seite.
-                    </span>
-                    </p>
-                </div>
-                <div className="cat-gif">
-                    <Image src="https://media1.tenor.com/m/u5Hg9SEis_sAAAAC/coffee-vec50.gif" alt="Cat GIF" width={20}
-                           height={20}/>
+                    <h2>↓</h2>
                 </div>
             </div>
         </div>
