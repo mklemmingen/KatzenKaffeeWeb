@@ -34,6 +34,8 @@ body {
 }
 
 .info-block .text-content h2 {
+    background-color: var(--background-color);
+    border-radius: 5%;
     text-align: left;
     color: var(--text-color);
     margin-bottom: 0;
