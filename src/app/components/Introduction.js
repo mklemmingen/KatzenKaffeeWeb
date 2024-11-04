@@ -49,7 +49,7 @@ const Introduction = () => {
             <div className="content">
                 <div className="intro_header_and_text">
                     <h1>Nachhaltige Katzenhaltung</h1>
-                    <h2>↓</h2>
+                    <h2> Miezen to ↓ the Rescue </h2>
                 </div>
             </div>
         </div>
