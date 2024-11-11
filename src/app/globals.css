@@ -1,25 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --primary-color: #5D415A;
-  --secondary-color: #F5F5F5;
-  --accent-color: #5D415A;
+  --primary-color: #5d415a;
+  --secondary-color: #f5f5f5;
+  --accent-color: #5d415a;
   --text-color: #333;
   --background-color: #f9f9f9;
-  --font-family: 'Roboto', Arial, sans-serif;
+  --font-family: "Roboto", Arial, sans-serif;
   --high-contrast-text: #000;
   --high-contrast-bg: #fff;
 }
 
-[data-theme='high-contrast'] {
-  --primary-color: #8E44AD;
+[data-theme="high-contrast"] {
+  --primary-color: #8e44ad;
   --secondary-color: #333;
-  --accent-color: #8E44AD;
+  --accent-color: #8e44ad;
   --text-color: #fff;
   --background-color: #000;
 }
@@ -30,7 +30,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
@@ -43,7 +44,7 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
-  flex:1;
+  flex: 1;
 }
 
 .App {
@@ -55,18 +56,12 @@ body {
   color: var(--text-color);
 }
 
-#page-content {
+main {
   flex: 1;
   display: flex;
   flex-direction: column;
   padding-top: 60px;
 }
-
-main {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
- }
 
 .cat-background {
   position: absolute;
@@ -84,13 +79,6 @@ main {
   margin-bottom: 40px;
   overflow: hidden;
   z-index: 2;
-}
-
-.content {
-  flex: 1;
-  margin-top: 60px;
-  margin-bottom: 40px;
-  overflow: hidden;
 }
 
 .container {
@@ -114,9 +102,8 @@ main {
   box-shadow: 0 2px 4px var(--shadow-color);
 }
 
-
 .welcome-note h1 {
-  font-family: 'Pacifico', serif;
+  font-family: "Pacifico", serif;
   color: var(--primary-color);
   margin-bottom: 10px;
 }
@@ -128,29 +115,8 @@ main {
   line-height: 1.4em;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .spacer {
   flex-grow: 0.1;
-}
-
-.App-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--secondary-color);
-  padding: 10px 20px;
-  color: var(--primary-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
 .scroll-progress-container {
@@ -167,73 +133,6 @@ main {
   height: 100%;
   background: lightblue;
   transition: width 0.25s ease-out;
-}
-
-.switch {
-  position: relative;
-  display: flex;
-  width: 60px;
-  height: 34px;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-input:checked + .slider {
-  background-color: var(--accent-color);
-}
-
-input:checked + .slider:before {
-  transform: translateX(26px);
-}
-
-.App-logo {
-  width: 75px;
-  height: auto;
-  font-family: 'Pacifico', cursive;
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 2em;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  min-width: 200px;
-}
-
-.logo-container img {
-  width: 75px;
-  height: 75px;
-  margin-right: 10px;
 }
 
 .nav-links {
@@ -265,14 +164,6 @@ input:checked + .slider:before {
   outline-offset: 2px;
 }
 
-.button-container {
-  display: flex;
-  gap: 10px;
-  flex: 1;
-  justify-content: flex-end;
-  min-width: 200px;
-}
-
 .App-link {
   color: var(--primary-color);
   text-decoration: none;
@@ -291,50 +182,9 @@ input:checked + .slider:before {
   outline-offset: 2px;
 }
 
-.App-button {
-  background-color: white;
-  border: none;
-  color: var(--primary-color);
-  padding: 10px 20px;
-  cursor: pointer;
-  margin: 10px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.App-button:hover {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
-
-.login-button {
-  background-color: white;
-  color: var(--primary-color);
-}
-
 .register-button {
   background-color: var(--primary-color);
   color: white;
-}
-
-.music-button {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
-
-.App-footer {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 0;
-  position: relative;
-}
-
-.App-footer p {
-  color: var(--text-color);
 }
 
 .Modal {
@@ -361,51 +211,6 @@ input:checked + .slider:before {
   z-index: 999;
 }
 
-.dropdown {
-  position: relative;
-  display: inline-block;
-  z-index: 999;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--secondary-color);
-  min-width: 160px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-  right: 0;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.dropdown:hover .dropdown-content,
-.dropdown-content:hover {
-  display: block;
-}
-
-.dropdown-content button {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  background-color: var(--primary-color);
-  color: #ffffff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.dropdown-content button:hover {
-  background-color: var(--accent-color);
-}
-
-.App-button.music-button {
-  background-color: var(--primary-color);
-  color: #ffffff;
-}
-
 .music-player-modal {
   display: flex;
   flex-direction: column;
@@ -423,75 +228,3 @@ input:checked + .slider:before {
 }
 
 /* Accessibility and Responsive Design starts here */
-@media (max-width: 1024px) {
-  .App-header {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
-
-  .logo-container, .nav-links, .button-container {
-    width: 100%;
-    justify-content: center;
-    margin-bottom: 10px;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .button-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .App-button {
-    width: 100%;
-    margin: 5px 0;
-  }
-
-  .dummy-cat-cafe {
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  .dummy-cat-cafe h2 {
-    font-size: 2em;
-    color: #5D415A;
-  }
-
-  .dummy-cat-cafe button {
-    padding: 10px 20px;
-    background-color: #5D415A;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .dummy-cat-cafe button:hover {
-    background-color: #3B2A3A;
-  }
-
-  .dummy-cat-cafe {
-    text-align: center;
-    margin: 20px 0;
-  }
-
-  .enter-cafe-button {
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-  }
-
-  .enter-cafe-button:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-2px);
-  }
-}

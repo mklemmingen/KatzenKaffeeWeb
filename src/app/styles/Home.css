@@ -1,124 +1,144 @@
 .welcome-note {
-    position: relative;
-    height: 20%;
-    width: 40%;
-    text-align: center;
-    margin: auto;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--secondary-color);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
+  position: relative;
+  height: 20%;
+  width: 40%;
+  text-align: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color);
 }
 
-
 .welcome-note h1 {
-    font-family: 'Pacifico', serif;
-    color: var(--primary-color);
-    margin-bottom: 10px;
+  font-family: "Pacifico", serif;
+  color: var(--primary-color);
+  margin-bottom: 10px;
 }
 
 .welcome-note p {
-    font-family: var(--font-family), serif;
-    color: var(--text-color);
-    font-size: 1.2em;
-    line-height: 1.4;
+  font-family: var(--font-family), serif;
+  color: var(--text-color);
+  font-size: 1.2em;
+  line-height: 1.4;
 }
 
 .section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 20px auto;
-    padding: 20px;
-    margin-top: 20%;
-    max-width: 1200px;
-    text-align: left;
-    z-index: 2;
-    position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px auto;
+  padding: 20px;
+  margin-top: 20%;
+  max-width: 1200px;
+  text-align: left;
+  z-index: 2;
+  position: relative;
 }
 
 .section-content {
-    flex: 1 1 70%;
-    text-align: left;
+  flex: 1 1 70%;
+  text-align: left;
 }
 
 .section-content h2 {
-    margin-bottom: 1em;
-    text-align: center !important;
+  margin-bottom: 1em;
+  text-align: center !important;
 }
 
 .section-content ul {
-    margin-left: 3em;
-    text-align: left;
+  margin-left: 3em;
+  text-align: left;
 }
 
 .section-content p {
-    margin-bottom: 1em;
-    text-align: left !important;
+  margin-bottom: 1em;
+  text-align: left !important;
 }
 
 .back-to-start-button {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 20px 0;
-    font: var(--font-family), serif;
-    color: var(--primary-color);
-    background-color: var(--secondary-color);
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 1000;
 }
 
 .back-to-start-button:hover {
-    color: var(--secondary-color);
-    background-color: var(--primary-color);
+  background-color: var(--primary-color);
 }
 
+/*
+  .back-to-start-button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 20px 0;
+      font: var(--font-family), serif;
+      color: var(--primary-color);
+      background-color: var(--secondary-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+  }
+  
+  
+  .back-to-start-button:hover {
+      color: var(--secondary-color);
+      background-color: var(--primary-color);
+  }
+  */
+
 .chart-container {
-    flex: 1 1 auto;
-    margin: 10px;
-    padding: 5px;
-    max-width: 300px;
-    height: 1200px !important;
-    font-size: medium;
-    text-align: center;
+  flex: 1 1 auto;
+  margin: 10px;
+  padding: 5px;
+  max-width: 300px;
+  height: 1200px !important;
+  font-size: medium;
+  text-align: center;
 }
 
 .source-buffer {
-    margin-bottom: 2em;
+  margin-bottom: 2em;
 }
 
 .animation-container {
-    position: absolute !important;
-    z-index: -3 !important;
-    width: 200%;
-    height: 50%;
+  position: absolute !important;
+  z-index: -3 !important;
+  width: 200%;
+  height: 50%;
 }
 
 .bird-animation-container {
-    position: absolute !important;
-    z-index: -2 !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    pointer-events: none !important;
+  position: absolute !important;
+  z-index: -2 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  pointer-events: none !important;
 }
 
 .little-hunters {
-    position: absolute !important;
-    z-index: -2 !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+  position: absolute !important;
+  z-index: -2 !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
 }

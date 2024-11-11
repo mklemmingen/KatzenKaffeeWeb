@@ -1,0 +1,15 @@
+.App-footer {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 0;
+  position: relative;
+}
+
+.App-footer p {
+  color: var(--text-color);
+  align-items: center;
+}
