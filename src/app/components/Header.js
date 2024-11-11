@@ -85,43 +85,53 @@ function Header({ handleSubmit, onToggleTheme }) {
     </div>
      */
 
+/*  Responsive Menu:
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+      setIsMenuOpen(!isMenuOpen);
+    };
+*/
+
     return (
         <header className="App-header">
             <div className="logo-container">
                 <Image src="/assets/svg/cat-halloween-kitty-svgrepo-com.svg" className="App-logo" alt="logo" onClick={handleLogoClick} width={50} height={50} />
                 <Link href="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
-            <div className="button-container">
-                <div>
-                    <label htmlFor="contrast-switch">Kontrastmodi</label>
-                    <label className="switch">
-                        <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
-                        <span className="slider"></span>
-                    </label>
-                </div>
-                <Link href="/comments" className="App-button">Kommentare</Link>
-                <div className="dropdown">
-                    <button className="App-button music-button">Musik-Player</button>
-                    <div className="dropdown-content">
-                        <button onClick={handlePlay}>Play</button>
-                        <button onClick={handlePause}>Pause</button>
-                        <button onClick={handleMute}>Mute</button>
-                        <button onClick={handleUnmute}>Unmute</button>
+            {/* Responsive Menu: <nav className={`nav-links ${isMenuOpen ? 'active' : ''}`}> */}
+                <div className="button-container">
+                    <div>
+                        <label htmlFor="contrast-switch">Kontrastmodi</label>
+                        <label className="switch">
+                            <input id="contrast-switch" type="checkbox" checked={isHighContrast} onChange={handleToggle}/>
+                            <span className="slider"></span>
+                        </label>
+                    </div>
+                    <Link href="/comments" className="App-button">Kommentare</Link>
+                    <div className="dropdown">
+                        <button className="App-button music-button">Musik-Player</button>
+                        <div className="dropdown-content">
+                            <button onClick={handlePlay}>Play</button>
+                            <button onClick={handlePause}>Pause</button>
+                            <button onClick={handleMute}>Mute</button>
+                            <button onClick={handleUnmute}>Unmute</button>
+                        </div>
+                    </div>
+                    <div className="dropdown">
+                        <button className="App-button login-button">Erfahrungen mit Katzen?</button>
+                        <div className="dropdown-content">
+                            <form onSubmit={handleSubmit}>
+                                <label>
+                                    <p>Teile hier deine Erfahrung, wenn du willst, und wir zeigen Sie allen Besuchern</p>
+                                    <input type="text" name="experience"/>
+                                </label>
+                                <button type="submit">Eingabe Bestätigen</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div className="dropdown">
-                    <button className="App-button login-button">Erfahrungen mit Katzen?</button>
-                    <div className="dropdown-content">
-                        <form onSubmit={handleSubmit}>
-                            <label>
-                                <p>Teile hier deine Erfahrung, wenn du willst, und wir zeigen Sie allen Besuchern</p>
-                                <input type="text" name="experience"/>
-                            </label>
-                            <button type="submit">Eingabe Bestätigen</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+            {/* </nav> */}
             <YouTube
                 videoId="jfKfPfyJRdk"
                 opts={{

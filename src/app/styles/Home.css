@@ -64,6 +64,24 @@
 }
 
 .back-to-start-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .back-to-start-button:hover {
+    background-color: var(--primary-color);
+  }
+
+/* .back-to-start-button {
     display: inline-block;
     padding: 10px 20px;
     margin: 20px 0;
@@ -81,7 +99,7 @@
 .back-to-start-button:hover {
     color: var(--secondary-color);
     background-color: var(--primary-color);
-}
+} */
 
 .chart-container {
     flex: 1 1 auto;

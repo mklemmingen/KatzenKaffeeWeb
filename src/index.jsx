@@ -9,6 +9,10 @@ import MoodBoard from '@/app/components/MoodBoard';
 import Introduction from '@/app/components/Introduction';
 import BirdAnimation from '@/app/components/BirdAnimation';
 import CatAnimation from '@/app/components/CatAnimation';
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import categories from "@/app/data/categories";
+
+
 
 
 const Index = ({ experiences, setExperiences, handleSubmit }) => {
@@ -39,7 +43,7 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                     }
                 }}
             >
-                Zurück zum Anfang
+                <FaArrowAltCircleUp />
             </button>
         );
     };
@@ -48,44 +52,27 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
         <div>
             <CatAnimation numberOfCats={5}/>
             <Introduction id="start"/>
+            <BackToStartButton />
             <div className="container" id="categories">
                 <div className="info-blocks-container">
+                {categories.categories.map((category, index) => (
                     <InfoBlock
-                        iconSrc="assets/svg/cat-food-svgrepo-com.svg"
-                        headerText="Nachhaltige Ernährung"
-                        textBlock=""
-                        targetId={'sustainable-diet'}
+                    key={index}
+                    iconSrc={category.iconSrc}
+                    headerText={category.headerText}
+                    textBlock={category.textBlock}
+                    targetId={category.targetId}
                     />
-                    <InfoBlock
-                        iconSrc="assets/svg/cat-litter-box-svgrepo-com.svg"
-                        headerText="Umweltfreundliches Katzenstreu"
-                        textBlock=""
-                        targetId={'cat-litter'}
-                    />
-                    <InfoBlock
-                        iconSrc="assets/svg/cat-travel-bag-svgrepo-com.svg"
-                        headerText="Schutz der Vogelwelt"
-                        textBlock=""
-                        targetId={'bird-protection'}
-                    />
-                    <InfoBlock
-                        iconSrc="assets/svg/cat-tree-svgrepo-com.svg"
-                        headerText="Mentale Gesundheit & Spielzeug"
-                        textBlock=""
-                        targetId={'mental-health'}
-                    />
-                    <InfoBlock
-                        iconSrc="assets/svg/cat-bed-svgrepo-com.svg"
-                        headerText="Energie-effiziente Pflege"
-                        textBlock=""
-                        targetId={'energy-efficient-cat-care'}
-                    />
-                    <InfoBlock
-                        iconSrc="assets/svg/cat-litter-sand-svgrepo-com.svg"
-                        headerText="Tierheime unterstützen"
-                        textBlock=""
-                        targetId={'shelter-support'}
-                    />
+                ))}
+                </div>
+            </div>
+            <div id={"cat-statistics"} className="section">
+                <div className="section-content">
+                    <h2>Anzahl der Katzen in deutschen Haushalten (2000 bis 2023)</h2>
+                    <p>
+                        Lorem ipsum
+                        https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/#:~:text=Das%20beliebteste%20Haustier%20der%20Deutschen,meisten%20Katzen%20in%20Deutschland%20gehalten.
+                    </p>
                 </div>
             </div>
             <div id={'sustainable-diet'} className="section">
@@ -131,7 +118,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                         magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
                         Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                     </p>
-                    <BackToStartButton/>
                 </div>
             </div>
             <div id={'bird-protection'} className="section">
@@ -189,7 +175,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                         title="Cats and Conservationists: Die Debatte darüber, wem die Natur gehört"
                         description="Cats and Conservationists ist die erste Analyse der Debatte über freilaufende Katzen. Das Buch beleuchtet den Konflikt zwischen Naturschützern und Katzenliebhabern, die sich über die Schäden durch die Katzen und die besten Vorgehensweisen uneinig sind. Es zeigt, wie wir Wissenschaft interpretieren und unterschiedliche Perspektiven einbeziehen können, um konstruktive Dialoge zu fördern. Das Buch zielt darauf ab, die Zusammenarbeit zwischen Wissenschaftlern, Politikern, Naturschützern und Tierschutzorganisationen zu erleichtern, um freilaufende Katzen zu managen und den von ihnen verursachten Schaden zu minimieren."
                     />
-                    <BackToStartButton/>
                 </div>
                 <div className="chart-container">
                     <CatBirdImpact className="diagram"/>
@@ -234,7 +219,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                                 'https://rawznaturalpetfood.com/diy-cat-toys/'
                             }
                         />
-                        <BackToStartButton/>
                     </div>
                 </div>
                 <div id="energy-efficient-cat-care" className="section">
@@ -254,7 +238,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                             rebum.
                             Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                         </p>
-                        <BackToStartButton/>
                     </div>
                 </div>
                 <div id="shelter-support" className="section">
@@ -274,7 +257,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                             rebum.
                             Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                         </p>
-                        <BackToStartButton/>
                     </div>
                 </div>
                 <div id="user-experiences">
@@ -285,7 +267,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                             readOnly
                         />
                     ))}
-                    <BackToStartButton/>
                 </div>
             </div>
         </div>
