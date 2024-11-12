@@ -12,9 +12,10 @@ function MyApp({ Component, pageProps }) {
             </div>
             <ScrollProgress />
             <CatAnimation />
-            <div className="page-content"/>
+            <div className="page-content">
                 <Component {...pageProps}/>
-            <div className="page-content"/>
+            </div>
+            <div className="page-content"></div>
             <div>
                 <Footer />
             </div>

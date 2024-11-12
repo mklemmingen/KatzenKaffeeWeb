@@ -24,13 +24,17 @@ function Header({ onToggleTheme }) {
 
     async function handleSubmit(formData) {
         try {
-            console.log('Submitting experience:', formData.experience);
+            console.log('Submitting experience:', formData);
             const response = await fetch('/api/submitExperience', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ experience: formData.experience }),
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    experience: formData.experience
+                }),
             });
 
             if (!response.ok) {
@@ -41,6 +45,9 @@ function Header({ onToggleTheme }) {
 
             const result = await response.json();
             console.log('Submission result:', result.message);
+
+            // Resets formData
+            setFormData({ name: '', email: '', experience: '' });
         } catch (error) {
             console.error('Error:', error);
         }
@@ -58,6 +65,10 @@ function Header({ onToggleTheme }) {
         if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
             errors.email = 'Email is invalid';
             valid = false;
+        }
+
+        if(formData.email.length === 0){
+            formData.email = "anonym";
         }
 
         if (!formData.experience) {
