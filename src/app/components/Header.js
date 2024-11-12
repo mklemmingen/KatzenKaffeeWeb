@@ -7,8 +7,6 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { FaMusic } from "react-icons/fa6";
-import {FaPause, FaPlay} from "react-icons/fa";
-import { FaRegStopCircle } from "react-icons/fa";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
@@ -18,6 +16,19 @@ function Header({ onToggleTheme }) {
     const router = useRouter();
     const playerRef = useRef(null);
     const [isHighContrast, setIsHighContrast] = useState(false);
+
+    const handleToggle = () => {
+        setIsHighContrast(!isHighContrast);
+        if (typeof onToggleTheme === 'function') {
+            onToggleTheme(!isHighContrast);
+        } else {
+            console.error('onToggleTheme is not a function');
+        }
+    };
+
+    const handleLogoClick = () => {
+        router.push('/');
+    };
 
     const [formData, setFormData] = useState({ name: '', email: '', experience: '' });
     const [errors, setErrors] = useState({ name: '', email: '', experience: '' });
@@ -98,15 +109,6 @@ function Header({ onToggleTheme }) {
             playerRef.current.unMute();
         }
     }, [playerRef]);
-
-    const handleToggle = () => {
-        setIsHighContrast(!isHighContrast);
-        onToggleTheme(!isHighContrast);
-    };
-
-    const handleLogoClick = () => {
-        router.push('/');
-    };
 
     const handlePlay = () => {
         if (playerRef.current?.getPlayerState) {
