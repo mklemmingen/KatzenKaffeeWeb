@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import InfoBlock from '@/app/components/InfoBlock';
 import '@/app/styles/Home.css';
 import CatBirdImpact from '@/app/components/CatBirdImpact';
@@ -12,21 +12,7 @@ import CatAnimation from '@/app/components/CatAnimation';
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import categories from "@/app/data/categories";
 
-
-
-
-const Index = ({ experiences, setExperiences, handleSubmit }) => {
-
-    useEffect(() => {
-        fetch('/api/getExperiences')
-            .then(response => response.json())
-            .then(data => {
-                setExperiences(data);
-            })
-            .catch(error => {
-                console.error('Error fetching experiences:', error);
-            });
-    }, [setExperiences]);
+const Index = () => {
 
     // Button that can be added to the page anywhere, that alignes center and throws the view back onto
     // "start"
@@ -35,12 +21,8 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
             <button
                 className="back-to-start-button"
                 onClick={() => {
-                    console.log('Scrolling back to start');
-                    // window scroll to id "categories"
-                    const categories = document.getElementById('categories');
-                    if (categories) {
-                        categories.scrollIntoView({ behavior: 'smooth' });
-                    }
+                    console.log('Scrolling back to top');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
             >
                 <FaArrowAltCircleUp />
@@ -258,15 +240,6 @@ const Index = ({ experiences, setExperiences, handleSubmit }) => {
                             Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
                         </p>
                     </div>
-                </div>
-                <div id="user-experiences">
-                    {Array.isArray(experiences) && experiences.map((experience, index) => (
-                        <textarea
-                            key={index}
-                            value={experience}
-                            readOnly
-                        />
-                    ))}
                 </div>
             </div>
         </div>

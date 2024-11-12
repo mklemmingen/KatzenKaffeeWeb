@@ -1,20 +1,85 @@
 'use client';
 
+import "../styles/Header.css";
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-import "../globals.css";
+import { FaMusic } from "react-icons/fa6";
+import {FaPause, FaPlay} from "react-icons/fa";
+import { FaRegStopCircle } from "react-icons/fa";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
 
-function Header({ handleSubmit, onToggleTheme }) {
+function Header({ onToggleTheme }) {
+
     const router = useRouter();
     const playerRef = useRef(null);
     const [isHighContrast, setIsHighContrast] = useState(false);
-    const [randomQuote, setRandomQuote] = useState('');
+
+    const [formData, setFormData] = useState({ name: '', email: '', experience: '' });
+    const [errors, setErrors] = useState({ name: '', email: '', experience: '' });
+
+    async function handleSubmit(formData) {
+        try {
+            console.log('Submitting experience:', formData.experience);
+            const response = await fetch('/api/submitExperience', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ experience: formData.experience }),
+            });
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                console.error('Error submitting experience:', errorMessage);
+                throw new Error('Failed to submit experience');
+            }
+
+            const result = await response.json();
+            console.log('Submission result:', result.message);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    const validate = () => {
+        let valid = true;
+        let errors = {};
+
+        if (!formData.name) {
+            errors.name = 'Name is required';
+            valid = false;
+        }
+
+        if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+            errors.email = 'Email is invalid';
+            valid = false;
+        }
+
+        if (!formData.experience) {
+            errors.experience = 'Experience is required';
+            valid = false;
+        }
+
+        setErrors(errors);
+        return valid;
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmitForm = (e) => {
+        e.preventDefault();
+        if (validate()) {
+            handleSubmit(formData);
+        }
+    };
 
     useEffect(() => {
         if (typeof window !== 'undefined' && playerRef.current) {
@@ -22,17 +87,6 @@ function Header({ handleSubmit, onToggleTheme }) {
             playerRef.current.unMute();
         }
     }, [playerRef]);
-
-    useEffect(() => {
-        const quotes = [
-            "A cat has absolute emotional honesty. - Ernest Hemingway",
-            "The smallest feline is a masterpiece. - Leonardo da Vinci",
-            "Cats are connoisseurs of comfort. - James Herriot",
-            "A meow massages the heart. - Stuart McMillan",
-            "Cats choose us; we don't own them. - Kristin Cast",
-        ];
-        setRandomQuote(quotes[Math.floor(Math.random() * quotes.length)]);
-    }, []);
 
     const handleToggle = () => {
         setIsHighContrast(!isHighContrast);
@@ -46,30 +100,16 @@ function Header({ handleSubmit, onToggleTheme }) {
     const handlePlay = () => {
         if (playerRef.current?.getPlayerState) {
             const state = playerRef.current.getPlayerState();
-            if (state !== 1) { // 1 is the state for playing
+            if (state !== 1) {
                 playerRef.current.playVideo();
-            }
-        }
-    };
-
-    const handlePause = () => {
-        if (playerRef.current?.getPlayerState) {
-            const state = playerRef.current.getPlayerState();
-            if (state === 1) { // 1 is the state for playing
+            } else {
                 playerRef.current.pauseVideo();
             }
         }
-    };
-
-    const handleMute = () => {
-        if (playerRef.current?.isMuted && !playerRef.current.isMuted()) {
-            playerRef.current.mute();
-        }
-    };
-
-    const handleUnmute = () => {
         if (playerRef.current?.isMuted && playerRef.current.isMuted()) {
             playerRef.current.unMute();
+        } else {
+            playerRef.current.mute();
         }
     };
 
@@ -77,13 +117,6 @@ function Header({ handleSubmit, onToggleTheme }) {
         playerRef.current = event.target;
         playerRef.current.mute(); // Start muted
     };
-
-    /*
-    Currently removed:
-    <div className="welcome-note">
-        <p>{randomQuote}</p>
-    </div>
-     */
 
 /*  Responsive Menu:
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -109,22 +142,44 @@ function Header({ handleSubmit, onToggleTheme }) {
                         </label>
                     </div>
                     <Link href="/comments" className="App-button">Kommentare</Link>
-                    <div className="dropdown">
-                        <button className="App-button music-button">Musik-Player</button>
-                        <div className="dropdown-content">
-                            <button onClick={handlePlay}>Play</button>
-                            <button onClick={handlePause}>Pause</button>
-                            <button onClick={handleMute}>Mute</button>
-                            <button onClick={handleUnmute}>Unmute</button>
-                        </div>
-                    </div>
+                    <button className="App-button music-button" onClick={handlePlay}> <FaMusic/> </button>
                     <div className="dropdown">
                         <button className="App-button login-button">Erfahrungen mit Katzen?</button>
                         <div className="dropdown-content">
-                            <form onSubmit={handleSubmit}>
-                                <label>
-                                    <p>Teile hier deine Erfahrung, wenn du willst, und wir zeigen Sie allen Besuchern</p>
-                                    <input type="text" name="experience"/>
+                            <form onSubmit={handleSubmitForm}>
+                                <label className="user-experience-input">
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        alt="Name Eingabefeld"
+                                        className="standard"
+                                        placeholder="Geben Sie Ihren Namen ein"
+                                        value={formData.name}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.name && <span className="error">{errors.name}</span>}
+
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        alt="Email-Adresse Eingabefeld"
+                                        className="standard"
+                                        placeholder="Geben Sie Ihre E-Mail-Adresse ein (optional)"
+                                        value={formData.email}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.email && <span className="error">{errors.email}</span>}
+
+                                    <input
+                                        type="text"
+                                        name="experience"
+                                        alt="Erfahrung mit Katzen Eingabefeld"
+                                        className="experience"
+                                        placeholder="Was ist Ihre Erfahrung mit Katzen?"
+                                        value={formData.experience}
+                                        onChange={handleChange}
+                                    />
+                                    {errors.experience && <span className="error">{errors.experience}</span>}
                                 </label>
                                 <button type="submit">Eingabe Bestätigen</button>
                             </form>
