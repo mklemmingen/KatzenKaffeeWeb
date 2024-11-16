@@ -15,11 +15,14 @@ const Page = () => {
     useEffect(() => {
         const fetchExperiences = async () => {
             try {
-                const response = await fetch('/_api/getExperiences');
+                console.log('Fetching experiences...');
+                const response = await fetch('/api/comments/getExperiences');
+                console.log('Response received:', response);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
+                console.log('Data received:', data);
                 const experiences = data.map((experience, index) => ({
                     id: `experience-${index}`,
                     name: experience.name,
@@ -38,7 +41,6 @@ const Page = () => {
 
     return (
         <div className="aufgabe4-container">
-            <h1>Aufgabe 4: Die ersten hundert Kommentare und zehn zusätzliche Kommentare</h1>
             {message && (
                 <p className={message.type === 'success' ? 'success-text' : 'error-text'}>
                     {message.text}

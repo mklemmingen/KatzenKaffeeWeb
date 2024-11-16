@@ -31,7 +31,7 @@ function Header() {
     async function handleSubmit(formData) {
         try {
             console.log('Submitting experience:', formData);
-            const response = await fetch('/api/submitExperience', {
+            const response = await fetch('/api/header/submitExperience', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

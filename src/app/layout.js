@@ -20,9 +20,9 @@ function Layout({ children }) {
         <html lang="en">
         <body>
         <div className="website">
+            <ScrollProgress />
             <Header className="header" />
             <div className="spacer header-spacer" />
-            <ScrollProgress />
             <div className="pages">
                 {children}
             </div>
