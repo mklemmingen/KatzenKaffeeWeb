@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "init-db": "node src/app/api/initDb.js",
+    "init-db": "node src/app/_api/initDb.js",
     "dev": "npm run init-db && next dev",
     "build": "npm run init-db && next build",
     "start": "next start",
