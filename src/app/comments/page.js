@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import './_styles/Aufgabe4.css';
+import './_styles/comments.css';
 
 const Page = () => {
     const [comments, setComments] = useState([]);
