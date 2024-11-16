@@ -1,9 +1,12 @@
+"use client";
+
 import { open } from 'sqlite';
 import sqlite3 from 'sqlite3';
 
 async function openDb() {
+    const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../../../server/_db/database.db');
     return open({
-        filename: './_db/database._db',
+        filename: dbPath,
         driver: sqlite3.Database
     });
 }

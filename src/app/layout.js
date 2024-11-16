@@ -15,20 +15,23 @@ function toggleTheme(isHighContrast) {
     console.log(`Theme toggled to ${isHighContrast ? 'high contrast' : 'normal'}`);
 }
 
-function layout({ Component, pageProps }) {
-
+function Layout({ children }) {
     return (
+        <html lang="en">
+        <body>
         <div className="website">
-            <Header className="header" onToggleTheme={toggleTheme}/>
-            <div className="spacer header-spacer"/>
-            <ScrollProgress/>
+            <Header className="header" />
+            <div className="spacer header-spacer" />
+            <ScrollProgress />
             <div className="pages">
-                <Component {...pageProps}/>
+                {children}
             </div>
-            <div className="spacer footer-spacer"/>
-            <Footer className="footer"/>
+            <div className="spacer footer-spacer" />
+            <Footer className="footer" />
         </div>
+        </body>
+        </html>
     );
 }
 
-export default layout;
+export default Layout;

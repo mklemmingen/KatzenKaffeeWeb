@@ -15,7 +15,7 @@ import { FaArrowAltCircleUp } from "react-icons/fa";
 // _data -----------------------------------------------------
 import catAndNature from "@/app/_data/catAndNature.json";
 import catOwning from "@/app/_data/catOwning.json";
-import statisticSection from "@/app/_data/statistic_sections.json";
+import statisticSection from "@/app/_data/statisticSections.json";
 
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";

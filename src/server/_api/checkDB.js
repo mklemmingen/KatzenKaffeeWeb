@@ -3,7 +3,7 @@ import sqlite3 from 'sqlite3';
 
 async function openDb() {
     return open({
-        filename: './_db/database._db',
+        filename: process.env.DB_PATH || 'src/server/_db/database.db',
         driver: sqlite3.Database
     });
 }

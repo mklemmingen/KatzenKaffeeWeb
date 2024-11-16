@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "init-db": "node src/app/_api/initDb.js",
+    "init-db": "node src/server/_api/initDb.js",
     "dev": "npm run init-db && next dev",
     "build": "npm run init-db && next build",
     "start": "next start",
@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "chart.js": "^4.4.5",
+    "dotenv": "^16.4.5",
     "next": "^15.0.3",
     "prop-types": "^15.8.1",
     "react": "^18",

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import './_styles/Aufgabe4.css';
@@ -13,7 +15,7 @@ const Page = () => {
     useEffect(() => {
         const fetchExperiences = async () => {
             try {
-                const response = await fetch('/api/getExperiences');
+                const response = await fetch('/_api/getExperiences');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -33,6 +35,7 @@ const Page = () => {
 
         fetchExperiences();
     }, []);
+
     return (
         <div className="aufgabe4-container">
             <h1>Aufgabe 4: Die ersten hundert Kommentare und zehn zusätzliche Kommentare</h1>

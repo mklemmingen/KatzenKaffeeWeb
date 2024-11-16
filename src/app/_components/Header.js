@@ -1,21 +1,17 @@
 'use client';
 
 import "../_styles/Header.css";
-
 import { useEffect, useRef, useState } from 'react';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
-
 import { FaMusic } from "react-icons/fa6";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
 
-function Header({ onToggleTheme }) {
+function Header() {
 
     const router = useRouter();
     const playerRef = useRef(null);
@@ -23,11 +19,6 @@ function Header({ onToggleTheme }) {
 
     const handleToggle = () => {
         setIsHighContrast(!isHighContrast);
-        if (typeof onToggleTheme === 'function') {
-            onToggleTheme(!isHighContrast);
-        } else {
-            console.error('onToggleTheme is not a function');
-        }
     };
 
     const handleLogoClick = () => {
@@ -114,6 +105,15 @@ function Header({ onToggleTheme }) {
         }
     }, [playerRef]);
 
+    useEffect(() => {
+        const htmlElement = document.documentElement;
+        if (isHighContrast) {
+            htmlElement.setAttribute('data-theme', 'high-contrast');
+        } else {
+            htmlElement.removeAttribute('data-theme');
+        }
+    }, [isHighContrast]);
+
     const handlePlay = () => {
         if (playerRef.current?.getPlayerState) {
             const state = playerRef.current.getPlayerState();
@@ -158,7 +158,7 @@ function Header({ onToggleTheme }) {
                             <span className="slider"></span>
                         </label>
                     </div>
-                    <Link href="/comments/page" className="App-button">Kommentare</Link>
+                    <Link href="/comments" className="App-button">Kommentare</Link>
                     <button className="App-button music-button" onClick={handlePlay}> <FaMusic/> </button>
                     <div className="dropdown">
                         <button className="App-button login-button">Erfahrungen mit Katzen?</button>

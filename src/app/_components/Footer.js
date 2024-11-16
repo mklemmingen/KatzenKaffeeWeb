@@ -19,10 +19,10 @@ function Footer() {
             <p>©Marty&Meinhard&Michael, 2024. We love Cats!</p>
             <div className="nav-links">
                 <Link href="/" className="App-link" onClick={scrollToTop}>Zurück zur Home-Page</Link>
-                <Link href="/datenschutz/page" className="App-link">Datenschutz</Link>
-                <Link href="/impressum/page" className="App-link">Impressum</Link>
-                <Link href="/support/page" className="App-link">Support</Link>
-                <Link href="/credits/page" className="App-link">Credits</Link>
+                <Link href="/datenschutz" className="App-link">Datenschutz</Link>
+                <Link href="/impressum" className="App-link">Impressum</Link>
+                <Link href="/support" className="App-link">Support</Link>
+                <Link href="/credits" className="App-link">Credits</Link>
             </div>
         </footer>
     );
