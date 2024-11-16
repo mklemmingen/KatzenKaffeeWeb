@@ -285,7 +285,6 @@ main {
   }
 }
 
-/* Accessibility and Responsive Design starts here */
 @media (max-width: 1024px) {
   .App-header {
     flex-direction: column;

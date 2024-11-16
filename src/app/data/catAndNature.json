@@ -1,0 +1,16 @@
+{
+  "categories": [
+    {
+      "iconSrc": "assets/svg/cat-travel-bag-svgrepo-com.svg",
+      "headerText": "Schutz der Vogelwelt",
+      "textBlock": "",
+      "targetId": "bird-protection"
+    },
+    {
+      "iconSrc": "assets/svg/cat-litter-sand-svgrepo-com.svg",
+      "headerText": "Tierheime unterstützen",
+      "textBlock": "",
+      "targetId": "shelter-support"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "categories": [
+    {
+      "iconSrc": "",
+      "headerText": "Katzen in Deutschland",
+      "textBlock": "",
+      "targetId": "catStatGlobal"
+    },
+    {
+      "iconSrc": "",
+      "headerText": "Katzen in Griechenland",
+      "textBlock": "",
+      "targetId": "catStatGreek"
+    },
+    {
+      "iconSrc": "",
+      "headerText": "Katzen weltweit",
+      "textBlock": "",
+      "targetId": "catStatGlobal"
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import '@/app/styles/Aufgabe4.css';
+import '../src/app/styles/Aufgabe4.css';
 
 const Comments = () => {
     const [comments, setComments] = useState([]);
-    const [message, setMessage] = useState(''); // New state variable for success or failure message
+    const [message] = useState(''); // New state variable for success or failure message
     const images = [
         'bear.png', 'crocodile.png', 'deer.png', 'elephant.png',
         'horse.png', 'lion.png', 'monkey.png', 'rabbit.png', 'tiger.png'
@@ -33,44 +33,6 @@ const Comments = () => {
 
         fetchExperiences();
     }, []);
-
-    const handleSubmit = async (formData) => {
-        try {
-            console.log('Submitting experience:', formData);
-            const response = await fetch('/api/submitExperience', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: formData.name,
-                    email: formData.email,
-                    experience: formData.experience
-                }),
-            });
-
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                console.error('Error submitting experience:', errorMessage);
-                throw new Error('Failed to submit experience');
-            }
-
-            const result = await response.json();
-            console.log('Submission result:', result.message);
-
-            // Reset formData
-            setFormData({ name: '', email: '', experience: '' });
-
-            // Update success message
-            setMessage({ text: 'Experience submitted successfully', type: 'success' });
-        } catch (error) {
-            console.error('Error:', error);
-
-            // Update failure message
-            setMessage({ text: 'Failed to submit experience', type: 'error' });
-        }
-    };
-
     return (
         <div className="aufgabe4-container">
             <h1>Aufgabe 4: Die ersten hundert Kommentare und zehn zusätzliche Kommentare</h1>

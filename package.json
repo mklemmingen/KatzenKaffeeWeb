@@ -5,13 +5,14 @@
   "scripts": {
     "init-db": "node src/app/api/initDb.js",
     "dev": "npm run init-db && next dev",
-    "build": "next build",
+    "build": "npm run init-db && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db": "npm run init-db"
   },
   "dependencies": {
     "chart.js": "^4.4.5",
-    "next": "14.2.15",
+    "next": "^15.0.3",
     "prop-types": "^15.8.1",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
@@ -23,6 +24,8 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@types/node": "22.9.0",
+    "@types/react": "18.3.12",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",

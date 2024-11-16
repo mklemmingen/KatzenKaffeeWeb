@@ -1,11 +1,15 @@
 'use client';
 
 import "../styles/Header.css";
+
 import { useEffect, useRef, useState } from 'react';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+
 import { FaMusic } from "react-icons/fa6";
 
 // Dynamically import react-youtube to ensure it only loads on the client side

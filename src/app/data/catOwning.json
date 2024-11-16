@@ -1,0 +1,28 @@
+{
+  "categories": [
+    {
+      "iconSrc": "assets/svg/cat-food-svgrepo-com.svg",
+      "headerText": "Nachhaltige Ernährung",
+      "textBlock": "",
+      "targetId": "sustainable-diet"
+    },
+    {
+      "iconSrc": "assets/svg/cat-litter-box-svgrepo-com.svg",
+      "headerText": "Umweltfreundliches Katzenstreu",
+      "textBlock": "",
+      "targetId": "cat-litter"
+    },
+    {
+      "iconSrc": "assets/svg/cat-tree-svgrepo-com.svg",
+      "headerText": "Mentale Gesundheit & Spielzeug",
+      "textBlock": "",
+      "targetId": "mental-health"
+    },
+    {
+      "iconSrc": "assets/svg/cat-bed-svgrepo-com.svg",
+      "headerText": "Energie-effiziente Pflege",
+      "textBlock": "",
+      "targetId": "energy-efficient-cat-care"
+    }
+  ]
+}

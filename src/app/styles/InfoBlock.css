@@ -15,13 +15,9 @@ body {
     line-height: 1.6;
 }
 
-/* Container for the entire info block */
 .info-block {
-    display: flex;
-    align-items: flex-start;
-    padding: 16px;
-    margin: 16px;
-    flex: 1 1 calc(50% - 32px);
+    width: 300px;
+    height: 400px;
     box-sizing: border-box;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 3;
@@ -53,26 +49,25 @@ body {
     transform: translateY(-5px);
 }
 
-.icon {
-    margin-right: 16px;
-    width: 75px;
-    height: 75px;
+.info-block .icon {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: none ;
+    pointer-events: none;
 }
 
-.icon img {
-    width: 75px;
-    height: 75px;
+.info-block .icon img {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
 }
 
 /* Container for the text content */
-.text-content {
+.info-block .text-content {
     flex: 1;
     text-align: left;
     display: flex;
@@ -80,12 +75,20 @@ body {
     align-items: flex-start;
 }
 
-/* Styling for the header */
-.text-content h2 {
-    margin: 0 0 8px;
+.info-block .text-content h2 {
     font-size: 1.5em;
+    height: auto;
+    width: 9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin: 0 0 8px;
     color: var(--primary-color);
-    pointer-events: none ;
+    pointer-events: none;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }
 
 /* Styling for the paragraph text */
@@ -113,9 +116,8 @@ body {
     transform: translateY(-2px);
 }
 
-/* Container for the row of info blocks */
-.info-blocks-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+@media (max-width: 768px) {
+    .info-block {
+        flex: 1 1 100%; /* Full width on mobile screens */
+    }
 }
