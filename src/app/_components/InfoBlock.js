@@ -22,7 +22,8 @@ const InfoBlock = ({ iconSrc, headerText, textBlock, targetId }) => {
     return (
         <div className="info-block">
             <div className="icon">
-                <Image src={iconSrc} alt="Icon" width={20} height={20} />
+                <Image src={iconSrc || 'public/assets/svg/cat-bed-svgrepo-com.svg'}
+                       alt="Icon" width={20} height={20} />
             </div>
             <div className="text-content">
                 <h2>{headerText}</h2>
