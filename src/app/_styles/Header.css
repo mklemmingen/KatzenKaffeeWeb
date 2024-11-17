@@ -135,8 +135,45 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
+/* Mobile Menu Icon (hamburger-menu-icon) */
+.menuToggle {
+    display: none;
+    font-size: 25px;
+  }
+
 /* Accessibility and Responsive Design starts here */
 @media (max-width: 1024px) {
+
+    .menuToggle {
+        display: block;
+        color: #333;
+    }
+
+    [data-theme='high-contrast'] .menuToggle {
+        color: var(--primary-color);
+    }
+
+    .dropdown-content {
+        position: relative;
+        min-width: 100px;
+        max-width: 500px;
+    }
+
+    .nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 132px;
+        left: 0;
+        background-color: var(--secondary-color);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav.open {
+        display: flex;
+        padding: 0 100px;
+    }
 
     .logo-container, .nav-links, .button-container {
         width: 100%;
@@ -158,4 +195,5 @@ input:checked + .slider:before {
         width: 100%;
         margin: 5px 0;
     }
+
 }

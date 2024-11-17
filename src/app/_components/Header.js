@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { FaMusic } from "react-icons/fa6";
+import { IoMenu } from "react-icons/io5";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
@@ -135,13 +136,11 @@ function Header() {
         playerRef.current.mute(); // Start muted
     };
 
-/*  Responsive Menu:
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const toggleMenu = () => {
       setIsMenuOpen(!isMenuOpen);
     };
-*/
 
     return (
         <header className="App-header">
@@ -149,7 +148,10 @@ function Header() {
                 <Image src="/assets/svg/cat-halloween-kitty-svgrepo-com.svg" className="App-logo" alt="logo" onClick={handleLogoClick} width={50} height={50} />
                 <Link href="/" className="App-logo" onClick={handleLogoClick}>KatzenKaffee.de</Link>
             </div>
-            {/* Responsive Menu: <nav className={`nav-links ${isMenuOpen ? 'active' : ''}`}> */}
+            <button className="menuToggle" onClick={toggleMenu}>
+              <IoMenu />
+            </button>
+            <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
                 <div className="button-container">
                     <div>
                         <label htmlFor="contrast-switch">Kontrastmodi</label>
@@ -203,7 +205,7 @@ function Header() {
                         </div>
                     </div>
                 </div>
-            {/* </nav> */}
+            </nav>
             <YouTube
                 videoId="jfKfPfyJRdk"
                 opts={{
