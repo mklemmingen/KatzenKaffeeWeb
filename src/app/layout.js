@@ -1,9 +1,9 @@
-"use client";
+import Header from '@/app/_components/Header';
+import Footer from '@/app/_components/Footer';
+import ScrollProgress from '@/app/_components/ScrollProgress';
 
-import "./globals.css";
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ScrollProgress from './components/ScrollProgress';
+import '@/app/_styles/generalOrder.css';
+import '@/app/globals.css';
 
 function toggleTheme(isHighContrast) {
     const htmlElement = document.documentElement;
@@ -15,17 +15,23 @@ function toggleTheme(isHighContrast) {
     console.log(`Theme toggled to ${isHighContrast ? 'high contrast' : 'normal'}`);
 }
 
-export default function RootLayout({ children }) {
+function Layout({ children }) {
     return (
         <html lang="en">
         <body>
-        <Header onToggleTheme={toggleTheme} />
-        <ScrollProgress />
-        <div id="page-content">
-            <main>{children}</main>
+        <div className="website">
+            <ScrollProgress />
+            <Header className="header" />
+            <div className="spacer header-spacer" />
+            <div className="pages">
+                {children}
+            </div>
+            <div className="spacer footer-spacer" />
+            <Footer className="footer" />
         </div>
-        <Footer />
         </body>
         </html>
     );
 }
+
+export default Layout;

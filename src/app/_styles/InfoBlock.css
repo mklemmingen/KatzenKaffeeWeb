@@ -1,0 +1,123 @@
+:root {
+    --border-color: #e0e0e0;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.info-block {
+    width: 300px;
+    height: 400px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 3;
+}
+
+.info-block .text-content p {
+    text-align: left;
+    color: var(--text-color);
+    pointer-events: none ;
+}
+
+.info-block .text-content h2 {
+    background-color: var(--background-color);
+    border-radius: 5%;
+    text-align: left;
+    color: var(--text-color);
+    margin-bottom: 0;
+    pointer-events: none ;
+}
+
+.info-block .text-content button {
+    background-color: var(--primary-color);
+    text-align: left;
+    align-self: flex-start;
+    margin-top: 0;
+}
+
+.info-block:hover {
+    transform: translateY(-5px);
+}
+
+.info-block .icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.info-block .icon img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+/* Container for the text content */
+.info-block .text-content {
+    flex: 1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.info-block .text-content h2 {
+    font-size: 1.5em;
+    height: auto;
+    width: 9em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    margin: 0 0 8px;
+    color: var(--primary-color);
+    pointer-events: none;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* Styling for the paragraph text */
+.text-content p {
+    margin: 0 0 16px;
+    font-size: 1em;
+    color: var(--text-color);
+    pointer-events: none ;
+}
+
+/* Styling for the button */
+.text-content button {
+    padding: 8px 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    align-self: flex-end;
+}
+
+.text-content button:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .info-block {
+        flex: 1 1 100%; /* Full width on mobile screens */
+    }
+}
