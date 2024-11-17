@@ -6,7 +6,7 @@
     "init-db": "node src/server/_api/initDb.js",
     "dev": "npm run init-db && next dev",
     "build": "npm run init-db && next build",
-    "start": "next start",
+    "start": "next start && npm run init-db",
     "lint": "next lint",
     "db": "npm run init-db"
   },
