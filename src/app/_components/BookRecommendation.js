@@ -34,7 +34,7 @@ const BookRecommendation = ({ imageUrl, bookUrl, title, description }) => {
 
     return (
         <div className="book-recommendation">
-            <h3><a href={bookUrl} target="_blank" rel="noopener noreferrer">{title}</a></h3>
+            <h3 className="title"><a href={bookUrl} target="_blank" rel="noopener noreferrer">{title}</a></h3>
             <div className="pic-text-container">
                 <div className="book-image-container">
                     <Image

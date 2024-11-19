@@ -57,3 +57,13 @@
     margin: 0 10px;
     max-width: 40%;
 }
+
+@media (max-width: 1000px) {
+    .introduction h1 {
+        font-size: 4em;
+    }
+
+    .introduction h2 {
+        font-size: 2em;
+    }
+}

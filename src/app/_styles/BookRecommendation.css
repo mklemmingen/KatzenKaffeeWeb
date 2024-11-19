@@ -43,3 +43,10 @@
     margin: 0.5em;
     max-width: 600px;
 }
+
+.title{
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin: 2%;
+}

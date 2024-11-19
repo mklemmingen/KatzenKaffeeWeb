@@ -1,0 +1,34 @@
+.header {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 2em;
+    margin: 2%;
+}
+
+.sub-header {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin: 2%;
+    text-align: left;
+    display: block;
+}
+
+.containerCatNature {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+.text-content {
+    flex: 2;
+    padding-right: 20px;
+}
+
+.side-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
