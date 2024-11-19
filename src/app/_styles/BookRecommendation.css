@@ -1,10 +1,11 @@
 .book-recommendation {
-    margin-top: 2em;
     text-align: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
 }
 
 .book-recommendation h3 {
-    margin: 0 0 0.5em;
     font-size: 1.2em;
     color: var(--primary-color);
 }
@@ -24,7 +25,7 @@
     object-fit: contain;
     z-index: 4000;
     transition: transform 0.1s;
-    transform-style: preserve-3d; /* 3D effect */
+    transform-style: preserve-3d;
 }
 
 .book-image-container {
@@ -49,4 +50,34 @@
     color: var(--primary-color);
     font-size: 1.5em;
     margin: 2%;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff,
+        0 0 15px #ff00ff, 0 0 20px #ff00ff;
+    }
+    50% {
+        text-shadow: 0 0 15px #00ffff, 0 0 20px #00ffff,
+        0 0 25px #00ffff, 0 0 30px #00ffff;
+    }
+    100% {
+        text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff,
+        0 0 15px #ff00ff, 0 0 20px #ff00ff;
+    }
+}
+
+.neon-sign {
+    position: absolute;
+    top: -80px;
+    left: 20%;
+    transform: translateX(-50%) rotate(-10deg);
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    color: #fff;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff,
+    0 0 15px #ff00ff, 0 0 20px #ff00ff;
 }
