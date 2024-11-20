@@ -11,6 +11,8 @@ import { IoMenu } from "react-icons/io5";
 import InfoDropdown from "@/app/_components/InfoDropdown";
 import { VscTypeHierarchy } from "react-icons/vsc";
 import { FaComment } from "react-icons/fa";
+import { MdDarkMode } from "react-icons/md";
+
 
 // Dynamically import react-youtube to ensure it only loads on the client side
 const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
@@ -88,19 +90,13 @@ function Header() {
 
                 <div className="button-container">
 
-                    <div>
-                        <label htmlFor="contrast-switch">Kontrastmodi</label>
-                        <label className="switch">
-                            <input id="contrast-switch" type="checkbox" checked=
-                                {isHighContrast}
-                                   onChange={handleToggle}/>
-                            <span className="slider"></span>
-                        </label>
-                    </div>
+                    <button className={`App-button ${isHighContrast ? 'on' : 'off'}`}
+                        onClick={handleToggle}><MdDarkMode />
+                    </button>
 
                     <Link href="/comments" className="App-button">
                         <FaComment /></Link>
-
+                        
                     <button className="App-button music-button"
                             onClick={handlePlay}><FaMusic/></button>
 
