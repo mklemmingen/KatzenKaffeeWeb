@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import '@/app/_styles/Support.css';
+import '@/app/support/_styles/Support.css';
 import ChatBot from '@/app/_components/ChatBot';
 import SupportContactForm from '@/app/_components/SupportContactForm';
 
