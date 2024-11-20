@@ -106,7 +106,7 @@ function Header() {
                             onClick={handlePlay}><FaMusic/></button>
 
                     <div className="dropdown">
-                        <button className="App-button">
+                        <button>
                             Kategorien <VscTypeHierarchy/>
                         </button>
                         <div className="dropdown-content">
