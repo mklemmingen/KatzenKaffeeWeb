@@ -1,0 +1,26 @@
+.eco-litter-container {
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.eco-litter-title {
+    font-family: Pacifico, cursive;
+    color:  var(--primary-color);
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.eco-litter-description {
+    font-family: var(--font-family), serif;
+    font-size: 1.2em;
+    margin-bottom: 15px;
+}
+
+.eco-litter-info {
+    font-family: var(--font-family), serif;
+    font-size: 1em;
+    line-height: 1.5;
+}
