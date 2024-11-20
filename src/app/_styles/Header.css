@@ -58,6 +58,15 @@
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.App-button.off {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.App-button.on {
+    background-color: white;
+}
+
 .App-button:hover {
     background-color: var(--primary-color);
     color: #ffffff;
@@ -71,7 +80,7 @@
     min-width: 200px;
 }
 
-.switch {
+/*.switch {
     position: relative;
     display: flex;
     width: 60px;
@@ -115,6 +124,7 @@ input:checked + .slider {
 input:checked + .slider:before {
     transform: translateX(26px);
 }
+    */
 
 /* Mobile Menu Icon (hamburger-menu-icon) */
 .menuToggle {
