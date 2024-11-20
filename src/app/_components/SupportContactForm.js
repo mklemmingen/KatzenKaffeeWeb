@@ -34,15 +34,15 @@ function SupportContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="support-contact-form">
-      <label>Name:</label>
-      <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+    <form  onSubmit={handleSubmit} className="support-contact-form">
+      <label className="title">Name:</label>
+      <input className="contactInput" type="text" name="name" value={formData.name} onChange={handleChange} required />
 
-      <label>E-Mail:</label>
-      <input type="email" name="email" value={formData.email} onChange={handleChange} required />
+      <label className="title">E-Mail:</label>
+      <input className="contactInput" type="email" name="email" value={formData.email} onChange={handleChange} required />
 
-      <label>Nachricht:</label>
-      <textarea name="message" value={formData.message} onChange={handleChange} required></textarea>
+      <label className="title">Nachricht:</label>
+      <textarea className="messageInput" name="message" value={formData.message} onChange={handleChange} required></textarea>
 
       <button type="submit">Senden</button>
       {responseMessage && <p>{responseMessage}</p>}

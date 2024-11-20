@@ -10,16 +10,6 @@
   z-index: 10;
 }
 
-h1 {
-  text-align: center;
-  color: var(--primary-color);
-}
-
-h2 {
-  color: var(--accent-color);
-  margin-bottom: 20px;
-}
-
 .faq-item {
   margin-bottom: 30px;
 }
@@ -32,55 +22,52 @@ h2 {
   border-radius: 10px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
-}
-
-form {
   display: flex;
   flex-direction: column;
 }
 
-label {
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: var(--text-color);
+.header{
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-family: Pacifico, cursive;
+  color: var(--primary-color);
 }
 
-input,
-textarea {
-  margin-bottom: 15px;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background-color: var(--background-color);
-  color: var(--text-color);
+.sub-header {
+  font-size: 2em;
+  margin: 50px;
+  font-family: Pacifico, cursive;
+  color: var(--primary-color);
 }
 
-textarea {
-  resize: vertical;
-}
-
-button {
-  padding: 12px;
-  background-color: var(--primary-color);
-  color: var(--high-contrast-bg);
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  background-color: var(--accent-color);
-  transform: scale(1.05); 
-}
-
-button:active {
-  background-color: #3B2A47; 
-  transform: scale(0.98); 
+.ueberschrift {
+  font-size: 1.5em;
+  font-family: Pacifico, cursive;
+  margin: 10px;
+  color: var(--primary-color);
 }
 
 .response-message {
   color: green;
   text-align: center;
   margin-top: 20px;
+}
+
+.messageInput {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  resize: vertical;
+}
+
+.contactInput {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }

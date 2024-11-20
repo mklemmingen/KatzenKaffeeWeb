@@ -36,23 +36,25 @@ function ChatBot() {
   };
 
   return (
-    <div className="chatbot-container">
-      <div className="chatbot-messages">
-        {messages.map((msg, index) => (
-          <div key={index} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{ __html: msg.text }} />
-        ))}
-        {isTyping && <div className="message bot">...</div>}
+      <div className="chatbot-container">
+        <div className="chatbot-messages">
+          {messages.map((msg, index) => (
+              <div key={index} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{ __html: msg.text }} />
+          ))}
+          {isTyping && <div className="message bot">...</div>}
+        </div>
+        <div className="chatbot-input">
+          <div className="chatbot-input-wrapper">
+            <input className="inputOfText"
+                   type="text"
+                   value={input}
+                   onChange={(e) => setInput(e.target.value)}
+                   placeholder="Schreibe deine Nachricht..."
+            />
+            <button className="sendenButton" onClick={handleSendMessage}>Senden</button>
+          </div>
+        </div>
       </div>
-      <div className="chatbot-input">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Schreibe deine Nachricht..."
-        />
-        <button onClick={handleSendMessage}>Senden</button>
-      </div>
-    </div>
   );
 }
 

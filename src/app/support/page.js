@@ -37,26 +37,26 @@ function Support() {
 
   return (
     <div className="support-container">
-      <h1>Support</h1>
+      <h1 className="header">Support</h1>
       <p>Willkommen auf unserer Support-Seite! Hier findest du Antworten zu häufig gestellten Fragen und unsere Kontaktdaten.</p>
 
       <section className="faq">
-        <h2>Häufig gestellte Fragen</h2>
+        <h2 className="sub-header">Häufig gestellte Fragen</h2>
         <div className="faq-item">
-          <h3>Was bedeutet nachhaltige Katzenhaltung?</h3>
+          <h3 className="ueberschrift">Was bedeutet nachhaltige Katzenhaltung?</h3>
           <p>Nachhaltige Katzenhaltung bedeutet, die Bedürfnisse deiner Katze auf eine umweltfreundliche Weise zu erfüllen.</p>
         </div>
         <div className="faq-item">
-          <h3>Welche Produkte sind am besten für eine nachhaltige Fütterung?</h3>
-          <p>Für eine nachhaltige Ernährung empfehlen wir Bio-Produkte und Futter mit regionalen Zutaten. Erfahre mehr <a href="http://localhost:3000">hier</a>.</p>
+          <h3 className="ueberschrift">Welche Produkte sind am besten für eine nachhaltige Fütterung?</h3>
+          <p>Für eine nachhaltige Ernährung empfehlen wir Bio-Produkte und Futter mit regionalen Zutaten.</p>
         </div>
         <div className="faq-item">
-          <h3>Wie kann ich Kontakt aufnehmen?</h3>
+          <h3 className="ueberschrift">Wie kann ich Kontakt aufnehmen?</h3>
           <p>Du kannst uns über das Kontaktformular erreichen oder eine E-Mail an schnurren@katzen-cafe.de senden.</p>
         </div>
         <div className="faq-item">
-          <h3>Welche Katzenstreu ist umweltfreundlich?</h3>
-          <p>Vermeide Streu aus Ton oder Silikat. Wir empfehlen biologisch abbaubare Optionen wie Holzpellets oder Maiskörner. Weitere Informationen findest du <a href="http://localhost:3000">hier</a>.</p>
+          <div className="ueberschrift">Welches Katzenstreu ist umweltfreundlich?</div>
+          <p>Vermeide Streu aus Ton oder Silikat. Wir empfehlen biologisch abbaubare Optionen wie Holzpellets oder Maiskörner.</p>
         </div>
       </section>
 
