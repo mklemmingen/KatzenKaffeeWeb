@@ -1,0 +1,73 @@
+.support-container {
+  max-width: 700px;
+  margin: 100px auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  color: var(--text-color);
+  position: relative;
+  z-index: 10;
+}
+
+.faq-item {
+  margin-bottom: 30px;
+}
+
+.support-contact-form {
+  background-color: var(--secondary-color);
+  padding: 30px;
+  position: relative;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  font-size: 3em;
+  margin-bottom: 20px;
+  font-family: Pacifico, cursive;
+  color: var(--primary-color);
+}
+
+.sub-header {
+  font-size: 2em;
+  margin: 50px;
+  font-family: Pacifico, cursive;
+  color: var(--primary-color);
+}
+
+.ueberschrift {
+  font-size: 1.5em;
+  font-family: Pacifico, cursive;
+  margin: 10px;
+  color: var(--primary-color);
+}
+
+.response-message {
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.messageInput {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  resize: vertical;
+}
+
+.contactInput {
+  margin-bottom: 15px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
