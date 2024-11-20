@@ -1,6 +1,8 @@
 .info-dropdown {
     display: inline-block;
     flex-direction: column;
+    width: auto;
+    position: relative;
 }
 
 .dropdown-item {
@@ -9,6 +11,7 @@
     padding: 10px;
     cursor: pointer;
     width: 100%;
+    justify-content: flex-end;
 }
 
 .dropdown-item:hover {
@@ -22,4 +25,8 @@
 .categoryName {
     font-family: 'Pacifico', cursive;
     color: var(--primary-color);
+}
+
+.icon-image{
+    margin-left: 10px;
 }

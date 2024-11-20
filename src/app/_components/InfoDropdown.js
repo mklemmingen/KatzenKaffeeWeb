@@ -53,8 +53,9 @@ const InfoDropdown = () => {
                     onClick={() => handleItemClick(item.targetId)}
                     ref={el => itemRefs.current[index] = el}
                 >
-                    <Image src={item.iconSrc || '/path/to/dummy-image.png'} alt="Icon" width={20} height={20} />
                     <span>{item.headerText}</span>
+                    <Image src={item.iconSrc || '/path/to/dummy-image.png'} alt="Icon" width={20} height={20}
+                           className="icon-image"/>
                 </div>
             ))}
         </div>
