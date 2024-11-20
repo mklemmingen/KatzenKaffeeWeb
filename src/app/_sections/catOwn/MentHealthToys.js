@@ -6,7 +6,7 @@ function MentHealthToys() {
 
     return (
         <div>
-            <h2>Mentale Gesundheit von Katzen -&gt; DIY-/Bio-Spielzeuge!</h2>
+            <h2 className="header">Mentale Gesundheit von Katzen -&gt; DIY-/Bio-Spielzeuge!</h2>
             <p>
                 Katzen lieben Abwechslung und Beschäftigung. Ein Kratzbaum und interaktive Spielzeuge
                 können

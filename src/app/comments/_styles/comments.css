@@ -24,6 +24,8 @@
     padding: 10px;
     width: calc(33.333% - 20px); /* Three items per row with some margin */
     box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque background */
+    border-radius: 8px;
 }
 
 .aufgabe4-container li:hover {
@@ -63,4 +65,76 @@
 
 .aufgabe4-container p strong {
     color: #333;
+}
+
+.comment-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly opaque background */
+    border-radius: 8px;
+}
+
+.comment-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-experience-input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.user-experience-input .standard,
+.user-experience-input .experience {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid #bfbfbf;
+    border-radius: 4px;
+}
+
+.message-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.message-container .message {
+    flex-grow: 1;
+    margin-right: 10px;
+    height: 1.5em; /* Prefill empty space */
+}
+
+.success-text {
+    color: green;
+}
+
+.error-text {
+    color: red;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+button[type="submit"] {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--accent-color);
 }

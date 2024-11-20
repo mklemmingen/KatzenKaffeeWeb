@@ -102,23 +102,6 @@ const extractTiles = (spriteSheet, categories) => {
     return tiles;
 };
 
-class Cat {
-    constructor(sprite, category, direction, x, y, speed, targetX, targetY, stateTimer, lastMeowTime) {
-        this.sprite = sprite;
-        this.category = category;
-        this.direction = direction;
-        this.x = x;
-        this.y = y;
-        this.speed = speed;
-        this.targetX = targetX;
-        this.targetY = targetY;
-        this.stateTimer = stateTimer;
-        this.lastMeowTime = lastMeowTime;
-        this.frame = 0;
-        this.tiles = {};
-    }
-}
-
 const CatAnimation = ({ numberOfCats }) => {
     const canvasRef = useRef(null);
     const frameRate = 8;
@@ -198,8 +181,7 @@ const CatAnimation = ({ numberOfCats }) => {
             cat.targetX = Math.random() * viewWidth;
             cat.targetY = Math.random() * viewHeight;
 
-            const newCategory = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running')) || categories[0];
-            cat.category = newCategory;
+            cat.category = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running')) || categories[0];
             cat.speed = speeds[cat.category.name];
             cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
         };
@@ -296,7 +278,8 @@ const CatAnimation = ({ numberOfCats }) => {
                     const currentTime = Date.now();
                     if (currentTime - cat.lastMeowTime >= 10000) { // Check if 10 seconds have passed
                         const meowSound = new Audio(getRandomMeowSound());
-                        meowSound.play();
+                        meowSound.play().then(r =>
+                            console.log('Meow sound played:', r));
                         cat.lastMeowTime = currentTime;
                     }
                     chooseTarget(cat);

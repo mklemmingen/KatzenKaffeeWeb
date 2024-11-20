@@ -38,35 +38,16 @@
     background-color: var(--accent-color);
 }
 
-.user-experience-input .standard {
-    width: 100%;
-    padding: 10px;
-    margin: 5px 0;
-    border: 2px solid var(--accent-color);
-    border-radius: 4px;
-}
-
-.user-experience-input .experience {
-    width: 100%;
-    height: 5em;
-    padding: 10px;
-    margin: 5px 0;
-    border: 2px solid var(--accent-color);
-    border-radius: 4px;
-}
-
-.error {
-    color: red;
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-
 .App-button.music-button {
     background-color: var(--primary-color);
     color: #ffffff;
 }
 
 .App-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     background-color: white;
     border: none;
     color: var(--primary-color);

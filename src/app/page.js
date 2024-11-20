@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import { useSearchParams } from 'next/navigation';
 
 // _styles ---------------------------------------------------
 import '@/app/_styles/Home.css';
@@ -31,6 +32,25 @@ import MentHealthToys from "@/app/_sections/catOwn/MentHealthToys";
 import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
 
 const Page = () => {
+    const [isClient, setIsClient] = useState(false);
+    const searchParams = useSearchParams();
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    useEffect(() => {
+        if (isClient) {
+            const targetId = searchParams.get('targetId');
+            if (targetId) {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    targetElement.focus();
+                }
+            }
+        }
+    }, [searchParams, isClient]);
 
     // Button that can be added to the page anywhere, that alignes center and throws the view back onto
     // "start"
@@ -48,12 +68,8 @@ const Page = () => {
         );
     };
 
-    return (
-        <div>
-            <CatAnimation numberOfCats={5}/>
-            <Introduction id="start"/>
-            <BackToStartButton/>
-            <div className="categories-container">
+    /*
+    <div className="categories-container">
                 <div className="sub-categories-container" id="statisticCategories">
                     <h1> Statistiken für den Einstieg </h1>
                     <div className="info-blocks-container">
@@ -97,19 +113,15 @@ const Page = () => {
                     </div>
                 </div>
             </div>
+     */
+
+    return (
+        <div>
+            <Introduction id="start"/>
+            <BackToStartButton/>
             <div id={"catStatGermany"} className="section">
                 <div className="section-content">
                     <StatCatGermany/>
-                </div>
-            </div>
-            <div id={"catStatGlobal"} className="section">
-                <div className="section-content">
-                    <StatCatGlobal/>
-                </div>
-            </div>
-            <div id={"catStatGreek"} className="section">
-                <div className="section-content">
-                    <StatCatGreek/>
                 </div>
             </div>
             <div id={'sustainable-diet'} className="section">
@@ -140,6 +152,16 @@ const Page = () => {
             <div id="shelter-support" className="section">
                 <div className="section-content">
                     <SuppShelter/>
+                </div>
+            </div>
+            <div id={"catStatGlobal"} className="section">
+                <div className="section-content">
+                    <StatCatGlobal/>
+                </div>
+            </div>
+            <div id={"catStatGreek"} className="section">
+                <div className="section-content">
+                    <StatCatGreek/>
                 </div>
             </div>
         </div>

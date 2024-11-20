@@ -4,6 +4,8 @@ import ScrollProgress from '@/app/_components/ScrollProgress';
 
 import '@/app/_styles/generalOrder.css';
 import '@/app/globals.css';
+import CatAnimation from "@/app/_components/CatAnimation";
+import React from "react";
 
 function toggleTheme(isHighContrast) {
     const htmlElement = document.documentElement;
@@ -19,6 +21,7 @@ function Layout({ children }) {
     return (
         <html lang="en">
         <body>
+        <CatAnimation numberOfCats={10}/>
         <div className="website">
             <ScrollProgress />
             <Header className="header" />

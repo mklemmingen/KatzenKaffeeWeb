@@ -1,0 +1,25 @@
+.info-dropdown {
+    display: inline-block;
+    flex-direction: column;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0;
+}
+
+.dropdown-item img {
+    margin-right: 10px;
+}
+
+.categoryName {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+}

@@ -6,7 +6,9 @@ import './_styles/comments.css';
 
 const Page = () => {
     const [comments, setComments] = useState([]);
-    const [message] = useState(''); // New state variable for success or failure message
+    const [formData, setFormData] = useState({ name: '', email: '', experience: '' });
+    const [errors, setErrors] = useState({ name: '', email: '', experience: '' });
+    const [message, setMessage] = useState(''); // Define setMessage state
     const images = [
         'bear.png', 'crocodile.png', 'deer.png', 'elephant.png',
         'horse.png', 'lion.png', 'monkey.png', 'rabbit.png', 'tiger.png'
@@ -36,19 +38,146 @@ const Page = () => {
             }
         };
 
-        fetchExperiences();
+        fetchExperiences().then(r => {
+            console.log('Experiences fetched');
+        });
     }, []);
+
+    const validate = () => {
+        let valid = true;
+        let errors = {};
+
+        if (!formData.name) {
+            errors.name = 'Name is required';
+            valid = false;
+        }
+
+        if (formData.email && formData.email !== "anonym" && !/\S+@\S+\.\S+/.test(formData.email)) {
+            errors.email = 'Email is invalid';
+            valid = false;
+        }
+
+        if(formData.email.length === 0){
+            formData.email = "anonym";
+        }
+
+        if (!formData.experience) {
+            errors.experience = 'Experience is required';
+            valid = false;
+        }
+
+        setErrors(errors);
+        return valid;
+    };
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Prevent the default form submission behavior
+        if (validate()) {
+            try {
+                console.log('Submitting experience:', formData);
+                const response = await fetch('/api/comments/submitExperience', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name: formData.name,
+                        email: formData.email,
+                        experience: formData.experience
+                    }),
+                });
+
+                if (!response.ok) {
+                    const errorMessage = await response.text();
+                    console.error('Error submitting experience:', errorMessage);
+                    throw new Error('Failed to submit experience');
+                }
+
+                const result = await response.json();
+                console.log('Submission result:', result.message);
+
+                // Add the new comment to the comments list
+                setComments([...comments, {
+                    id: `experience-${comments.length}`,
+                    name: formData.name,
+                    email: formData.email,
+                    body: formData.experience,
+                    image: images[Math.floor(Math.random() * images.length)]
+                }]);
+
+                // Resets formData
+                setFormData({ name: '', email: '', experience: '' });
+                setMessage({ type: 'success',
+                    text: 'Kommentar erfolgreich eingetragen!' });
+            } catch (error) {
+                console.error('Error:', error);
+                setMessage({ type: 'error',
+                    text: 'Kommentar konnte nicht gespeichert werden.' });
+            }
+
+            // Remove the message after 5 seconds
+            setTimeout(() => {
+                setMessage('');
+            }, 5000);
+        }
+    };
 
     return (
         <div className="aufgabe4-container">
-            {message && (
-                <p className={message.type === 'success' ? 'success-text' : 'error-text'}>
-                    {message.text}
-                </p>
-            )}
             <ul>
+                <li className="comment-item">
+
+                    <form onSubmit={handleSubmit} className="comment-form">
+                        <label className="user-experience-input">
+                            <input
+                                type="text"
+                                name="name"
+                                alt="Name Eingabefeld"
+                                className="standard"
+                                placeholder="Geben Sie Ihren Namen ein"
+                                value={formData.name}
+                                onChange={handleChange}
+                            />
+                            {errors.name && <span className="error">{errors.name}</span>}
+
+                            <input
+                                type="text"
+                                name="email"
+                                alt="Email-Adresse Eingabefeld"
+                                className="standard"
+                                placeholder="Geben Sie Ihre E-Mail-Adresse ein (optional)"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                            {errors.email && <span className="error">{errors.email}</span>}
+
+                            <input
+                                type="text"
+                                name="experience"
+                                alt="Erfahrung mit Katzen Eingabefeld"
+                                className="experience"
+                                placeholder="Was ist Ihre Erfahrung mit Katzen?"
+                                value={formData.experience}
+                                onChange={handleChange}
+                            />
+                            {errors.experience && <span className="error">{errors.experience}</span>}
+                        </label>
+                        <div className="message-container">
+                            <p className={`message ${message.type === 'success' ? 'success-text' : 'error-text'}`}>
+                                {message.text}
+                            </p>
+                            <button type="submit">Eingabe Bestätigen</button>
+                        </div>
+                    </form>
+
+                </li>
                 {comments.map(comment => (
-                    <li key={comment.id}>
+                    <li key={comment.id} className="comment-item">
                         <Image
                             src={`/assets/animals_images/images/${comment.image}`}
                             alt={comment.image}
