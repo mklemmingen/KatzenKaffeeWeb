@@ -4,14 +4,17 @@ import '../../_sections/_styles/ecoLitter.css';
 function EcoLitter() {
     return (
         <div className="eco-litter-container">
-            <h2 className="eco-litter-title">Umweltfreundliches Katzenstreu</h2>
+            <h1 className="eco-litter-title">Umweltfreundliches Katzenstreu</h1>
             <p className="eco-litter-description">
                 Die Wahl des richtigen Katzenstreus kann einen großen Unterschied machen.
                 Vermeiden Sie Streu aus Ton oder Silikat, da deren Abbau umweltschädlich ist.
                 Stattdessen können Sie auf biologisch abbaubare Optionen wie Holzpellets,
                 Maiskörner oder recyceltes Papier zurückgreifen.
             </p>
-            <p className="eco-litter-info">
+            <div className="eco-litter-art">
+                <div className="cat"></div>
+            </div>
+            <p className="eco-litter-lorem">
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore
                 magna aliquyam erat, sed diam voluptua. At vero eos et accusam

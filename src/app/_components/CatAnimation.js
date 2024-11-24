@@ -186,8 +186,6 @@ const CatAnimation = ({ numberOfCats }) => {
             cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
         };
 
-        // 09.10.24: Added null checks before accessing category property
-        // 10.10.24: New target after target reached
         const animate = (timestamp) => {
             if (timestamp - lastFrameTime.current < frameDuration) {
                 requestAnimationFrame(animate);
@@ -250,43 +248,6 @@ const CatAnimation = ({ numberOfCats }) => {
             requestAnimationFrame(animate);
         };
 
-        // this was a complete mess of a method to write, but it works
-        const handleClick = (event) => {
-            console.log('Canvas clicked'); // Log to verify click detection
-
-            const rect = canvas.getBoundingClientRect();
-            const scaleX = canvas.width / rect.width;
-            const scaleY = canvas.height / rect.height;
-            const x = (event.clientX - rect.left) * scaleX;
-            const y = (event.clientY - rect.top) * scaleY;
-
-            console.log(`Canvas dimensions: (${rect.width}, ${rect.height})`); // Log canvas dimensions
-            console.log(`Click coordinates: (${x}, ${y})`); // Log click coordinates
-
-            cats.forEach(cat => {
-                console.log(`Cat position: (${cat.x}, ${cat.y})`); // Log cat position
-                console.log(`Cat bounds: (${cat.x}, ${cat.y}, ${cat.x + tileWidth * scale}, ${cat.y + tileHeight * scale})`); // Log cat bounds
-
-                const catRight = cat.x + tileWidth * scale;
-                const catBottom = cat.y + tileHeight * scale;
-
-                console.log(`Checking if (${x}, ${y}) is within (${cat.x}, ${cat.y}, ${catRight}, ${catBottom})`);
-
-                if (x >= cat.x && x <= catRight && y >= cat.y && y <= catBottom) {
-                    console.log('Cat clicked:', cat); // Log to verify cat detection
-
-                    const currentTime = Date.now();
-                    if (currentTime - cat.lastMeowTime >= 10000) { // Check if 10 seconds have passed
-                        const meowSound = new Audio(getRandomMeowSound());
-                        meowSound.play().then(r =>
-                            console.log('Meow sound played:', r));
-                        cat.lastMeowTime = currentTime;
-                    }
-                    chooseTarget(cat);
-                }
-            });
-        };
-
         const changeBehavior = (cat) => {
             const behaviors = ['laying', 'sitting', 'looking', 'walking', 'running'];
             const currentBehavior = behaviors.indexOf(cat.category.name);
@@ -308,14 +269,10 @@ const CatAnimation = ({ numberOfCats }) => {
             });
         };
 
-        // Interval to check direction and change animation if needed
         const directionInterval = setInterval(updateAnimationBasedOnDirection, 500);
-
-        canvas.addEventListener('click', handleClick);
 
         return () => {
             clearInterval(directionInterval);
-            canvas.removeEventListener('click', handleClick);
         };
     }, [numberOfCats, frameDuration]);
 

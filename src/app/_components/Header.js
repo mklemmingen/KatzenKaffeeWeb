@@ -14,7 +14,9 @@ import { FaComment } from "react-icons/fa";
 import { MdDarkMode } from "react-icons/md";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
-const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
+const YouTube =
+    dynamic(() =>
+        import('react-youtube'), { ssr: false });
 
 function Header() {
 

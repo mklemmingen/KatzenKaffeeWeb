@@ -11,6 +11,8 @@
     "db": "npm run init-db"
   },
   "dependencies": {
+    "@rive-app/react-canvas": "^4.6.2",
+    "@rive-app/canvas": "^2.9.2",
     "chart.js": "^4.4.5",
     "dotenv": "^16.4.5",
     "next": "^15.0.3",
@@ -25,6 +27,8 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
+    "@rive-app/react-canvas": "^4.6.2",
+    "@rive-app/canvas": "^2.9.2",
     "@types/node": "22.9.0",
     "@types/react": "18.3.12",
     "eslint": "^8",
