@@ -1,28 +1,28 @@
 import React from "react";
+import '../_styles/sustCatOwn.css';
+import CatAnimation from "@/app/_components/CatAnimation";
+import BirdAnimation from "@/app/_components/BirdAnimation";
+import Image from 'next/image';
+
 
 function SustCatOwn() {
 
     return (
-        <div>
-            <h2>Nachhaltige Ernährung</h2>
-            <p>
-                Eine nachhaltige Ernährung für Katzen beginnt mit der Auswahl von Futter, das umweltfreundlich
-                produziert wird.
-                Achten Sie auf Bio-Zutaten und vermeiden Sie Produkte mit unnötigen Zusatzstoffen.
-                Einige Marken bieten sogar Insektenprotein als nachhaltige Alternative zu herkömmlichem Fleisch
-                an.
-                Denken Sie auch daran, lokale Produkte zu bevorzugen, um den CO2-Fußabdruck zu reduzieren.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
-                sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam
-                et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,
-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-            </p>
+        <div className="outer-container">
+            <CatAnimation numberOfCats={3}/>
+            <BirdAnimation numberOfBirds={3}/>
+            <div className="full-container-headline">
+                <Image src='assets/svg/cat-food-svgrepo-com.svg' alt="Icon" width={50} height={50} />
+                <h2 className="header">Nachhaltige Ernährung</h2>
+            </div>
+                <div className="full-container">
+                <div className="left-container">
+                    <p>Nachhaltige Ernährung ist nicht nur für uns Menschen wichtig – auch bei der Fütterung unserer vierbeinigen Freunde sollten wir auf Nachhaltigkeit achten. Der ökologische Fußabdruck lässt sich ähnlich wie bei unserer eigenen Ernährung reduzieren, indem umweltfreundliche, regionale und/oder biologische Produkte verwendet werden. Eine weitere Möglichkeit besteht darin, selbst nahrhafte Mahlzeiten oder Leckerlis für deine Haustiere zuzubereiten, anstatt auf industriell hergestelltes Futter zurückzugreifen. Inspiration für nachhaltige und gesunde Rezepte findest du beispielsweise auf Plattformen wie katzenkontor.de, speziell für unsere flauschigen Begleiter.</p>
+                </div>
+                <div className="right-container">
+                    <Image src="/assets/img/cat_food.jpg" alt="cat" width={400} height={400} />
+                </div>
+            </div>
         </div>
     );
 }

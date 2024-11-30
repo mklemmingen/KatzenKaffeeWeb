@@ -1,0 +1,31 @@
+.full-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    column-gap: 50px;
+}
+.full-container-headline {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-content: left;
+    column-gap: 10px;
+}
+.outer-container {
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.left-container {
+    flex: 1 1 65%;
+    max-width: 65%;
+  }
+.right-container {
+    flex: 1 1 35%;
+    max-width: 35%;
+  }
+.source {
+    font-size: 12px;
+}
