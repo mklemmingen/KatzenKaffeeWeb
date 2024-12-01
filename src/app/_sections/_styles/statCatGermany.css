@@ -12,8 +12,20 @@
   }
 .right-container {
     flex: 1 1 50%;
+    flex-direction: column;
     max-width: 50%;
   }
+
+.right-container .date {
+    margin-bottom: 10px;
+    font-family: var(--font-family), serif;
+    color: var(--primary-color);
+}
+
+.right-container .date {
+    margin-bottom: 10px;
+}
+
 .source {
     font-size: 12px;
 }
