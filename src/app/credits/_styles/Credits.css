@@ -1,65 +1,46 @@
-h1 {
-    color: var(--primary-color) !important;
-    text-align: center !important;
-    margin-top: 20px !important;
-    z-index: 5 !important;
+.credits-container {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    max-width: 800px;
+    margin: auto;
 }
 
-h2 {
-    color: var(--accent-color) !important;
-    margin-bottom: 10px !important;
-    z-index: 5 !important;
+.playful-header {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 2em;
 }
 
-p {
-    color: var(--text-color) !important;
-    text-align: center !important;
-    margin: 10px 0 !important;
-    z-index: 5 !important;
+.readable-text {
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    font-size: 1em;
+    line-height: 1.4em;
+    margin-bottom: 10px;
 }
 
-.credits p {
-    color: var(--text-color) !important;
-    text-align: center !important;
-    margin: 10px 0 !important;
-    z-index: 5 !important;
+.playful-keyword {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 1.2em;
 }
 
-.credits {
-    margin: 20px auto !important;
-    padding: 20px !important;
-    max-width: 60% !important;
-    z-index: 5 !important;
-}
-
-.credits ul {
-    list-style-type: none !important;
-    padding: 0 !important;
-    z-index: 5 !important;
-}
-
-.credits li {
-    margin: 10px 0 !important;
-    padding: 10px !important;
-    text-align: left !important;
-    z-index: 5 !important;
-    cursor: pointer !important;
-}
-
-.credits li:hover {
-    color: var(--accent-color) !important;
-    resize: both !important;
-    z-index: 5 !important;
+.credits-section {
+    margin-bottom: 30px;
 }
 
 .link-class {
-    color: var(--accent-color) !important;
-    text-decoration: none !important;
-    z-index: 5 !important;
+    font-family: var(--font-family), serif;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
 }
 
-.titel-class {
-    color: var(--primary-color) !important;
-    font-weight: bold !important;
-    z-index: 5 !important;
+.link-class:hover {
+    color: var(--accent-color);
 }

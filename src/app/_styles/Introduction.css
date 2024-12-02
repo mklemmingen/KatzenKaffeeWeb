@@ -2,9 +2,7 @@
 
 .introduction {
     font-family: var(--font-family), serif;
-    padding: 20px;
     color: var(--text-color);
-    margin-bottom: 1%;
     z-index: 0;
 }
 
@@ -66,4 +64,21 @@
     .introduction h2 {
         font-size: 2em;
     }
+}
+
+.intro_footer {
+    margin-top: 10%;
+    width: 60%;
+    font-size: 1.5em; /* Slightly bigger than standard text */
+    font-family: var(--font-family), serif; /* Readable font */
+    color: var(--text-color);
+    line-height: 2;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.intro_footer .highlight {
+    color: var(--primary-color);
+    font-family: 'Pacifico', serif; /* Special font for highlighted words */
 }
