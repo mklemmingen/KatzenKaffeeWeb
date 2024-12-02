@@ -37,13 +37,14 @@ function ChatBot() {
 
   return (
       <div className="chatbot-container">
+        <header className="chatbot-header">ChatCat</header>
         <div className="chatbot-messages">
           {messages.map((msg, index) => (
-              <div key={index} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{ __html: msg.text }} />
+              <div key={index} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{__html: msg.text}}/>
           ))}
           {isTyping && <div className="message bot">...</div>}
         </div>
-        <div className="chatbot-input">
+        <div className="chatbot-inputI">
           <div className="chatbot-input-wrapper">
             <input className="inputOfText"
                    type="text"

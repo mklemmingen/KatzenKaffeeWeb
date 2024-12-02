@@ -86,3 +86,10 @@
 .sendenButton:hover {
   background-color: var(--accent-color);
 }
+
+.chatbot-header {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
