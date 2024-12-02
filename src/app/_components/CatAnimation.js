@@ -3,6 +3,7 @@
 import React, {useEffect, useRef} from 'react';
 import '../_styles/CatAnimation.css';
 import "../globals.css";
+import BirdAnimation from "@/app/_components/BirdAnimation";
 
 const spriteFiles = [
     'black_0.png', 'black_1.png', 'black_2.png', 'black_3.png', 'black_4.png',
@@ -21,9 +22,15 @@ const spriteFiles = [
     'white_0.png', 'white_grey_0.png', 'white_grey_1.png', 'yellow_0.png'
 ];
 
+const coffeeFiles = [
+    'CoffeeDropMachine.png', 'coffeeFilterMachine.png', 'coffeeGrinder.png',
+    'coffeeMachine.png', "coffeeMilk.png", "frenchpress.png"
+];
+
+const catScale = 3;
+const coffeeScale = 1;
 const tileWidth = 32;
 const tileHeight = 32;
-const scale = 2;
 const categories = [
     { name: 'sitting', startX: 0, startY: tileHeight },
     { name: 'looking', startX: 128, startY: tileHeight },
@@ -70,7 +77,7 @@ const getDirectionFromAngle = (angle) => {
     return 'west';
 };
 
-// method is optimized by the use of a canvas element
+
 const extractTiles = (spriteSheet, categories) => {
     const tiles = {};
     const canvas = document.createElement('canvas');
@@ -102,6 +109,15 @@ const extractTiles = (spriteSheet, categories) => {
     return tiles;
 };
 
+const isColliding = (rect1, rect2) => {
+    return (
+        rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.y + rect1.height > rect2.y
+    );
+};
+
 const CatAnimation = ({ numberOfCats }) => {
     const canvasRef = useRef(null);
     const frameRate = 8;
@@ -122,25 +138,46 @@ const CatAnimation = ({ numberOfCats }) => {
         canvas.height = canvas.clientHeight;
         ctx.imageSmoothingEnabled = false;
 
+        const getRandomX = () => {
+            const width = canvas.width;
+            const quarterWidth = width * 0.25;
+            const randomValue = Math.random();
+            return randomValue < 0.5 ? Math.random() * quarterWidth : width - quarterWidth + Math.random() * quarterWidth;
+        };
+
         const cats = Array.from({ length: numberOfCats }, () => {
             const category = categories[Math.floor(Math.random() * categories.length)];
             const direction = directions[Math.floor(Math.random() * directions.length)];
+            const spriteFile = spriteFiles[Math.floor(Math.random() * spriteFiles.length)];
             return {
-                x: Math.random() * canvas.width,
+                x: getRandomX(),
                 y: Math.random() * canvas.height,
-                direction: direction || directions[0], // Added Fallback to a default direction
+                direction: direction || directions[0],
                 frame: 0,
                 sprite: new Image(),
-                category: category || categories[0], // Added Fallback to a default category
+                spriteFile: spriteFile,
+                category: category || categories[0],
                 tiles: {},
                 speed: speeds['walking'],
                 delay: 0,
-                targetX: Math.random() * canvas.width,
+                targetX: getRandomX(),
                 targetY: Math.random() * canvas.height,
                 stateTimer: 0,
-                lastMeowTime: 0
+                lastMeowTime: 0,
+                width: tileWidth * catScale,
+                height: tileHeight * catScale
             };
         });
+
+        const coffeeUtensils = coffeeFiles.map((file, index) => ({
+            x: getRandomX(),
+            y: Math.random() * canvas.height,
+            sprite: new Image(),
+            tipped: false,
+            tippingTimer: 0,
+            width: tileWidth * coffeeScale,
+            height: tileHeight * coffeeScale
+        }));
 
         const loadSprites = () => {
             let loadedCount = 0;
@@ -149,7 +186,7 @@ const CatAnimation = ({ numberOfCats }) => {
                 spriteSheet.src = `/assets/cats/${spriteFile}`;
                 spriteSheet.onload = () => {
                     cats.forEach(cat => {
-                        if (index === spriteFiles.indexOf(cat.sprite.src.split('/').pop())) {
+                        if (cat.spriteFile === spriteFile) {
                             cat.tiles = extractTiles(spriteSheet, categories);
                         }
                     });
@@ -159,31 +196,60 @@ const CatAnimation = ({ numberOfCats }) => {
                     }
                 };
             });
+
+            coffeeFiles.forEach((coffeeFile, index) => {
+                const coffeeSprite = new Image();
+                coffeeSprite.src = `/assets/coffee/${coffeeFile}`;
+                coffeeSprite.onload = () => {
+                    coffeeUtensils[index].sprite = coffeeSprite;
+                    loadedCount++;
+                    if (loadedCount === spriteFiles.length + coffeeFiles.length) {
+                        requestAnimationFrame(animate);
+                    }
+                };
+            });
         };
 
         cats.forEach(cat => {
-            const randomSprite = spriteFiles[Math.floor(Math.random() * spriteFiles.length)];
-            cat.sprite.src = `/assets/cats/${randomSprite}`;
+            cat.sprite.src = `/assets/cats/${cat.spriteFile}`;
         });
 
         loadSprites();
 
         const chooseTarget = (cat) => {
             const canvas = canvasRef.current;
-            if (!canvas) {
-                console.error('Canvas is null at new cat target Choosing. Null-Reference Handled. Returning.');
-                return;
-            }
+            if (!canvas) return;
             const rect = canvas.getBoundingClientRect();
             const viewWidth = rect.width;
             const viewHeight = rect.height;
 
-            cat.targetX = Math.random() * viewWidth;
+            cat.targetX = getRandomX();
             cat.targetY = Math.random() * viewHeight;
 
             cat.category = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running')) || categories[0];
             cat.speed = speeds[cat.category.name];
-            cat.stateTimer = Math.random() * 3000 + 2000; // Set a random state timer between 2 and 5 seconds
+            cat.stateTimer = Math.random() * 3000 + 2000;
+        };
+
+        const isBlankBackground = (x, y, width, height) => {
+            const canvas = canvasRef.current;
+            if (!canvas) return false;
+            const ctx = canvas.getContext('2d');
+            const imageData = ctx.getImageData(x, y, width, height);
+            return !imageData.data.some(channel => channel !== 0);
+        };
+
+        const placeCoffeeUtensils = () => {
+            coffeeUtensils.forEach(utensil => {
+                let placed = false;
+                while (!placed) {
+                    utensil.x = getRandomX();
+                    utensil.y = Math.random() * (canvas.height - utensil.height);
+                    if (isBlankBackground(utensil.x, utensil.y, utensil.width, utensil.height)) {
+                        placed = true;
+                    }
+                }
+            });
         };
 
         const animate = (timestamp) => {
@@ -194,6 +260,23 @@ const CatAnimation = ({ numberOfCats }) => {
             lastFrameTime.current = timestamp;
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            coffeeUtensils.forEach(utensil => {
+                if (utensil.tipped) {
+                    utensil.tippingTimer -= frameDuration;
+                    if (utensil.tippingTimer <= 0) {
+                        utensil.tipped = false;
+                    }
+                }
+                ctx.drawImage(
+                    utensil.sprite,
+                    utensil.x,
+                    utensil.y,
+                    utensil.width,
+                    utensil.height
+                );
+            });
+
             cats.forEach(cat => {
                 if (!cat.category) {
                     console.error('Cat category is undefined:', cat);
@@ -213,15 +296,15 @@ const CatAnimation = ({ numberOfCats }) => {
                                 tile.height,
                                 cat.x,
                                 cat.y,
-                                tile.width * scale,
-                                tile.height * scale
+                                cat.width,
+                                cat.height
                             );
                         }
 
                         if (cat.category.name !== 'laying' && cat.category.name !== 'sitting' && cat.category.name !== 'looking') {
                             cat.frame = (cat.frame + 1) % tilesForDirection.length;
                             if (cat.frame === 0) {
-                                cat.frame = 1; // repeat animation
+                                cat.frame = 1;
                             }
 
                             const distanceX = cat.targetX - cat.x;
@@ -234,7 +317,7 @@ const CatAnimation = ({ numberOfCats }) => {
                                 cat.x += Math.cos(angle) * cat.speed;
                                 cat.y += Math.sin(angle) * cat.speed;
                             } else {
-                                chooseTarget(cat); // Choose a new target once the cat reaches its current target
+                                chooseTarget(cat);
                             }
                         } else {
                             cat.stateTimer -= frameDuration;
@@ -244,7 +327,15 @@ const CatAnimation = ({ numberOfCats }) => {
                         }
                     }
                 }
+
+                coffeeUtensils.forEach(utensil => {
+                    if (isColliding(cat, utensil) && !utensil.tipped) {
+                        utensil.tipped = true;
+                        utensil.tippingTimer = 2000;
+                    }
+                });
             });
+
             requestAnimationFrame(animate);
         };
 
@@ -254,8 +345,8 @@ const CatAnimation = ({ numberOfCats }) => {
             const nextBehavior = behaviors[(currentBehavior + 1) % behaviors.length];
             cat.category = categories.find(category => category.name === nextBehavior);
             cat.speed = speeds[nextBehavior];
-            cat.frame = 0; // Reset frame to ensure animation starts from the beginning
-            cat.stateTimer = Math.random() * 5000 + 2000; // Set a random state timer between 2 and 7 seconds
+            cat.frame = 0;
+            cat.stateTimer = Math.random() * 5000 + 2000;
         };
 
         const updateAnimationBasedOnDirection = () => {
@@ -264,19 +355,23 @@ const CatAnimation = ({ numberOfCats }) => {
                 const newDirection = directions.find(dir => dir.name === getDirectionFromAngle(angle));
                 if (cat.direction !== newDirection) {
                     cat.direction = newDirection;
-                    cat.frame = 0; // Reset frame to ensure animation starts from the beginning
+                    cat.frame = 0;
                 }
             });
         };
 
         const directionInterval = setInterval(updateAnimationBasedOnDirection, 500);
 
+        placeCoffeeUtensils();
+
         return () => {
             clearInterval(directionInterval);
         };
     }, [numberOfCats, frameDuration]);
 
-    return <canvas ref={canvasRef} className="cat-animation-canvas"></canvas>;
+    return <canvas ref={canvasRef} className="cat-animation-canvas">
+        <BirdAnimation numberOfBirds={numberOfCats*2} />
+    </canvas>;
 };
 
 export default CatAnimation;

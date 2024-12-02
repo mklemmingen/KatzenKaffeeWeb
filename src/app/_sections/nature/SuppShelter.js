@@ -7,8 +7,6 @@ function SuppShelter() {
 
     return (
                 <div className="outer-container">
-                <CatAnimation numberOfCats={3}/>
-                <BirdAnimation numberOfBirds={3}/>
                 <div className="full-container-headline">
                     <Image src='assets/svg/cat-litter-sand-svgrepo-com.svg' alt="Icon" width={50} height={50} />
                     <h2 className="header">Tierheime unterstützen</h2>

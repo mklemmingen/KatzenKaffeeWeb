@@ -62,8 +62,6 @@ function StatCatGermany() {
 
     return (
         <div>
-            <CatAnimation numberOfCats={5}/>
-            <BirdAnimation numberOfBirds={5}/>
             <div className="full-container">
                 <h2 className="header">Anzahl der Hauskatzen in Deutschland</h2>
             </div>

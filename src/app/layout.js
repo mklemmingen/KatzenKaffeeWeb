@@ -23,7 +23,6 @@ function Layout({ children }) {
         <html lang="en">
         <body>
         <CatAnimation numberOfCats={3}/>
-        <BirdAnimation numberOfBirds={10}/>
         <div className="website">
             <ScrollProgress />
             <Header className="header" />

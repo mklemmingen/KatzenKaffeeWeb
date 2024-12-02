@@ -9,8 +9,6 @@ function SustCatOwn() {
 
     return (
         <div className="outer-container">
-            <CatAnimation numberOfCats={3}/>
-            <BirdAnimation numberOfBirds={3}/>
             <div className="full-container-headline">
                 <Image src='assets/svg/cat-food-svgrepo-com.svg' alt="Icon" width={50} height={50} />
                 <h2 className="header">Nachhaltige Ernährung</h2>

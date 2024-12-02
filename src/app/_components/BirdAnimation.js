@@ -1,9 +1,10 @@
-'use client';
+"use client";
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import '../_styles/BirdAnimation.css';
 import "../globals.css"
+
 const birdSprites = {
     blueJay: '/assets/birds/spritesheet_blue jay.png',
     cardinal: '/assets/birds/spritesheet_cardinal.png',
@@ -40,7 +41,8 @@ const getFrameStyle = (sprite, category, frame, isMirrored, x, y) => {
         backgroundPosition: `-${frame * frameSize}px -${row * frameSize}px`,
         width: `${frameSize}px`,
         height: `${frameSize}px`,
-        transform: isMirrored ? 'scaleX(-1)' : 'none',
+        transform: `${isMirrored ? 'scaleX(-1)' : 'none'} scale(2)`,
+        transformOrigin: 'center center',
         left: `${x}px`,
         top: `${y}px`,
         position: 'absolute'
@@ -71,17 +73,9 @@ const BirdAnimation = ({ numberOfBirds }) => {
     }, [numberOfBirds]);
 
     const chooseNewTarget = useCallback((bird) => {
-        const biasFactor = 0.3;
-        const centerX = window.innerWidth * 0.5;
-        const centerY = window.innerHeight * 0.5;
-        const rangeX = window.innerWidth * biasFactor;
-        const rangeY = window.innerHeight * biasFactor;
-
-        bird.targetX = centerX + (Math.random() - 0.5) * rangeX;
-        bird.targetY = centerY + (Math.random() - 0.5) * rangeY;
-        bird.category = Math.random() < 0.5 ? 'walking' : 'flying';
-        bird.speed = speeds[bird.category];
-        bird.stateTimer = Math.random() * 5000 + 5000;
+        bird.targetX = Math.random() * window.innerWidth;
+        bird.targetY = Math.random() * window.innerHeight;
+        bird.stateTimer = Math.random() * 5000 + 5000; // Reset state timer
     }, []);
 
     const animate = useCallback((timestamp) => {
@@ -98,7 +92,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
 
             if (distance > 10) {
                 const angle = Math.atan2(distanceY, distanceX);
-                bird.isMirrored = distanceX > 0;
+                bird.isMirrored = distanceX < 0; // Mirror if moving westwards
                 bird.x += Math.cos(angle) * bird.speed;
                 bird.y += Math.sin(angle) * bird.speed;
             } else if (bird.category !== 'sitting') {
@@ -112,7 +106,11 @@ const BirdAnimation = ({ numberOfBirds }) => {
                 chooseNewTarget(bird);
             }
 
-            bird.frame = (bird.frame + 1) % 4;
+            // Update frame for flying animation
+            if (bird.category === 'flying') {
+                bird.frame = (bird.frame + 1) % 4; // Assuming there are 4 frames for flying
+            }
+
             return { ...bird };
         }));
 
@@ -120,7 +118,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
     }, [frameDuration, chooseNewTarget]);
 
     useEffect(() => {
-        animate();
+        requestAnimationFrame(animate);
     }, [animate]);
 
     return (
