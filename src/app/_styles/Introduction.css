@@ -76,6 +76,23 @@
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
+    background-color: var(--secondary-color);
+    border-radius: 2%;
+    box-shadow: 0 2px 4px var(--text-color);
+    z-index: 999;
+    position: relative; /* Added to position the pseudo-element */
+}
+
+.intro_footer::before {
+    content: '';
+    position: absolute;
+    top: -3%;
+    left: -3%;
+    width: 106%;
+    height: 106%;
+    background-color: var(--secondary-color);
+    border-radius: 2%;
+    z-index: -1;
 }
 
 .intro_footer .highlight {

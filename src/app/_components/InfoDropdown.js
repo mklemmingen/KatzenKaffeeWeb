@@ -29,16 +29,15 @@ const InfoDropdown = () => {
 
     const handleItemClick = (targetId) => {
         if (isClient) {
-            if (router.pathname !== '/') {
-                router.push(`/?targetId=${targetId}`);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.getBoundingClientRect().top + window.scrollY,
+                    behavior: 'smooth'
+                });
+                targetElement.focus();
             } else {
-                const targetElement = document.getElementById(targetId);
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
-                    targetElement.focus();
-                } else {
-                    console.error(`Element with ID ${targetId} not found`);
-                }
+                console.error(`Element with ID ${targetId} not found`);
             }
         }
     };

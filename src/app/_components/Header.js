@@ -8,7 +8,6 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { FaMusic } from "react-icons/fa6";
 import { IoMenu } from "react-icons/io5";
-import InfoDropdown from "@/app/_components/InfoDropdown";
 import { VscTypeHierarchy } from "react-icons/vsc";
 import { FaComment } from "react-icons/fa";
 import { MdDarkMode } from "react-icons/md";
@@ -106,15 +105,6 @@ function Header() {
 
                     <button className="App-button music-button"
                             onClick={handlePlay}><FaMusic/></button>
-
-                    <div className="dropdown">
-                        <button>
-                            Kategorien <VscTypeHierarchy/>
-                        </button>
-                        <div className="dropdown-content">
-                            <InfoDropdown/>
-                        </div>
-                    </div>
 
                 </div>
             </nav>
