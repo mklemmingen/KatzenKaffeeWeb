@@ -55,7 +55,6 @@ const meowSounds = [
     '/assets/snd/meow5.mp3',
     '/assets/snd/meow6.mp3'
 ];
-
 const speeds = {
     laying: 0,
     sitting: 0,
@@ -123,11 +122,6 @@ const CatAnimation = ({ numberOfCats }) => {
     const frameRate = 8;
     const frameDuration = 1000 / frameRate;
     const lastFrameTime = useRef(0);
-
-    const getRandomMeowSound = () => {
-        const randomIndex = Math.floor(Math.random() * meowSounds.length);
-        return meowSounds[randomIndex];
-    };
 
     useEffect(() => {
         const canvas = canvasRef.current;
