@@ -44,13 +44,18 @@ const Introduction = () => {
 
     return (
         <div className="introduction">
-            <CatAnimation numberOfCats={3}/>
-            <BirdAnimation numberOfBirds={3}/>
             <div className="content">
                 <div className="intro_header_and_text">
                     <h1>Nachhaltige Katzenhaltung</h1>
                     <h2> Miezen to ↓ the Rescue </h2>
                 </div>
+            </div>
+            <div className="intro_footer">
+                Entdecken Sie, wie Sie Ihre Katze <span className="highlight">nachhaltig</span> und <span
+                className="highlight">umweltbewusst</span> pflegen können. Erfahren Sie mehr über die aktuelle
+                Katzenpopulation in Deutschland, <span className="highlight">nachhaltige Ernährung</span> und
+                Bioprodukte sowie die Auswirkungen von freilaufenden Katzen auf die Umwelt. Gemeinsam können wir
+                einen positiven Beitrag für unsere Katzen und die Natur leisten.
             </div>
         </div>
     );

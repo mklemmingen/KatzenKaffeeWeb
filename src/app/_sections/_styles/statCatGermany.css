@@ -6,23 +6,23 @@
     column-gap: 50px;
 
 }
-.left-container {
+.left-stat-container {
     flex: 1 1 50%;
     max-width: 50%;
   }
-.right-container {
+.right-stat-container {
     flex: 1 1 50%;
     flex-direction: column;
     max-width: 50%;
   }
 
-.right-container .date {
+.right-stat-container .date {
     margin-bottom: 10px;
     font-family: var(--font-family), serif;
     color: var(--primary-color);
 }
 
-.right-container .date {
+.right-stat-container .date {
     margin-bottom: 10px;
 }
 

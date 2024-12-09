@@ -6,6 +6,7 @@ import '@/app/_styles/generalOrder.css';
 import '@/app/globals.css';
 import CatAnimation from "@/app/_components/CatAnimation";
 import React from "react";
+import BirdAnimation from "@/app/_components/BirdAnimation";
 
 function toggleTheme(isHighContrast) {
     const htmlElement = document.documentElement;
@@ -21,7 +22,7 @@ function Layout({ children }) {
     return (
         <html lang="en">
         <body>
-        <CatAnimation numberOfCats={10}/>
+        <CatAnimation numberOfCats={3}/>
         <div className="website">
             <ScrollProgress />
             <Header className="header" />
