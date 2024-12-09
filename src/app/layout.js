@@ -6,29 +6,24 @@ import '@/app/_styles/generalOrder.css';
 import '@/app/globals.css';
 import CatAnimation from "@/app/_components/CatAnimation";
 import React from "react";
-import BirdAnimation from "@/app/_components/BirdAnimation";
-
-function toggleTheme(isHighContrast) {
-    const htmlElement = document.documentElement;
-    if (isHighContrast) {
-        htmlElement.setAttribute('data-theme', 'high-contrast');
-    } else {
-        htmlElement.removeAttribute('data-theme');
-    }
-    console.log(`Theme toggled to ${isHighContrast ? 'high contrast' : 'normal'}`);
-}
 
 function Layout({ children }) {
+    const childrenWithCatAnimation = React.Children.map(children, (child, index) => (
+        <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>
+            {child}
+            <CatAnimation numberOfCats={25} />
+        </div>
+    ));
+
     return (
         <html lang="en">
         <body>
-        <CatAnimation numberOfCats={3}/>
+        <ScrollProgress />
         <div className="website">
-            <ScrollProgress />
             <Header className="header" />
             <div className="spacer header-spacer" />
             <div className="pages">
-                {children}
+                {childrenWithCatAnimation}
             </div>
             <div className="spacer footer-spacer" />
             <Footer className="footer" />
