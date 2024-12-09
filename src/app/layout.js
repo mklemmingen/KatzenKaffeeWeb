@@ -8,22 +8,16 @@ import CatAnimation from "@/app/_components/CatAnimation";
 import React from "react";
 
 function Layout({ children }) {
-    const childrenWithCatAnimation = React.Children.map(children, (child, index) => (
-        <div key={index} style={{ display: 'flex', flexDirection: 'column' }}>
-            {child}
-            <CatAnimation numberOfCats={25} />
-        </div>
-    ));
-
     return (
         <html lang="en">
         <body>
-        <ScrollProgress />
+        <CatAnimation numberOfCats={20}/>
         <div className="website">
             <Header className="header" />
+            <ScrollProgress />
             <div className="spacer header-spacer" />
             <div className="pages">
-                {childrenWithCatAnimation}
+                {children}
             </div>
             <div className="spacer footer-spacer" />
             <Footer className="footer" />
