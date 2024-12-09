@@ -9,16 +9,31 @@ async function openDb() {
     console.log(`Database path from .env: ${process.env.DB_PATH}`);
     console.log(`Resolved database path: ${dbPath}`);
 
-    // Checking if the database file exists
+    // If the database file does not exist, create it
     if (!fs.existsSync(dbPath)) {
-        console.error(`Database file does not exist at path: ${dbPath}`);
-        throw new Error('Database file not found');
+        console.warn(`Database file does not exist at path: ${dbPath}. Creating a new one.`);
+        fs.writeFileSync(dbPath, '');
     }
 
-    return sqlite.open({
-        filename: dbPath,
-        driver: sqlite3.Database
-    });
+    let db;
+    try {
+        db = await sqlite.open({
+            filename: dbPath,
+            driver: sqlite3.Database
+        });
+        // Test if the database is corrupt by running a simple query
+        await db.get('SELECT 1');
+    } catch (error) {
+        console.error('Database is corrupt. Recreating the database file.');
+        fs.unlinkSync(dbPath);
+        fs.writeFileSync(dbPath, '');
+        db = await sqlite.open({
+            filename: dbPath,
+            driver: sqlite3.Database
+        });
+    }
+
+    return db;
 }
 
 async function setup() {
