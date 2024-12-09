@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '@/app/_styles/ChatBot.css';
+import '@/app/_styles/chatBot.css';
 
 function ChatBot() {
   const [messages, setMessages] = useState([{ text: "Willkommen! Wie kann ich dir helfen?", sender: "bot" }]);
