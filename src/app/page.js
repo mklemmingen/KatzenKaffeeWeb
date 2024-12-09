@@ -1,13 +1,12 @@
 'use client';
 
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 // _styles ---------------------------------------------------
 import '@/app/_styles/Home.css';
 
 // components -----------------------------------------------
-import InfoBlock from '@/app/_components/InfoBlock';
 import Introduction from '@/app/_components/Introduction';
 import BirdAnimation from '@/app/_components/BirdAnimation';
 import CatAnimation from '@/app/_components/CatAnimation';
@@ -31,7 +30,7 @@ import EneffCare from "@/app/_sections/catOwn/EneffCare";
 import MentHealthToys from "@/app/_sections/catOwn/MentHealthToys";
 import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
 
-const Page = () => {
+const PageContent = () => {
     const [isClient, setIsClient] = useState(false);
     const searchParams = useSearchParams();
 
@@ -52,8 +51,6 @@ const Page = () => {
         }
     }, [searchParams, isClient]);
 
-    // Button that can be added to the page anywhere, that alignes center and throws the view back onto
-    // "start"
     const BackToStartButton = () => {
         return (
             <button
@@ -67,53 +64,6 @@ const Page = () => {
             </button>
         );
     };
-
-    /*
-    <div className="categories-container">
-                <div className="sub-categories-container" id="statisticCategories">
-                    <h1> Statistiken für den Einstieg </h1>
-                    <div className="info-blocks-container">
-                        {statisticSection.categories.map((category, index) => (
-                            <InfoBlock
-                                key={index}
-                                iconSrc={category.iconSrc}
-                                headerText={category.headerText}
-                                textBlock={category.textBlock}
-                                targetId={category.targetId}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div className="sub-categories-container" id="catNatureCategories">
-                    <h1> Katzen und die Natur </h1>
-                    <div className="info-blocks-container">
-                        {catAndNature.categories.map((category, index) => (
-                            <InfoBlock
-                                key={index}
-                                iconSrc={category.iconSrc}
-                                headerText={category.headerText}
-                                textBlock={category.textBlock}
-                                targetId={category.targetId}
-                            />
-                        ))}
-                    </div>
-                </div>
-                <div className="sub-categories-container" id="catOwningCategories">
-                    <h1> Katzenhaltung leicht gemacht </h1>
-                    <div className="info-blocks-container">
-                        {catOwning.categories.map((category, index) => (
-                            <InfoBlock
-                                key={index}
-                                iconSrc={category.iconSrc}
-                                headerText={category.headerText}
-                                textBlock={category.textBlock}
-                                targetId={category.targetId}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
-     */
 
     return (
         <div>
@@ -165,6 +115,14 @@ const Page = () => {
                 </div>
             </div>
         </div>
+    );
+};
+
+const Page = () => {
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <PageContent />
+        </Suspense>
     );
 };
 
