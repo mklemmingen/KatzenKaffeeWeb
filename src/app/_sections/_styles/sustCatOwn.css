@@ -9,14 +9,12 @@
     display: flex;
     flex-direction: row;
     justify-content: left;
-    align-content: left;
     column-gap: 10px;
 }
 .outer-container {
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .left-container {
     flex: 1 1 65%;
