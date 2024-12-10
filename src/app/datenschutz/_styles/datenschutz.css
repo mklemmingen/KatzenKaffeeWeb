@@ -1,0 +1,10 @@
+.datenschutzerklaerbaer{
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    width: 50%;
+}
+
+.datenschutzWrapper{
+    align-items: center;
+    justify-content: center;
+}
