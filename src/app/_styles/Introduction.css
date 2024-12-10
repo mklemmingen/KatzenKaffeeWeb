@@ -4,6 +4,7 @@
     font-family: var(--font-family), serif;
     color: var(--text-color);
     z-index: 0;
+    pointer-events: none;
 }
 
 .intro_header_and_text {
@@ -14,12 +15,14 @@
     text-align: center;
     width: 60%;
     flex: 1;
+    pointer-events: none;
 }
 
 .introduction .content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: none;
 }
 
 .introduction h1 {
@@ -27,6 +30,7 @@
     font-size: 8em;
     color: var(--primary-color);
     text-shadow: 0 5px 10px var(--shadow-color), 0 3px 3px var(--shadow-color2); /* Realistic shadow */
+    pointer-events: none;
 }
 
 .introduction h2 {
@@ -38,6 +42,7 @@
     animation-iteration-count: infinite;
     animation-direction: alternate;
     text-shadow: 0 5px 10px var(--shadow-color), 0 3px 3px var(--shadow-color2); /* Realistic shadow */
+    pointer-events: none;
 }
 
 @keyframes scaleup {
@@ -54,6 +59,7 @@
     font-size: 1.2em;
     text-align: justify;
     max-width: 40%;
+    pointer-events: none;
 }
 
 @media (max-width: 1000px) {
@@ -69,19 +75,20 @@
 .intro_footer {
     margin-top: 1%;
     width: 60%;
-    font-size: 1.5em; /* Slightly bigger than standard text */
-    font-family: var(--font-family), serif; /* Readable font */
+    font-size: 1.5em;
+    font-family: var(--font-family), serif;
     color: var(--text-color);
     line-height: 2;
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--secondary-color);
-    padding: 20px; /* Add padding for better spacing */
-    border-radius: 12px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 999;
-    position: relative; /* Added to position the pseudo-element */
+    position: relative;
+    pointer-events: all;
 }
 
 .intro_footer::before {
@@ -91,10 +98,11 @@
     left: -3%;
     width: 106%;
     height: 106%;
-    border-radius: 12px; /* Match the border-radius of the parent */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 12px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2); /* Aura effect */
     background-color: var(--secondary-color);
     z-index: -1;
+    pointer-events: none;
 }
 
 .intro_footer .highlight {

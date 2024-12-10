@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../_styles/CatAnimation.css';
 import "../globals.css";
 import BirdAnimation from "@/app/_components/BirdAnimation";
@@ -119,6 +119,7 @@ const isColliding = (rect1, rect2) => {
 
 const CatAnimation = ({ numberOfCats }) => {
     const canvasRef = useRef(null);
+    const [hoveredCat, setHoveredCat] = useState(false);
     const frameRate = 8;
     const frameDuration = 1000 / frameRate;
     const lastFrameTime = useRef(0);
@@ -271,6 +272,8 @@ const CatAnimation = ({ numberOfCats }) => {
                 );
             });
 
+            let isHovering = false;
+
             cats.forEach(cat => {
                 if (!cat.category) {
                     console.error('Cat category is undefined:', cat);
@@ -328,7 +331,13 @@ const CatAnimation = ({ numberOfCats }) => {
                         utensil.tippingTimer = 2000;
                     }
                 });
+
+                if (isColliding(cat, { x: mouseX, y: mouseY, width: 1, height: 1 })) {
+                    isHovering = true;
+                }
             });
+
+            setHoveredCat(isHovering);
 
             requestAnimationFrame(animate);
         };
@@ -358,14 +367,33 @@ const CatAnimation = ({ numberOfCats }) => {
 
         placeCoffeeUtensils();
 
+
+        let mouseX = 0;
+        let mouseY = 0;
+
+        const handleMouseMove = (event) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = event.clientX - rect.left;
+            mouseY = event.clientY - rect.top;
+        };
+
+        canvas.addEventListener('mousemove', handleMouseMove);
+
         return () => {
             clearInterval(directionInterval);
+            canvas.removeEventListener('mousemove', handleMouseMove);
         };
     }, [numberOfCats, frameDuration]);
 
-    return <canvas ref={canvasRef} className="cat-animation-canvas">
-        <BirdAnimation numberOfBirds={numberOfCats*2} />
-    </canvas>;
+    return (
+        <canvas
+            ref={canvasRef}
+            className="cat-animation-canvas"
+            style={{ cursor: hoveredCat ? 'pointer' : 'default' }}
+        >
+            <BirdAnimation numberOfBirds={numberOfCats * 2} />
+        </canvas>
+    );
 };
 
 export default CatAnimation;
