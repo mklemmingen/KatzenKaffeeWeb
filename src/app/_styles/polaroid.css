@@ -3,6 +3,7 @@
     position: absolute;
     width: 55%;
     height: 112.5%;
-    background-color: var(--primary-color);
+    background-color: var(--background-color);
+    box-shadow: 0 10px 20px var(--shadow-color), 0 6px 6px var(--shadow-color2); /* Realistic shadow */
     z-index: -1;
 }

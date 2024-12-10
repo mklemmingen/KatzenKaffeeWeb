@@ -14,6 +14,8 @@
   --font-family: 'Roboto', Arial, sans-serif;
   --high-contrast-text: #000;
   --high-contrast-bg: #fff;
+  --shadow-color: rgba(0, 0, 0, 0.25);
+  --shadow-color2: rgba(0, 0, 0, 0.22);
 }
 
 [data-theme='high-contrast'] {
@@ -22,6 +24,8 @@
   --accent-color: #8E44AD;
   --text-color: #fff;
   --background-color: #000;
+  --shadow-color: black;
+  --shadow-color2: black;
 }
 
 * {
