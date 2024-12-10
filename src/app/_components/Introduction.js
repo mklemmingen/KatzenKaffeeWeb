@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import 'chart.js/auto';
 import '../_styles/Introduction.css';
-import Image from 'next/image';
-import CatAnimation from "@/app/_components/CatAnimation";
 import "../globals.css";
-import {B612} from "next/dist/compiled/@next/font/dist/google";
-import BirdAnimation from "@/app/_components/BirdAnimation";
+import PolaroidBackground from "@/app/_components/PolaroidBackground";
 
 const Introduction = () => {
     const [visitorCount, setVisitorCount] = useState(0);

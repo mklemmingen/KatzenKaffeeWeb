@@ -30,6 +30,8 @@
 }
 
 .section {
+    min-width: 100%;
+    min-height: 50em;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -44,12 +46,12 @@
 .section-content {
     position: relative;
     flex: 1 1 70%;
+    min-height: 50em;
     max-width: 50%;
     text-align: left;
     background-color: var(--secondary-color);
-    border-radius: 2%;
     box-shadow: 0 2px 4px var(--text-color);
-    z-index: 999;
+    z-index: 1;
 }
 
 .section-content::before {
@@ -60,7 +62,6 @@
     width: 106%;
     height: 106%;
     background-color: var(--secondary-color);
-    border-radius: 2%;
     z-index: -1;
 }
 

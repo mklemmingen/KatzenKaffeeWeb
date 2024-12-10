@@ -30,6 +30,7 @@ import EneffCare from "@/app/_sections/catOwn/EneffCare";
 import MentHealthToys from "@/app/_sections/catOwn/MentHealthToys";
 import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
 import CategoryDropdown from "@/app/_components/CategoryDropdown";
+import PolaroidBackground from "@/app/_components/PolaroidBackground";
 
 const PageContent = () => {
     const [isClient, setIsClient] = useState(false);
@@ -73,54 +74,63 @@ const PageContent = () => {
             <BackToStartButton/>
             <div id={"catStatGermany"} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <StatCatGermany/>
                 </div>
             </div>
             <div id={'sustainable-diet'} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <SustCatOwn/>
                 </div>
             </div>
             <div id={'cat-litter'} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <EcoLitter/>
                 </div>
             </div>
             <div id={'bird-protection'} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <CatEffectNature/>
                 </div>
             </div>
             <div id="mental-health" className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <MentHealthToys/>
                 </div>
             </div>
             <div id="energy-efficient-cat-care" className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <EneffCare/>
                 </div>
             </div>
             <div id="shelter-support" className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <SuppShelter/>
                 </div>
             </div>
             <div id={"catStatGlobal"} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <StatCatGlobal/>
                 </div>
             </div>
             <div id={"catStatGreek"} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <PolaroidBackground/>
                 <div className="section-content">
                     <StatCatGreek/>
                 </div>
