@@ -6,4 +6,5 @@
     z-index: -200;
     image-rendering: pixelated;
     aria-hidden: true;
+    pointer-events: auto; /* Ensure the canvas can intercept mouse events */
 }

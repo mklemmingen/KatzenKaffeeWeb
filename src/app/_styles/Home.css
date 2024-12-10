@@ -41,6 +41,7 @@
     text-align: left;
     z-index: 2;
     position: relative;
+    pointer-events: none; /* Ensure the section does not intercept mouse events */
 }
 
 .section-content {
@@ -52,6 +53,7 @@
     background-color: var(--secondary-color);
     box-shadow: 0 2px 4px var(--text-color);
     z-index: 1;
+    pointer-events: auto; /* Ensure the section-content can intercept mouse events */
 }
 
 .section-content::before {
@@ -63,6 +65,7 @@
     height: 106%;
     background-color: var(--secondary-color);
     z-index: -1;
+    pointer-events: auto; /* Ensure the section-content can intercept mouse events */
 }
 
 .loadingScreen {
