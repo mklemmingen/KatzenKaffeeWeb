@@ -3,19 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "init-db": "node src/server/_api/initDb.js",
-    "dev": "npm run init-db && next dev",
-    "build": "npm run init-db && next build",
+    "dev": "next dev",
+    "build": "next build",
     "start": "next start && npm run init-db",
     "lint": "next lint",
     "db": "npm run init-db"
   },
   "dependencies": {
-    "@rive-app/react-canvas": "^4.6.2",
     "@rive-app/canvas": "^2.9.2",
+    "@rive-app/react-canvas": "^4.6.2",
     "chart.js": "^4.4.5",
     "dotenv": "^16.4.5",
     "next": "^15.0.3",
+    "pg": "^8.13.1",
     "prop-types": "^15.8.1",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
@@ -27,8 +27,8 @@
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {
-    "@rive-app/react-canvas": "^4.6.2",
     "@rive-app/canvas": "^2.9.2",
+    "@rive-app/react-canvas": "^4.6.2",
     "@types/node": "22.9.0",
     "@types/react": "18.3.12",
     "eslint": "^8",

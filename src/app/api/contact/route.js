@@ -1,53 +1,46 @@
-import fs from 'fs';
-import path from 'path';
+import { Client } from 'pg';
 
-export const dynamic = 'force-dynamic';
+async function openDb() {
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  await client.connect();
+  return client;
+}
 
 export async function POST(req) {
-  try {
-    const body = await req.json();
+  const client = await openDb();
 
-    if (!body.name || !body.email || !body.message) {
+  try {
+    const { name, email, message } = await req.json();
+
+    if (!name || !email || !message) {
       return new Response(
-        JSON.stringify({ message: "Bitte alle Felder ausfüllen." }),
-        { status: 400 }
+          JSON.stringify({ message: "Bitte alle Felder ausfüllen." }),
+          { status: 400 }
       );
     }
 
-    // Definiere den Pfad zur JSON-Datei
-    const filePath = path.join(process.cwd(), 'messages.json');
     const timestamp = new Date().toISOString();
+    const query = 'INSERT INTO contacts (name, email, message, timestamp) VALUES ($1, $2, $3, $4)';
+    const values = [name, email, message, timestamp];
 
-    // Neue Nachricht mit Zeitstempel
-    const newMessage = {
-      name: body.name,
-      email: body.email,
-      message: body.message,
-      timestamp,
-    };
-
-    // Bestehende Nachrichten laden (falls vorhanden)
-    let messages = [];
-    if (fs.existsSync(filePath)) {
-      const fileContent = fs.readFileSync(filePath, 'utf-8');
-      messages = JSON.parse(fileContent);
-    }
-
-    // Neue Nachricht hinzufügen
-    messages.push(newMessage);
-
-    // Speichere die aktualisierten Nachrichten in der JSON-Datei
-    fs.writeFileSync(filePath, JSON.stringify(messages, null, 2));
+    await client.query(query, values);
 
     return new Response(
-      JSON.stringify({ message: "Nachricht erfolgreich gespeichert!" }),
-      { status: 200 }
+        JSON.stringify({ message: "Nachricht erfolgreich gespeichert!" }),
+        { status: 200 }
     );
   } catch (error) {
     console.error("Fehler beim Speichern der Nachricht:", error);
     return new Response(
-      JSON.stringify({ message: "Fehler beim Speichern der Nachricht." }),
-      { status: 500 }
+        JSON.stringify({ message: "Fehler beim Speichern der Nachricht." }),
+        { status: 500 }
     );
+  } finally {
+    await client.end();
   }
 }

@@ -1,46 +1,61 @@
-import fs from 'fs';
-import path from 'path';
+import { Client } from 'pg';
 
-export const dynamic = 'force-dynamic';
+async function openDb() {
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+  await client.connect();
+  return client;
+}
 
 export async function POST(req) {
-  const body = await req.json();
-  const { message } = body;
+  const client = await openDb();
 
-  if (!message) {
-    return new Response(JSON.stringify({ response: "Keine Nachricht erhalten" }), { status: 400 });
+  try {
+    const { message } = await req.json();
+
+    if (!message) {
+      return new Response(JSON.stringify({ response: "Keine Nachricht erhalten" }), { status: 400 });
+    }
+
+    const userMessage = {
+      author: 'Mensch',
+      message,
+      timestamp: new Date().toISOString()
+    };
+
+    const botResponseText = getBotResponse(message);
+
+    const botMessage = {
+      author: 'Bot',
+      message: botResponseText,
+      timestamp: new Date().toISOString()
+    };
+
+    const query = 'INSERT INTO chatbot_logs (author, message, timestamp) VALUES ($1, $2, $3), ($4, $5, $6)';
+    const values = [
+      userMessage.author, userMessage.message, userMessage.timestamp,
+      botMessage.author, botMessage.message, botMessage.timestamp
+    ];
+
+    await client.query(query, values);
+
+    return new Response(
+        JSON.stringify({ response: botResponseText }),
+        { status: 200 }
+    );
+  } catch (error) {
+    console.error("Fehler beim Speichern der Nachricht:", error);
+    return new Response(
+        JSON.stringify({ message: "Fehler beim Speichern der Nachricht." }),
+        { status: 500 }
+    );
+  } finally {
+    await client.end();
   }
-
-
-  const userMessage = {
-    author: 'Mensch',
-    message,
-    timestamp: new Date().toISOString()
-  };
-
-  const botResponseText = getBotResponse(message);
-
-  const botMessage = {
-    author: 'Bot',
-    message: botResponseText,
-    timestamp: new Date().toISOString()
-  };
-
-  const filePath = path.join(process.cwd(), 'chat-log.json');
-  let chatLog = [];
-
-  if (fs.existsSync(filePath)) {
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    chatLog = JSON.parse(fileContent);
-  }
-
-  chatLog.push(userMessage, botMessage);
-  fs.writeFileSync(filePath, JSON.stringify(chatLog, null, 2));
-
-  return new Response(
-    JSON.stringify({ response: botResponseText }),
-    { status: 200 }
-  );
 }
 
 function getBotResponse(message) {
@@ -61,8 +76,8 @@ function getBotResponse(message) {
   if (["gute nacht", "nacht"].some(greet => message.includes(greet))) {
     return "Gute Nacht! Schlaf gut!";
   }
-   // Notfälle
-   if (["mir geht es nicht gut", "ich fühle mich schlecht", "mir ist schlecht"].some(phrase => message.includes(phrase))) {
+  // Notfälle
+  if (["mir geht es nicht gut", "ich fühle mich schlecht", "mir ist schlecht"].some(phrase => message.includes(phrase))) {
     return "Es tut mir leid zu hören, dass es dir nicht gut geht. Wenn es ein Notfall ist, rufe bitte sofort einen Krankenwagen unter der Nummer 112 an.";
   }
 
@@ -84,7 +99,7 @@ function getBotResponse(message) {
   }
   // Katzenbilder
   if (["katzenbilder", "katzen fotos", "bilder von katzen", "katzen bilder"].some(phrase => message.includes(phrase))) {
-  return 'Möchtest du zufällige Katzenbilder sehen? Besuche <a href="https://de.pinterest.com/gregorikerstin/lustige-katzenbilder/" target="_blank" style="color:blue; text-decoration:underline;">diese Seite</a> für süße Katzenbilder!';
+    return 'Möchtest du zufällige Katzenbilder sehen? Besuche <a href="https://de.pinterest.com/gregorikerstin/lustige-katzenbilder/" target="_blank" style="color:blue; text-decoration:underline;">diese Seite</a> für süße Katzenbilder!';
   }
   // Kontaktinformationen
   if (message.includes("kontakt")) {

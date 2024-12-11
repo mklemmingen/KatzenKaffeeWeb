@@ -1,26 +1,26 @@
-import { open } from 'sqlite';
-import sqlite3 from 'sqlite3';
-import path from 'path';
+import { Client } from 'pg';
 
 async function openDb() {
-    const dbPath = process.env.DB_PATH || path.resolve(__dirname, '../../../../server/_db/database.db');
-    console.log('Database path:', dbPath); // Log the database path
-    return open({
-        filename: dbPath,
-        driver: sqlite3.Database
+    const client = new Client({
+        connectionString: process.env.DATABASE_URL,
+        ssl: {
+            rejectUnauthorized: false
+        }
     });
+    await client.connect();
+    return client;
 }
 
 export async function GET(req) {
-    const db = await openDb();
+    const client = await openDb();
 
     try {
-        const experiences = await db.all('SELECT * FROM experiences');
-        return new Response(JSON.stringify(experiences), { status: 200 });
+        const res = await client.query('SELECT * FROM experiences');
+        return new Response(JSON.stringify(res.rows), { status: 200 });
     } catch (error) {
         console.error('Error fetching experiences:', error);
         return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
     } finally {
-        await db.close();
+        await client.end();
     }
 }
