@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { VscTypeHierarchy } from "react-icons/vsc";
+import { FaMap } from "react-icons/fa";
 import InfoDropdown from "@/app/_components/InfoDropdown";
 import "../_styles/CategoryDropdown.css";
 
@@ -27,7 +27,7 @@ const CategoryDropdown = () => {
     return (
         <div className="category-dropdown" ref={dropdownRef}>
             <button onClick={toggleDropdown}>
-                <VscTypeHierarchy />
+                <FaMap />
             </button>
             <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
                 <InfoDropdown />
