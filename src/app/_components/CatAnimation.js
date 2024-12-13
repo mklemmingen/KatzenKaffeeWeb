@@ -390,6 +390,7 @@ const CatAnimation = ({ numberOfCats }) => {
             ref={canvasRef}
             className="cat-animation-canvas"
             style={{ cursor: hoveredCat ? 'pointer' : 'default' }}
+            aria-hidden="true"
         >
             <BirdAnimation numberOfBirds={numberOfCats * 2} />
         </canvas>

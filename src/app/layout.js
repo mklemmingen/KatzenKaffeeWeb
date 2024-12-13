@@ -11,7 +11,7 @@ function Layout({ children }) {
     return (
         <html lang="en">
         <body>
-        <CatAnimation numberOfCats={20}/>
+        <CatAnimation numberOfCats={25}/>
         <div className="website">
             <Header className="header" />
             <ScrollProgress />

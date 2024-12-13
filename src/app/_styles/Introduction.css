@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Droid+Serif&display=swap');
 
 .introduction {
+    position:relative;
     font-family: var(--font-family), serif;
     color: var(--text-color);
-    z-index: 0;
     pointer-events: none;
+    align-items: center;
+    max-width: 75%;
 }
 
 .intro_header_and_text {
@@ -19,6 +21,7 @@
 }
 
 .introduction .content {
+    z-index: -20;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -26,14 +29,18 @@
 }
 
 .introduction h1 {
+    position:relative;
+    pointer-events: none;
+    align-items: center;
     font-family: 'Pacifico', serif;
     font-size: 8em;
     color: var(--primary-color);
     text-shadow: 0 5px 10px var(--shadow-color), 0 3px 3px var(--shadow-color2); /* Realistic shadow */
-    pointer-events: none;
 }
 
 .introduction h2 {
+    position:relative;
+    align-items: center;
     font-family: 'Pacifico', serif;
     font-size: 5em;
     color: var(--primary-color);
@@ -55,6 +62,9 @@
 }
 
 .introduction p {
+    position:relative;
+    color: var(--text-color);
+    align-items: center;
     font-family: var(--font-family), serif;
     font-size: 1.2em;
     text-align: justify;
@@ -86,7 +96,7 @@
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+    z-index: 2;
     position: relative;
     pointer-events: all;
 }
@@ -108,4 +118,13 @@
 .intro_footer .highlight {
     color: var(--primary-color);
     font-family: 'Pacifico', serif; /* Special font for highlighted words */
+}
+
+.inline-icon-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.inline-icon-text svg {
+    margin-right: 8px; /* Adjust the value as needed */
 }

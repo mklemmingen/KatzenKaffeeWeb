@@ -3,6 +3,7 @@ import 'chart.js/auto';
 import '../_styles/Introduction.css';
 import "../globals.css";
 import PolaroidBackground from "@/app/_components/PolaroidBackground";
+import {FaMap} from "react-icons/fa";
 
 const Introduction = () => {
     const [visitorCount, setVisitorCount] = useState(0);
@@ -53,6 +54,9 @@ const Introduction = () => {
                 Katzenpopulation in Deutschland, <span className="highlight">nachhaltige Ernährung</span> und
                 Bioprodukte sowie die Auswirkungen von freilaufenden Katzen auf die Umwelt. Gemeinsam können wir
                 einen positiven Beitrag für unsere Katzen und die Natur leisten.
+                <span className="inline-icon-text">
+                    <FaMap/>  Nutzen Sie das Icon, um zu den verschiedenen Abschnitten zu springen.
+                </span>
             </div>
         </div>
     );

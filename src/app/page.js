@@ -69,9 +69,11 @@ const PageContent = () => {
 
     return (
         <div>
-            <Introduction id="start"/>
             <CategoryDropdown />
             <BackToStartButton/>
+            <div className="intro-section">
+                <Introduction id="start"/>
+            </div>
             <div id={"catStatGermany"} className="section">
                 <CatAnimation numberOfCats={5}/>
                 <PolaroidBackground/>

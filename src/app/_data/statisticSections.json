@@ -1,19 +1,19 @@
 {
   "categories": [
     {
-      "iconSrc": null,
+      "iconSrc": "assets/svg/berlin-brandenburg-gate-svgrepo-com.svg",
       "headerText": "Katzen in Deutschland",
       "textBlock": "",
       "targetId": "catStatGlobal"
     },
     {
-      "iconSrc": null,
+      "iconSrc": "assets/svg/parthenon-building-svgrepo-com.svg",
       "headerText": "Katzen in Griechenland",
       "textBlock": "",
       "targetId": "catStatGreek"
     },
     {
-      "iconSrc": null,
+      "iconSrc": "assets/svg/world-svgrepo-com.svg",
       "headerText": "Katzen weltweit",
       "textBlock": "",
       "targetId": "catStatGlobal"
