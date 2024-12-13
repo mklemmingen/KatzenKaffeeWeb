@@ -31,6 +31,7 @@ import MentHealthToys from "@/app/_sections/catOwn/MentHealthToys";
 import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
 import CategoryDropdown from "@/app/_components/CategoryDropdown";
 import PolaroidBackground from "@/app/_components/PolaroidBackground";
+import ChatBot from "@/app/_components/ChatBot";
 
 const PageContent = () => {
     const [isClient, setIsClient] = useState(false);
@@ -71,6 +72,7 @@ const PageContent = () => {
         <div>
             <CategoryDropdown />
             <BackToStartButton/>
+            <ChatBot />
             <div className="intro-section">
                 <Introduction id="start"/>
             </div>
@@ -97,6 +99,7 @@ const PageContent = () => {
             </div>
             <div id={'bird-protection'} className="section">
                 <CatAnimation numberOfCats={5}/>
+                <BirdAnimation numberOfBirds={40}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <CatEffectNature/>

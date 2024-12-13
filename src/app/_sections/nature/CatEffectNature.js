@@ -27,6 +27,7 @@ function CatEffectNature() {
                         zeigen, dass Katzen jedes Jahr <strong>1,3–4 Milliarden Vögel</strong> und <strong>6,3–22,3
                         Milliarden Säugetiere</strong> allein in den USA töten.
                     </p>
+                    <CatBirdImpact className="catbird-impact"/>
                     <p>
                         In Deutschland gibt es Gesetze und Initiativen, um die Anzahl der streunenden Katzen zu
                         kontrollieren. Eine wichtige Maßnahme ist die <strong>Kastrationspflicht</strong>. Das bedeutet,
@@ -60,11 +61,9 @@ function CatEffectNature() {
                         Haltungsformen abwägen und Maßnahmen ergreifen, um die Umwelt zu schützen.
                     </p>
                 </div>
-                <div className="side-content">
-                    <CatBirdImpact/>
-                </div>
             </div>
             <BookRecommendation
+                className="book-recommendation"
                 imageUrl="https://directory.doabooks.org/bitstream/handle/20.500.12854/113510/9781557538888.jpg?sequence=1&isAllowed=y"
                 bookUrl="https://directory.doabooks.org/handle/20.500.12854/113510"
                 title="Cats and Conservationists: Die Debatte darüber, wem die Natur gehört"

@@ -37,52 +37,50 @@ function Support() {
 
   return (
     <div className="support-container">
-      <h1 className="header">Support</h1>
-      <p>Willkommen auf unserer Support-Seite! Hier findest du Antworten zu häufig gestellten Fragen und unsere Kontaktdaten.</p>
+      <div className="support-text">
+        <h1 className="header">Support</h1>
+        <p>Willkommen auf unserer Support-Seite! Hier findest du Antworten zu häufig gestellten Fragen und unsere Kontaktdaten.</p>
 
-      <section className="faq">
-        <h2 className="sub-header">Häufig gestellte Fragen</h2>
-        <div className="faq-item">
-          <h3 className="ueberschrift">Was bedeutet nachhaltige Katzenhaltung?</h3>
-          <p>Nachhaltige Katzenhaltung bedeutet, die Bedürfnisse deiner Katze auf eine umweltfreundliche Weise zu erfüllen.</p>
-        </div>
-        <div className="faq-item">
-          <h3 className="ueberschrift">Welche Produkte sind am besten für eine nachhaltige Fütterung?</h3>
-          <p>Für eine nachhaltige Ernährung empfehlen wir Bio-Produkte und Futter mit regionalen Zutaten.</p>
-        </div>
-        <div className="faq-item">
-          <h3 className="ueberschrift">Wie kann ich Kontakt aufnehmen?</h3>
-          <p>Du kannst uns über das Kontaktformular erreichen oder eine E-Mail an schnurren@katzen-cafe.de senden.</p>
-        </div>
-        <div className="faq-item">
-          <div className="ueberschrift">Welches Katzenstreu ist umweltfreundlich?</div>
-          <p>Vermeide Streu aus Ton oder Silikat. Wir empfehlen biologisch abbaubare Optionen wie Holzpellets oder Maiskörner.</p>
-        </div>
-      </section>
+        <section className="faq">
+            <h2 className="sub-header">Häufig gestellte Fragen</h2>
+            <div className="faq-item">
+                <h3 className="ueberschrift">Was bedeutet nachhaltige Katzenhaltung?</h3>
+                <p>Nachhaltige Katzenhaltung bedeutet, die Bedürfnisse deiner Katze auf eine umweltfreundliche Weise zu erfüllen.</p>
+                  </div>
+                    <div className="faq-item">
+                        <h3 className="ueberschrift">Welche Produkte sind am besten für eine nachhaltige Fütterung?</h3>
+                        <p>Für eine nachhaltige Ernährung empfehlen wir Bio-Produkte und Futter mit regionalen Zutaten.</p>
+                    </div>
+                    <div className="faq-item">
+                        <h3 className="ueberschrift">Wie kann ich Kontakt aufnehmen?</h3>
+                        <p>Du kannst uns über das Kontaktformular erreichen oder eine E-Mail an schnurren@katzen-cafe.de senden.</p>
+                    </div>
+                    <div className="faq-item">
+                        <div className="ueberschrift">Welches Katzenstreu ist umweltfreundlich?</div>
+                        <p>Vermeide Streu aus Ton oder Silikat. Wir empfehlen biologisch abbaubare Optionen wie Holzpellets oder Maiskörner.</p>
+                  </div>
+        </section>
+    </div>
+      <div className="contact-number-and-form">
+          <section className="contact">
+              <h2 className="header">Kontaktmöglichkeiten</h2>
+              <p>
+                  Marty Lauterbach <br/>
+                  Alteburgstraße 150, <br/>
+                  72762 Reutlingen,<br/>
+                  Germany<br/>
+              </p>
+              <ul>
+                  <li>
+                    <a href="mailto:MKL7543@duck.com">Email: MKL7543@duck.com</a>
+                  </li>
+                </ul>
+              </section>
 
-      <section className="contact">
-        <h2>Kontaktmöglichkeiten</h2>
-        <ul>
-          <li>
-            <a href="mailto:schnurren@katzen-cafe.de">Email: schnurren@katzen-cafe.de</a>
-          </li>
-          <li>
-            <a
-              onCopy={(e) => {
-                navigator.clipboard.writeText("+49123456789");
-                alert('Telefonnummer wurde in die Zwischenablage kopiert.');
-              }}
-            >
-              Telefon: +49 (0) 123 456 789
-            </a>
-          </li>
-        </ul>
-      </section>
+              <SupportContactForm />
 
-      <SupportContactForm />
-      <ChatBot />
-
-      {responseMessage && <p className="response-message">{responseMessage}</p>}
+            {responseMessage && <p className="response-message">{responseMessage}</p>}
+        </div>
     </div>
   );
 }

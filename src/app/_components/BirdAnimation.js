@@ -41,7 +41,7 @@ const getFrameStyle = (sprite, category, frame, isMirrored, x, y) => {
         backgroundPosition: `-${frame * frameSize}px -${row * frameSize}px`,
         width: `${frameSize}px`,
         height: `${frameSize}px`,
-        transform: `${isMirrored ? 'scaleX(-1)' : 'none'} scale(2)`,
+        transform: `${isMirrored ? 'scaleX(-1)' : 'none'} `,
         transformOrigin: 'center center',
         left: `${x}px`,
         top: `${y}px`,
@@ -90,9 +90,10 @@ const BirdAnimation = ({ numberOfBirds }) => {
             const distanceY = bird.targetY - bird.y;
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
+            bird.isMirrored = distanceX  > 0; // Mirror if moving east
+
             if (distance > 10) {
                 const angle = Math.atan2(distanceY, distanceX);
-                bird.isMirrored = distanceX < 0; // Mirror if moving westwards
                 bird.x += Math.cos(angle) * bird.speed;
                 bird.y += Math.sin(angle) * bird.speed;
             } else if (bird.category !== 'sitting') {
@@ -108,7 +109,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
 
             // Update frame for flying animation
             if (bird.category === 'flying') {
-                bird.frame = (bird.frame + 1) % 4; // Assuming there are 4 frames for flying
+                bird.frame = (bird.frame + 1) % 4;
             }
 
             return { ...bird };
