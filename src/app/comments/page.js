@@ -30,6 +30,7 @@ const Page = () => {
                     name: experience.name,
                     email: experience.email,
                     body: experience.experience,
+                    time: experience.time,
                     image: images[Math.floor(Math.random() * images.length)]
                 }));
                 setComments(experiences);
@@ -125,7 +126,7 @@ const Page = () => {
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <div className="aufgabe4-container">
-                <ul>
+                <ul className="comments-list">
                     <li className="comment-item">
                         <form onSubmit={handleSubmit} className="comment-form">
                             <label className="user-experience-input">
@@ -170,7 +171,7 @@ const Page = () => {
                             </div>
                         </form>
                     </li>
-                    {comments.map(comment => (
+                    {comments.slice().reverse().map(comment => (
                         <li key={comment.id} className="comment-item">
                             <Image
                                 src={`/assets/animals_images/images/${comment.image}`}
@@ -180,6 +181,9 @@ const Page = () => {
                             />
                             <h2>{comment.name}</h2>
                             <p><strong>Email:</strong> {comment.email}</p>
+                            {comment.time && (
+                                <p><strong>Tag:</strong> {new Date(comment.time).toLocaleDateString('en-GB')}</p>
+                            )}
                             <p>{comment.body}</p>
                         </li>
                     ))}

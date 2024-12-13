@@ -18,7 +18,7 @@ export async function POST(req) {
         const { name, email, experience } = await req.json();
         console.log('Received experience:', { name, email, experience });
 
-        const query = 'INSERT INTO experiences (name, email, experience) VALUES ($1, $2, $3)';
+        const query = 'INSERT INTO experiences (name, email, experience, time) VALUES ($1, $2, $3, NOW())';
         const values = [name, email, experience];
 
         await client.query(query, values);
