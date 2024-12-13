@@ -54,6 +54,8 @@ const Introduction = () => {
                 Katzenpopulation in Deutschland, <span className="highlight">nachhaltige Ernährung</span> und
                 Bioprodukte sowie die Auswirkungen von freilaufenden Katzen auf die Umwelt. Gemeinsam können wir
                 einen positiven Beitrag für unsere Katzen und die Natur leisten.
+            </div>
+            <div className="tipps">
                 <span className="inline-icon-text">
                     <FaMap/>  Nutzen Sie das Icon, um zu den verschiedenen Abschnitten zu springen.
                 </span>

@@ -6,7 +6,7 @@
     color: var(--text-color);
     pointer-events: none;
     align-items: center;
-    max-width: 75%;
+    max-width: 90%;
 }
 
 .intro_header_and_text {
@@ -15,7 +15,6 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 60%;
     flex: 1;
     pointer-events: none;
 }
@@ -80,6 +79,39 @@
     .introduction h2 {
         font-size: 2em;
     }
+}
+
+.tipps {
+    margin-top: 1%;
+    width: 60%;
+    font-size: 1.5em;
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    line-height: 2;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    position: relative;
+    pointer-events: all;
+}
+
+.tipps::before {
+    content: '';
+    position: absolute;
+    top: -3%;
+    left: -3%;
+    width: 106%;
+    height: 106%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2); /* Aura effect */
+    background-color: var(--secondary-color);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .intro_footer {
