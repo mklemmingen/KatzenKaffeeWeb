@@ -117,12 +117,37 @@ const isColliding = (rect1, rect2) => {
     );
 };
 
+const playRandomMeow = () => {
+    const randomMeow = meowSounds[Math.floor(Math.random() * meowSounds.length)];
+    const audio = new Audio(randomMeow);
+    audio.play().then(() => {
+        console.log('Meow sound played successfully');
+    }).catch(error => {
+        console.error('Error playing meow sound:', error);
+    });
+};
+
 const CatAnimation = ({ numberOfCats }) => {
     const canvasRef = useRef(null);
     const [hoveredCat, setHoveredCat] = useState(false);
     const frameRate = 8;
     const frameDuration = 1000 / frameRate;
     const lastFrameTime = useRef(0);
+
+    const handleCatClick = (cat, event) => {
+        if (!canvasRef.current) return;
+        const rect = canvasRef.current.getBoundingClientRect();
+        const mouseX = event.clientX - rect.left;
+        const mouseY = event.clientY - rect.top;
+
+        if (isColliding(cat, { x: mouseX, y: mouseY, width: 1, height: 1 })) {
+            playRandomMeow();
+            cat.targetX = Math.random() * canvasRef.current.width;
+            cat.targetY = Math.random() * canvasRef.current.height;
+            cat.category = categories.find(category => category.name === 'running');
+            cat.speed = speeds['running'];
+        }
+    };
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -379,9 +404,16 @@ const CatAnimation = ({ numberOfCats }) => {
 
         canvas.addEventListener('mousemove', handleMouseMove);
 
+        const handleClick = (event) => {
+            cats.forEach(cat => handleCatClick(cat, event));
+        };
+
+        canvas.addEventListener('click', handleClick);
+
         return () => {
             clearInterval(directionInterval);
             canvas.removeEventListener('mousemove', handleMouseMove);
+            canvas.removeEventListener('click', handleClick);
         };
     }, [numberOfCats, frameDuration]);
 
