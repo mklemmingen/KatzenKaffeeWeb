@@ -20,6 +20,13 @@ const birdSprites = {
     woodThrush: '/assets/birds/spritesheet_wood thrush.png'
 };
 
+const birdSounds = {
+    bird1: '/assets/birds/sounds/bird1.mp3',
+    bird2: '/assets/birds/sounds/bird2.mp3',
+    bird3: '/assets/birds/sounds/bird3.mp3',
+    bird4: '/assets/birds/sounds/bird4.mp3',
+}
+
 const categories = {
     flying: 4,
     walking: 2,
@@ -78,6 +85,17 @@ const BirdAnimation = ({ numberOfBirds }) => {
         bird.stateTimer = Math.random() * 5000 + 5000; // Reset state timer
     }, []);
 
+    const handleBirdClick = (birdType) => {
+        const soundKeys = Object.keys(birdSounds);
+        const randomSoundKey = soundKeys[Math.floor(Math.random() * soundKeys.length)];
+        const audio = new Audio(birdSounds[randomSoundKey]);
+        audio.play().then(() => {
+            console.log('Audio played successfully');
+        }).catch((error) => {
+            console.error('Error playing audio:', error);
+        });
+    };
+
     const animate = useCallback((timestamp) => {
         if (timestamp - lastFrameTime.current < frameDuration) {
             requestAnimationFrame(animate);
@@ -127,7 +145,8 @@ const BirdAnimation = ({ numberOfBirds }) => {
             {birds.map((bird, index) => {
                 const sprite = birdSprites[bird.type];
                 const style = getFrameStyle(sprite, bird.category, bird.frame, bird.isMirrored, bird.x, bird.y);
-                return <div key={index} style={style} className="bird-animation-frame"></div>;
+                return <div key={index} style={style} className="bird-animation-frame"
+                            onClick={() => handleBirdClick(bird.type)}></div>;
             })}
         </div>
     );

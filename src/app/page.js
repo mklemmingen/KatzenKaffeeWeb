@@ -12,11 +12,6 @@ import BirdAnimation from '@/app/_components/BirdAnimation';
 import CatAnimation from '@/app/_components/CatAnimation';
 import { FaArrowAltCircleUp } from "react-icons/fa";
 
-// _data -----------------------------------------------------
-import catAndNature from "@/app/_data/catAndNature.json";
-import catOwning from "@/app/_data/catOwning.json";
-import statisticSection from "@/app/_data/statisticSections.json";
-
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";
 import StatCatGreek from "@/app/_sections/stat/StatCatGreek";
@@ -77,28 +72,28 @@ const PageContent = () => {
                 <Introduction id="start"/>
             </div>
             <div id={"catStatGermany"} className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <StatCatGermany/>
                 </div>
             </div>
             <div id={'sustainable-diet'} className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <SustCatOwn/>
                 </div>
             </div>
             <div id={'cat-litter'} className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <EcoLitter/>
                 </div>
             </div>
             <div id={'bird-protection'} className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={20}/>
                 <BirdAnimation numberOfBirds={40}/>
                 <PolaroidBackground/>
                 <div className="section-content">
@@ -106,35 +101,35 @@ const PageContent = () => {
                 </div>
             </div>
             <div id="mental-health" className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <MentHealthToys/>
                 </div>
             </div>
             <div id="energy-efficient-cat-care" className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <EneffCare/>
                 </div>
             </div>
             <div id="shelter-support" className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <SuppShelter/>
                 </div>
             </div>
             <div id={"catStatGlobal"} className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <StatCatGlobal/>
                 </div>
             </div>
             <div id={"catStatGreek"} className="section">
-                <CatAnimation numberOfCats={5}/>
+                <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <StatCatGreek/>
