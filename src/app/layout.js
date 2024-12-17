@@ -1,6 +1,8 @@
 import Header from '@/app/_components/Header';
 import Footer from '@/app/_components/Footer';
 import ScrollProgress from '@/app/_components/ScrollProgress';
+import { SpeedInsights } from "@vercel/speed-insights/next"
+
 
 import '@/app/_styles/generalOrder.css';
 import '@/app/globals.css';
@@ -18,6 +20,7 @@ function Layout({ children }) {
             <div className="spacer header-spacer" />
             <div className="pages">
                 {children}
+                <SpeedInsights />
             </div>
             <div className="spacer footer-spacer" />
             <Footer className="footer" />
