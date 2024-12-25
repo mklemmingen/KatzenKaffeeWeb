@@ -2,7 +2,8 @@
     font-family: 'Pacifico', cursive;
     color: var(--primary-color);
     font-size: 2em;
-    margin: 2%;
+    margin-bottom: 10px;
+    margin-top: 0 !important;
     text-align: center;
 }
 

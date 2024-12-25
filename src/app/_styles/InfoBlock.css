@@ -91,6 +91,11 @@ body {
     -webkit-box-orient: vertical;
 }
 
+.text-content {
+    display: inline-flex;
+}
+
+
 /* Styling for the paragraph text */
 .text-content p {
     margin: 0 0 16px;

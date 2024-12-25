@@ -28,6 +28,35 @@ function Page() {
                     </li>
                 </ul>
             </div>
+            <h1 className="playful-header">Bildnachweise</h1>
+            <div className="credits-section">
+                <ul>
+                    <li>
+                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/fox_17593695')}>
+                            Fuchs Icon <br/>
+                            https://www.flaticon.com/free-icon/fox_17593695
+                        </span>
+                    </li>
+                    <li>
+                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/bird_15622967')}>
+                            Vogel Icon <br/>
+                            https://www.flaticon.com/free-icon/bird_15622967
+                        </span>
+                    </li>
+                    <li>
+                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/opossum_11880015')}>
+                            Opossum Icon <br/>
+                            https://www.flaticon.com/free-icon/opossum_11880015
+                        </span>
+                    </li>
+                    <li>
+                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/cat_1864640')}>
+                            Katze Icon <br/>
+                            https://www.flaticon.com/free-icon/cat_1864640
+                        </span>
+                    </li>
+                </ul>
+            </div>
             <h1 className="playful-header">Woher kamen die Informationen?</h1>
             <div className="credits-section">
                 <p className="readable-text">Wir haben uns auf die Forschung gestützt!</p>

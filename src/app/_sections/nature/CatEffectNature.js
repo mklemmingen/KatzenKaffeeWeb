@@ -23,8 +23,9 @@ function CatEffectNature() {
                     <h1 className="header">Schutz der Vogelwelt</h1>
                     <p>
                         Katzen sind von Natur aus Jäger. Ihr Jagdinstinkt ist tief verwurzelt und sie können ihn nicht
-                        einfach abstellen. Leider führt dies dazu, dass sie viele Vögel fangen und töten. Studien
-                        zeigen, dass Katzen jedes Jahr <strong>1,3–4 Milliarden Vögel</strong> und <strong>6,3–22,3
+                        einfach abstellen. Leider führt dies dazu, dass sie viele Vögel aus Überlebens- und Unterhaltungsinstinkt töten.
+
+                        Studien zeigen, dass Katzen jedes Jahr <strong>1,3–4 Milliarden Vögel</strong> und <strong>6,3–22,3
                         Milliarden Säugetiere</strong> allein in den USA töten.
                     </p>
                     <CatBirdImpact className="catbird-impact"/>
