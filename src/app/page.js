@@ -27,6 +27,7 @@ import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
 import CategoryDropdown from "@/app/_components/CategoryDropdown";
 import PolaroidBackground from "@/app/_components/PolaroidBackground";
 import ChatBot from "@/app/_components/ChatBot";
+import CatChatDropdown from "@/app/_components/CatChatDropdown";
 
 const PageContent = () => {
     const [isClient, setIsClient] = useState(false);
@@ -67,7 +68,7 @@ const PageContent = () => {
         <div>
             <CategoryDropdown/>
             <BackToStartButton/>
-            <ChatBot/>
+            <CatChatDropdown/>
             <div className="intro-section">
                 <Introduction id="start"/>
             </div>

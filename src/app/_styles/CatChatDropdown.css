@@ -1,0 +1,31 @@
+.catChat-dropdown .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--secondary-color);
+    min-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 600;
+    color: var(--text-color);
+}
+
+.catChat-dropdown .dropdown-content.show {
+    display: block;
+}
+
+.catChat-dropdown {
+    position: fixed;
+    bottom: 59.95%;
+    right: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.catChat-dropdown:hover {
+    background-color: var(--primary-color);
+}
