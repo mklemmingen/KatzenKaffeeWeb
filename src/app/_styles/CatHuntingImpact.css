@@ -7,18 +7,18 @@
 
 .chart-content {
     display: flex;
-    flex-direction: row; /* Ensure items are in a row */
+    flex-direction: row; /* items are in a row */
     align-items: center;
     justify-content: center;
     width: 100%;
-    flex-wrap: nowrap; /* Prevent wrapping */
+    flex-wrap: nowrap; /* Prevents wrapping */
 }
 
 .chart-legend {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    max-width: 300px; /* Adjust as needed */
+    max-width: 300px;
 }
 
 .title, .description, .source {
@@ -41,7 +41,7 @@
 
 @media (max-width: 768px) {
     .chart-content {
-        flex-direction: column; /* Stack items vertically on small screens */
+        flex-direction: column; /* Stacking items vertically on small screens */
         align-items: center;
     }
 

@@ -65,9 +65,9 @@ const PageContent = () => {
 
     return (
         <div>
-            <CategoryDropdown />
+            <CategoryDropdown/>
             <BackToStartButton/>
-            <ChatBot />
+            <ChatBot/>
             <div className="intro-section">
                 <Introduction id="start"/>
             </div>
@@ -85,19 +85,19 @@ const PageContent = () => {
                     <SustCatOwn/>
                 </div>
             </div>
-            <div id={'cat-litter'} className="section">
-                <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
-                <div className="section-content">
-                    <EcoLitter/>
-                </div>
-            </div>
             <div id={'bird-protection'} className="section">
                 <CatAnimation numberOfCats={20}/>
                 <BirdAnimation numberOfBirds={40}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <CatEffectNature/>
+                </div>
+            </div>
+            <div id={'cat-litter'} className="section">
+                <CatAnimation numberOfCats={10}/>
+                <PolaroidBackground/>
+                <div className="section-content">
+                    <EcoLitter/>
                 </div>
             </div>
             <div id="mental-health" className="section">
@@ -146,7 +146,7 @@ const Page = () => {
                 Loading...
             </div>
         }>
-            <PageContent />
+            <PageContent/>
         </Suspense>
     );
 };
