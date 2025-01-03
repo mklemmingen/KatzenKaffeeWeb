@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from "react-chartjs-2";
-import '../_styles/statCatGermany.css';
-import CatAnimation from "@/app/_components/CatAnimation";
-import BirdAnimation from "@/app/_components/BirdAnimation";
 
 function StatCatGermany() {
     const years = [
@@ -62,24 +59,17 @@ function StatCatGermany() {
 
     return (
         <div>
-            <div className="full-container">
+            <div>
                 <h2 className="header">Anzahl der Hauskatzen in Deutschland</h2>
-            </div>
-            <div className="full-container">
-                <div className="left-stat-container">
-                    <h3 className="header">Beliebtheit und Bedeutung</h3>
-                    <p>Die Zahl der Katzen in deutschen Haushalten ist von 7 Millionen im Jahr 2000 auf über 15 Millionen im Jahr 2023 gestiegen. Katzen sind über Jahrhunderte aufgrund ihres unabhängigen Charakters und geringen Pflegeaufwands zu einem treuen Begleiter des Menschen geworden. Die Vierbeiner beeinflussen auch zunehmend das Ökosystem, indem sie Nagetiere regulieren, aber auch eine Gefahr für Vögel darstellen. Besonders Streunerkatzen, die in Städten leben, stellen eine Herausforderung für die Biodiversität dar.</p>
-                </div>
-                <div className="right-stat-container">
+                <p>Die Zahl der Katzen in deutschen Haushalten ist von <b>7 Millionen</b> im Jahr 2000 auf über <b>15 Millionen</b> im Jahr 2023 gestiegen. Katzen sind über Jahrhunderte aufgrund ihres unabhängigen Charakters und geringen Pflegeaufwands zu einem treuen Begleiter des Menschen geworden. Die Vierbeiner beeinflussen auch zunehmend das Ökosystem, indem sie Nagetiere regulieren, aber auch eine Gefahr für Vögel darstellen. Besonders Streunerkatzen, die in Städten leben, stellen eine Herausforderung für die <b>Biodiversität</b> dar.</p>
+                <br/>
+                <h3 className="header">Entwicklung 2000 - 2023</h3>
 
-                    <h3 className="date">2000 - 2023</h3>
+                <Line data={data} options={options} />
 
-                    <Line data={data} options={options} />
-
-                    <p className="source">Quelle: https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/</p>
-                    <br/>
-                </div>
-            </div>
+                <p className="source">Quelle: https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/ (Quelle ersetzen)</p>
+                <br/>
+        </div>
         </div>
     );
 }
