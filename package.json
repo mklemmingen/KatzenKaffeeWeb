@@ -26,7 +26,8 @@
     "react-youtube": "^10.1.0",
     "recharts": "^2.15.0",
     "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^5.1.7",
+    "three": "^0.172.0"
   },
   "devDependencies": {
     "@rive-app/canvas": "^2.9.2",

@@ -26,13 +26,20 @@ function Page() {
                             Pop Shop von https://pop-shop-packs.itch.io/
                         </span>
                     </li>
+                    <li>
+                        <span className="playful-keyword">Katzenpfoten-Minigame <br/></span>
+                        <span className="link-class" onClick={() => handleLinkClick("https://codepen.io/jonny")}>
+                            Jonny McLaughlin
+                        </span>
+                    </li>
                 </ul>
             </div>
             <h1 className="playful-header">Bildnachweise</h1>
             <div className="credits-section">
                 <ul>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/fox_17593695')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/fox_17593695')}>
                             Fuchs Icon <br/>
                             https://www.flaticon.com/free-icon/fox_17593695
                         </span>

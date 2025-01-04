@@ -11,6 +11,9 @@ import Introduction from '@/app/_components/Introduction';
 import BirdAnimation from '@/app/_components/BirdAnimation';
 import CatAnimation from '@/app/_components/CatAnimation';
 import { FaArrowAltCircleUp } from "react-icons/fa";
+import CategoryDropdown from "@/app/_components/CategoryDropdown";
+import PolaroidBackground from "@/app/_components/PolaroidBackground";
+import CatChatDropdown from "@/app/_components/CatChatDropdown";
 
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";
@@ -24,10 +27,6 @@ import EcoLitter from "@/app/_sections/catOwn/EcoLitter";
 import EneffCare from "@/app/_sections/catOwn/EneffCare";
 import MentHealthToys from "@/app/_sections/catOwn/MentHealthToys";
 import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
-import CategoryDropdown from "@/app/_components/CategoryDropdown";
-import PolaroidBackground from "@/app/_components/PolaroidBackground";
-import ChatBot from "@/app/_components/ChatBot";
-import CatChatDropdown from "@/app/_components/CatChatDropdown";
 
 const PageContent = () => {
     const [isClient, setIsClient] = useState(false);
