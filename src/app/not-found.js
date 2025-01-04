@@ -1,21 +1,22 @@
 "use client";
 
 import React from "react";
+import "@/app/_styles/NotFound.css";
 
 const NotFoundPage = () => {
 
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: '100vh',
-            textAlign: 'center'
-        }}>
-            <h1>Not Found</h1>
-            <p>The page you are looking for does not exist. Take a Cat!</p>
-            <img src="/assets/img/404.jpg" alt="Image of a Cat saying 404 Error" style={{width: '60%', height: '60%'}}/>
+        <div className="NotFoundPage">
+            <h1 className="NotFound">Not Found</h1>
+            <p className="NotFoundText">The page you are looking for does not exist. Take a Cat!</p>
+            <div id="marco">
+                <div id="cielo"></div>
+                <div id="luna"></div>
+                <div id="gato"></div>
+                <div id="muro"></div>
+                <div id="edificios"></div>
+            </div>
+            <p className="FindersKeepers"> Art by Eva (https://codepen.io/SoyEva/pen/LRjWze)</p>
         </div>
     );
 };

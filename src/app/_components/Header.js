@@ -76,49 +76,49 @@ function Header() {
 
     return (
         <header className="App-header">
-            <div className="logo-container">
-                <Image src="/assets/svg/cat-halloween-kitty-svgrepo-com.svg"
-                       className="App-logo" alt="logo" onClick={handleLogoClick}
-                       width={50} height={50} />
-                <Link href="/" className="App-logo" onClick={handleLogoClick}>
-                    KatzenKaffee.de</Link>
-            </div>
-            <button className="menuToggle" onClick={toggleMenu}>
-              <IoMenu />
-            </button>
-            <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
-
-                <div className="button-container">
-
-                    <div className="switch-container">
-                        <label className="switch">
-                            <input id="contrast-switch" type="checkbox" checked={isHighContrast}
-                                   onChange={handleToggle}/>
-                            <span className="slider logo-slider">
-                                <MdDarkMode className="slider-icon"/>
-                             </span>
-                        </label>
-                    </div>
-
-                    <Link href="/comments" className="App-button">
-                        <FaComment/></Link>
-
-                    <button className="App-button music-button"
-                            onClick={handlePlay}><FaMusic/></button>
-
+                <div className="logo-container">
+                    <Image src="/assets/svg/cat-halloween-kitty-svgrepo-com.svg"
+                           className="App-logo" alt="logo" onClick={handleLogoClick}
+                           width={50} height={50} />
+                    <Link href="/" className="App-logo" onClick={handleLogoClick}>
+                        KatzenKaffee.de</Link>
                 </div>
-            </nav>
-            <YouTube
-                videoId="jfKfPfyJRdk"
-                opts={{
-                    height: '0',
-                    width: '0',
-                    playerVars: {
-                        autoplay: 1,
-                    },
-                }}
-                onReady={onPlayerReady}
-            />
+                <button className="menuToggle" onClick={toggleMenu}>
+                  <IoMenu />
+                </button>
+                <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
+
+                    <div className="button-container">
+
+                        <div className="switch-container">
+                            <label className="switch">
+                                <input id="contrast-switch" type="checkbox" checked={isHighContrast}
+                                       onChange={handleToggle}/>
+                                <span className="slider logo-slider">
+                                    <MdDarkMode className="slider-icon"/>
+                                 </span>
+                            </label>
+                        </div>
+
+                        <Link href="/comments" className="App-button">
+                            <FaComment/></Link>
+
+                        <button className="App-button music-button"
+                                onClick={handlePlay}><FaMusic/></button>
+
+                    </div>
+                </nav>
+                <YouTube
+                    videoId="jfKfPfyJRdk"
+                    opts={{
+                        height: '0',
+                        width: '0',
+                        playerVars: {
+                            autoplay: 1,
+                        },
+                    }}
+                    onReady={onPlayerReady}
+                />
         </header>
     );
 }
