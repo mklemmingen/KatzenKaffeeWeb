@@ -4,19 +4,19 @@ import '../../_sections/_styles/eneffCare.css';
 
 function EneffCare() {
     return (
-        <div className="outer-container">
-            <div className="full-container-headline">
+        <div className="outer-container-eneffCare">
+            <div className="full-container-headline-eneffCare">
                 <h1 className="header">Energieeffiziente Katzenhaltung: Nachhaltigkeit im Alltag</h1>
             </div>
 
-            <div className="full-container">
-                <div className="left-container">
+            <div className="full-container-eneffCare">
+                <div className="left-container-eneffCare">
                     <p>
                         Energieeffiziente Katzenhaltung trägt maßgeblich zum Umweltschutz bei, indem sie den Energieverbrauch im Haushalt reduziert und nachhaltige Praktiken fördert. Es gibt verschiedene Möglichkeiten, die Energieeffizienz zu verbessern, etwa durch die Nutzung energieeffizienter Beleuchtung, Heiz- und Kühlsysteme sowie durch den Kauf umweltfreundlicher Katzenprodukte.
                     </p>
 
                     {}
-                    <h2 className="sub-header">Tipps zur Energieeffizienz</h2>
+                    <h2 className="sub-header-eneffCare">Tipps zur Energieeffizienz</h2>
                     <ul>
                         <li><strong>Energieeffiziente Beleuchtung:</strong> Verwende LED-Lampen in Bereichen, in denen deine Katze sich häufig aufhält. Diese Lampen verbrauchen weniger Energie und haben eine längere Lebensdauer.</li>
                         <li><strong>Heiz- und Kühlsysteme:</strong> Stelle sicher, dass deine Heiz- und Kühlsysteme energieeffizient sind. Eine gut isolierte Wohnung hilft, den Energieverbrauch zu senken und bietet deiner Katze gleichzeitig ein angenehmes Klima.</li>
@@ -24,13 +24,13 @@ function EneffCare() {
                     </ul>
 
                     {}
-                    <h2 className="sub-header">Katzenklappen und Energieeffizienz</h2>
+                    <h2 className="sub-header-eneffCare">Katzenklappen und Energieeffizienz</h2>
                     <ul>
                         Eine Katzenklappe kann den Energieverbrauch beeinflussen, besonders in gut isolierten Häusern. Moderne Katzenklappen sind so konzipiert, dass sie luftdicht schließen und Wärmeverluste minimieren. Einige Modelle nutzen RFID-Chips oder Bewegungssensoren, um nur für deine Katze zu öffnen, was die Energieeffizienz weiter verbessert.
                     </ul>
 
                     {}
-                    <h2 className="sub-header">Weitere nachhaltige Praktiken</h2>
+                    <h2 className="sub-header-eneffCare">Weitere nachhaltige Praktiken</h2>
                     <ul>
                         <li><strong>Recycling und Wiederverwendung:</strong> Verwende alte Kartons und Stoffreste als Spielzeug oder Schlafplätze für deine Katze. Das reduziert Abfall und bietet deiner Katze gleichzeitig Abwechslung.</li>
                         <li><strong>Wasser sparen:</strong> Achte darauf, dass deine Katze immer frisches Wasser hat, aber vermeide unnötigen Wasserverbrauch, indem du z.B. eine Trinkbrunnen mit automatischer Abschaltung verwendest.</li>
@@ -38,22 +38,22 @@ function EneffCare() {
                 </div>
 
                 {}
-                <div className="right-container">
-                    <div className="image-block">
+                <div className="right-container-eneffCare">
+                    <div className="image-block-eneffCare">
                         <img
                             src="/assets/img/pexels-curly-woman-with-charming-cat-6001208.jpg"
                             alt="Curly woman with a charming cat"
                             className="styled-image"
                         />
                     </div>
-                    <div className="image-block">
+                    <div className="image-block-eneffCare">
                         <img
                             src="/assets/img/pexels-wojciech-kumpicki-1084687-2071873.jpg"
                             alt="Cat doing cat things"
                             className="styled-image"
                         />
                     </div>
-                    <div className="image-block">
+                    <div className="image-block-eneffCare">
                         <img
                             src="/assets/img/pexels-tubiderler-18896527.jpg"
                             alt="Cat watching out of window"

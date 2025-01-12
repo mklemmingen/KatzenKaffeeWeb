@@ -1,35 +1,35 @@
-.full-container {
+.full-container-sustCatOwn {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-content: center;
     column-gap: 50px;
 }
-.full-container-headline {
+.full-container-headline-sustCatOwn {
     display: flex;
     flex-direction: row;
     justify-content: left;
     column-gap: 10px;
 }
-.outer-container {
+.outer-container-sustCatOwn {
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
 }
-.left-container {
+.left-container-sustCatOwn {
     flex: 1 1 65%;
     max-width: 65%;
   }
-.right-container {
+.right-container-sustCatOwn {
     flex: 1 1 35%;
     max-width: 35%;
   }
-  .video-container {
+  .video-container-sustCatOwn {
     text-align: left;
     margin: 30px 0;
   }
   
-  .video-button {
+  .video-button-sustCatOwn {
     background-color: var(--primary-color); 
     color: white;
     font-size: 1rem;
@@ -40,23 +40,23 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
-  .video-button:hover {
-    background-color: #4e3b5a;
+  .video-button-sustCatOwn:hover {
+    background-color: var(--primary-color);
     transform: scale(1.05);
   }
-  .sub-header {
+  .sub-header-sustCatOwn {
     font-family: 'Pacifico', cursive;
     color: var(--primary-color);
     font-size: 1.5em;
     margin: 2%;
     text-align: center;
 }
-  .video-button:active {
+  .video-button-sustCatOwn:active {
     transform: scale(0.98);
   }
-  .recipe-text {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+  .recipe-text-sustCatOwn {
+    background-color: white;
+    border: 1px solid white;
     padding: 15px;
     margin: 20px 0;
     border-radius: 8px;
@@ -64,21 +64,21 @@
     font-size: 1rem;
 }
 
-.recipe-text strong {
+.recipe-text-sustCatOwn strong {
     color: var(--primary-color);
 }
 
-.recipe-text ul {
+.recipe-text-sustCatOwn ul {
     margin-left: 20px;
     padding-left: 10px;
 }
 
-.recipe-text p {
+.recipe-text-sustCatOwn p {
     margin-bottom: 10px;
 }
 
 
   
-.source {
+.source-sustCatOwn {
     font-size: 12px;
 }
