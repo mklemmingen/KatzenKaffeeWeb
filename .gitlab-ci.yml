@@ -1,0 +1,17 @@
+stages:
+  - deploy
+
+deploy-job:
+  stage: deploy
+  script:
+    - echo "Deploying application..."
+    - git config --global user.email "martin.lauterbach@student.reutlingen-university.de"
+    - git config --global user.name "mklemmingen"
+    - git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/mklemmingen/KatzenKaffeeWeb.git
+    - git add .
+    - git commit -m "Deploying application"
+    - git push origin +main
+    - echo "Application successfully deployed."
+  environment: production
+  only:
+    - main
