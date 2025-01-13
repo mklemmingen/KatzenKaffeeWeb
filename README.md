@@ -20,6 +20,7 @@
 - Main Page: Schutz der Vogelwelt (selbst erstellt)
 - Main Page: Umweltfreundliches Katzenstreu (selbst erstellt, quelle der daten in credits)
 - Main Page: Mentale Gesundheit (selbst erstellt)
+- Backend Datenbank über vercel neon, impl. sql inject prot
 
 **Meinhard Holzäpfel**
 
