@@ -6,6 +6,7 @@ function EcoLitter() {
     return (
         <div className="eco-litter-container">
             <h1 className="eco-litter-title">Umweltfreundliches Katzenstreu</h1>
+            <h2> Marty </h2>
             <p className="eco-litter-description">
                 Die Wahl des richtigen Katzenstreus kann einen großen Unterschied machen.
                 Leider gibt es viele Vor- und Nachteile zwischen den verschiedenen Arten von Katzenstreu.

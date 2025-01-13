@@ -61,15 +61,23 @@ function StatCatGermany() {
         <div>
             <div>
                 <h2 className="header">Anzahl der Hauskatzen in Deutschland</h2>
-                <p>Die Zahl der Katzen in deutschen Haushalten ist von <b>7 Millionen</b> im Jahr 2000 auf über <b>15 Millionen</b> im Jahr 2023 gestiegen. Katzen sind über Jahrhunderte aufgrund ihres unabhängigen Charakters und geringen Pflegeaufwands zu einem treuen Begleiter des Menschen geworden. Die Vierbeiner beeinflussen auch zunehmend das Ökosystem, indem sie Nagetiere regulieren, aber auch eine Gefahr für Vögel darstellen. Besonders Streunerkatzen, die in Städten leben, stellen eine Herausforderung für die <b>Biodiversität</b> dar.</p>
+                <h2> Michael </h2>
+                <p>Die Zahl der Katzen in deutschen Haushalten ist von <b>7 Millionen</b> im Jahr 2000 auf über <b>15
+                    Millionen</b> im Jahr 2023 gestiegen. Katzen sind über Jahrhunderte aufgrund ihres unabhängigen
+                    Charakters und geringen Pflegeaufwands zu einem treuen Begleiter des Menschen geworden. Die
+                    Vierbeiner beeinflussen auch zunehmend das Ökosystem, indem sie Nagetiere regulieren, aber auch eine
+                    Gefahr für Vögel darstellen. Besonders Streunerkatzen, die in Städten leben, stellen eine
+                    Herausforderung für die <b>Biodiversität</b> dar.</p>
                 <br/>
                 <h3 className="header">Entwicklung 2000 - 2023</h3>
 
-                <Line data={data} options={options} />
+                <Line data={data} options={options}/>
 
-                <p className="source">Quelle: https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/ (Quelle ersetzen)</p>
+                <p className="source">Quelle:
+                    https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/
+                    (Quelle ersetzen)</p>
                 <br/>
-        </div>
+            </div>
         </div>
     );
 }
