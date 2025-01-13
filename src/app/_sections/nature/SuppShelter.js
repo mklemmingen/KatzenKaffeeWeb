@@ -1,7 +1,6 @@
 import React from "react";
 import '../_styles/suppShelter.css';
-import CatAnimation from "@/app/_components/CatAnimation";
-import BirdAnimation from "@/app/_components/BirdAnimation";
+import '../../_sections/_styles/section.css';
 import Image from 'next/image';
 function SuppShelter() {
 

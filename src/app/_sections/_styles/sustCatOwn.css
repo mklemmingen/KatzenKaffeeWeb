@@ -16,14 +16,7 @@
     padding: 20px;
     margin: 20px;
 }
-.left-container-sustCatOwn {
-    flex: 1 1 65%;
-    max-width: 65%;
-  }
-.right-container-sustCatOwn {
-    flex: 1 1 35%;
-    max-width: 35%;
-  }
+
   .video-container-sustCatOwn {
     text-align: left;
     margin: 30px 0;
@@ -44,13 +37,6 @@
     background-color: var(--primary-color);
     transform: scale(1.05);
   }
-  .sub-header-sustCatOwn {
-    font-family: 'Pacifico', cursive;
-    color: var(--primary-color);
-    font-size: 1.5em;
-    margin: 2%;
-    text-align: center;
-}
   .video-button-sustCatOwn:active {
     transform: scale(0.98);
   }
@@ -75,10 +61,4 @@
 
 .recipe-text-sustCatOwn p {
     margin-bottom: 10px;
-}
-
-
-  
-.source-sustCatOwn {
-    font-size: 12px;
 }

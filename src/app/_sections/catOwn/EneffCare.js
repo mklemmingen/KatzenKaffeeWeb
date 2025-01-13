@@ -1,7 +1,7 @@
 import React from "react";
 import Image from 'next/image';
 import '../../_sections/_styles/eneffCare.css';
-
+import '../../_sections/_styles/section.css';
 function EneffCare() {
     return (
         <div className="outer-container-eneffCare">
@@ -16,7 +16,7 @@ function EneffCare() {
                     </p>
 
                     {}
-                    <h2 className="sub-header-eneffCare">Tipps zur Energieeffizienz</h2>
+                    <h2 className="sub-header">Tipps zur Energieeffizienz</h2>
                     <ul>
                         <li><strong>Energieeffiziente Beleuchtung:</strong> Verwende LED-Lampen in Bereichen, in denen deine Katze sich häufig aufhält. Diese Lampen verbrauchen weniger Energie und haben eine längere Lebensdauer.</li>
                         <li><strong>Heiz- und Kühlsysteme:</strong> Stelle sicher, dass deine Heiz- und Kühlsysteme energieeffizient sind. Eine gut isolierte Wohnung hilft, den Energieverbrauch zu senken und bietet deiner Katze gleichzeitig ein angenehmes Klima.</li>
@@ -24,13 +24,13 @@ function EneffCare() {
                     </ul>
 
                     {}
-                    <h2 className="sub-header-eneffCare">Katzenklappen und Energieeffizienz</h2>
+                    <h2 className="sub-heade">Katzenklappen und Energieeffizienz</h2>
                     <ul>
                         Eine Katzenklappe kann den Energieverbrauch beeinflussen, besonders in gut isolierten Häusern. Moderne Katzenklappen sind so konzipiert, dass sie luftdicht schließen und Wärmeverluste minimieren. Einige Modelle nutzen RFID-Chips oder Bewegungssensoren, um nur für deine Katze zu öffnen, was die Energieeffizienz weiter verbessert.
                     </ul>
 
                     {}
-                    <h2 className="sub-header-eneffCare">Weitere nachhaltige Praktiken</h2>
+                    <h2 className="sub-header">Weitere nachhaltige Praktiken</h2>
                     <ul>
                         <li><strong>Recycling und Wiederverwendung:</strong> Verwende alte Kartons und Stoffreste als Spielzeug oder Schlafplätze für deine Katze. Das reduziert Abfall und bietet deiner Katze gleichzeitig Abwechslung.</li>
                         <li><strong>Wasser sparen:</strong> Achte darauf, dass deine Katze immer frisches Wasser hat, aber vermeide unnötigen Wasserverbrauch, indem du z.B. eine Trinkbrunnen mit automatischer Abschaltung verwendest.</li>

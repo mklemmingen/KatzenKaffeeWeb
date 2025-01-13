@@ -2,10 +2,8 @@ import React, {useEffect} from 'react';
 
 import BookRecommendation from "@/app/_components/BookRecommendation";
 import CatBirdImpact from "@/app/_components/CatBirdImpact";
-import BirdAnimation from "@/app/_components/BirdAnimation";
-import CatAnimation from "@/app/_components/CatAnimation";
 import "@/app/_sections/_styles/catEffectNature.css";
-
+import '../../_sections/_styles/section.css';
 function CatEffectNature() {
 
     useEffect(() => {

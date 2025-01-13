@@ -1,7 +1,7 @@
 import React from "react";
 import Image from 'next/image';
 import '../../_sections/_styles/ecoLitter.css';
-
+import '../../_sections/_styles/section.css';
 function EcoLitter() {
     return (
         <div className="eco-litter-container">
