@@ -123,13 +123,6 @@ const PageContent = () => {
                     <EcoLitter/>
                 </div>
             </div>
-            <div id="mental-health" className="section">
-                <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
-                <div className="section-content">
-                    <MentHealthToys/>
-                </div>
-            </div>
             <div id="energy-efficient-cat-care" className="section">
                 <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
