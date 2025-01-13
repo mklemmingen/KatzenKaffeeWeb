@@ -5,6 +5,7 @@ function MentHealthToys() {
     return (
         <div>
             <h2 className="header">Mentale Gesundheit von Katzen - DIY-/Bio-Spielzeuge!</h2>
+            <h2> Marty </h2>
             <p>
                 Katzen lieben Abwechslung und Beschäftigung. Ein Kratzbaum und interaktive Spielzeuge
                 können helfen, Ihre Katze geistig fit und glücklich zu halten. <br/>

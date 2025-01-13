@@ -5,9 +5,7 @@ function EneffCare() {
     return (
         <div>
             <h2>Energie-effiziente Pflege</h2>
-            <p>
-                TODO
-            </p>
+            <h2> Meinhard </h2>
             <p>
                 Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
                 sed diam nonumy eirmod tempor invidunt ut labore et dolore

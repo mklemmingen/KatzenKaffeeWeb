@@ -57,14 +57,20 @@ function StatCatGlobal() {
         <div>
             <div>
                 <h2 className="header">Vergleich der Katzenpopulation in Europa</h2>
-                <p>Die größte Katzenpopulation Europas wurde im Jahr 2022 in <b>Russland</b> gezählt, wo etwa <b>23,3 Millionen</b> Katzen lebten. <b>Deutschland</b> belegte den zweiten Platz mit einer geschätzten Katzenpopulation von <b>15,2 Millionen</b> Tieren. Auf dem dritten Platz folgte <b>Frankreich</b> mit schätzungsweise <b>14,9 Millionen</b> Katzen. 
-                Insgesamt leben in den betrachteten europäischen Ländern über <b>129 Millionen</b> Katzen.</p>
+                <h2> Michael </h2>
+                <p>Die größte Katzenpopulation Europas wurde im Jahr 2022 in <b>Russland</b> gezählt, wo etwa <b>23,3
+                    Millionen</b> Katzen lebten. <b>Deutschland</b> belegte den zweiten Platz mit einer geschätzten
+                    Katzenpopulation von <b>15,2 Millionen</b> Tieren. Auf dem dritten Platz
+                    folgte <b>Frankreich</b> mit schätzungsweise <b>14,9 Millionen</b> Katzen.
+                    Insgesamt leben in den betrachteten europäischen Ländern über <b>129 Millionen</b> Katzen.</p>
                 <br/>
                 <h3 className="header">Katzenpopulation 2022</h3>
 
-                <Bar data={data} options={options} />
+                <Bar data={data} options={options}/>
 
-                <p className="source">Quelle: https://de.statista.com/statistik/daten/studie/454087/umfrage/katzen-in-europa-nach-laendern/ (Quelle ersetzen)</p>
+                <p className="source">Quelle:
+                    https://de.statista.com/statistik/daten/studie/454087/umfrage/katzen-in-europa-nach-laendern/
+                    (Quelle ersetzen)</p>
                 <br/>
             </div>
         </div>

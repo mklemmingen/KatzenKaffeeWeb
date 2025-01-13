@@ -1,4 +1,11 @@
-.full-container {
+.full-cont {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+    column-gap: 50px;
+}
+.head {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -11,16 +18,16 @@
     justify-content: left;
     column-gap: 10px;
 }
-.outer-container {
+.outer-cont {
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
 }
-.left-container {
+.left-cont {
     flex: 1 1 60%;
     max-width: 60%;
   }
-  .right-container {
+  .right-cont {
     flex: 1 1 40%;
     max-width: 40%;
     display: flex;

@@ -1,13 +1,11 @@
-.outer-container {
+.outer-cont {
     border-radius: 15px;
     padding: 20px;
     margin: 20px auto;
     max-width: 800px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.full-container {
+.full-cont {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -19,7 +17,6 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 2px solid #ccc;
     padding-bottom: 10px;
 }
 
@@ -27,7 +24,6 @@
     flex: 1;
     padding: 20px;
     border-radius: 10px;
-    background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -49,7 +45,7 @@
     gap: 10px;
 }
 
-.tips-container {
+.tips-cont {
     margin-top: 30px;
 }
 
@@ -57,8 +53,6 @@
     margin-top: 15px;
     padding: 10px 20px;
     border: none;
-    background-color: var(--primary-color);
-    color: #fff;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;

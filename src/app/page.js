@@ -63,13 +63,37 @@ const PageContent = () => {
         );
     };
 
+    /*
+    <div id={"catStatGreek"} className="section">
+                <CatAnimation numberOfCats={10}/>
+                <PolaroidBackground/>
+                <div className="section-content">
+                    <StatCatGreek/>
+                </div>
+            </div>
+     */
+
     return (
         <div>
             <CategoryDropdown/>
             <BackToStartButton/>
-            <CatChatDropdown/>
             <div className="intro-section">
                 <Introduction id="start"/>
+            </div>
+            <div id={'bird-protection'} className="section">
+                <CatAnimation numberOfCats={20}/>
+                <BirdAnimation numberOfBirds={40}/>
+                <PolaroidBackground/>
+                <div className="section-content">
+                    <CatEffectNature/>
+                </div>
+            </div>
+            <div id={"catStatGlobal"} className="section">
+                <CatAnimation numberOfCats={10}/>
+                <PolaroidBackground/>
+                <div className="section-content">
+                    <StatCatGlobal/>
+                </div>
             </div>
             <div id={"catStatGermany"} className="section">
                 <CatAnimation numberOfCats={10}/>
@@ -78,19 +102,18 @@ const PageContent = () => {
                     <StatCatGermany/>
                 </div>
             </div>
+            <div id="mental-health" className="section">
+                <CatAnimation numberOfCats={10}/>
+                <PolaroidBackground/>
+                <div className="section-content">
+                    <MentHealthToys/>
+                </div>
+            </div>
             <div id={'sustainable-diet'} className="section">
                 <CatAnimation numberOfCats={10}/>
                 <PolaroidBackground/>
                 <div className="section-content">
                     <SustCatOwn/>
-                </div>
-            </div>
-            <div id={'bird-protection'} className="section">
-                <CatAnimation numberOfCats={20}/>
-                <BirdAnimation numberOfBirds={40}/>
-                <PolaroidBackground/>
-                <div className="section-content">
-                    <CatEffectNature/>
                 </div>
             </div>
             <div id={'cat-litter'} className="section">
@@ -119,20 +142,6 @@ const PageContent = () => {
                 <PolaroidBackground/>
                 <div className="section-content">
                     <SuppShelter/>
-                </div>
-            </div>
-            <div id={"catStatGlobal"} className="section">
-                <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
-                <div className="section-content">
-                    <StatCatGlobal/>
-                </div>
-            </div>
-            <div id={"catStatGreek"} className="section">
-                <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
-                <div className="section-content">
-                    <StatCatGreek/>
                 </div>
             </div>
         </div>
