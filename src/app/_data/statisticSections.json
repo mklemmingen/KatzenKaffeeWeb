@@ -4,13 +4,7 @@
       "iconSrc": "assets/svg/berlin-brandenburg-gate-svgrepo-com.svg",
       "headerText": "Katzen in Deutschland",
       "textBlock": "",
-      "targetId": "catStatGlobal"
-    },
-    {
-      "iconSrc": "assets/svg/parthenon-building-svgrepo-com.svg",
-      "headerText": "Katzen in Griechenland",
-      "textBlock": "",
-      "targetId": "catStatGreek"
+      "targetId": "catStatGermany"
     },
     {
       "iconSrc": "assets/svg/world-svgrepo-com.svg",
