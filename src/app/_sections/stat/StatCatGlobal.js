@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Bar } from "react-chartjs-2";
+import '../../globals.css';
+import Image from "next/image";
 
 function StatCatGlobal() {
     const countries = ["Russland", "Deutschland", "Frankreich", "Gesamt Europa"];
@@ -56,15 +58,18 @@ function StatCatGlobal() {
     return (
         <div>
             <div>
-                <h2 className="header">Vergleich der Katzenpopulation in Europa</h2>
-                <h2> Michael </h2>
+                <div className="full-container-headline">
+                    <Image src='assets/svg/world-svgrepo-com.svg' alt="Icon" width={50} height={50}/>
+                    <h2>Katzenpopulation in Europa</h2>
+                    <h2 className="author"> Michael </h2>
+                </div>
                 <p>Die größte Katzenpopulation Europas wurde im Jahr 2022 in <b>Russland</b> gezählt, wo etwa <b>23,3
                     Millionen</b> Katzen lebten. <b>Deutschland</b> belegte den zweiten Platz mit einer geschätzten
                     Katzenpopulation von <b>15,2 Millionen</b> Tieren. Auf dem dritten Platz
                     folgte <b>Frankreich</b> mit schätzungsweise <b>14,9 Millionen</b> Katzen.
                     Insgesamt leben in den betrachteten europäischen Ländern über <b>129 Millionen</b> Katzen.</p>
                 <br/>
-                <h3 className="header">Katzenpopulation 2022</h3>
+                <h3>Katzenpopulation 2022</h3>
 
                 <Bar data={data} options={options}/>
 

@@ -158,6 +158,33 @@ const CatAnimation = ({ numberOfCats }) => {
         canvas.height = canvas.clientHeight;
         ctx.imageSmoothingEnabled = false;
 
+        const resizeCanvas = () => {
+            if (!canvas) return;
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+        };
+
+        const handleResize = () => {
+            resizeCanvas();
+            const ctx = canvas.getContext('2d');
+            if (ctx) {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // Redraw or reset animations if needed
+            }
+        };
+
+        const adjustCanvasResolution = () => {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = canvas.clientWidth * dpr;
+            canvas.height = canvas.clientHeight * dpr;
+            ctx.scale(dpr, dpr);
+        };
+
+        adjustCanvasResolution();
+
+        window.addEventListener('resize', handleResize);
+        resizeCanvas();
+
         const getRandomX = () => {
             const width = canvas.width;
             const quarterWidth = width * 0.25;
@@ -201,7 +228,8 @@ const CatAnimation = ({ numberOfCats }) => {
 
         const loadSprites = () => {
             let loadedCount = 0;
-            spriteFiles.forEach((spriteFile, index) => {
+
+            spriteFiles.forEach((spriteFile) => {
                 const spriteSheet = new Image();
                 spriteSheet.src = `/assets/cats/${spriteFile}`;
                 spriteSheet.onload = () => {
@@ -409,10 +437,13 @@ const CatAnimation = ({ numberOfCats }) => {
 
         canvas.addEventListener('click', handleClick);
 
+        handleResize()
+
         return () => {
             clearInterval(directionInterval);
             canvas.removeEventListener('mousemove', handleMouseMove);
             canvas.removeEventListener('click', handleClick);
+            window.removeEventListener('resize', handleResize);
         };
     }, [numberOfCats, frameDuration]);
 

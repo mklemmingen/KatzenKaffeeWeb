@@ -11,6 +11,7 @@
   --accent-color: #5D415A;
   --text-color: #333;
   --background-color: #f9f9f9;
+  --section-background: #f9f9f9;
   --font-family: 'Roboto', Arial, sans-serif;
   --high-contrast-text: #000;
   --high-contrast-bg: #fff;
@@ -24,6 +25,7 @@
   --accent-color: #8E44AD;
   --text-color: #fff;
   --background-color: #000;
+  --section-background: #333;
   --shadow-color: black;
   --shadow-color2: black;
 }
@@ -71,6 +73,43 @@ main {
    display: flex;
    flex-direction: column;
  }
+
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  color: var(--primary-color);
+  margin: 0.67em 0;
+}
+
+h2 {
+  font-family: 'Pacifico', cursive;
+  color: var(--primary-color);
+  font-size: 1.5em;
+  margin: 0.83em 0;
+}
+
+.author {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 0.5em;
+    margin: 0.83em 0;
+}
+
+.full-container-headline {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+p, ul, li {
+  font-family: var(--font-family), serif;
+  color: var(--text-color);
+  font-size: 1em;
+}
+
+<!-- ------------------------ -->
 
 .content {
   flex: 1;

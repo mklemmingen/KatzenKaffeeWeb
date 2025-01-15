@@ -2,9 +2,9 @@ import React, {useEffect} from 'react';
 
 import BookRecommendation from "@/app/_components/BookRecommendation";
 import CatBirdImpact from "@/app/_components/CatBirdImpact";
-import BirdAnimation from "@/app/_components/BirdAnimation";
-import CatAnimation from "@/app/_components/CatAnimation";
 import "@/app/_sections/_styles/catEffectNature.css";
+import '../../globals.css';
+import Image from "next/image";
 
 function CatEffectNature() {
 
@@ -20,8 +20,11 @@ function CatEffectNature() {
         <div>
             <div className="containerCatNature">
                 <div className="text-content">
-                    <h1 className="header">Schutz der Vogelwelt</h1>
-                    <h2> Marty </h2>
+                    <div className="full-container-headline">
+                        <Image src='assets/svg/cat-travel-bag-svgrepo-com.svg' alt="Icon" width={50} height={50}/>
+                        <h1>Schutz der Vogelwelt</h1>
+                        <h2 className="author">Marty</h2>
+                    </div>
                     <p>
                         Katzen sind von Natur aus Jäger. Ihr Jagdinstinkt ist tief verwurzelt und sie können ihn nicht
                         einfach abstellen. Leider führt dies dazu, dass sie viele Vögel aus Überlebens- und

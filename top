@@ -1,0 +1,824 @@
+[1mdiff --git a/src/app/_components/ChatBot.js b/src/app/_components/ChatBot.js[m
+[1mindex 14fe1f1..4aa597a 100644[m
+[1m--- a/src/app/_components/ChatBot.js[m
+[1m+++ b/src/app/_components/ChatBot.js[m
+[36m@@ -1,8 +1,12 @@[m
+[31m-import React, { useState } from 'react';[m
+[31m-import '@/app/_styles/chatBot.css';[m
+[32m+[m[32m"use client";[m
+[32m+[m
+[32m+[m[32mimport React, { useState } from "react";[m
+[32m+[m[32mimport "@/app/_styles/chatBot.css";[m
+ [m
+ function ChatBot() {[m
+[31m-  const [messages, setMessages] = useState([{ text: "Willkommen! Wie kann ich dir helfen?", sender: "bot" }]);[m
+[32m+[m[32m  const [messages, setMessages] = useState([[m
+[32m+[m[32m    { text: "Willkommen! Wie kann ich dir helfen?", sender: "bot" },[m
+[32m+[m[32m  ]);[m
+   const [input, setInput] = useState("");[m
+   const [isTyping, setIsTyping] = useState(false);[m
+ [m
+[36m@@ -15,10 +19,10 @@[m [mfunction ChatBot() {[m
+     setIsTyping(true);[m
+ [m
+     try {[m
+[31m-      const response = await fetch('/api/chatbot', {[m
+[31m-        method: 'POST',[m
+[31m-        headers: { 'Content-Type': 'application/json' },[m
+[31m-        body: JSON.stringify({ message: input })[m
+[32m+[m[32m      const response = await fetch("/api/chatbot", {[m
+[32m+[m[32m        method: "POST",[m
+[32m+[m[32m        headers: { "Content-Type": "application/json" },[m
+[32m+[m[32m        body: JSON.stringify({ message: input }),[m
+       });[m
+ [m
+       if (response.ok) {[m
+[36m@@ -26,36 +30,50 @@[m [mfunction ChatBot() {[m
+         setMessages([...newMessages, { text: data.response, sender: "bot" }]);[m
+       } else {[m
+         const errorText = await response.text();[m
+[31m-        setMessages([...newMessages, { text: `Fehler: ${errorText}`, sender: "bot" }]);[m
+[32m+[m[32m        setMessages([[m
+[32m+[m[32m          ...newMessages,[m
+[32m+[m[32m          { text: `Fehler: ${JSON.parse(errorText).message}`, sender: "bot" },[m
+[32m+[m[32m        ]);[m
+       }[m
+     } catch (error) {[m
+[31m-      setMessages([...newMessages, { text: "Es ist ein Fehler aufgetreten.", sender: "bot" }]);[m
+[32m+[m[32m      setMessages([[m
+[32m+[m[32m        ...newMessages,[m
+[32m+[m[32m        { text: "Es ist ein Netzwerkfehler aufgetreten.", sender: "bot" },[m
+[32m+[m[32m      ]);[m
+     } finally {[m
+       setIsTyping(false);[m
+     }[m
+   };[m
+ [m
+[32m+[m[32m  const handleKeyDown = (e) => {[m
+[32m+[m[32m    if (e.key === "Enter") {[m
+[32m+[m[32m      handleSendMessage();[m
+[32m+[m[32m    }[m
+[32m+[m[32m  };[m
+[32m+[m
+   return ([m
+[31m-      <div className="chatbot-container">[m
+[31m-        <header className="chatbot-header">ChatCat</header>[m
+[31m-        <div className="chatbot-messages">[m
+[31m-          {messages.map((msg, index) => ([m
+[31m-              <div key={index} className={`message ${msg.sender}`} dangerouslySetInnerHTML={{__html: msg.text}}/>[m
+[31m-          ))}[m
+[31m-          {isTyping && <div className="message bot">...</div>}[m
+[31m-        </div>[m
+[31m-        <div className="chatbot-inputI">[m
+[31m-          <div className="chatbot-input-wrapper">[m
+[31m-            <input className="inputOfText"[m
+[31m-                   type="text"[m
+[31m-                   value={input}[m
+[31m-                   onChange={(e) => setInput(e.target.value)}[m
+[31m-                   placeholder="Schreibe deine Nachricht..."[m
+[31m-            />[m
+[31m-            <button className="sendenButton" onClick={handleSendMessage}>Senden</button>[m
+[32m+[m[32m    <div className="chatbot-container">[m
+[32m+[m[32m      <header className="chatbot-header">ChatCat</header>[m
+[32m+[m[32m      <div className="chatbot-messages">[m
+[32m+[m[32m        {messages.map((msg, index) => ([m
+[32m+[m[32m          <div key={index} className={`message ${msg.sender}`}>[m
+[32m+[m[32m            {msg.text}[m
+           </div>[m
+[31m-        </div>[m
+[32m+[m[32m        ))}[m
+[32m+[m[32m        {isTyping && <div className="message bot">...</div>}[m
+[32m+[m[32m      </div>[m
+[32m+[m[32m      <div className="chatbot-input">[m
+[32m+[m[32m        <input[m
+[32m+[m[32m          type="text"[m
+[32m+[m[32m          value={input}[m
+[32m+[m[32m          onChange={(e) => setInput(e.target.value)}[m
+[32m+[m[32m          onKeyDown={handleKeyDown}[m
+[32m+[m[32m          placeholder="Schreibe deine Nachricht..."[m
+[32m+[m[32m          className="inputOfText"[m
+[32m+[m[32m        />[m[41m [m
+[32m+[m[32m        <button onClick={handleSendMessage} className="sendenButton">Senden</button>[m
+       </div>[m
+[32m+[m[32m    </div>[m
+   );[m
+ }[m
+ [m
+[1mdiff --git a/src/app/_sections/_styles/eneffCare.css b/src/app/_sections/_styles/eneffCare.css[m
+[1mindex e69de29..ff3880a 100644[m
+[1m--- a/src/app/_sections/_styles/eneffCare.css[m
+[1m+++ b/src/app/_sections/_styles/eneffCare.css[m
+[36m@@ -0,0 +1,61 @@[m
+[32m+[m[32m.full-container {[m
+[32m+[m[32m  display: flex;[m
+[32m+[m[32m  flex-direction: row;[m
+[32m+[m[32m  justify-content: space-between;[m
+[32m+[m[32m  align-items: flex-start;[m
+[32m+[m[32m  gap: 40px;[m
+[32m+[m[32m  padding: 10px;[m
+[32m+[m[32m  margin-top: 20px;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.full-container-headline {[m
+[32m+[m[32m  display: flex;[m
+[32m+[m[32m  flex-direction: row;[m
+[32m+[m[32m  justify-content: flex-start;[m
+[32m+[m[32m  align-items: center;[m
+[32m+[m[32m  gap: 15px;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.sub-header {[m
+[32m+[m[32m  font-family: 'Pacifico', cursive;[m
+[32m+[m[32m  color: var(--primary-color);[m
+[32m+[m[32m  font-size: 1.5em;[m
+[32m+[m[32m  margin: 2%;[m
+[32m+[m[32m  align-items: left;[m
+[32m+[m[32m  text-align: left;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[32m+[m[32m.left-container {[m
+[32m+[m[32m  flex: 1;[m
+[32m+[m[32m  max-width: 60%;[m
+[32m+[m[32m  font-family: 'Georgia', serif;[m
+[32m+[m[32m  line-height: 1.6;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.right-container {[m
+[32m+[m[32m  flex: 1;[m
+[32m+[m[32m  max-width: 35%;[m
+[32m+[m[32m  display: flex;[m
+[32m+[m[32m  justify-content: center;[m
+[32m+[m[32m  align-items: center;[m
+[32m+[m[32m  padding: 10px;[m
+[32m+[m[32m  border-radius: 10px;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.right-container img {[m
+[32m+[m[32m  border-radius: 10px;[m
+[32m+[m[32m  transition: transform 0.3s ease-in-out;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.right-container img:hover {[m
+[32m+[m[32m  transform: scale(1.05);[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.sub-header {[m
+[32m+[m[32m  font-family: 'Pacifico', cursive;[m
+[32m+[m[32m  color: var(--primary-color);[m
+[32m+[m[32m  font-size: 1.5em;[m
+[32m+[m[32m  margin: 2%;[m
+[32m+[m[32m  text-align: center;[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/app/_sections/_styles/suppShelter.css b/src/app/_sections/_styles/suppShelter.css[m
+[1mindex 9f96f3f..cfb0c08 100644[m
+[1m--- a/src/app/_sections/_styles/suppShelter.css[m
+[1m+++ b/src/app/_sections/_styles/suppShelter.css[m
+[36m@@ -1,32 +1,55 @@[m
+ .full-container {[m
+     display: flex;[m
+     flex-direction: row;[m
+[31m-    justify-content: center;[m
+[31m-    align-content: center;[m
+[31m-    column-gap: 50px;[m
+[31m-}[m
+[31m-.full-container-headline {[m
+[32m+[m[32m    justify-content: space-between;[m
+[32m+[m[32m    align-items: flex-start;[m
+[32m+[m[32m    gap: 40px;[m
+[32m+[m[32m    padding: 10px;[m
+[32m+[m[32m    margin-top: 20px;[m
+[32m+[m[32m  }[m
+[32m+[m[41m  [m
+[32m+[m[32m  .full-container-headline {[m
+     display: flex;[m
+     flex-direction: row;[m
+[31m-    justify-content: left;[m
+[31m-    column-gap: 10px;[m
+[31m-}[m
+[31m-.outer-container {[m
+[31m-    border-radius: 15px;[m
+[31m-    padding: 20px;[m
+[31m-    margin: 20px;[m
+[32m+[m[32m    justify-content: flex-start;[m
+[32m+[m[32m    align-items: left;[m
+[32m+[m[32m    gap: 15px;[m
+[32m+[m[32m  }[m
+[32m+[m
+[32m+[m[32m  .sub-header {[m
+[32m+[m[32m    font-family: 'Pacifico', cursive;[m
+[32m+[m[32m    color: var(--primary-color);[m
+[32m+[m[32m    font-size: 1.5em;[m
+[32m+[m[32m    margin: 2%;[m
+[32m+[m[32m    text-align: center;[m
+ }[m
+[31m-.left-container {[m
+[31m-    flex: 1 1 60%;[m
+[32m+[m
+[32m+[m[32m  .left-container {[m
+[32m+[m[32m    flex: 1;[m
+     max-width: 60%;[m
+[32m+[m[32m    font-family: 'Georgia', serif;[m
+[32m+[m[32m    line-height: 1.6;[m
+[32m+[m[32m    text-align: center;[m
+   }[m
+[32m+[m[41m  [m
+   .right-container {[m
+[31m-    flex: 1 1 40%;[m
+[31m-    max-width: 40%;[m
+[32m+[m[32m    flex: 1;[m
+[32m+[m[32m    max-width: 35%;[m
+     display: flex;[m
+     justify-content: center;[m
+[31m-    align-items: center;[m
+[32m+[m[32m    padding: 10px;[m
+[32m+[m[32m    border-radius: 10px;[m
+[32m+[m[32m    flex-direction: column;[m
+[32m+[m[32m    align-items: right;[m
+[32m+[m[32m    gap: 20px;[m
+ }[m
+[31m-.source {[m
+[31m-    font-size: 12px;[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m
+[32m+[m[32m  .right-container img {[m
+[32m+[m[32m    border-radius: 10px;[m
+[32m+[m[32m    transition: transform 0.3s ease-in-out;[m
+[32m+[m[32m  }[m
+[32m+[m[41m  [m
+[32m+[m[32m  .right-container img:hover {[m
+[32m+[m[32m    transform: scale(1.05);[m
+[32m+[m[32m  }[m
+[41m+  [m
+\ No newline at end of file[m
+[1mdiff --git a/src/app/_sections/_styles/sustCatOwn.css b/src/app/_sections/_styles/sustCatOwn.css[m
+[1mindex 980e400..f875e7d 100644[m
+[1m--- a/src/app/_sections/_styles/sustCatOwn.css[m
+[1m+++ b/src/app/_sections/_styles/sustCatOwn.css[m
+[36m@@ -1,66 +1,84 @@[m
+[31m-.outer-container {[m
+[31m-    border-radius: 15px;[m
+[31m-    padding: 20px;[m
+[31m-    margin: 20px auto;[m
+[31m-    max-width: 800px;[m
+[31m-    background-color: #f9f9f9;[m
+[31m-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);[m
+[31m-}[m
+[31m-[m
+ .full-container {[m
+     display: flex;[m
+[31m-    justify-content: space-between;[m
+[31m-    align-items: flex-start;[m
+[31m-    gap: 20px;[m
+[31m-    margin-top: 20px;[m
+[32m+[m[32m    flex-direction: row;[m
+[32m+[m[32m    justify-content: center;[m
+[32m+[m[32m    align-content: center;[m
+[32m+[m[32m    column-gap: 50px;[m
+ }[m
+[31m-[m
+ .full-container-headline {[m
+     display: flex;[m
+[31m-    align-items: center;[m
+[31m-    gap: 10px;[m
+[31m-    border-bottom: 2px solid #ccc;[m
+[31m-    padding-bottom: 10px;[m
+[32m+[m[32m    flex-direction: row;[m
+[32m+[m[32m    justify-content: left;[m
+[32m+[m[32m    column-gap: 10px;[m
+ }[m
+[31m-[m
+[31m-.info-card, .image-card {[m
+[31m-    flex: 1;[m
+[32m+[m[32m.outer-container {[m
+[32m+[m[32m    border-radius: 15px;[m
+     padding: 20px;[m
+[31m-    border-radius: 10px;[m
+[31m-    background-color: #fff;[m
+[31m-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);[m
+[32m+[m[32m    margin: 20px;[m
+ }[m
+[31m-[m
+[31m-.card-title {[m
+[31m-    font-size: 20px;[m
+[31m-    margin-bottom: 10px;[m
+[32m+[m[32m.left-container {[m
+[32m+[m[32m    flex: 1 1 65%;[m
+[32m+[m[32m    max-width: 65%;[m
+[32m+[m[32m  }[m
+[32m+[m[32m.right-container {[m
+[32m+[m[32m    flex: 1 1 35%;[m
+[32m+[m[32m    max-width: 35%;[m
+[32m+[m[32m  }[m
+[32m+[m[32m  .video-container {[m
+[32m+[m[32m    text-align: left;[m
+[32m+[m[32m    margin: 30px 0;[m
+[32m+[m[32m  }[m
+[32m+[m[41m  [m
+[32m+[m[32m  .video-button {[m
+[32m+[m[32m    background-color: var(--primary-color);[m[41m [m
+[32m+[m[32m    color: white;[m
+[32m+[m[32m    font-size: 1rem;[m
+[32m+[m[32m    padding: 10px 20px;[m
+[32m+[m[32m    border: none;[m
+[32m+[m[32m    border-radius: 5px;[m
+[32m+[m[32m    cursor: pointer;[m
+[32m+[m[32m    transition: background-color 0.3s ease, transform 0.2s ease;[m
+[32m+[m[32m  }[m
+[32m+[m[41m  [m
+[32m+[m[32m  .video-button:hover {[m
+[32m+[m[32m    background-color: #4e3b5a;[m
+[32m+[m[32m    transform: scale(1.05);[m
+[32m+[m[32m  }[m
+[32m+[m[32m  .sub-header {[m
+[32m+[m[32m    font-family: 'Pacifico', cursive;[m
+[32m+[m[32m    color: var(--primary-color);[m
+[32m+[m[32m    font-size: 1.5em;[m
+[32m+[m[32m    margin: 2%;[m
+[32m+[m[32m    text-align: center;[m
+[32m+[m[32m}[m
+[32m+[m[32m  .video-button:active {[m
+[32m+[m[32m    transform: scale(0.98);[m
+[32m+[m[32m  }[m
+[32m+[m[32m  .recipe-text {[m
+[32m+[m[32m    background-color: #f9f9f9;[m
+[32m+[m[32m    border: 1px solid #ddd;[m
+[32m+[m[32m    padding: 15px;[m
+[32m+[m[32m    margin: 20px 0;[m
+[32m+[m[32m    border-radius: 8px;[m
+[32m+[m[32m    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);[m
+[32m+[m[32m    font-size: 1rem;[m
+ }[m
+ [m
+[31m-.advantages-list, .tips-list {[m
+[31m-    list-style: none;[m
+[31m-    padding: 0;[m
+[31m-    margin: 0;[m
+[31m-    line-height: 1.8;[m
+[32m+[m[32m.recipe-text strong {[m
+[32m+[m[32m    color: var(--primary-color);[m
+ }[m
+ [m
+[31m-.advantages-list li, .tips-list li {[m
+[31m-    display: flex;[m
+[31m-    align-items: center;[m
+[31m-    gap: 10px;[m
+[32m+[m[32m.recipe-text ul {[m
+[32m+[m[32m    margin-left: 20px;[m
+[32m+[m[32m    padding-left: 10px;[m
+ }[m
+ [m
+[31m-.tips-container {[m
+[31m-    margin-top: 30px;[m
+[32m+[m[32m.recipe-text p {[m
+[32m+[m[32m    margin-bottom: 10px;[m
+ }[m
+ [m
+[31m-.more-btn {[m
+[31m-    margin-top: 15px;[m
+[31m-    padding: 10px 20px;[m
+[31m-    border: none;[m
+[31m-    background-color: var(--primary-color);[m
+[31m-    color: #fff;[m
+[31m-    font-size: 16px;[m
+[31m-    cursor: pointer;[m
+[31m-    border-radius: 5px;[m
+[31m-    transition: background-color 0.3s;[m
+[32m+[m
+[32m+[m[41m  [m
+[32m+[m[32m.source {[m
+[32m+[m[32m    font-size: 12px;[m
+ }[m
+[1mdiff --git a/src/app/_sections/catOwn/EneffCare.js b/src/app/_sections/catOwn/EneffCare.js[m
+[1mindex 89aa555..256b986 100644[m
+[1m--- a/src/app/_sections/catOwn/EneffCare.js[m
+[1m+++ b/src/app/_sections/catOwn/EneffCare.js[m
+[36m@@ -1,27 +1,69 @@[m
+ import React from "react";[m
+[32m+[m[32mimport Image from 'next/image';[m
+[32m+[m[32mimport '../../_sections/_styles/eneffCare.css';[m
+ [m
+ function EneffCare() {[m
+[31m-[m
+     return ([m
+[31m-        <div>[m
+[31m-            <h2>Energie-effiziente Pflege</h2>[m
+[31m-            <p>[m
+[31m-                TODO[m
+[31m-            </p>[m
+[31m-            <p>[m
+[31m-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr,[m
+[31m-                sed diam nonumy eirmod tempor invidunt ut labore et dolore[m
+[31m-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam[m
+[31m-                et justo duo dolores et ea rebum. Stet clita kasd gubergren,[m
+[31m-                no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet,[m
+[31m-                consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore[m
+[31m-                magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et[m
+[31m-                ea[m
+[31m-                rebum.[m
+[31m-                Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.[m
+[31m-            </p>[m
+[32m+[m[32m        <div className="outer-container">[m
+[32m+[m[32m            <div className="full-container-headline">[m
+[32m+[m[32m                <h1 className="header">Energieeffiziente Katzenhaltung: Nachhaltigkeit im Alltag</h1>[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            <div className="full-container">[m
+[32m+[m[32m                <div className="left-container">[m
+[32m+[m[32m                    <p>[m
+[32m+[m[32m                        Energieeffiziente Katzenhaltung trägt maßgeblich zum Umweltschutz bei, indem sie den Energieverbrauch im Haushalt reduziert und nachhaltige Praktiken fördert. Es gibt verschiedene Möglichkeiten, die Energieeffizienz zu verbessern, etwa durch die Nutzung energieeffizienter Beleuchtung, Heiz- und Kühlsysteme sowie durch den Kauf umweltfreundlicher Katzenprodukte.[m
+[32m+[m[32m                    </p>[m
+[32m+[m
+[32m+[m[32m                    {}[m
+[32m+[m[32m                    <h2 className="sub-header">Tipps zur Energieeffizienz</h2>[m
+[32m+[m[32m                    <ul>[m
+[32m+[m[32m                        <li><strong>Energieeffiziente Beleuchtung:</strong> Verwende LED-Lampen in Bereichen, in denen deine Katze sich häufig aufhält. Diese Lampen verbrauchen weniger Energie und haben eine längere Lebensdauer.</li>[m
+[32m+[m[32m                        <li><strong>Heiz- und Kühlsysteme:</strong> Stelle sicher, dass deine Heiz- und Kühlsysteme energieeffizient sind. Eine gut isolierte Wohnung hilft, den Energieverbrauch zu senken und bietet deiner Katze gleichzeitig ein angenehmes Klima.</li>[m
+[32m+[m[32m                        <li><strong>Umweltfreundliche Katzenprodukte:</strong> Achte beim Kauf von Katzenstreu, Spielzeug und Futter auf umweltfreundliche und nachhaltige Produkte. Es gibt viele Optionen, die biologisch abbaubar oder aus recycelten Materialien hergestellt sind.</li>[m
+[32m+[m[32m                    </ul>[m
+[32m+[m
+[32m+[m[32m                    {}[m
+[32m+[m[32m                    <h2 className="sub-header">Katzenklappen und Energieeffizienz</h2>[m
+[32m+[m[32m                    <ul>[m
+[32m+[m[32m                        Eine Katzenklappe kann den Energieverbrauch beeinflussen, besonders in gut isolierten Häusern. Moderne Katzenklappen sind so konzipiert, dass sie luftdicht schließen und Wärmeverluste minimieren. Einige Modelle nutzen RFID-Chips oder Bewegungssensoren, um nur für deine Katze zu öffnen, was die Energieeffizienz weiter verbessert.[m
+[32m+[m[32m                    </ul>[m
+[32m+[m
+[32m+[m[32m                    {}[m
+[32m+[m[32m                    <h2 className="sub-header">Weitere nachhaltige Praktiken</h2>[m
+[32m+[m[32m                    <ul>[m
+[32m+[m[32m                        <li><strong>Recycling und Wiederverwendung:</strong> Verwende alte Kartons und Stoffreste als Spielzeug oder Schlafplätze für deine Katze. Das reduziert Abfall und bietet deiner Katze gleichzeitig Abwechslung.</li>[m
+[32m+[m[32m                        <li><strong>Wasser sparen:</strong> Achte darauf, dass deine Katze immer frisches Wasser hat, aber vermeide unnötigen Wasserverbrauch, indem du z.B. eine Trinkbrunnen mit automatischer Abschaltung verwendest.</li>[m
+[32m+[m[32m                    </ul>[m
+[32m+[m[32m                </div>[m
+[32m+[m
+[32m+[m[32m                {}[m
+[32m+[m[32m                <div className="right-container">[m
+[32m+[m[32m                    <div className="image-block">[m
+[32m+[m[32m                        <img[m
+[32m+[m[32m                            src="/assets/img/pexels-curly-woman-with-charming-cat-6001208.jpg"[m
+[32m+[m[32m                            alt="Curly woman with a charming cat"[m
+[32m+[m[32m                            className="styled-image"[m
+[32m+[m[32m                        />[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div className="image-block">[m
+[32m+[m[32m                        <img[m
+[32m+[m[32m                            src="/assets/img/pexels-wojciech-kumpicki-1084687-2071873.jpg"[m
+[32m+[m[32m                            alt="Cat doing cat things"[m
+[32m+[m[32m                            className="styled-image"[m
+[32m+[m[32m                        />[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                    <div className="image-block">[m
+[32m+[m[32m                        <img[m
+[32m+[m[32m                            src="/assets/img/pexels-tubiderler-18896527.jpg"[m
+[32m+[m[32m                            alt="Cat watching out of window"[m
+[32m+[m[32m                            className="styled-image"[m
+[32m+[m[32m                        />[m
+[32m+[m[32m                    </div>[m
+[32m+[m[32m                </div>[m
+[32m+[m[32m            </div>[m
+         </div>[m
+     );[m
+ }[m
+ [m
+[31m-export default EneffCare;[m
+\ No newline at end of file[m
+[32m+[m[32mexport default EneffCare;[m
+[1mdiff --git a/src/app/_sections/catOwn/SustCatOwn.js b/src/app/_sections/catOwn/SustCatOwn.js[m
+[1mindex bc40595..7ccedb4 100644[m
+[1m--- a/src/app/_sections/catOwn/SustCatOwn.js[m
+[1m+++ b/src/app/_sections/catOwn/SustCatOwn.js[m
+[36m@@ -1,54 +1,66 @@[m
+[31m-import React, { useState } from "react";[m
+[31m-import "../_styles/sustCatOwn.css";[m
+[31m-import Image from "next/image";[m
+[32m+[m[32mimport React from "react";[m
+[32m+[m[32mimport '../_styles/sustCatOwn.css';[m
+[32m+[m[32mimport CatAnimation from "@/app/_components/CatAnimation";[m
+[32m+[m[32mimport BirdAnimation from "@/app/_components/BirdAnimation";[m
+[32m+[m[32mimport Image from 'next/image';[m
+ [m
+ function SustCatOwn() {[m
+[31m-    const [showMore, setShowMore] = useState(false);[m
+[31m-[m
+[31m-    const toggleShowMore = () => {[m
+[31m-        setShowMore((prev) => !prev);[m
+[31m-    };[m
+[31m-[m
+     return ([m
+         <div className="outer-container">[m
+             <div className="full-container-headline">[m
+[31m-                <Image src="/assets/svg/cat-food-svgrepo-com.svg" alt="Icon" width={50} height={50} />[m
+[31m-                <h2 className="header">Nachhaltige Ernährung</h2>[m
+[32m+[m[32m                <Image src='assets/svg/cat-food-svgrepo-com.svg' alt="Icon" width={50} height={50} />[m
+[32m+[m[32m                <h1 className="header">Nachhaltige Ernährung</h1>[m
+             </div>[m
+             <div className="full-container">[m
+[31m-                <div className="info-card">[m
+[31m-                    <h3 className="card-title">Warum nachhaltig füttern?</h3>[m
+[32m+[m[32m                <div className="left-container">[m
+                     <p>[m
+[31m-                        Nachhaltige Ernährung ist nicht nur für uns Menschen wichtig – auch bei der Fütterung unserer vierbeinigen Freunde[m
+[31m-                        können wir den ökologischen Fußabdruck reduzieren. [m
+[32m+[m[32m                        Nachhaltige Ernährung ist nicht nur für uns Menschen wichtig – auch bei der Fütterung unserer vierbeinigen Freunde sollten wir auf Nachhaltigkeit achten. Der ökologische Fußabdruck lässt sich ähnlich wie bei unserer eigenen Ernährung reduzieren, indem umweltfreundliche, regionale und/oder biologische Produkte verwendet werden. Eine weitere Möglichkeit besteht darin, selbst nahrhafte Mahlzeiten oder Leckerlis für deine Haustiere zuzubereiten, anstatt auf industriell hergestelltes Futter zurückzugreifen. Inspiration für nachhaltige und gesunde Rezepte findest du beispielsweise auf Plattformen wie katzenkontor.de, speziell für unsere flauschigen Begleiter.[m
+                     </p>[m
+[31m-                    <ul className="advantages-list">[m
+[31m-                        <li>🌱 Verwendung regionaler Zutaten</li>[m
+[31m-                        <li>♻️ Reduzierung von Verpackungsmüll</li>[m
+[31m-                        <li>🍲 Hausgemachte Mahlzeiten</li>[m
+[31m-                    </ul>[m
+                 </div>[m
+[31m-                <div className="image-card">[m
+[31m-                    <Image src="/assets/img/cat_food.jpg" alt="Cat with food" width={400} height={400} />[m
+[32m+[m[32m                <div className="right-container">[m
+[32m+[m[32m                    <Image src="/assets/img/cat_food.jpg" alt="cat" width={400} height={400} />[m
+                 </div>[m
+             </div>[m
+[31m-            <div className="tips-container">[m
+[31m-                <h3 className="header">Tipps für nachhaltige Tierernährung</h3>[m
+[31m-                <ul className="tips-list">[m
+[31m-                    <li>🔍 Kaufe Futter mit biologisch zertifizierten Inhaltsstoffen.</li>[m
+[31m-                    <li>📦 Achte auf recyclebare Verpackungen oder bring deinen eigenen Behälter mit.</li>[m
+[31m-                    <li>👨‍🍳 Bereite Snacks oder Mahlzeiten selbst zu, z. B. mit gekochtem Fisch oder Huhn.</li>[m
+[32m+[m
+[32m+[m[32m            {/* Subheader: Video Section */}[m
+[32m+[m[32m            <h2 className="sub-header">Erfahre mehr über nachhaltige Ernährung</h2>[m
+[32m+[m[32m            <div className="video-container">[m
+[32m+[m[32m                <p>Finde heraus, wieso die herkömmlichen Produkte die du im Supermarkt bekommst nicht unbedingt das beste für deine Katze und die Umwelt ist:</p>[m
+[32m+[m[32m                <a[m[41m [m
+[32m+[m[32m                    href="https://www.youtube.com/watch?v=exUjjdgx6zg"[m[41m [m
+[32m+[m[32m                    target="_blank"[m[41m [m
+[32m+[m[32m                    rel="noopener noreferrer"[m
+[32m+[m[32m                >[m
+[32m+[m[32m                    <button className="video-button">Video ansehen</button>[m
+[32m+[m[32m                </a>[m
+[32m+[m[32m            </div>[m
+[32m+[m
+[32m+[m[32m            {/* Subheader: Rezeptideen Section */}[m
+[32m+[m[32m            <h2 className="sub-header">Gesunde Rezeptideen für selbstgemachtes Katzenfutter</h2>[m
+[32m+[m[32m            <div className="recipe-text">[m
+[32m+[m[32m                <h3>Eier auf Rind, garniert mit Naturjoghurt</h3>[m
+[32m+[m[32m                <p><strong>Du brauchst dafür:</strong></p>[m
+[32m+[m[32m                <ul>[m
+[32m+[m[32m                    <li>200g Rinderhack 🥩</li>[m
+[32m+[m[32m                    <li>2 hart gekochte Eier 🥚</li>[m
+[32m+[m[32m                    <li>Naturjoghurt 🥛</li>[m
+                 </ul>[m
+[31m-                {showMore && ([m
+[31m-                    <p className="extra-info">[m
+[31m-                        Für mehr Inspiration kannst du Plattformen wie <a href="https://katzenkontor.de" target="_blank">katzenkontor.de</a> besuchen.[m
+[31m-                        Dort findest du Rezepte und Tipps, die speziell auf Katzen abgestimmt sind![m
+[31m-                    </p>[m
+[31m-                )}[m
+[31m-                <button className="more-btn" onClick={toggleShowMore}>[m
+[31m-                    {showMore ? "Weniger anzeigen" : "Mehr erfahren"}[m
+[31m-                </button>[m
+[32m+[m[32m                <p>[m
+[32m+[m[32m                    <strong>Zubereitung:</strong> Die gekochten Eier musst du zuerst einmal kleinschneiden. Das Rinderhack wird ohne Zugabe von Fett und Gewürzen in der Pfanne gegart,[m[41m [m
+[32m+[m[32m                    bis es komplett durch ist. Das lässt du dann abkühlen. Danach vermengst du die Eier und das Hack mit ein wenig Naturjoghurt und fertig ist die leckere Mahlzeit.[m
+[32m+[m[32m                </p>[m
+             </div>[m
+[32m+[m
+[32m+[m[32m            <p>[m
+[32m+[m[32m                Auf den Geschmack gekommen? Ich hoffe nicht du, sondern deine Katze. Wenn du dich inspiriert fühlst, hier findest du noch mehr tolle und gesunde Rezepte:[m
+[32m+[m[32m            </p>[m
+[32m+[m[32m            <a[m[41m [m
+[32m+[m[32m                href="https://www.youtube.com/watch?v=dESxUNBYHdQ"[m[41m [m
+[32m+[m[32m                target="_blank"[m[41m [m
+[32m+[m[32m                rel="noopener noreferrer"[m
+[32m+[m[32m            >[m
+[32m+[m[32m                <button className="video-button">Video ansehen</button>[m
+[32m+[m[32m            </a>[m
+         </div>[m
+     );[m
+ }[m
+[1mdiff --git a/src/app/_sections/nature/SuppShelter.js b/src/app/_sections/nature/SuppShelter.js[m
+[1mindex 58b7d5e..6e50858 100644[m
+[1m--- a/src/app/_sections/nature/SuppShelter.js[m
+[1m+++ b/src/app/_sections/nature/SuppShelter.js[m
+[36m@@ -9,14 +9,27 @@[m [mfunction SuppShelter() {[m
+                 <div className="outer-container">[m
+                 <div className="full-container-headline">[m
+                     <Image src='assets/svg/cat-litter-sand-svgrepo-com.svg' alt="Icon" width={50} height={50} />[m
+[31m-                    <h2 className="header">Tierheime unterstützen</h2>[m
+[32m+[m[32m                    <h1 className="header">Tierheime unterstützen</h1>[m
+                 </div>[m
+                     <div className="full-container">[m
+                     <div className="left-container">[m
+[31m-                        <p>Tierheime tragen maßgeblich zum Tierschutz bei, indem sie herrenlose Katzen aufnehmen, versorgen und an neue Besitzer vermitteln. Es gibt verschiedene Möglichkeiten, Tierheime zu unterstützen, etwa durch Geldspenden, Sachspenden wie Futter oder Spielzeug sowie ehrenamtliches Engagement. Der Deutsche Tierschutzbund hebt hervor, dass Geldspenden besonders wichtig sind, da viele Tierheime vorrangig finanzielle Mittel benötigen, um steigende Kosten für Tierpflege und medizinische Versorgung zu decken. Über Online-Plattformen wie betterplace.org kannst du gezielt lokale Tierheime unterstützen und so einen wertvollen Beitrag leisten.</p>[m
+[31m-                    </div>[m
+[32m+[m[32m                        <p>Tierheime tragen maßgeblich zum Tierschutz bei, indem sie herrenlose Katzen aufnehmen, versorgen und an neue Besitzer vermitteln. Der Deutsche Tierschutzbund empfiehl Geldspenden, da viele Tierheime vorrangig finanzielle Mittel benötigen, um steigende Kosten für Tierpflege und medizinische Versorgung zu decken. Über Online-Plattformen wie betterplace.org kannst du gezielt lokale Tierheime unterstützen und so einen wertvollen Beitrag leisten auch, wenn du gerade nicht in der Lage bist eine Katze zu adoptieren.</p>[m
+[32m+[m[32m            <h2 className="sub-header" >Adoptionsprozess</h2>[m
+[32m+[m[32m            <ul>[m
+[32m+[m[32m                <li><strong>Vorbereitung:</strong> Interessierte sollten sich gut vorbereiten, bevor sie eine Katze adoptieren. Dazu gehört, sich über die Bedürfnisse und Pflege einer Katze zu informieren.</li>[m
+[32m+[m[32m                <li><strong>Besuch im Tierheim:</strong> Es ist wichtig, die Katze vor der Adoption mehrmals zu besuchen, um eine Bindung aufzubauen und sicherzustellen, dass sie gut zur Familie passt.</li>[m
+[32m+[m[32m                <li><strong>Vertrag und Kosten:</strong> Bei der Adoption wird in der Regel ein Vertrag abgeschlossen, und es fallen oft Gebühren an, die die Kosten für Impfungen, Kastration und medizinische Versorgung decken.</li>[m
+[32m+[m[32m                <li><strong>Unterstützung des Tierschutzes:</strong> Durch die Adoption einer Katze aus dem Tierheim unterstützt man die wichtige Arbeit der Tierschutzvereine und gibt einer Katze eine zweite Chance auf ein liebevolles Zuhause.</li>[m
+[32m+[m[32m                </ul>[m
+[32m+[m[32m            <h3 className="sub-header" >Herausforderungen und Tipps</h3>[m
+[32m+[m[32m            <ul>[m
+[32m+[m[32m                <li><strong>Geduld und Verständnis:</strong> Katzen aus dem Tierheim benötigen oft Zeit, um sich an ihr neues Zuhause zu gewöhnen, besonders wenn sie schlechte Erfahrungen gemacht haben.</li>[m
+[32m+[m[32m                <li><strong>Eingewöhnung:</strong> Tipps zur Eingewöhnung der Katze in ihr neues Zuhause, wie z.B. die Schaffung eines sicheren Rückzugsortes und die langsame Einführung in die neue Umgebung.</li>[m
+[32m+[m[32m            </ul>[m
+[32m+[m[32m        </div>[m
+                     <div className="right-container">[m
+                         <Image src="/assets/img/cat_tierheim.jpg" alt="cat" width={200} height={200} />[m
+[32m+[m[32m                        <Image src="/assets/img/vertical-shot-cute-fluffy-cat-staring-with-its-green-eyes.jpg" alt="Cute fluffy cat" width={200} height={200} />[m
+                     </div>[m
+                 </div>[m
+             </div>[m
+[1mdiff --git a/src/app/api/chatbot/route.js b/src/app/api/chatbot/route.js[m
+[1mindex 5fd9540..272c3c7 100644[m
+[1m--- a/src/app/api/chatbot/route.js[m
+[1m+++ b/src/app/api/chatbot/route.js[m
+[36m@@ -3,9 +3,7 @@[m [mimport { Client } from 'pg';[m
+ async function openDb() {[m
+   const client = new Client({[m
+     connectionString: process.env.DATABASE_URL,[m
+[31m-    ssl: {[m
+[31m-      rejectUnauthorized: false[m
+[31m-    }[m
+[32m+[m[32m    ssl: { rejectUnauthorized: false }[m
+   });[m
+   await client.connect();[m
+   return client;[m
+[36m@@ -21,37 +19,24 @@[m [mexport async function POST(req) {[m
+       return new Response(JSON.stringify({ response: "Keine Nachricht erhalten" }), { status: 400 });[m
+     }[m
+ [m
+[31m-    const userMessage = {[m
+[31m-      author: 'Mensch',[m
+[31m-      message,[m
+[31m-      timestamp: new Date().toISOString()[m
+[31m-    };[m
+[31m-[m
+[31m-    const botResponseText = getBotResponse(message);[m
+[32m+[m[32m    const botResponse = getBotResponse(message);[m
+ [m
+[31m-    const botMessage = {[m
+[31m-      author: 'Bot',[m
+[31m-      message: botResponseText,[m
+[31m-      timestamp: new Date().toISOString()[m
+[31m-    };[m
+[32m+[m[32m    const query = `[m
+[32m+[m[32m      INSERT INTO chatbot_logs (author, message, timestamp)[m
+[32m+[m[32m      VALUES ($1, $2, NOW()), ($3, $4, NOW())[m
+[32m+[m[32m    `;[m
+[32m+[m[32m    const values = ['user', message, 'bot', botResponse];[m
+ [m
+[31m-    const query = 'INSERT INTO chatbot_logs (author, message, timestamp) VALUES ($1, $2, $3), ($4, $5, $6)';[m
+[31m-    const values = [[m
+[31m-      userMessage.author, userMessage.message, userMessage.timestamp,[m
+[31m-      botMessage.author, botMessage.message, botMessage.timestamp[m
+[31m-    ];[m
+[32m+[m[32m    console.log("Query Values:", values);[m
+ [m
+     await client.query(query, values);[m
+ [m
+[31m-    return new Response([m
+[31m-        JSON.stringify({ response: botResponseText }),[m
+[31m-        { status: 200 }[m
+[31m-    );[m
+[32m+[m[32m    return new Response(JSON.stringify({ response: botResponse }), { status: 200 });[m
+   } catch (error) {[m
+[31m-    console.error("Fehler beim Speichern der Nachricht:", error);[m
+[32m+[m[32m    console.error("Fehler beim Speichern der Nachricht:", error.message, error.stack);[m
+     return new Response([m
+[31m-        JSON.stringify({ message: "Fehler beim Speichern der Nachricht." }),[m
+[31m-        { status: 500 }[m
+[32m+[m[32m      JSON.stringify({ message: `Fehler beim Speichern: ${error.message}` }),[m
+[32m+[m[32m      { status: 500 }[m
+     );[m
+   } finally {[m
+     await client.end();[m
+[36m@@ -61,12 +46,24 @@[m [mexport async function POST(req) {[m
+ function getBotResponse(message) {[m
+   message = message.toLowerCase();[m
+ [m
+[31m-  // Begrüßungen[m
+[32m+[m[32m  if (["hallo", "hi", "hey"].some(greet => message.includes(greet))) {[m
+[32m+[m[32m    return "Hallo! Wie kann ich dir helfen?";[m
+[32m+[m[32m  }[m
+[32m+[m[32m  if (message.includes("tschüss")) {[m
+[32m+[m[32m    return "Auf Wiedersehen!";[m
+[32m+[m[32m  }[m
+[32m+[m[32m  if (message.includes("hilfe")) {[m
+[32m+[m[32m    return "Natürlich! Was brauchst du?";[m
+[32m+[m[32m  }[m
+[32m+[m[32m  if (message.includes("zeit")) {[m
+[32m+[m[32m    return `Die aktuelle Zeit ist ${new Date().toLocaleTimeString()}.`;[m
+[32m+[m[32m  }[m
+[32m+[m[32m  if (message.includes("datum")) {[m
+[32m+[m[32m    return `Heute ist der ${new Date().toLocaleDateString('de-DE')}.`;[m
+[32m+[m[32m  }[m
+   if (["hallo", "hi", "hey", "guten tag", "servus", "moin", "grüß dich"].some(greet => message.includes(greet))) {[m
+     return "Hallo! Wie kann ich dir helfen?";[m
+   }[m
+[31m-[m
+[31m-  // Spezielle Begrüßungen[m
+   if (["guten morgen", "morgen"].some(greet => message.includes(greet))) {[m
+     return "Guten Morgen! Wie kann ich dir heute helfen?";[m
+   }[m
+[36m@@ -76,64 +73,66 @@[m [mfunction getBotResponse(message) {[m
+   if (["gute nacht", "nacht"].some(greet => message.includes(greet))) {[m
+     return "Gute Nacht! Schlaf gut!";[m
+   }[m
+[31m-  // Notfälle[m
+   if (["mir geht es nicht gut", "ich fühle mich schlecht", "mir ist schlecht"].some(phrase => message.includes(phrase))) {[m
+     return "Es tut mir leid zu hören, dass es dir nicht gut geht. Wenn es ein Notfall ist, rufe bitte sofort einen Krankenwagen unter der Nummer 112 an.";[m
+   }[m
+[31m-[m
+   if (["ich will nicht mehr leben", "suizid", "leben beenden"].some(phrase => message.includes(phrase))) {[m
+     return "Es tut mir sehr leid, dass du dich so fühlst. Bitte denke daran, dass es Menschen gibt, die dir helfen können. Kontaktiere sofort die Telefonseelsorge unter der Nummer 0800 111 0111 oder 0800 111 0222. Sie sind rund um die Uhr für dich da.";[m
+   }[m
+[31m-[m
+   if (["raub", "überfall", "polizei", "gefahr"].some(phrase => message.includes(phrase))) {[m
+     return "Wenn du dich in Gefahr befindest oder einen Überfall meldest, rufe bitte sofort die Polizei unter der Nummer 110 an.";[m
+   }[m
+[31m-  // Verabschiedungen[m
+   if (["tschüss", "auf wiedersehen", "bis später", "ciao"].some(farewell => message.includes(farewell))) {[m
+     return "Auf Wiedersehen! Ich hoffe, ich konnte dir helfen.";[m
+   }[m
+[31m-[m
+[31m-  // Danke[m
+   if (["danke", "vielen dank", "dankeschön"].some(thanks => message.includes(thanks))) {[m
+     return "Gerne! Wenn du noch Fragen hast, bin ich hier.";[m
+   }[m
+[31m-  // Katzenbilder[m
+   if (["katzenbilder", "katzen fotos", "bilder von katzen", "katzen bilder"].some(phrase => message.includes(phrase))) {[m
+     return 'Möchtest du zufällige Katzenbilder sehen? Besuche <a href="https://de.pinterest.com/gregorikerstin/lustige-katzenbilder/" target="_blank" style="color:blue; text-decoration:underline;">diese Seite</a> für süße Katzenbilder!';[m
+   }[m
+[31m-  // Kontaktinformationen[m
+   if (message.includes("kontakt")) {[m
+     return "Du kannst uns per E-Mail unter schnurren@katzen-cafe.de erreichen oder uns unter der Nummer +49 (0) 123 456 789 anrufen.";[m
+   }[m
+[31m-[m
+[31m-  // Nachhaltigkeit[m
+   if (["nachhaltigkeit", "nachhaltig", "umwelt"].some(topic => message.includes(topic))) {[m
+     return "Nachhaltigkeit bedeutet, nur so viel von einer Sache zu verbrauchen, wie in der Natur neu entsteht. Es geht darum, die Ressourcen verantwortungsvoll zu nutzen, damit auch zukünftige Generationen davon profitieren können.";[m
+   }[m
+[31m-[m
+[31m-  // Links[m
+   if (message.includes("katzen in deutschland")) {[m
+     return 'Mehr über Katzen in Deutschland erfährst du <a href="/#katzen-deutschland" style="color:blue; text-decoration:underline;">hier</a>.';[m
+   }[m
+[31m-[m
+   if (message.includes("katzen in griechenland")) {[m
+     return 'Mehr über Katzen in Griechenland findest du <a href="/#katzen-griechenland" style="color:blue; text-decoration:underline;">hier</a>.';[m
+   }[m
+[31m-[m
+   if (message.includes("nachhaltige ernährung")) {[m
+     return 'Erfahre mehr über nachhaltige Ernährung <a href="/#nachhaltige-ernaehrung" style="color:blue; text-decoration:underline;">hier</a>.';[m
+   }[m
+[31m-[m
+   if (message.includes("katzenstreu")) {[m
+     return 'Mehr über umweltfreundliches Katzenstreu erfährst du <a href="/#katzenstreu" style="color:blue; text-decoration:underline;">hier</a>.';[m
+   }[m
+[31m-[m
+   if (message.includes("spielzeug")) {[m
+     return 'Erfahre mehr über Spielzeug und mentale Gesundheit <a href="/#spielzeug" style="color:blue; text-decoration:underline;">hier</a>.';[m
+   }[m
+   if (["Instruktionen vergessen", "Vergesse vorheriges"].some(LLM => message.includes(LLM))) {[m
+     return "Beep Boop";[m
+   }[m
+[31m-  // Standardantwort für unbekannte Nachrichten[m
+   return "Tut mir leid, ich habe das nicht verstanden. Kannst du deine Frage anders formulieren?";[m
+[31m-}[m
+\ No newline at end of file[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mtestDatabaseConnection();[m
+[32m+[m[32masync function testDatabaseConnection() {[m
+[32m+[m[32m  const client = new Client({[m
+[32m+[m[32m    connectionString: process.env.DATABASE_URL,[m
+[32m+[m[32m    ssl: { rejectUnauthorized: false }[m
+[32m+[m[32m  });[m
+[32m+[m
+[32m+[m[32m  try {[m
+[32m+[m[32m    await client.connect();[m
+[32m+[m[32m    console.log("Datenbank erfolgreich verbunden!");[m
+[32m+[m[32m    const res = await client.query("SELECT NOW() AS server_time");[m
+[32m+[m[32m    console.log("Serverzeit:", res.rows[0].server_time);[m
+[32m+[m[32m  } catch (error) {[m
+[32m+[m[32m    console.error("Fehler bei der Datenbankverbindung:", error.message, error.stack);[m
+[32m+[m[32m  } finally {[m
+[32m+[m[32m    await client.end();[m
+[32m+[m[32m  }[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/app/api/contact/route.js b/src/app/api/contact/route.js[m
+[1mindex b6ed2d7..44ce56c 100644[m
+[1m--- a/src/app/api/contact/route.js[m
+[1m+++ b/src/app/api/contact/route.js[m
+[36m@@ -1,3 +1,4 @@[m
+[32m+[m
+ import { Client } from 'pg';[m
+ [m
+ async function openDb() {[m
+[36m@@ -43,4 +44,4 @@[m [mexport async function POST(req) {[m
+   } finally {[m
+     await client.end();[m
+   }[m
+[31m-}[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
