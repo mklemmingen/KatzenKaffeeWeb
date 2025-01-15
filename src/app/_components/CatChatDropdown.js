@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import "../_styles/CatChatDropdown.css";
 import ChatBot from "@/app/_components/ChatBot";
-import { IoIosChatboxes } from "react-icons/io";
+import {IoIosChatboxes} from "react-icons/io";
 
 const CatChatDropdown = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,10 +27,10 @@ const CatChatDropdown = () => {
     return (
         <div className="catChat-dropdown" ref={dropdownRef}>
             <button onClick={toggleDropdown}>
-                <IoIosChatboxes />
+                <IoIosChatboxes/>
             </button>
             <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                <ChatBot />
+                <ChatBot/>
             </div>
         </div>
     );

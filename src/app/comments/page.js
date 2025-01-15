@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, {Suspense, useEffect, useState} from 'react';
 import Image from 'next/image';
 import './_styles/comments.css';
 
 const Page = () => {
     const [comments, setComments] = useState([]);
-    const [formData, setFormData] = useState({ name: '', email: '', experience: '' });
-    const [errors, setErrors] = useState({ name: '', email: '', experience: '' });
+    const [formData, setFormData] = useState({name: '', email: '', experience: ''});
+    const [errors, setErrors] = useState({name: '', email: '', experience: ''});
     const [message, setMessage] = useState('');
     const images = [
         'bear.png', 'crocodile.png', 'deer.png', 'elephant.png',
@@ -58,7 +58,7 @@ const Page = () => {
             valid = false;
         }
 
-        if(formData.email.length === 0){
+        if (formData.email.length === 0) {
             formData.email = "anonym";
         }
 
@@ -72,8 +72,8 @@ const Page = () => {
     };
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        const {name, value} = e.target;
+        setFormData({...formData, [name]: value});
     };
 
     const handleSubmit = async (e) => {
@@ -110,11 +110,11 @@ const Page = () => {
                     image: images[Math.floor(Math.random() * images.length)]
                 }]);
 
-                setFormData({ name: '', email: '', experience: '' });
-                setMessage({ type: 'success', text: 'Kommentar erfolgreich eingetragen!' });
+                setFormData({name: '', email: '', experience: ''});
+                setMessage({type: 'success', text: 'Kommentar erfolgreich eingetragen!'});
             } catch (error) {
                 console.error('Error:', error);
-                setMessage({ type: 'error', text: 'Kommentar konnte nicht gespeichert werden.' });
+                setMessage({type: 'error', text: 'Kommentar konnte nicht gespeichert werden.'});
             }
 
             setTimeout(() => {

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import PropTypes from 'prop-types';
 import '../_styles/BirdAnimation.css';
 import "../globals.css"
@@ -56,7 +56,7 @@ const getFrameStyle = (sprite, category, frame, isMirrored, x, y) => {
     };
 };
 
-const BirdAnimation = ({ numberOfBirds }) => {
+const BirdAnimation = ({numberOfBirds}) => {
     const [birds, setBirds] = useState([]);
     const frameRate = 8;
     const frameDuration = 1000 / frameRate;
@@ -64,7 +64,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
 
     useEffect(() => {
         const birdKeys = Object.keys(birdSprites);
-        const selectedBirds = Array.from({ length: numberOfBirds }, () => ({
+        const selectedBirds = Array.from({length: numberOfBirds}, () => ({
             type: birdKeys[Math.floor(Math.random() * birdKeys.length)],
             x: Math.random() * window.innerWidth,
             y: Math.random() * window.innerHeight,
@@ -108,7 +108,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
             const distanceY = bird.targetY - bird.y;
             const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
 
-            bird.isMirrored = distanceX  > 0; // Mirror if moving east
+            bird.isMirrored = distanceX > 0; // Mirror if moving east
 
             if (distance > 10) {
                 const angle = Math.atan2(distanceY, distanceX);
@@ -130,7 +130,7 @@ const BirdAnimation = ({ numberOfBirds }) => {
                 bird.frame = (bird.frame + 1) % 4;
             }
 
-            return { ...bird };
+            return {...bird};
         }));
 
         requestAnimationFrame(animate);

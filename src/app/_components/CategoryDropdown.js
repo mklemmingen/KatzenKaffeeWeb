@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaMap } from "react-icons/fa";
+import React, {useEffect, useRef, useState} from 'react';
+import {FaMap} from "react-icons/fa";
 import InfoDropdown from "@/app/_components/InfoDropdown";
 import "../_styles/CategoryDropdown.css";
 
@@ -27,10 +27,10 @@ const CategoryDropdown = () => {
     return (
         <div className="category-dropdown" ref={dropdownRef}>
             <button onClick={toggleDropdown}>
-                <FaMap />
+                <FaMap/>
             </button>
             <div className={`dropdown-content ${isDropdownOpen ? 'show' : ''}`}>
-                <InfoDropdown />
+                <InfoDropdown/>
             </div>
         </div>
     );

@@ -1,11 +1,11 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import dynamic from 'next/dynamic';
 import "../globals.css";
 
 // Dynamically import react-youtube to ensure it only loads on the client side
-const YouTube = dynamic(() => import('react-youtube'), { ssr: false });
+const YouTube = dynamic(() => import('react-youtube'), {ssr: false});
 
-const YouTubePlayer = ({ videoId, onReady }) => {
+const YouTubePlayer = ({videoId, onReady}) => {
     const playerRef = useRef(null);
     const [isClient, setIsClient] = useState(false);
 

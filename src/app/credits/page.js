@@ -45,19 +45,22 @@ function Page() {
                         </span>
                     </li>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/bird_15622967')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/bird_15622967')}>
                             Vogel Icon <br/>
                             https://www.flaticon.com/free-icon/bird_15622967
                         </span>
                     </li>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/opossum_11880015')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/opossum_11880015')}>
                             Opossum Icon <br/>
                             https://www.flaticon.com/free-icon/opossum_11880015
                         </span>
                     </li>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/cat_1864640')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://www.flaticon.com/free-icon/cat_1864640')}>
                             Katze Icon <br/>
                             https://www.flaticon.com/free-icon/cat_1864640
                         </span>
@@ -69,13 +72,15 @@ function Page() {
                 <p className="readable-text">Wir haben uns auf die Forschung gestützt!</p>
                 <ul>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://www.nature.com/articles/ncomms2380?WT.mc_id=FBK_NCOMMS#abstract')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://www.nature.com/articles/ncomms2380?WT.mc_id=FBK_NCOMMS#abstract')}>
                             Nature Communications <br/>
                             https://www.nature.com/articles/ncomms2380?WT.mc_id=FBK_NCOMMS#abstract
                         </span>
                     </li>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://directory.doabooks.org/handle/20.500.12854/113510')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://directory.doabooks.org/handle/20.500.12854/113510')}>
                             Cats and Conservationists: Die Debatte darüber, wem die Natur gehört <br/>
                             https://directory.doabooks.org/handle/20.500.12854/113510
                         </span>
@@ -87,7 +92,8 @@ function Page() {
                 <p className="readable-text">Privatpersonen, Firmen, Katzen-Enthusiasten</p>
                 <ul>
                     <li>
-                        <span className="link-class" onClick={() => handleLinkClick('https://rawznaturalpetfood.com/diy-cat-toys/')}>
+                        <span className="link-class"
+                              onClick={() => handleLinkClick('https://rawznaturalpetfood.com/diy-cat-toys/')}>
                             DIY-Katzenspielzeug <br/>
                             https://rawznaturalpetfood.com/diy-cat-toys/
                         </span>

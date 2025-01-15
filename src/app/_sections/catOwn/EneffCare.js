@@ -2,6 +2,7 @@ import React from "react";
 import '../../_sections/_styles/eneffCare.css';
 import '../../globals.css';
 import Image from "next/image";
+
 function EneffCare() {
     return (
         <div className="outer-container-eneffCare">

@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import '../_styles/BookRecommendation.css';
 import Image from 'next/image';
 import "../globals.css";
 
-const BookRecommendation = ({ imageUrl, bookUrl, title, description }) => {
+const BookRecommendation = ({imageUrl, bookUrl, title, description}) => {
     const imageRef = useRef(null);
     const neonSignRef = useRef(null);
 

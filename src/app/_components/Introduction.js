@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import 'chart.js/auto';
 import '../_styles/Introduction.css';
 import "../globals.css";
@@ -17,7 +17,7 @@ const Introduction = () => {
                 </div>
             </div>
             <div className="intro_footer">
-                Entdecke , Katzen  <span className="highlight">umweltbewusst</span>  zu pflegen
+                Entdecke , Katzen <span className="highlight">umweltbewusst</span> zu pflegen
                 <br/>
 
                 <span className="inline-icon-text">
@@ -33,7 +33,7 @@ const Introduction = () => {
                 </span>
                 <br/>
                 <span className="inline-icon-text">
-                    <MdDarkMode />  Mach Dark Mode an
+                    <MdDarkMode/>  Mach Dark Mode an
                 </span>
             </div>
         </div>

@@ -5,25 +5,27 @@
     align-content: center;
     column-gap: 50px;
 }
+
 .full-container-headline-sustCatOwn {
     display: flex;
     flex-direction: row;
     justify-content: left;
     column-gap: 10px;
 }
+
 .outer-container-sustCatOwn {
     border-radius: 15px;
     padding: 20px;
     margin: 20px;
 }
 
-  .video-container-sustCatOwn {
+.video-container-sustCatOwn {
     text-align: left;
     margin: 30px 0;
-  }
-  
-  .video-button-sustCatOwn {
-    background-color: var(--primary-color); 
+}
+
+.video-button-sustCatOwn {
+    background-color: var(--primary-color);
     color: white;
     align-self: center;
     font-size: 1rem;
@@ -32,17 +34,19 @@
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-  }
-  
-  .video-button-sustCatOwn:hover {
+}
+
+.video-button-sustCatOwn:hover {
     background-color: var(--primary-color);
     transform: scale(1.05);
-  }
-  .video-button-sustCatOwn:active {
+}
+
+.video-button-sustCatOwn:active {
     transform: scale(0.98);
-  }
-  .recipe-text-sustCatOwn {
-    background-color:  var(--background_color);
+}
+
+.recipe-text-sustCatOwn {
+    background-color: var(--background_color);
     border: 1px solid var(--primary-color);
     padding: 15px;
     margin: 20px 0;

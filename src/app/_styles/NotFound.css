@@ -44,18 +44,18 @@
     position: relative;
 }
 
-#cielo{
+#cielo {
     border-radius: 16px;
     width: 1325px;
     height: 500px;
-    background: linear-gradient(to bottom,  #0B4C5F 0%,#04B4AE 52%,#0c0207 100%);
+    background: linear-gradient(to bottom, #0B4C5F 0%, #04B4AE 52%, #0c0207 100%);
     position: absolute;
     z-index: -30;
     top: 0;
     margin-top: 2em;
 }
 
-#edificios{
+#edificios {
     background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526533/eva/edificiosOne_fsg7nx.svg');
     height: 500px;
     width: 1325px;
@@ -71,21 +71,40 @@
 
 /* Animacion edificios */
 
-@keyframes  animar_edificios {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
+@keyframes animar_edificios {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
 }
-@-webkit-keyframes  animar_edificios {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
+
+@-webkit-keyframes animar_edificios {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
 }
-@-ms-keyframes  animar_edificios {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
+
+@-ms-keyframes animar_edificios {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
 }
-@-moz-keyframes  animar_edificios {
-    from { background-position: 0 0; }
-    to { background-position: 100% 0; }
+
+@-moz-keyframes animar_edificios {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
 }
 
 #luna {
@@ -112,36 +131,52 @@
     bottom: 0px;
 }
 
-#gato{
+#gato {
     background: url('https://res.cloudinary.com/pastelitos/image/upload/v1610526571/eva/gatito_pushui.svg');
     height: 297px;
     width: 507.5px;
     margin-top: 2em;
     margin-left: 2em;
     z-index: 10;
-    -webkit-animation: sprite-animation 1.2s steps(16,end) infinite;
-    -moz-animation: sprite-animation 1.2s steps(16,end) infinite;
-    -ms-animation: sprite-animation 1.2s steps(16,end) infinite;
-    animation: sprite-animation 1.2s steps(16,end) infinite;
+    -webkit-animation: sprite-animation 1.2s steps(16, end) infinite;
+    -moz-animation: sprite-animation 1.2s steps(16, end) infinite;
+    -ms-animation: sprite-animation 1.2s steps(16, end) infinite;
+    animation: sprite-animation 1.2s steps(16, end) infinite;
 }
 
 @-webkit-keyframes sprite-animation {
-    from { background-position: 0 0; }
-    to { background-position: -8120px 0; }
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -8120px 0;
+    }
 }
 
 @-ms-keyframes sprite-animation {
-    from { background-position: 0 0; }
-    to { background-position: -8120px 0; }
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -8120px 0;
+    }
 }
 
 @-moz-keyframes sprite-animation {
-    from { background-position: 0 0; }
-    to { background-position: -8120px 0; }
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -8120px 0;
+    }
 }
 
 @keyframes sprite-animation {
-    from { background-position: 0 0; }
-    to { background-position: -8120px 0; }
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: -8120px 0;
+    }
 }
 

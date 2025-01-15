@@ -6,86 +6,86 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #5D415A;
-  --secondary-color: #F5F5F5;
-  --accent-color: #5D415A;
-  --text-color: #333;
-  --background-color: #f9f9f9;
-  --section-background: #f9f9f9;
-  --font-family: 'Roboto', Arial, sans-serif;
-  --high-contrast-text: #000;
-  --high-contrast-bg: #fff;
-  --shadow-color: rgba(0, 0, 0, 0.25);
-  --shadow-color2: rgba(0, 0, 0, 0.22);
+    --primary-color: #5D415A;
+    --secondary-color: #F5F5F5;
+    --accent-color: #5D415A;
+    --text-color: #333;
+    --background-color: #f9f9f9;
+    --section-background: #f9f9f9;
+    --font-family: 'Roboto', Arial, sans-serif;
+    --high-contrast-text: #000;
+    --high-contrast-bg: #fff;
+    --shadow-color: rgba(0, 0, 0, 0.25);
+    --shadow-color2: rgba(0, 0, 0, 0.22);
 }
 
 [data-theme='high-contrast'] {
-  --primary-color: #8E44AD;
-  --secondary-color: #333;
-  --accent-color: #8E44AD;
-  --text-color: #fff;
-  --background-color: #000;
-  --section-background: #333;
-  --shadow-color: black;
-  --shadow-color2: black;
+    --primary-color: #8E44AD;
+    --secondary-color: #333;
+    --accent-color: #8E44AD;
+    --text-color: #fff;
+    --background-color: #000;
+    --section-background: #333;
+    --shadow-color: black;
+    --shadow-color2: black;
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 body {
-  font-family: var(--font-family), serif;
-  background-color: var(--background-color);
-  color: var(--text-color);
-  line-height: 1.6;
-  flex:1;
+    font-family: var(--font-family), serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    flex: 1;
 }
 
 .App {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  overflow: hidden;
-  color: var(--text-color);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
 }
 
 #page-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding-top: 60px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
 }
 
 main {
-   flex: 1;
-   display: flex;
-   flex-direction: column;
- }
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
 
 h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 2em;
-  color: var(--primary-color);
-  margin: 0.67em 0;
+    font-family: 'Pacifico', cursive;
+    font-size: 2em;
+    color: var(--primary-color);
+    margin: 0.67em 0;
 }
 
 h2 {
-  font-family: 'Pacifico', cursive;
-  color: var(--primary-color);
-  font-size: 1.5em;
-  margin: 0.83em 0;
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 1.5em;
+    margin: 0.83em 0;
 }
 
 .author {
@@ -104,234 +104,237 @@ h2 {
 }
 
 p, ul, li {
-  font-family: var(--font-family), serif;
-  color: var(--text-color);
-  font-size: 1em;
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    font-size: 1em;
 }
 
-<!-- ------------------------ -->
+<!--
+------------------------
+
+-->
 
 .content {
-  flex: 1;
-  margin-top: 60px;
-  margin-bottom: 40px;
-  overflow: hidden;
-  z-index: 2;
+    flex: 1;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    z-index: 2;
 }
 
 .content {
-  flex: 1;
-  margin-top: 60px;
-  margin-bottom: 40px;
-  overflow: hidden;
+    flex: 1;
+    margin-top: 60px;
+    margin-bottom: 40px;
+    overflow: hidden;
 }
 
 .container {
-  width: 80%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+    width: 80%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .cat-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: auto;
-  z-index: 1;
-  image-rendering: pixelated;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    z-index: 1;
+    image-rendering: pixelated;
 }
 
 .welcome-note {
-  position: relative;
-  height: auto;
-  width: auto;
-  text-align: center;
-  margin: auto;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--secondary-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px var(--shadow-color);
+    position: relative;
+    height: auto;
+    width: auto;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
 }
 
 
 .welcome-note h1 {
-  font-family: 'Pacifico', serif;
-  color: var(--primary-color);
-  margin-bottom: 10px;
+    font-family: 'Pacifico', serif;
+    color: var(--primary-color);
+    margin-bottom: 10px;
 }
 
 .welcome-note p {
-  font-family: var(--font-family), serif;
-  color: var(--text-color);
-  font-size: 1em;
-  line-height: 1.4em;
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    font-size: 1em;
+    line-height: 1.4em;
 }
 
 .spacer {
-  flex-grow: 0.1;
+    flex-grow: 0.1;
 }
 
 .App-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--secondary-color);
-  padding: 10px 20px;
-  color: var(--primary-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-wrap: wrap;
-  z-index: 1000;
-  position: absolute;
-  top: 0;
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--secondary-color);
+    padding: 10px 20px;
+    color: var(--primary-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    z-index: 1000;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .scroll-progress-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 0.5em;
-  background: transparent;
-  z-index: 1000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0.5em;
+    background: transparent;
+    z-index: 1000;
 }
 
 .scroll-progress-bar {
-  height: 100%;
-  background: lightblue;
-  transition: width 0.25s ease-out;
+    height: 100%;
+    background: lightblue;
+    transition: width 0.25s ease-out;
 }
 
 .App-logo {
-  width: 75px;
-  height: auto;
-  font-family: 'Pacifico', cursive;
-  color: var(--primary-color);
-  text-decoration: none;
-  font-size: 2em;
+    width: 75px;
+    height: auto;
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 2em;
 }
 
 .logo-container {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  min-width: 200px;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 200px;
 }
 
 .logo-container img {
-  width: 75px;
-  height: 75px;
-  margin-right: 10px;
+    width: 75px;
+    height: 75px;
+    margin-right: 10px;
 }
 
 .nav-links {
-  margin: 0 10px;
-  font-family: var(--font-family), serif;
-  font-size: 1.2em;
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  flex: 2;
-  min-width: 300px;
+    margin: 0 10px;
+    font-family: var(--font-family), serif;
+    font-size: 1.2em;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex: 2;
+    min-width: 300px;
 }
 
 .nav-links a {
-  color: var(--primary-color);
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-links a:hover {
-  background-color: var(--primary-color);
-  color: #ffffff;
+    background-color: var(--primary-color);
+    color: #ffffff;
 }
 
 .nav-links a:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .App-link {
-  color: var(--primary-color);
-  text-decoration: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--primary-color);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .App-link a:hover {
-  background-color: var(--primary-color);
-  color: #ffffff;
+    background-color: var(--primary-color);
+    color: #ffffff;
 }
 
 .App-link a:focus {
-  outline: 2px solid var(--primary-color);
-  outline-offset: 2px;
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
 }
 
 .App-footer {
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  padding: 10px;
-  text-align: center;
-  width: 100%;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 0;
-  position: relative;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 0;
+    position: relative;
 }
 
 .App-footer p {
-  color: var(--text-color);
+    color: var(--text-color);
 }
 
 .Modal {
-  position: relative;
-  background: var(--secondary-color);
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  max-width: 500px;
-  width: 100%;
-  z-index: 1000;
-  text-align: center;
-  font-family: var(--font-family), serif;
-  color: var(--primary-color);
+    position: relative;
+    background: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    z-index: 1000;
+    text-align: center;
+    font-family: var(--font-family), serif;
+    color: var(--primary-color);
 }
 
 .Overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 999;
 }
 
 .success-text {
-  color: green;
+    color: green;
 }
 
 .error-text {
-  color: red;
+    color: red;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 @media (max-width: 1024px) {
-  .App-header {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
+    .App-header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+    }
 }

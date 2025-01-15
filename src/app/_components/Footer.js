@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import "../globals.css";
 
 function Footer() {
@@ -10,7 +10,7 @@ function Footer() {
 
     const scrollToTop = () => {
         if (router.pathname === '/') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
     };
 

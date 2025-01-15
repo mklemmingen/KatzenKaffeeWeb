@@ -73,6 +73,7 @@
         grid-row-start: 4;
         grid-row-end: 5;
     }
+
     .cat.cat--5 {
         grid-column-start: 2;
         grid-column-end: 3;
@@ -88,24 +89,28 @@
         grid-row-start: 1;
         grid-row-end: 2;
     }
+
     .cat.cat--2 {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 2;
         grid-row-end: 3;
     }
+
     .cat.cat--3 {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 3;
         grid-row-end: 4;
     }
+
     .cat.cat--4 {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 4;
         grid-row-end: 5;
     }
+
     .cat.cat--5 {
         grid-column-start: 1;
         grid-column-end: 2;

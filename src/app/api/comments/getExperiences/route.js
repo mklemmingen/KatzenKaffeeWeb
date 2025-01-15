@@ -1,4 +1,4 @@
-import { Client } from 'pg';
+import {Client} from 'pg';
 
 async function openDb() {
     const client = new Client({
@@ -16,10 +16,10 @@ export async function GET(req) {
 
     try {
         const res = await client.query('SELECT * FROM experiences');
-        return new Response(JSON.stringify(res.rows), { status: 200 });
+        return new Response(JSON.stringify(res.rows), {status: 200});
     } catch (error) {
         console.error('Error fetching experiences:', error);
-        return new Response(JSON.stringify({ message: 'Internal Server Error' }), { status: 500 });
+        return new Response(JSON.stringify({message: 'Internal Server Error'}), {status: 500});
     } finally {
         await client.end();
     }

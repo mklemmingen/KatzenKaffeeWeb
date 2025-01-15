@@ -1,14 +1,14 @@
 'use client';
 
 import "../_styles/Header.css";
-import { useEffect, useRef, useState } from 'react';
+import {useEffect, useRef, useState} from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import {useRouter} from 'next/navigation';
 import Image from 'next/image';
-import { FaMusic } from "react-icons/fa6";
-import { IoMenu } from "react-icons/io5";
-import { FaComment } from "react-icons/fa";
-import { MdDarkMode } from "react-icons/md";
+import {FaMusic} from "react-icons/fa6";
+import {IoMenu} from "react-icons/io5";
+import {FaComment} from "react-icons/fa";
+import {MdDarkMode} from "react-icons/md";
 
 function Header() {
     const router = useRouter();
@@ -64,7 +64,7 @@ function Header() {
                 </Link>
             </div>
             <button className="menuToggle" onClick={toggleMenu}>
-                <IoMenu />
+                <IoMenu/>
             </button>
             <nav className={`nav ${isMenuOpen ? 'open' : ''}`}>
                 <div className="button-container">
@@ -82,15 +82,15 @@ function Header() {
                         </label>
                     </div>
                     <Link href="/comments" className="App-button">
-                        <FaComment />
+                        <FaComment/>
                     </Link>
                     <button className="App-button music-button" onClick={handlePlay}>
-                        <FaMusic />
+                        <FaMusic/>
                     </button>
                 </div>
             </nav>
             <audio ref={audioRef} loop>
-                <source src="/1 hour of aesthetic & calm lofi music.mp3" type="audio/mpeg" />
+                <source src="/1 hour of aesthetic & calm lofi music.mp3" type="audio/mpeg"/>
                 Your browser does not support the audio element.
             </audio>
         </header>

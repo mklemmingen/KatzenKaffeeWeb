@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Droid+Serif&display=swap');
 
 .introduction {
-    position:relative;
+    position: relative;
     font-family: var(--font-family), serif;
     color: var(--text-color);
     pointer-events: none;
@@ -66,7 +66,7 @@
 }
 
 .introduction p {
-    position:relative;
+    position: relative;
     color: var(--text-color);
     align-items: center;
     font-family: var(--font-family), serif;

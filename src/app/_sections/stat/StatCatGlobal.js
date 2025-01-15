@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Bar } from "react-chartjs-2";
+import React, {useEffect, useState} from 'react';
+import {Bar} from "react-chartjs-2";
 import '../../globals.css';
 import Image from "next/image";
 

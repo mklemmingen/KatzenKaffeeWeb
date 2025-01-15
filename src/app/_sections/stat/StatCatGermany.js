@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Line } from "react-chartjs-2";
+import React, {useEffect, useState} from 'react';
+import {Line} from "react-chartjs-2";
 import '../../globals.css';
 import Image from "next/image";
 
@@ -44,7 +44,7 @@ function StatCatGermany() {
     const options = {
         responsive: true,
         plugins: {
-            title: { display: false, text: "" },
+            title: {display: false, text: ""},
             tooltip: {
                 backgroundColor: "rgba(0, 0, 0, 0.8)",
                 titleColor: "#fff",

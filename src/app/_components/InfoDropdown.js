@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useRouter } from 'next/navigation';
+import React, {useEffect, useRef, useState} from 'react';
+import {useRouter} from 'next/navigation';
 import catAndNature from '@/app/_data/catAndNature.json';
 import catOwning from '@/app/_data/catOwning.json';
 import statisticSections from '@/app/_data/statisticSections.json';

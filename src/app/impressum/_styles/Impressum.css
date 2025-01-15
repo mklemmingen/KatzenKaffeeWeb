@@ -1,50 +1,50 @@
 .impressum-container {
-  position: relative;
-  text-align: left;
-  max-width: 800px;
-  margin: 0 auto;
-  background-color: var(--secondary-color);
-  color: var(--text-color);
+    position: relative;
+    text-align: left;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
 }
 
 .impressum-container::before {
-  content: '';
-  position: absolute;
-  top: -5%;
-  left: -5%;
-  width: 110%;
-  height: 110%;
-  background-color: var(--secondary-color);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 2px 4px var(--shadow-color);
-  z-index: -1;
+    content: '';
+    position: absolute;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    z-index: -1;
 }
 
 .impr-header {
-  color: var(--primary-color);
-  text-align: center;
-  font-family: Pacifico, serif !important;
-  font-size: 3em;
+    color: var(--primary-color);
+    text-align: center;
+    font-family: Pacifico, serif !important;
+    font-size: 3em;
 }
 
 .impr-sect {
-  color: var(--text-color); 
-  font-size: 1.1rem;
-  line-height: 1.6;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    line-height: 1.6;
 }
 
 
 body.dark-mode .impressum-container {
-  background-color: var(--text-color); 
-  color: var(--text-color); 
+    background-color: var(--text-color);
+    color: var(--text-color);
 }
 
 body.dark-mode h1, body.dark-mode h2 {
-  color:var var(--text-color) ;
+    color: var var(--text-color);
 }
 
 body.dark-mode p {
-  color: var var(--text-color); ; 
+    color: var var(--text-color);;
 }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import '../_styles/CatAnimation.css';
 import "../globals.css";
 import BirdAnimation from "@/app/_components/BirdAnimation";
@@ -32,21 +32,21 @@ const coffeeScale = 1;
 const tileWidth = 32;
 const tileHeight = 32;
 const categories = [
-    { name: 'sitting', startX: 0, startY: tileHeight },
-    { name: 'looking', startX: 128, startY: tileHeight },
-    { name: 'laying', startX: 256, startY: tileHeight },
-    { name: 'walking', startX: 384, startY: tileHeight },
-    { name: 'running', startX: 512, startY: tileHeight }
+    {name: 'sitting', startX: 0, startY: tileHeight},
+    {name: 'looking', startX: 128, startY: tileHeight},
+    {name: 'laying', startX: 256, startY: tileHeight},
+    {name: 'walking', startX: 384, startY: tileHeight},
+    {name: 'running', startX: 512, startY: tileHeight}
 ];
 const directions = [
-    { name: 'south', index: 0, angle: Math.PI / 2 },
-    { name: 'south-west', index: 1, angle: (3 * Math.PI) / 4 },
-    { name: 'west', index: 2, angle: Math.PI },
-    { name: 'north-west', index: 3, angle: (5 * Math.PI) / 4 },
-    { name: 'north', index: 4, angle: (3 * Math.PI) / 2 },
-    { name: 'north-east', index: 5, angle: (7 * Math.PI) / 4 },
-    { name: 'east', index: 6, angle: 0 },
-    { name: 'south-east', index: 7, angle: Math.PI / 4 }
+    {name: 'south', index: 0, angle: Math.PI / 2},
+    {name: 'south-west', index: 1, angle: (3 * Math.PI) / 4},
+    {name: 'west', index: 2, angle: Math.PI},
+    {name: 'north-west', index: 3, angle: (5 * Math.PI) / 4},
+    {name: 'north', index: 4, angle: (3 * Math.PI) / 2},
+    {name: 'north-east', index: 5, angle: (7 * Math.PI) / 4},
+    {name: 'east', index: 6, angle: 0},
+    {name: 'south-east', index: 7, angle: Math.PI / 4}
 ];
 const meowSounds = [
     '/assets/snd/meow.mp3',
@@ -98,7 +98,7 @@ const extractTiles = (spriteSheet, categories) => {
                         const imageData = ctx.getImageData(0, 0, tileWidth, tileHeight);
                         const isEmpty = !imageData.data.some(channel => channel !== 0);
                         if (!isEmpty) {
-                            tiles[category.name][direction.name].push({ sx, sy, width: tileWidth, height: tileHeight });
+                            tiles[category.name][direction.name].push({sx, sy, width: tileWidth, height: tileHeight});
                         }
                     }
                 }
@@ -127,7 +127,7 @@ const playRandomMeow = () => {
     });
 };
 
-const CatAnimation = ({ numberOfCats }) => {
+const CatAnimation = ({numberOfCats}) => {
     const canvasRef = useRef(null);
     const [hoveredCat, setHoveredCat] = useState(false);
     const frameRate = 8;
@@ -140,7 +140,7 @@ const CatAnimation = ({ numberOfCats }) => {
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
 
-        if (isColliding(cat, { x: mouseX, y: mouseY, width: 1, height: 1 })) {
+        if (isColliding(cat, {x: mouseX, y: mouseY, width: 1, height: 1})) {
             playRandomMeow();
             cat.targetX = Math.random() * canvasRef.current.width;
             cat.targetY = Math.random() * canvasRef.current.height;
@@ -192,7 +192,7 @@ const CatAnimation = ({ numberOfCats }) => {
             return randomValue < 0.5 ? Math.random() * quarterWidth : width - quarterWidth + Math.random() * quarterWidth;
         };
 
-        const cats = Array.from({ length: numberOfCats }, () => {
+        const cats = Array.from({length: numberOfCats}, () => {
             const category = categories[Math.floor(Math.random() * categories.length)];
             const direction = directions[Math.floor(Math.random() * directions.length)];
             const spriteFile = spriteFiles[Math.floor(Math.random() * spriteFiles.length)];
@@ -385,7 +385,7 @@ const CatAnimation = ({ numberOfCats }) => {
                     }
                 });
 
-                if (isColliding(cat, { x: mouseX, y: mouseY, width: 1, height: 1 })) {
+                if (isColliding(cat, {x: mouseX, y: mouseY, width: 1, height: 1})) {
                     isHovering = true;
                 }
             });
@@ -451,10 +451,10 @@ const CatAnimation = ({ numberOfCats }) => {
         <canvas
             ref={canvasRef}
             className="cat-animation-canvas"
-            style={{ cursor: hoveredCat ? 'pointer' : 'default' }}
+            style={{cursor: hoveredCat ? 'pointer' : 'default'}}
             aria-hidden="true"
         >
-            <BirdAnimation numberOfBirds={numberOfCats * 2} />
+            <BirdAnimation numberOfBirds={numberOfCats * 2}/>
         </canvas>
     );
 };

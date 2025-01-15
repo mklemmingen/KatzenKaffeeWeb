@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import React, {Suspense, useEffect, useState} from 'react';
+import {useSearchParams} from 'next/navigation';
 
 // _styles ---------------------------------------------------
 import '@/app/_styles/Home.css';
@@ -10,7 +10,7 @@ import '@/app/_styles/Home.css';
 import Introduction from '@/app/_components/Introduction';
 import BirdAnimation from '@/app/_components/BirdAnimation';
 import CatAnimation from '@/app/_components/CatAnimation';
-import { FaArrowAltCircleUp } from "react-icons/fa";
+import {FaArrowAltCircleUp} from "react-icons/fa";
 import CategoryDropdown from "@/app/_components/CategoryDropdown";
 
 // _sections -------------------------------------------------
@@ -39,7 +39,7 @@ const PageContent = () => {
             if (targetId) {
                 const targetElement = document.getElementById(targetId);
                 if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                    targetElement.scrollIntoView({behavior: 'smooth'});
                     targetElement.focus();
                 }
             }
@@ -52,10 +52,10 @@ const PageContent = () => {
                 className="back-to-start-button"
                 onClick={() => {
                     console.log('Scrolling back to top');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({top: 0, behavior: 'smooth'});
                 }}
             >
-                <FaArrowAltCircleUp />
+                <FaArrowAltCircleUp/>
             </button>
         );
     };

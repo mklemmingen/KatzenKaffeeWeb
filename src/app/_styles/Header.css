@@ -1,4 +1,4 @@
-.dropdown button{
+.dropdown button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -164,7 +164,7 @@ input:checked + .slider:before {
 .menuToggle {
     display: none;
     font-size: 25px;
-  }
+}
 
 /* Accessibility and Responsive Design starts here */
 @media (max-width: 1024px) {

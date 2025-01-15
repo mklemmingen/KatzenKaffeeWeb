@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import { PieChart, Pie, Cell, Tooltip, Legend, Sector, ResponsiveContainer } from 'recharts';
+import React, {useEffect, useState} from 'react';
+import {Cell, Legend, Pie, PieChart, ResponsiveContainer, Sector} from 'recharts';
 import Image from 'next/image';
 import "../globals.css";
 import "../_styles/CatHuntingImpact.css";
 
 // Data with image paths
 const data = [
-    { name: 'Hauskatzen', value: 75, icon: '/assets/cat.png' },
-    { name: 'Rotfüchse', value: 15, icon: '/assets/fox.png' },
-    { name: 'Rotschwanzbussarde', value: 4, icon: '/assets/hawk.png' },
-    { name: 'Virginia-Opossums', value: 3, icon: '/assets/opossum.png' }
+    {name: 'Hauskatzen', value: 75, icon: '/assets/cat.png'},
+    {name: 'Rotfüchse', value: 15, icon: '/assets/fox.png'},
+    {name: 'Rotschwanzbussarde', value: 4, icon: '/assets/hawk.png'},
+    {name: 'Virginia-Opossums', value: 3, icon: '/assets/opossum.png'}
 ];
 
 const COLORS = ['#FF6384', '#36A2EB', '#FFCE56', '#FF9F40'];
 
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index, activeIndex }) => {
+const renderCustomizedLabel = ({cx, cy, midAngle, innerRadius, outerRadius, percent, index, activeIndex}) => {
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
@@ -24,14 +24,14 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
     return (
         <foreignObject x={x - size / 2} y={y - size / 2} width={size} height={size}>
-            <Image src={data[index].icon} alt={data[index].name} width={size} height={size} />
+            <Image src={data[index].icon} alt={data[index].name} width={size} height={size}/>
         </foreignObject>
     );
 };
 
 const renderActiveShape = (props) => {
     const RADIAN = Math.PI / 180;
-    const { cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value } = props;
+    const {cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle, fill, payload, percent, value} = props;
     const sin = Math.sin(-RADIAN * midAngle);
     const cos = Math.cos(-RADIAN * midAngle);
     const sx = cx + (outerRadius + 10) * cos;
@@ -53,9 +53,10 @@ const renderActiveShape = (props) => {
                 endAngle={endAngle}
                 fill={fill}
             />
-            <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
-            <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none" />
-            <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor} fill="#333">{`${payload.name}`}</text>
+            <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none"/>
+            <circle cx={ex} cy={ey} r={2} fill={fill} stroke="none"/>
+            <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} textAnchor={textAnchor}
+                  fill="#333">{`${payload.name}`}</text>
             <text x={ex + (cos >= 0 ? 1 : -1) * 12} y={ey} dy={18} textAnchor={textAnchor} fill="#999">
                 {`(${value})`}
             </text>
@@ -92,20 +93,20 @@ const CatHuntingImpact = () => {
                             cx="50%"
                             cy="50%"
                             labelLine={false}
-                            label={(props) => renderCustomizedLabel({ ...props, activeIndex })}
+                            label={(props) => renderCustomizedLabel({...props, activeIndex})}
                             outerRadius="80%"
                             fill="#8884d8"
                             dataKey="value"
                             onMouseEnter={onPieEnter}
                         >
                             {data.map((entry, index) => (
-                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]}/>
                             ))}
                         </Pie>
                     </PieChart>
                 </ResponsiveContainer>
                 <div className="chart-legend">
-                    <Legend />
+                    <Legend/>
                     <p className="title">Welches Tier jagt am meisten?</p>
                     <p className="description">Es wurde jeweils die gleiche Anzahl an Raubtieren
                         je Gattung verfolgt, um die Anzahl an erfolgreichen

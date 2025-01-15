@@ -107,10 +107,10 @@
     border-radius: 5px;
     cursor: pointer;
     z-index: 1000;
-  }
-  
+}
+
 .back-to-start-button:hover {
-background-color: var(--primary-color);
+    background-color: var(--primary-color);
 }
 
 .source-buffer {

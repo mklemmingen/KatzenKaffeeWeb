@@ -26,7 +26,7 @@ body {
 .info-block .text-content p {
     text-align: left;
     color: var(--text-color);
-    pointer-events: none ;
+    pointer-events: none;
 }
 
 .info-block .text-content h2 {
@@ -35,7 +35,7 @@ body {
     text-align: left;
     color: var(--text-color);
     margin-bottom: 0;
-    pointer-events: none ;
+    pointer-events: none;
 }
 
 .info-block .text-content button {
@@ -101,7 +101,7 @@ body {
     margin: 0 0 16px;
     font-size: 1em;
     color: var(--text-color);
-    pointer-events: none ;
+    pointer-events: none;
 }
 
 /* Styling for the button */
