@@ -1,12 +1,16 @@
 import React from "react";
 import Image from 'next/image';
 import '../../_sections/_styles/ecoLitter.css';
-import '../../_sections/_styles/section.css';
+import '../../globals.css';
+
 function EcoLitter() {
     return (
         <div className="eco-litter-container">
-            <h1 className="eco-litter-title">Umweltfreundliches Katzenstreu</h1>
-            <h2> Marty </h2>
+            <div className="full-container-headline">
+                <Image src='assets/svg/cat-litter-box-svgrepo-com.svg' alt="Icon" width={50} height={50}/>
+                <h1>Katzenstreu</h1>
+                <h2 className="author"> Marty </h2>
+            </div>
             <p className="eco-litter-description">
                 Die Wahl des richtigen Katzenstreus kann einen großen Unterschied machen.
                 Leider gibt es viele Vor- und Nachteile zwischen den verschiedenen Arten von Katzenstreu.

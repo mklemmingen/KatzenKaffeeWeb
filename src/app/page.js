@@ -12,12 +12,9 @@ import BirdAnimation from '@/app/_components/BirdAnimation';
 import CatAnimation from '@/app/_components/CatAnimation';
 import { FaArrowAltCircleUp } from "react-icons/fa";
 import CategoryDropdown from "@/app/_components/CategoryDropdown";
-import PolaroidBackground from "@/app/_components/PolaroidBackground";
-import CatChatDropdown from "@/app/_components/CatChatDropdown";
 
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";
-import StatCatGreek from "@/app/_sections/stat/StatCatGreek";
 import StatCatGlobal from "@/app/_sections/stat/StatCatGlobal";
 
 import SuppShelter from "@/app/_sections/nature/SuppShelter";
@@ -83,56 +80,56 @@ const PageContent = () => {
             <div id={'bird-protection'} className="section">
                 <CatAnimation numberOfCats={20}/>
                 <BirdAnimation numberOfBirds={40}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <CatEffectNature/>
                 </div>
             </div>
             <div id={"catStatGlobal"} className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <StatCatGlobal/>
                 </div>
             </div>
             <div id={"catStatGermany"} className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <StatCatGermany/>
                 </div>
             </div>
             <div id="mental-health" className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <MentHealthToys/>
                 </div>
             </div>
             <div id={'sustainable-diet'} className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <SustCatOwn/>
                 </div>
             </div>
             <div id={'cat-litter'} className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <EcoLitter/>
                 </div>
             </div>
             <div id="energy-efficient-cat-care" className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <EneffCare/>
                 </div>
             </div>
             <div id="shelter-support" className="section">
                 <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
+                {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <SuppShelter/>
                 </div>

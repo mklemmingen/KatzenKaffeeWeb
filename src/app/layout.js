@@ -12,6 +12,14 @@ import React from "react";
 function Layout({ children }) {
     return (
         <html lang="en">
+        <head>
+            <title>KatzenKaffee</title>
+            <meta name="description" content="Learn responsible sustainable cat caring."/>
+            <meta name="keywords" content="cat, sustainability, sustainable"/>
+            <meta property="og:title" content="KatzenKaffee"/>
+            <meta property="og:description" content="Learn responsible sustainable cat caring"/>
+            <link rel="icon" href="catico.ico"/>
+        </head>
         <body>
         <CatAnimation numberOfCats={25}/>
         <div className="website">

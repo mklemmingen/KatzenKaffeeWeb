@@ -5,9 +5,9 @@
 }
 
 .eco-litter-container .sub-header {
-    font-size: 1.8em; /* Adjusting the font size as needed */
+    font-size: 1.8em;
     text-align: left;
-    align-self: flex-start; /* Overriding the parent's alignment */
+    align-self: flex-start;
 }
 
 .eco-litter-title {
@@ -19,8 +19,6 @@
 }
 
 .eco-litter-description {
-    font-family: var(--font-family), serif;
-    font-size: 1.2em;
     margin-bottom: 15px;
 }
 

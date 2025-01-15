@@ -1,11 +1,11 @@
 import "../globals.css";
 import "../_styles/polaroid.css"
 
-const ScrollProgress = () => {
+const PolaroidBackground = () => {
 
     return (
         <div className="polaroidbackground"></div>
     );
 };
 
-export default ScrollProgress;
+export default PolaroidBackground;

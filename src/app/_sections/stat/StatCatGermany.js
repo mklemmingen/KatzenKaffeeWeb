@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from "react-chartjs-2";
+import '../../globals.css';
+import Image from "next/image";
 
 function StatCatGermany() {
     const years = [
@@ -60,8 +62,11 @@ function StatCatGermany() {
     return (
         <div>
             <div>
-                <h2 className="header">Anzahl der Hauskatzen in Deutschland</h2>
-                <h2> Michael </h2>
+                <div className="full-container-headline">
+                    <Image src='assets/svg/berlin-brandenburg-gate-svgrepo-com.svg' alt="Icon" width={50} height={50}/>
+                    <h2>Hauskatzen in Deutschland</h2>
+                    <h2 className="author"> Michael </h2>
+                </div>
                 <p>Die Zahl der Katzen in deutschen Haushalten ist von <b>7 Millionen</b> im Jahr 2000 auf über <b>15
                     Millionen</b> im Jahr 2023 gestiegen. Katzen sind über Jahrhunderte aufgrund ihres unabhängigen
                     Charakters und geringen Pflegeaufwands zu einem treuen Begleiter des Menschen geworden. Die
@@ -69,7 +74,7 @@ function StatCatGermany() {
                     Gefahr für Vögel darstellen. Besonders Streunerkatzen, die in Städten leben, stellen eine
                     Herausforderung für die <b>Biodiversität</b> dar.</p>
                 <br/>
-                <h3 className="header">Entwicklung 2000 - 2023</h3>
+                <h3>Entwicklung 2000 - 2023</h3>
 
                 <Line data={data} options={options}/>
 
