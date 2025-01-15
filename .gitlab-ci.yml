@@ -1,6 +1,3 @@
-stages:
-  - deploy
-
 deploy-job:
   stage: deploy
   script:
@@ -10,8 +7,7 @@ deploy-job:
     - git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/mklemmingen/KatzenKaffeeWeb.git
     - git fetch --unshallow || true
     - git checkout main
-    - git pull origin main
-    - git push origin +main
+    - git push origin +main  # Force push to GitHub without pulling
     - echo "Application successfully deployed."
   environment: production
   only:
