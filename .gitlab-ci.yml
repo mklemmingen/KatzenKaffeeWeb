@@ -1,5 +1,17 @@
 stages:
+  - test
   - deploy
+
+test-job:
+  stage: test
+  script:
+    - echo "Installing dependencies..."
+    - npm ci
+    - echo "Running Next.js build test..."
+    - npm run build
+    - echo "Build test completed successfully."
+  only:
+    - main
 
 deploy-job:
   stage: deploy
@@ -18,3 +30,5 @@ deploy-job:
   environment: production
   only:
     - main
+  needs:
+    - test-job
