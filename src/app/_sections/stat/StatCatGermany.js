@@ -45,14 +45,22 @@ function StatCatGermany() {
                     Herausforderung für die <b>Biodiversität</b> dar.
                 </p>
                 <br />
-                <h3>Entwicklung 2000 - 2023</h3>
+                <h2>Entwicklung 2000 - 2023</h2>
 
                 {/* Recharts Line Chart */}
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart data={chartData}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="year" label={{ value: 'Jahr', position: 'insideBottom', offset: -5 }} />
-                        <YAxis label={{ value: 'Anzahl der Katzen', angle: -90, position: 'insideLeft' }} />
+                        <XAxis
+                            dataKey="year"
+                            label={{ value: 'Jahr', position: 'insideBottom', offset: -5 }}
+                            tick={{ fontSize: 12 }} // Smaller font for ticks
+                        />
+                        <YAxis
+                            label={{ value: 'Anzahl der Katzen', angle: -90, position: 'insideLeft', style: { fontSize: 12 } }}
+                            tick={{ fontSize: 12 }} // Smaller font for ticks
+                            domain={[0, 'dataMax']} // Start from 0
+                        />
                         <Tooltip />
                         <Legend verticalAlign="top" height={36} />
                         <Line
@@ -68,7 +76,6 @@ function StatCatGermany() {
 
                 <p className="source">Quelle:
                     https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/
-                    (Quelle ersetzen)
                 </p>
                 <br />
             </div>
