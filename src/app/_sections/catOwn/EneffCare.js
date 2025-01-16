@@ -64,21 +64,21 @@ function EneffCare() {
                 {}
                 <div className="right-container-eneffCare">
                     <div className="image-block-eneffCare">
-                        <img
+                        <Image
                             src="/assets/img/pexels-curly-woman-with-charming-cat-6001208.jpg"
                             alt="Curly woman with a charming cat"
                             className="styled-image"
                         />
                     </div>
                     <div className="image-block-eneffCare">
-                        <img
+                        <Image
                             src="/assets/img/pexels-wojciech-kumpicki-1084687-2071873.jpg"
                             alt="Cat doing cat things"
                             className="styled-image"
                         />
                     </div>
                     <div className="image-block-eneffCare">
-                        <img
+                        <Image
                             src="/assets/img/pexels-tubiderler-18896527.jpg"
                             alt="Cat watching out of window"
                             className="styled-image"

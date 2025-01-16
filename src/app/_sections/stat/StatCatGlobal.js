@@ -36,7 +36,7 @@ function StatCatGlobal() {
                     europäischen Ländern über <b>129 Millionen</b> Katzen.
                 </p>
                 <br />
-                <h3>Katzenpopulation 2022</h3>
+                <h2>Katzenpopulation 2022</h2>
 
                 <ResponsiveContainer width="100%" height={400}>
                     <BarChart data={data} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
