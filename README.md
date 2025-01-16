@@ -35,3 +35,5 @@
 - Main Page: Umweltfreundliches Katzenstreu (selbst erstellt, quelle der daten in credits)
 - Main Page: Mentale Gesundheit (selbst erstellt)
 - Backend Datenbank über vercel neon, impl. sql inject prot
+- linted, pruned, updated to react19, rewrote css to shared global, rewrote charts to recharts
+- pipeline gitlab to github to vercel on main change
