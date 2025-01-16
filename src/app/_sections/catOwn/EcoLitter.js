@@ -9,7 +9,7 @@ function EcoLitter() {
             <div className="full-container-headline">
                 <Image src='assets/svg/cat-litter-box-svgrepo-com.svg' alt="Icon" width={50} height={50}/>
                 <h1>Katzenstreu</h1>
-                <h2 className="author"> Marty </h2>
+                <h2 className="author">Marty</h2>
             </div>
             <p className="eco-litter-description">
                 Die Wahl des richtigen Katzenstreus kann einen großen Unterschied machen.
@@ -23,30 +23,30 @@ function EcoLitter() {
                 <div className="eco-litter-type">
                     <h2 className="sub-header">Tonstreu</h2>
                     <div className="info-box">
-                        <p><strong>Type:</strong> Clay Litter</p>
-                        <p><strong>Made of:</strong> Bentonite clay</p>
-                        <p><strong>Known for:</strong> Excellent clumping ability</p>
-                        <p><strong>Disadvantages:</strong> Non-biodegradable, dusty</p>
+                        <p><strong>Typ:</strong> Tonstreu</p>
+                        <p><strong>Hergestellt aus:</strong> Bentonit-Ton</p>
+                        <p><strong>Bekannt für:</strong> Ausgezeichnete Klumpfähigkeit</p>
+                        <p><strong>Nachteile:</strong> Nicht biologisch abbaubar, staubig</p>
                     </div>
                     <div className="eco-litter-review">
-                        <Image src="/greenwoods_cat_litter_clay.jpg" alt="Clay Cat Litter" width={150} height={150}/>
+                        <Image src="/greenwoods_cat_litter_clay.jpg" alt="Ton Katzenstreu" width={150} height={150}/>
                         <div className="eco-litter-review-details">
                             <h3>Gute Bewertung</h3>
                             <div className="review-meta">
                                 <span className="review-date">09/10/24</span>
-                                <span className="review-name">Anonymous</span>
+                                <span className="review-name">Anonym</span>
                                 <span className="review-stars">★★★★☆</span>
                             </div>
-                            <p>Works for my cats with different needs. Have not found anything to replace this yet. I
-                                have a cat with kidney disease. So she pees a lot. And another cat that refused to use
-                                corn litter because the litter pieces were too big. This works for both of them most of
-                                the time. Clamps well, small pieces. It does track out of litter box though. Once in a
-                                while it gets stuck to paws of the cat that pees a lot. But that can be cleaned up.</p>
+                            <p>Funktioniert für meine Katzen mit unterschiedlichen Bedürfnissen. Ich habe noch nichts gefunden,
+                                was das ersetzen kann. Ich habe eine Katze mit Nierenerkrankung, sie uriniert viel. Und eine
+                                andere Katze, die kein Maisstreu benutzen wollte, weil die Streu zu groß war. Dies funktioniert
+                                meistens für beide. Klumpt gut, kleine Stücke. Es kann jedoch aus der Katzentoilette herausgetragen
+                                werden. Ab und zu bleibt es an den Pfoten der Katze, die viel uriniert, hängen. Aber das lässt sich
+                                aufwischen.</p>
                         </div>
                     </div>
                     <div className="eco-litter-review">
-                        <Image src="/greenwoods_cat_litter_clay_LOOK.jpg" alt="Clay Cat Litter Look" width={150}
-                               height={150}/>
+                        <Image src="/greenwoods_cat_litter_clay_LOOK.jpg" alt="Ton Katzenstreu Aussehen" width={150} height={150}/>
                         <div className="eco-litter-review-details">
                             <h3>Schlechte Bewertung</h3>
                             <div className="review-meta">
@@ -54,36 +54,36 @@ function EcoLitter() {
                                 <span className="review-name">Anete</span>
                                 <span className="review-stars">★☆☆☆☆</span>
                             </div>
-                            <p>And DEFINITELY NO FLUSHABLE. No flushable - be aware !!! If you mix it with water you can
-                                potentially build a house from this! So don’t flush it!</p>
+                            <p>Und DEFINITIV NICHT SPÜLBAR. Kein spülbares Katzenstreu - Achtung !!! Wenn man es mit Wasser
+                                mischt, könnte man damit ein Haus bauen! Also nicht spülen!</p>
                         </div>
                     </div>
                 </div>
                 <div className="eco-litter-type">
                     <h2 className="sub-header">Maisstreu</h2>
                     <div className="info-box">
-                        <p><strong>Type:</strong> Corn Litter</p>
-                        <p><strong>Made of:</strong> Ground corn</p>
-                        <p><strong>Known for:</strong> Biodegradable, flushable</p>
-                        <p><strong>Disadvantages:</strong> Can attract pests, some cats may eat it</p>
+                        <p><strong>Typ:</strong> Maisstreu</p>
+                        <p><strong>Hergestellt aus:</strong> Gemahlenem Mais</p>
+                        <p><strong>Bekannt für:</strong> Biologisch abbaubar, spülbar</p>
+                        <p><strong>Nachteil:</strong> Kann Schädlinge anziehen, manche Katzen fressen es</p>
                     </div>
                     <div className="eco-litter-review">
-                        <Image src="/Super_Benek_Corn_Cat.jpg" alt="Corn Cat Litter" width={150} height={150}/>
+                        <Image src="/Super_Benek_Corn_Cat.jpg" alt="Mais Katzenstreu" width={150} height={150}/>
                         <div className="eco-litter-review-details">
                             <h3>Gute Bewertung</h3>
                             <div className="review-meta">
                                 <span className="review-date">26/03/22</span>
-                                <span className="review-name">Anonymous</span>
+                                <span className="review-name">Anonym</span>
                                 <span className="review-stars">★★★★★</span>
                             </div>
-                            <p>Don’t flush cat poo. I&#39;m very concerned about the amount of people flushing cat poo.
-                                Our treatment system in the UK cannot treat cat feces so the water that we drink also
-                                has parasites etc from the number of people flushing their animal waste 😩</p>
+                            <p>Spül kein Katzenklo runter. Ich bin sehr besorgt über die Menge an Menschen, die Katzenkot spülen.
+                                Unser Behandlungssystem im Vereinigten Königreich kann Katzenkot nicht behandeln, also ist das
+                                Wasser, das wir trinken, auch mit Parasiten etc. verunreinigt aufgrund der vielen Leute, die ihren
+                                Tierabfall spülen 😩(Kommentar der Redaktion: common UK L, skill issue)</p>
                         </div>
                     </div>
                     <div className="eco-litter-review">
-                        <Image src="/Super_Benek_Corn_Cat_NAME.jpg" alt="Corn Cat Litter Look" width={150}
-                               height={150}/>
+                        <Image src="/Super_Benek_Corn_Cat_NAME.jpg" alt="Mais Katzenstreu Aussehen" width={150} height={150}/>
                         <div className="eco-litter-review-details">
                             <h3>Schlechte Bewertung</h3>
                             <div className="review-meta">
@@ -91,25 +91,25 @@ function EcoLitter() {
                                 <span className="review-name">Harmony</span>
                                 <span className="review-stars">★☆☆☆☆</span>
                             </div>
-                            <p>Our cat ate it. Albus is a rescue cat from the RSPCA. He is obsessed with food because he
-                                was starved by his previous owner. He will eat anything (including trying to eat my 70%
-                                dark chocolate before I luckily caught him in time). If your cat is obsessed with food
-                                due to trauma, this litter is made of corn, and our Albus started eating it as soon as
-                                we put his tray down. This is probably a rare issue, but I just thought I should warn
-                                others just in case x</p>
+                            <p>Unsere Katze hat es gegessen. Albus ist eine Rettungskatze von der RSPCA. Er ist besessen von
+                                Essen, weil er von seinem vorherigen Besitzer verhungern gelassen wurde. Er frisst alles (sogar
+                                versucht er, meine 70%-ige Zartbitterschokolade zu essen, bevor ich ihn glücklicherweise rechtzeitig
+                                erwischte). Wenn deine Katze wegen Trauma eine Essensbesessenheit hat, dieses Streu ist aus Mais und
+                                unser Albus hat es sofort gegessen, sobald wir sein Katzenklo hingestellt haben. Das ist wahrscheinlich
+                                ein seltenes Problem, aber ich wollte andere warnen, nur für den Fall.</p>
                         </div>
                     </div>
                 </div>
                 <div className="eco-litter-type">
                     <h2 className="sub-header">Holzstreu</h2>
                     <div className="info-box">
-                        <p><strong>Type:</strong> Wood Litter</p>
-                        <p><strong>Made of:</strong> Compressed sawdust or wood pellets</p>
-                        <p><strong>Known for:</strong> Biodegradable, natural scent</p>
-                        <p><strong>Disadvantages:</strong> Can be messy, may not clump well</p>
+                        <p><strong>Typ:</strong> Holzstreu</p>
+                        <p><strong>Hergestellt aus:</strong> Komprimiertem Sägemehl oder Holzpellets</p>
+                        <p><strong>Bekannt für:</strong> Biologisch abbaubar, natürlicher Duft</p>
+                        <p><strong>Nachteil:</strong> Kann unordentlich sein, klumpt nicht immer gut</p>
                     </div>
                     <div className="eco-litter-review">
-                        <Image src="/greenwoods_cat_litter_NAME.jpg" alt="Wood Cat Litter" width={150} height={150}/>
+                        <Image src="/greenwoods_cat_litter_NAME.jpg" alt="Holz Katzenstreu" width={150} height={150}/>
                         <div className="eco-litter-review-details">
                             <h3>Gute Bewertung</h3>
                             <div className="review-meta">
@@ -117,18 +117,16 @@ function EcoLitter() {
                                 <span className="review-name">Andy Hibberd</span>
                                 <span className="review-stars">★★★★★</span>
                             </div>
-                            <p>The best cat litter. I have used wood pellets, they turn to sawdust and do not clump so
-                                you have to fully empty it. I have used corn, that clumps well but creates dust when
-                                crushed, clothing and bedding was covered in dusty footprints. Now I have discovered
-                                this product, at first I thought it was just broken up wood pellets but no, this product
-                                clumps effectively around liquid so I only have to top it up when it runs low. I do get
-                                some crumbs tracked but that&#39;s the best you can hope for with any litter.
-                                Superb.</p>
+                            <p>Das beste Katzenstreu. Ich habe Holzpellets benutzt, die sich zu Sägemehl verwandeln und nicht klumpen,
+                                also muss man sie vollständig entleeren. Ich habe Maisstreu benutzt, das gut klumpt, aber Staub erzeugt,
+                                wenn es zerbricht, Kleidung und Bettwäsche war mit staubigen Fußabdrücken bedeckt. Jetzt habe ich dieses
+                                Produkt entdeckt. Zuerst dachte ich, es seien nur zerkleinerte Holzpellets, aber nein, dieses Produkt klumpt
+                                effektiv um Flüssigkeiten, sodass ich es nur nachfüllen muss, wenn es knapp wird. Es entstehen ein paar
+                                Krümel, aber das ist das Beste, was man bei jedem Streu erwarten kann. Hervorragend.</p>
                         </div>
                     </div>
                     <div className="eco-litter-review">
-                        <Image src="/greenwoods_cat_litter_PICTURE.jpg" alt="Wood Cat Litter Look" width={150}
-                               height={150}/>
+                        <Image src="/greenwoods_cat_litter_PICTURE.jpg" alt="Holz Katzenstreu Aussehen" width={150} height={150}/>
                         <div className="eco-litter-review-details">
                             <h3>Schlechte Bewertung</h3>
                             <div className="review-meta">
@@ -136,11 +134,10 @@ function EcoLitter() {
                                 <span className="review-name">J Smith</span>
                                 <span className="review-stars">★☆☆☆☆</span>
                             </div>
-                            <p>Worst litter ever. I appreciate the idea of it being biodegradable, but my goodness what
-                                a mess it makes, I have three cats and was continually having to sweep the floor after
-                                they had used the litter trays, worse than that it was then trailed throughout the
-                                house. My cats didn&#39;t like the way it clumped, it was almost jellylike. I won&#39;t
-                                be buying it again.</p>
+                            <p>Das schlechteste Katzenstreu überhaupt. Ich mag die Idee, dass es biologisch abbaubar ist, aber mein
+                                Gott, was für ein Durcheinander. Ich habe drei Katzen und musste ständig den Boden fegen,
+                                nachdem sie das Katzenklo benutzt hatten. Noch schlimmer war, dass es dann im ganzen Haus verteilt war.
+                                Meine Katzen mochten nicht wie es klumpte... es war fast geleeartig. Ich werde es nicht wieder kaufen.</p>
                         </div>
                     </div>
                 </div>
