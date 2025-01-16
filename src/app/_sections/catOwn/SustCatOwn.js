@@ -24,7 +24,9 @@ function SustCatOwn() {
                     </p>
                 </div>
                 <div className="right-container">
-                    <Image src="/assets/img/cat_food.jpg" alt="cat" width={400} height={400}/>
+                    <Image src="/assets/img/cat_food.jpg" alt="cat"
+                           width={4000}
+                           height={2000}/>
                 </div>
             </div>
 

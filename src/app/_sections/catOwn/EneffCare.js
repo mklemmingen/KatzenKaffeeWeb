@@ -68,6 +68,8 @@ function EneffCare() {
                             src="/assets/img/pexels-curly-woman-with-charming-cat-6001208.jpg"
                             alt="Curly woman with a charming cat"
                             className="styled-image"
+                            width={600}
+                            height={400}
                         />
                     </div>
                     <div className="image-block-eneffCare">
@@ -75,6 +77,8 @@ function EneffCare() {
                             src="/assets/img/pexels-wojciech-kumpicki-1084687-2071873.jpg"
                             alt="Cat doing cat things"
                             className="styled-image"
+                            width={600}
+                            height={400}
                         />
                     </div>
                     <div className="image-block-eneffCare">
@@ -82,6 +86,8 @@ function EneffCare() {
                             src="/assets/img/pexels-tubiderler-18896527.jpg"
                             alt="Cat watching out of window"
                             className="styled-image"
+                            width={600}
+                            height={400}
                         />
                     </div>
                 </div>
