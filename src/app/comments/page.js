@@ -42,7 +42,7 @@ const Page = () => {
         fetchExperiences().then(r => {
             console.log('Experiences fetched');
         });
-    }, );
+    },[] );
 
     const validate = () => {
         let valid = true;

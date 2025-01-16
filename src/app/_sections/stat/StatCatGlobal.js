@@ -57,7 +57,7 @@ function StatCatGlobal() {
                 </ResponsiveContainer>
 
                 <p className="source">
-                    Quelle: https://de.statista.com/statistik/daten/studie/454087/umfrage/katzen-in-europa-nach-laendern/ (Quelle ersetzen)
+                    Quelle: https://de.statista.com/statistik/daten/studie/454087/umfrage/katzen-in-europa-nach-laendern/
                 </p>
                 <br />
             </div>
