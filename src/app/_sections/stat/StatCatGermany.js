@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {Line} from "react-chartjs-2";
+import React, { useEffect, useState } from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import '../../globals.css';
 import Image from "next/image";
 
@@ -22,66 +22,55 @@ function StatCatGermany() {
         setPrimaryColor(primaryColor);
     }, []);
 
-    const data = {
-        labels: years,
-        datasets: [
-            {
-                label: "Anzahl der Katzen",
-                data: cats,
-                borderColor: primaryColor,
-                backgroundColor: "rgba(129, 104, 142, 0.5)",
-                fill: true,
-                borderWidth: 2,
-                borderDash: [2, 2],
-                pointRadius: 6,
-                pointBackgroundColor: "rgba(129, 104, 142, 1)",
-                pointBorderColor: primaryColor,
-                pointBorderWidth: 2,
-            },
-        ],
-    };
-
-    const options = {
-        responsive: true,
-        plugins: {
-            title: {display: false, text: ""},
-            tooltip: {
-                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                titleColor: "#fff",
-                bodyColor: "#fff",
-                borderColor: "rgba(129, 104, 142, 1)",
-                borderWidth: 2,
-            },
-            legend: {
-                position: "bottom",
-                align: "start",
-            },
-        },
-    };
+    // Combine data for Recharts
+    const chartData = years.map((year, index) => ({
+        year,
+        cats: cats[index],
+    }));
 
     return (
         <div>
             <div>
                 <div className="full-container-headline">
-                    <Image src='assets/svg/berlin-brandenburg-gate-svgrepo-com.svg' alt="Icon" width={50} height={50}/>
+                    <Image src='assets/svg/berlin-brandenburg-gate-svgrepo-com.svg' alt="Icon" width={50} height={50} />
                     <h2>Hauskatzen in Deutschland</h2>
                     <h2 className="author"> Michael </h2>
                 </div>
-                <p>Die Zahl der Katzen in deutschen Haushalten ist von <b>7 Millionen</b> im Jahr 2000 auf über <b>15
+                <p>
+                    Die Zahl der Katzen in deutschen Haushalten ist von <b>7 Millionen</b> im Jahr 2000 auf über <b>15
                     Millionen</b> im Jahr 2023 gestiegen. Katzen sind über Jahrhunderte aufgrund ihres unabhängigen
                     Charakters und geringen Pflegeaufwands zu einem treuen Begleiter des Menschen geworden. Die
                     Vierbeiner beeinflussen auch zunehmend das Ökosystem, indem sie Nagetiere regulieren, aber auch eine
                     Gefahr für Vögel darstellen. Besonders Streunerkatzen, die in Städten leben, stellen eine
-                    Herausforderung für die <b>Biodiversität</b> dar.</p>
-                <br/>
+                    Herausforderung für die <b>Biodiversität</b> dar.
+                </p>
+                <br />
                 <h3>Entwicklung 2000 - 2023</h3>
 
-                <Line data={data} options={options}/>
+                {/* Recharts Line Chart */}
+                <ResponsiveContainer width="100%" height={400}>
+                    <LineChart data={chartData}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="year" label={{ value: 'Jahr', position: 'insideBottom', offset: -5 }} />
+                        <YAxis label={{ value: 'Anzahl der Katzen', angle: -90, position: 'insideLeft' }} />
+                        <Tooltip />
+                        <Legend verticalAlign="top" height={36} />
+                        <Line
+                            type="monotone"
+                            dataKey="cats"
+                            stroke={primaryColor}
+                            strokeWidth={2}
+                            dot={{ r: 6, fill: "rgba(129, 104, 142, 1)", stroke: primaryColor, strokeWidth: 2 }}
+                            activeDot={{ r: 8 }}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
 
                 <p className="source">Quelle:
                     https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/
-                    (Quelle ersetzen)</p>
-                <br/>
+                    (Quelle ersetzen)
+                </p>
+                <br />
             </div>
         </div>
     );
