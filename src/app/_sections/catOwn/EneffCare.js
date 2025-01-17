@@ -66,6 +66,8 @@ function EneffCare() {
                     <div className="image-block-eneffCare">
                         <Image
                             src="/assets/img/pexels-curly-woman-with-charming-cat-6001208.jpg"
+                            width={400} // Error
+                            height={400} // Error
                             alt="Curly woman with a charming cat"
                             className="styled-image"
                         />
@@ -73,6 +75,8 @@ function EneffCare() {
                     <div className="image-block-eneffCare">
                         <Image
                             src="/assets/img/pexels-wojciech-kumpicki-1084687-2071873.jpg"
+                            width={400}
+                            height={400}
                             alt="Cat doing cat things"
                             className="styled-image"
                         />
@@ -80,6 +84,8 @@ function EneffCare() {
                     <div className="image-block-eneffCare">
                         <Image
                             src="/assets/img/pexels-tubiderler-18896527.jpg"
+                            width={400}
+                            height={400}
                             alt="Cat watching out of window"
                             className="styled-image"
                         />

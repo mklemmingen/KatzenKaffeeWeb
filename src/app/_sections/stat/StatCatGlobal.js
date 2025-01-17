@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import "../../globals.css";
+import "../../_styles/statCatGlobal.css";
 import Image from "next/image";
+import MapComponent from "@/app/_components/MapComponent";
+import { FaMousePointer } from "react-icons/fa"; // Importiere das Maus-Icon
+
 
 function StatCatGlobal() {
-    const countries = ["Russland", "Deutschland", "Frankreich", "Gesamt Europa"];
-    const catPopulations = [23.3, 15.2, 14.9, 129.0];
+    const countries = ["Germany", "France", "Italy", "Poland", "Spain", "Netherlands", "Belgium", "Austria", "Portugal", "Sweden", "Denmark", "Greece", "Croatia"];
+    const catPopulations = [15.2, 14.9, 10.2, 7.25, 5.8, 3, 2.5, 2, 1.95, 1.7, 0.7, 0.6, 0.43];
 
     const [primaryColor, setPrimaryColor] = useState("");
+    const [activeTab, setActiveTab] = useState("map"); // Default ist das Balkendiagramm
 
     useEffect(() => {
         const primaryColor = getComputedStyle(document.documentElement)
@@ -27,7 +32,7 @@ function StatCatGlobal() {
                 <div className="full-container-headline">
                     <Image src="assets/svg/world-svgrepo-com.svg" alt="Icon" width={50} height={50} />
                     <h2>Katzenpopulation in Europa</h2>
-                    <h2 className="author"> Michael </h2>
+                    <h2 className="author">Michael</h2>
                 </div>
                 <p>
                     Die größte Katzenpopulation Europas wurde im Jahr 2022 in <b>Russland</b> gezählt, wo etwa <b>23,3 Millionen</b> Katzen lebten.{" "}
@@ -38,26 +43,67 @@ function StatCatGlobal() {
                 <br />
                 <h2>Katzenpopulation 2022</h2>
 
-                <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={data} margin={{ top: 20, right: 20, left: 20, bottom: 20 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="country" tick={{ fontSize: 12 }} />
-                        <YAxis tick={{ fontSize: 12 }} domain={[0, 140]} />
-                        <Tooltip
-                            contentStyle={{
-                                backgroundColor: "rgba(0, 0, 0, 0.8)",
-                                color: "#fff",
-                                border: `2px solid ${primaryColor}`,
-                            }}
-                            labelStyle={{ color: "#fff" }}
-                        />
-                        <Legend wrapperStyle={{ fontSize: 12 }} />
-                        <Bar dataKey="population" fill={primaryColor} barSize={50} />
-                    </BarChart>
-                </ResponsiveContainer>
+                {/* Tabs */}
+                <div className="tabs">
+                    <button
+                        className={activeTab === 'map' ? 'active' : ''}
+                        onClick={() => setActiveTab('map')}>Interaktive Map / Karte
+                    </button>
+                    <button
+                        className={activeTab === 'barChart' ? 'active' : ''}
+                        onClick={() => setActiveTab('barChart')}>Balkendiagramm
+                    </button>
+                </div>
 
-                <p className="source">
-                    Quelle: https://de.statista.com/statistik/daten/studie/454087/umfrage/katzen-in-europa-nach-laendern/
+                <div>
+                    {/* Hover Infobox */}
+                    <div
+                    style={{
+                        maxWidth: "275px",
+                        position: "absolute",
+                        backgroundColor: "#f5f5f5",
+                        padding: "10px 20px",
+                        borderRadius: "10px",
+                        boxShadow: "0 3px 3px rgba(0, 0, 0, 0.1)",
+                        zIndex: 1000,
+                        display: "flex",
+                        justifyContent: "flex-end", // Beide Elemente (Icon und Text) nach rechts verschieben
+                        alignItems: "center", // Vertikale Ausrichtung des Inhalts
+                        right: 0,
+            
+                    }}
+                    >
+                    <FaMousePointer style={{ marginRight: "10px", fontSize: "18px" }} />
+                    <span style={{fontSize: "12px"}}>Fahre mit der Maus über die Länder, um mehr zu erfahren.</span>
+                    </div>
+                </div>
+
+                {/* Bedingte Anzeige der Visualisierung */}
+                {activeTab === 'barChart' && (
+                    <ResponsiveContainer width="100%" height={400}>
+                        <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
+                            <CartesianGrid strokeDasharray="2 2" />
+                            <XAxis dataKey="country" tick={{ fontSize: 10 }} />
+                            <YAxis tick={{ fontSize: 10 }} domain={[0, 20]} />
+                            <Tooltip
+                                contentStyle={{
+                                    backgroundColor: "#f5f5f5",
+                                    border: `2px solid ${primaryColor}`,
+                                }}
+                            />
+                            <Legend wrapperStyle={{ fontSize: 12 }} />
+                            <Bar dataKey="population" fill={primaryColor} barSize={35} />
+                        </BarChart>
+                    </ResponsiveContainer>
+                )}
+
+                {activeTab === 'map' && (
+                    <MapComponent/>
+                    // <MapComponent countries={countries} catPopulations={catPopulations} />
+                )}
+
+                <p className="source" style={{fontSize: "12px", paddingTop: "15px"}}>
+                    Quelle: Anzahl der Katzen in Europa nach Ländern im Jahr 2022 (in 1.000 Tieren) [Graph], FEDIAF, 15. Juni, 2024. [Online].
                 </p>
                 <br />
             </div>
