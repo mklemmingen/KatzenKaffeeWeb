@@ -24,12 +24,12 @@ function SustCatOwn() {
                     </p>
                 </div>
                 <div className="right-container">
-                    <Image src="/assets/img/cat_food.jpg" alt="cat" width={400} height={400}/>
+                    <Image className="catPicSust" src="/assets/img/cat_food.jpg" alt="cat"
+                           width={4000}
+                           height={2000}/>
                 </div>
             </div>
-
-            {}
-            <h2 className="sub-header">Erfahre mehr über nachhaltige Ernährung</h2>
+            <h2>Erfahre mehr über nachhaltige Ernährung</h2>
             <div className="video-container-sustCatOwn">
                 <p>Finde heraus, wieso die herkömmlichen Produkte die du im Supermarkt bekommst nicht unbedingt das
                     beste für deine Katze und die Umwelt ist:</p>

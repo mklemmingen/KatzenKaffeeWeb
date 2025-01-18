@@ -1,11 +1,10 @@
+url: katzenkaffee.vercel.app
 
-                                                 url: katzenkaffee.vercel.app
-
-**Meinhard Holzäpfel**
+**Meinhard Holzknecht**
 
 - Page: Impressum (selbst erstellt)
-- Page: Support Backend (selbst erstellt)
-- ChatBot (selbst erstellt)
+- Page: Support Kontaktformular (in Datenbank) (selbst erstellt)
+- ChatBot (in Datenbank)(selbst erstellt)
 - Main Page: Energieeffiziente Katzenhaltung (selbst erstellt)
 - Main Page: Tierheime unterstützen (selbst erstellt)
 - Main Page: Nachhaltige Ernährung (selbst erstellt)
@@ -14,12 +13,14 @@
 
 - Main-Page: Diagram Katzen in Europa (selbst erstellt)
 - Main-Page: Diagram Katzen in Deutschland (selbst erstellt)
+- Back-To-Top-Button auf main page
 
 **Marty Lauterbach**
 
 - Websiteaufbau: Migration react -> to nextjs page router -> to next js app router (selbst erstellt)
+- Datenbank Backend (über vercel neon, impl. sql inject prot) und API Routes
 - Header (selbst erstellt)
-    - Links, Kommentare, Musik
+  - Links, Kommentare Button, Musik Komponent
 - Footer (selbst erstellt)
 - Hintergrund Katzen (selbst erstellt, sprite sheets in credits)
 - Hintergrund Vögel (selbst erstellt, sprite sheets in credits)
@@ -34,6 +35,6 @@
 - Main Page: Schutz der Vogelwelt (selbst erstellt)
 - Main Page: Umweltfreundliches Katzenstreu (selbst erstellt, quelle der daten in credits)
 - Main Page: Mentale Gesundheit (selbst erstellt)
-- Backend Datenbank über vercel neon, impl. sql inject prot
+- Main Page: Dropdown Navigation
 - linted, pruned, updated to react19, rewrote css to shared global, rewrote charts to recharts
 - pipeline gitlab to github to vercel on main change

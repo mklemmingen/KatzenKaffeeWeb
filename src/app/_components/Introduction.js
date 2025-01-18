@@ -5,6 +5,8 @@ import "../globals.css";
 import {FaComment, FaMap} from "react-icons/fa";
 import {MdDarkMode} from "react-icons/md";
 import {FaMusic} from "react-icons/fa6";
+import { FaCat } from "react-icons/fa";
+import { HiCursorClick } from "react-icons/hi";
 
 const Introduction = () => {
 
@@ -19,7 +21,9 @@ const Introduction = () => {
             <div className="intro_footer">
                 Entdecke , Katzen <span className="highlight">umweltbewusst</span> zu pflegen
                 <br/>
-
+                <span className="inline-icon-text">
+                    <HiCursorClick />  Click diese auf der Webseite verteilten Icons:
+                </span>
                 <span className="inline-icon-text">
                     <FaMap/>  Spring zu verschiedenen Abschnitten
                 </span>
@@ -34,6 +38,10 @@ const Introduction = () => {
                 <br/>
                 <span className="inline-icon-text">
                     <MdDarkMode/>  Mach Dark Mode an
+                </span >
+                <br/>
+                <span className="inline-icon-text">
+                    <FaCat /> Klick die Katzeeeen neben den Abschnitten!
                 </span>
             </div>
         </div>

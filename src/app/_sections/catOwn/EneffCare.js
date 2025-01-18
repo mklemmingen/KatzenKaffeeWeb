@@ -70,6 +70,8 @@ function EneffCare() {
                             height={400} // Error
                             alt="Curly woman with a charming cat"
                             className="styled-image"
+                            width={600}
+                            height={400}
                         />
                     </div>
                     <div className="image-block-eneffCare">
@@ -79,6 +81,8 @@ function EneffCare() {
                             height={400}
                             alt="Cat doing cat things"
                             className="styled-image"
+                            width={600}
+                            height={400}
                         />
                     </div>
                     <div className="image-block-eneffCare">
@@ -88,6 +92,8 @@ function EneffCare() {
                             height={400}
                             alt="Cat watching out of window"
                             className="styled-image"
+                            width={600}
+                            height={400}
                         />
                     </div>
                 </div>

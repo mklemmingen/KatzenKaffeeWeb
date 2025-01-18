@@ -77,6 +77,13 @@ const PageContent = () => {
             <div className="intro-section">
                 <Introduction id="start"/>
             </div>
+            <div id={"catStatGlobal"} className="section">
+                <CatAnimation numberOfCats={10}/>
+                {/* <PolaroidBackground/> */}
+                <div className="section-content">
+                    <StatCatGlobal/>
+                </div>
+            </div>
             <div id={'bird-protection'} className="section">
                 <CatAnimation numberOfCats={20}/>
                 <BirdAnimation numberOfBirds={40}/>
@@ -85,11 +92,11 @@ const PageContent = () => {
                     <CatEffectNature/>
                 </div>
             </div>
-            <div id={"catStatGlobal"} className="section">
+            <div id="energy-efficient-cat-care" className="section">
                 <CatAnimation numberOfCats={10}/>
                 {/* <PolaroidBackground/> */}
                 <div className="section-content">
-                    <StatCatGlobal/>
+                    <EneffCare/>
                 </div>
             </div>
             <div id={"catStatGermany"} className="section">
@@ -118,13 +125,6 @@ const PageContent = () => {
                 {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <EcoLitter/>
-                </div>
-            </div>
-            <div id="energy-efficient-cat-care" className="section">
-                <CatAnimation numberOfCats={10}/>
-                {/* <PolaroidBackground/> */}
-                <div className="section-content">
-                    <EneffCare/>
                 </div>
             </div>
             <div id="shelter-support" className="section">
