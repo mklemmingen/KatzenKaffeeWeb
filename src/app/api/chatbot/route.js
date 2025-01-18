@@ -64,31 +64,34 @@ function getBotResponse(message) {
     if (["hallo", "hi", "hey", "guten tag", "servus", "moin", "grüß dich"].some(greet => message.includes(greet))) {
         return "Hallo! Wie kann ich dir helfen?";
     }
-    if (["guten morgen", "morgen"].some(greet => message.includes(greet))) {
+    if (["morgen"].some(greet => message.includes(greet))) {
         return "Guten Morgen! Wie kann ich dir heute helfen?";
     }
-    if (["guten abend", "abend"].some(greet => message.includes(greet))) {
+    if (["abend"].some(greet => message.includes(greet))) {
         return "Guten Abend! Wie kann ich dir weiterhelfen?";
     }
-    if (["gute nacht", "nacht"].some(greet => message.includes(greet))) {
+    if (["nacht"].some(greet => message.includes(greet))) {
         return "Gute Nacht! Schlaf gut!";
     }
-    if (["mir geht es nicht gut", "ich fühle mich schlecht", "mir ist schlecht"].some(phrase => message.includes(phrase))) {
+    if(["Essen", "Futter"].some(greet=>message.includes(greet))){
+        return "Katzenfutter gibt es in vielen verschiedenen Sorten und Marken. Es gibt Trockenfutter, Nassfutter und auch spezielle Diätfutter. Welche Art von Katzenfutter suchst du?";
+    }
+    if (["schlecht"].some(phrase => message.includes(phrase))) {
         return "Es tut mir leid zu hören, dass es dir nicht gut geht. Wenn es ein Notfall ist, rufe bitte sofort einen Krankenwagen unter der Nummer 112 an.";
     }
-    if (["ich will nicht mehr leben", "suizid", "leben beenden"].some(phrase => message.includes(phrase))) {
+    if (["ich will nicht mehr leben", "suizid", "beenden"].some(phrase => message.includes(phrase))) {
         return "Es tut mir sehr leid, dass du dich so fühlst. Bitte denke daran, dass es Menschen gibt, die dir helfen können. Kontaktiere sofort die Telefonseelsorge unter der Nummer 0800 111 0111 oder 0800 111 0222. Sie sind rund um die Uhr für dich da.";
     }
     if (["raub", "überfall", "polizei", "gefahr"].some(phrase => message.includes(phrase))) {
         return "Wenn du dich in Gefahr befindest oder einen Überfall meldest, rufe bitte sofort die Polizei unter der Nummer 110 an.";
     }
-    if (["tschüss", "auf wiedersehen", "bis später", "ciao"].some(farewell => message.includes(farewell))) {
+    if (["tschüss", "wiedersehen", "später", "ciao"].some(farewell => message.includes(farewell))) {
         return "Auf Wiedersehen! Ich hoffe, ich konnte dir helfen.";
     }
-    if (["danke", "vielen dank", "dankeschön"].some(thanks => message.includes(thanks))) {
+    if (["dank"].some(thanks => message.includes(thanks))) {
         return "Gerne! Wenn du noch Fragen hast, bin ich hier.";
     }
-    if (["katzenbilder", "katzen fotos", "bilder von katzen", "katzen bilder"].some(phrase => message.includes(phrase))) {
+    if (["fotos", "bilder", "meme"].some(phrase => message.includes(phrase))) {
         return 'Möchtest du zufällige Katzenbilder sehen? Besuche <a href="https://de.pinterest.com/gregorikerstin/lustige-katzenbilder/" target="_blank" style="color:blue; text-decoration:underline;">diese Seite</a> für süße Katzenbilder!';
     }
     if (message.includes("kontakt")) {
@@ -97,16 +100,16 @@ function getBotResponse(message) {
     if (["nachhaltigkeit", "nachhaltig", "umwelt"].some(topic => message.includes(topic))) {
         return "Nachhaltigkeit bedeutet, nur so viel von einer Sache zu verbrauchen, wie in der Natur neu entsteht. Es geht darum, die Ressourcen verantwortungsvoll zu nutzen, damit auch zukünftige Generationen davon profitieren können.";
     }
-    if (message.includes("katzen in deutschland")) {
+    if (message.includes("deutschland")) {
         return 'Mehr über Katzen in Deutschland erfährst du <a href="/#katzen-deutschland" style="color:blue; text-decoration:underline;">hier</a>.';
     }
-    if (message.includes("katzen in griechenland")) {
+    if (message.includes("griechenland")) {
         return 'Mehr über Katzen in Griechenland findest du <a href="/#katzen-griechenland" style="color:blue; text-decoration:underline;">hier</a>.';
     }
     if (message.includes("nachhaltige ernährung")) {
         return 'Erfahre mehr über nachhaltige Ernährung <a href="/#nachhaltige-ernaehrung" style="color:blue; text-decoration:underline;">hier</a>.';
     }
-    if (message.includes("katzenstreu")) {
+    if (message.includes("streu")) {
         return 'Mehr über umweltfreundliches Katzenstreu erfährst du <a href="/#katzenstreu" style="color:blue; text-decoration:underline;">hier</a>.';
     }
     if (message.includes("spielzeug")) {
