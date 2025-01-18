@@ -1,6 +1,9 @@
 .aufgabe4-container {
     padding: 20px;
     font-family: var(--font-family), serif;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .aufgabe4-container h1 {
