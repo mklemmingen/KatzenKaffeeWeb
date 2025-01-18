@@ -53,21 +53,23 @@ const BookRecommendation = ({imageUrl, bookUrl, title, description}) => {
 
     return (
         <div className="book-recommendation">
-            <div className="neon-sign" ref={neonSignRef}>Empfohlenes Buch</div>
             <h3 className="title"><a href={bookUrl} target="_blank" rel="noopener noreferrer">{title}</a></h3>
             <div className="pic-text-container">
-                <div className="book-image-container">
-                    <Image
-                        src={imageUrl}
-                        alt={title}
-                        className="book-image"
-                        onClick={() => window.open(bookUrl, '_blank', 'noopener noreferrer')}
-                        onMouseMove={handleMouseMove}
-                        onMouseLeave={handleMouseLeave}
-                        ref={imageRef}
-                        width={800}
-                        height={1212}
-                    />
+                <div className="CoverWithSignOnTop">
+                    <div className="neon-sign" ref={neonSignRef}>Empfohlenes Buch</div>
+                        <div className="book-image-container">
+                        <Image
+                                src={imageUrl}
+                                alt={title}
+                                className="book-image"
+                                onClick={() => window.open(bookUrl, '_blank', 'noopener noreferrer')}
+                                onMouseMove={handleMouseMove}
+                                onMouseLeave={handleMouseLeave}
+                                ref={imageRef}
+                                width={800}
+                                height={1212}
+                            />
+                        </div>
                 </div>
                 <p className="book-description">{description}</p>
             </div>

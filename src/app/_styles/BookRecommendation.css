@@ -17,6 +17,11 @@
     align-items: center;
 }
 
+.CoverWithSignOnTop {
+    position: relative;
+    display: inline-block;
+}
+
 .book-image {
     width: auto;
     height: 300px;
@@ -71,13 +76,14 @@
     position: absolute;
     top: -80px;
     left: 20%;
-    transform: translateX(-50%) rotate(-10deg);
+    transform: translateX(-70%) rotate(-10deg)translateY(100%);
     font-family: 'Pacifico', cursive;
-    font-size: 2em;
+    font-size: 1em;
     color: #fff;
     padding: 10px 20px;
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 5px;
     box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff,
     0 0 15px #ff00ff, 0 0 20px #ff00ff;
+    z-index: 1000;
 }
