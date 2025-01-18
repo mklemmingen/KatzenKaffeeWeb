@@ -1,8 +1,11 @@
 .impressum-container {
+    margin-top: 8%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 8%;
     position: relative;
     text-align: left;
     max-width: 800px;
-    margin: 0 auto;
     background-color: var(--secondary-color);
     color: var(--text-color);
 }
