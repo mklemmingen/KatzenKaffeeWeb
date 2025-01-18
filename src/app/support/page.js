@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import '@/app/support/_styles/Support.css';
 import SupportContactForm from '@/app/_components/SupportContactForm';
 import CatChatDropdown from "@/app/_components/CatChatDropdown";
+import ChatBot from "@/app/_components/ChatBot";
 
 function Support() {
     const [formData, setFormData] = useState({
@@ -37,7 +38,7 @@ function Support() {
 
     return (
         <div className="support-container">
-            <CatChatDropdown/>
+            <ChatBot/>
             <div className="support-text">
                 <h1 className="header">Support</h1>
                 <p>Willkommen auf unserer Support-Seite! Hier findest du Antworten zu häufig gestellten Fragen und
