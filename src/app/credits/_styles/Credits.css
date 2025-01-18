@@ -9,9 +9,9 @@
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
-    max-width: 800px;
-    margin-left: 20%;
-    margin-right: 20%;
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .playful-header {
