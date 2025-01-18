@@ -22,7 +22,7 @@ const Introduction = () => {
                 Entdecke , Katzen <span className="highlight">umweltbewusst</span> zu pflegen
                 <br/>
                 <span className="inline-icon-text">
-                    <HiCursorClick />  Click diese auf der Webseite verteilten Icons
+                    <HiCursorClick />  Click diese auf der Webseite verteilten Icons:
                 </span>
                 <span className="inline-icon-text">
                     <FaMap/>  Spring zu verschiedenen Abschnitten
