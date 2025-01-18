@@ -1,5 +1,7 @@
 'use client';
 
+import dynamic from 'next/dynamic';
+
 import React, {Suspense, useEffect, useState} from 'react';
 import {useSearchParams} from 'next/navigation';
 
@@ -16,7 +18,7 @@ import CategoryDropdown from "@/app/_components/CategoryDropdown";
 
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";
-import _StatCatGlobal from "@/app/_sections/stat/StatCatGlobal";
+const StatCatGlobal = dynamic(() => import('@/app/_sections/stat/StatCatGlobal'), { ssr: false });
 
 import SuppShelter from "@/app/_sections/nature/SuppShelter";
 import CatEffectNature from "@/app/_sections/nature/CatEffectNature";
@@ -52,24 +54,15 @@ const PageContent = () => {
             <button
                 className="back-to-start-button"
                 onClick={() => {
-                    console.log('Scrolling back to top');
-                    window.scrollTo({top: 0, behavior: 'smooth'});
+                    if (typeof window !== "undefined") {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
                 }}
             >
-                <FaArrowAltCircleUp/>
+                <FaArrowAltCircleUp />
             </button>
         );
     };
-
-    /*
-    <div id={"catStatGreek"} className="section">
-                <CatAnimation numberOfCats={10}/>
-                <PolaroidBackground/>
-                <div className="section-content">
-                    <StatCatGreek/>
-                </div>
-            </div>
-     */
 
     return (
         <div>
@@ -82,7 +75,7 @@ const PageContent = () => {
                 <CatAnimation numberOfCats={10}/>
                 {/* <PolaroidBackground/> */}
                 <div className="section-content">
-                    <_StatCatGlobal/>
+                    <StatCatGlobal/>
                 </div>
             </div>
             <div id={'bird-protection'} className="section">

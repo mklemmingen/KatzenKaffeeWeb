@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import { MapContainer, TileLayer, Circle, Tooltip as MapTooltip } from "react-leaflet"; // Marty: Rewrote so it uses React19, yw
@@ -29,10 +31,12 @@ function StatCatGlobal() {
     const [activeTab, setActiveTab] = useState("map");
 
     useEffect(() => {
-        const primaryColor = getComputedStyle(document.documentElement)
-            .getPropertyValue("--primary-color")
-            .trim();
-        setPrimaryColor(primaryColor || "#8884d8");
+        if (typeof window !== "undefined") { // stops server-side rendering error (Marty)
+            const primaryColor = getComputedStyle(document.documentElement)
+                .getPropertyValue("--primary-color")
+                .trim();
+            setPrimaryColor(primaryColor || "#8884d8");
+        }
     }, []);
 
     const data = countriesData.map(({ name, population }) => ({
