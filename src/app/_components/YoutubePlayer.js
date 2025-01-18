@@ -33,6 +33,7 @@ const YouTubePlayer = ({videoId, onReady}) => {
                 width: '0',
                 playerVars: {
                     autoplay: 1,
+                    mute: 1, // Ensure it's muted to meet browser requirements
                 },
             }}
             onReady={onPlayerReady}

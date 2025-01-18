@@ -50,15 +50,14 @@ function StatCatGermany() {
                 {/* Recharts Line Chart */}
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart data={chartData}>
-                        <CartesianGrid strokeDasharray="3 3" />
+                        <CartesianGrid strokeDasharray="2 2" />
                         <XAxis
                             dataKey="year"
-                            label={{ value: 'Jahr', position: 'insideBottom', offset: -5 }}
-                            tick={{ fontSize: 12 }} // Smaller font for ticks
+                            tick={{ fontSize: 11 }} // Smaller font for ticks
                         />
                         <YAxis
                             label={{ value: 'Anzahl der Katzen', angle: -90, position: 'insideLeft', style: { fontSize: 12 } }}
-                            tick={{ fontSize: 12 }} // Smaller font for ticks
+                            tick={{ fontSize: 11 }} // Smaller font for ticks
                             domain={[0, 'dataMax']} // Start from 0
                         />
                         <Tooltip />
@@ -71,11 +70,12 @@ function StatCatGermany() {
                             dot={{ r: 6, fill: "rgba(129, 104, 142, 1)", stroke: primaryColor, strokeWidth: 2 }}
                             activeDot={{ r: 8 }}
                         />
+                        
                     </LineChart>
                 </ResponsiveContainer>
 
-                <p className="source">Quelle:
-                    https://de.statista.com/statistik/daten/studie/30157/umfrage/anzahl-der-haustiere-in-deutschen-haushalten-seit-2008/
+                <p className="source" style={{fontSize: "12px", paddingTop: "15px"}}>Quelle:
+                Anzahl der Haustiere in deutschen Haushalten nach Tierarten in den Jahren 2000 bis 2023 (in Millionen) [Graph], ZZF, 16. April, 2024. [Online].
                 </p>
                 <br />
             </div>
