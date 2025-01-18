@@ -5,6 +5,7 @@ import "../globals.css";
 import {FaComment, FaMap} from "react-icons/fa";
 import {MdDarkMode} from "react-icons/md";
 import {FaMusic} from "react-icons/fa6";
+import { FaCat } from "react-icons/fa";
 
 const Introduction = () => {
 
@@ -34,6 +35,10 @@ const Introduction = () => {
                 <br/>
                 <span className="inline-icon-text">
                     <MdDarkMode/>  Mach Dark Mode an
+                </span >
+                <br/>
+                <span className="inline-icon-text">
+                    <FaCat /> Klick die Katzeeeen neben den Abschnitten!
                 </span>
             </div>
         </div>
