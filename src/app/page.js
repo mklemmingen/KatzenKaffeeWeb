@@ -77,19 +77,26 @@ const PageContent = () => {
             <div className="intro-section">
                 <Introduction id="start"/>
             </div>
+            <div id={"catStatGlobal"} className="section">
+                <CatAnimation numberOfCats={10}/>
+                {/* <PolaroidBackground/> */}
+                <div className="section-content">
+                    <StatCatGlobal/>
+                </div>
+            </div>
+            <div id="mental-health" className="section">
+                <CatAnimation numberOfCats={10}/>
+                {/* <PolaroidBackground/> */}
+                <div className="section-content">
+                    <MentHealthToys/>
+                </div>
+            </div>
             <div id={'bird-protection'} className="section">
                 <CatAnimation numberOfCats={20}/>
                 <BirdAnimation numberOfBirds={40}/>
                 {/* <PolaroidBackground/> */}
                 <div className="section-content">
                     <CatEffectNature/>
-                </div>
-            </div>
-            <div id={"catStatGlobal"} className="section">
-                <CatAnimation numberOfCats={10}/>
-                {/* <PolaroidBackground/> */}
-                <div className="section-content">
-                    <StatCatGlobal/>
                 </div>
             </div>
             <div id={"catStatGermany"} className="section">

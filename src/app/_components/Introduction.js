@@ -6,6 +6,7 @@ import {FaComment, FaMap} from "react-icons/fa";
 import {MdDarkMode} from "react-icons/md";
 import {FaMusic} from "react-icons/fa6";
 import { FaCat } from "react-icons/fa";
+import { HiCursorClick } from "react-icons/hi";
 
 const Introduction = () => {
 
@@ -20,8 +21,8 @@ const Introduction = () => {
             <div className="intro_footer">
                 Entdecke , Katzen <span className="highlight">umweltbewusst</span> zu pflegen
                 <br/>
-                <span>
-                    Click diese auf der Webseite verteilten Icons:
+                <span className="inline-icon-text">
+                    <HiCursorClick />  Click diese auf der Webseite verteilten Icons
                 </span>
                 <span className="inline-icon-text">
                     <FaMap/>  Spring zu verschiedenen Abschnitten
