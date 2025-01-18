@@ -156,7 +156,7 @@ const Page = () => {
                                     type="text"
                                     name="experience"
                                     alt="Erfahrung mit Katzen Eingabefeld"
-                                    className="experience"
+                                    className="standard"
                                     placeholder="Was ist Ihre Erfahrung mit Katzen?"
                                     value={formData.experience}
                                     onChange={handleChange}
