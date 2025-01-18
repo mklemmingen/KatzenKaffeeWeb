@@ -333,3 +333,8 @@ p, ul, li {
         height: auto;
     }
 }
+
+.submit-button {
+    background-color: var(--accent-color);
+    color: var(--secondary-color)
+}

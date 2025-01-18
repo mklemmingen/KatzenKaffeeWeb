@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import "../globals.css";
 
 function SupportContactForm() {
     const [formData, setFormData] = useState({name: '', email: '', message: ''});
@@ -47,7 +48,7 @@ function SupportContactForm() {
             <textarea className="messageInput" name="message" value={formData.message} onChange={handleChange}
                       required></textarea>
 
-            <button type="submit">Senden</button>
+            <button type="submit"  className="submit-button" >Senden</button>
             {responseMessage && <p>{responseMessage}</p>}
         </form>
     );
