@@ -18,8 +18,6 @@ import CategoryDropdown from "@/app/_components/CategoryDropdown";
 
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";
-const StatCatGlobal = dynamic(() => import('@/app/_sections/stat/StatCatGlobal'), { ssr: false });
-
 import SuppShelter from "@/app/_sections/nature/SuppShelter";
 import CatEffectNature from "@/app/_sections/nature/CatEffectNature";
 
@@ -27,6 +25,8 @@ import EcoLitter from "@/app/_sections/catOwn/EcoLitter";
 import EneffCare from "@/app/_sections/catOwn/EneffCare";
 import MentHealthToys from "@/app/_sections/catOwn/MentHealthToys";
 import SustCatOwn from "@/app/_sections/catOwn/SustCatOwn";
+
+const StatCatGlobal = dynamic(() => import('@/app/_sections/stat/StatCatGlobal'), { ssr: false });
 
 const PageContent = () => {
     const [isClient, setIsClient] = useState(false);

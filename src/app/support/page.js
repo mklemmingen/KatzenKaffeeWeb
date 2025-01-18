@@ -3,7 +3,6 @@
 import React, {useState} from 'react';
 import '@/app/support/_styles/Support.css';
 import SupportContactForm from '@/app/_components/SupportContactForm';
-import CatChatDropdown from "@/app/_components/CatChatDropdown";
 import ChatBot from "@/app/_components/ChatBot";
 
 function Support() {
