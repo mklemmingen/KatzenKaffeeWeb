@@ -85,6 +85,18 @@ function Page() {
                             https://directory.doabooks.org/handle/20.500.12854/113510
                         </span>
                     </li>
+                    <li>
+                        <span>
+                            Katzenpopulation in Europa <br/>
+                            Quelle: Anzahl der Katzen in Europa nach Ländern im Jahr 2022 (in 1.000 Tieren) [Graph], FEDIAF, 15. Dez, 2024. [Online]
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            Der Einfluss von Raubtieren auf die Tierwelt <br/>
+                            Quelle: Herrera et al. (2022) The impact of predators on bird populations. Nature Communications, 3(1), 1-10.
+                        </span>
+                    </li>
                 </ul>
             </div>
             <h1 className="playful-header">Woher kamen die Tutorials?</h1>

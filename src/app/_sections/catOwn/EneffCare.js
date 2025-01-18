@@ -22,7 +22,7 @@ function EneffCare() {
                     </p>
 
                     {}
-                    <h2 className="sub-header">Tipps zur Energieeffizienz</h2>
+                    <h2>Tipps zur Energieeffizienz</h2>
                     <ul>
                         <li><strong>Energieeffiziente Beleuchtung:</strong> Verwende LED-Lampen in Bereichen, in denen
                             deine Katze sich häufig aufhält. Diese Lampen verbrauchen weniger Energie und haben eine
@@ -39,7 +39,7 @@ function EneffCare() {
                     </ul>
 
                     {}
-                    <h2 className="sub-heade">Katzenklappen und Energieeffizienz</h2>
+                    <h2>Katzenklappen und Energieeffizienz</h2>
                     <ul>
                         Eine Katzenklappe kann den Energieverbrauch beeinflussen, besonders in gut isolierten Häusern.
                         Moderne Katzenklappen sind so konzipiert, dass sie luftdicht schließen und Wärmeverluste
@@ -48,7 +48,7 @@ function EneffCare() {
                     </ul>
 
                     {}
-                    <h2 className="sub-header">Weitere nachhaltige Praktiken</h2>
+                    <h2>Weitere nachhaltige Praktiken</h2>
                     <ul>
                         <li><strong>Recycling und Wiederverwendung:</strong> Verwende alte Kartons und Stoffreste als
                             Spielzeug oder Schlafplätze für deine Katze. Das reduziert Abfall und bietet deiner Katze
@@ -66,8 +66,6 @@ function EneffCare() {
                     <div className="image-block-eneffCare">
                         <Image
                             src="/assets/img/pexels-curly-woman-with-charming-cat-6001208.jpg"
-                            width={400} // Error
-                            height={400} // Error
                             alt="Curly woman with a charming cat"
                             className="styled-image"
                             width={600}
@@ -77,8 +75,6 @@ function EneffCare() {
                     <div className="image-block-eneffCare">
                         <Image
                             src="/assets/img/pexels-wojciech-kumpicki-1084687-2071873.jpg"
-                            width={400}
-                            height={400}
                             alt="Cat doing cat things"
                             className="styled-image"
                             width={600}
@@ -88,8 +84,6 @@ function EneffCare() {
                     <div className="image-block-eneffCare">
                         <Image
                             src="/assets/img/pexels-tubiderler-18896527.jpg"
-                            width={400}
-                            height={400}
                             alt="Cat watching out of window"
                             className="styled-image"
                             width={600}

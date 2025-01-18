@@ -108,7 +108,7 @@ const CatHuntingImpact = () => {
                     <p className="description">
                         Standort: Washington D.C., USA
                     </p>
-                    <p className="source">Quelle: Herrera et al. (2022)</p>
+                    <p className="source">Quelle: Herrera et al. (2022) The impact of predators on bird populations. Nature Communications, 3(1), 1-10.</p>
                 </div>
             </div>
         </div>

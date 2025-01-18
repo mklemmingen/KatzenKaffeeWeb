@@ -5,6 +5,7 @@ import {useSearchParams} from 'next/navigation';
 
 // _styles ---------------------------------------------------
 import '@/app/_styles/Home.css';
+import '@/app/globals.css';
 
 // components -----------------------------------------------
 import Introduction from '@/app/_components/Introduction';
@@ -15,7 +16,7 @@ import CategoryDropdown from "@/app/_components/CategoryDropdown";
 
 // _sections -------------------------------------------------
 import StatCatGermany from "@/app/_sections/stat/StatCatGermany";
-import StatCatGlobal from "@/app/_sections/stat/StatCatGlobal";
+import _StatCatGlobal from "@/app/_sections/stat/StatCatGlobal";
 
 import SuppShelter from "@/app/_sections/nature/SuppShelter";
 import CatEffectNature from "@/app/_sections/nature/CatEffectNature";
@@ -81,7 +82,7 @@ const PageContent = () => {
                 <CatAnimation numberOfCats={10}/>
                 {/* <PolaroidBackground/> */}
                 <div className="section-content">
-                    <StatCatGlobal/>
+                    <_StatCatGlobal/>
                 </div>
             </div>
             <div id={'bird-protection'} className="section">

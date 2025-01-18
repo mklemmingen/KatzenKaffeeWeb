@@ -1,11 +1,17 @@
 .credits-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: var(--secondary-color);
     color: var(--primary-color);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 2px 4px var(--shadow-color);
     max-width: 800px;
-    margin: auto;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 .playful-header {
@@ -14,6 +20,7 @@
     margin-bottom: 20px;
     text-align: center;
     font-size: 2em;
+
 }
 
 .readable-text {
@@ -31,7 +38,8 @@
 }
 
 .credits-section {
-    margin-bottom: 30px;
+    flex: 1;
+    overflow-y: auto;
 }
 
 .link-class {
