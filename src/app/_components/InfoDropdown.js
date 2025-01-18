@@ -53,7 +53,7 @@ const InfoDropdown = () => {
                     ref={el => itemRefs.current[index] = el}
                 >
                     <span>{item.headerText}</span>
-                    <Image src={item.iconSrc || '/path/to/dummy-image.png'} alt="Icon" width={20} height={20}
+                    <Image src={item.iconSrc} alt="Icon" width={20} height={20}
                            className="icon-image"/>
                 </div>
             ))}

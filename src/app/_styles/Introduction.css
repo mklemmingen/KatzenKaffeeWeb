@@ -51,7 +51,7 @@
     animation-iteration-count: infinite;
     animation-direction: alternate;
     text-shadow: 0 5px 10px var(--shadow-color), 0 3px 3px var(--shadow-color2);
-    font-size: clamp(1.5rem, 4vw, 3rem); /* Scale h2 dynamically */
+    font-size: clamp(1.5rem, 4vw, 3rem);
     text-align: center;
     margin: 0 auto;
     padding: 0 5vw;
