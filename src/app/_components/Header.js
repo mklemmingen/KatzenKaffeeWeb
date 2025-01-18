@@ -23,7 +23,6 @@ function Header() {
         if (audioRef.current) {
             audioRef.current.pause();
             audioRef.current.currentTime = 0;
-            audioRef.current.play();
         }
     }, [audioRef]);
 
