@@ -20,7 +20,9 @@ const Introduction = () => {
             <div className="intro_footer">
                 Entdecke , Katzen <span className="highlight">umweltbewusst</span> zu pflegen
                 <br/>
-
+                <span>
+                    Click diese auf der Webseite verteilten Icons:
+                </span>
                 <span className="inline-icon-text">
                     <FaMap/>  Spring zu verschiedenen Abschnitten
                 </span>
