@@ -22,9 +22,9 @@ export async function POST(req) {
         const botResponse = getBotResponse(message);
 
         const query = `
-      INSERT INTO chatbot_logs (author, message, timestamp)
-      VALUES ($1, $2, NOW()), ($3, $4, NOW())
-    `;
+            INSERT INTO chatbot_logs (author, message, timestamp)
+            VALUES ($1, $2, NOW()), ($3, $4, NOW())
+        `;
         const values = ['user', message, 'bot', botResponse];
 
         console.log("Query Values:", values);

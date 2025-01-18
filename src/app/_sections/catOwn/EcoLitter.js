@@ -21,7 +21,7 @@ function EcoLitter() {
             </p>
             <div className="eco-litter-types">
                 <div className="eco-litter-type">
-                    <h2 className="sub-header">Tonstreu</h2>
+                    <h2>Tonstreu</h2>
                     <div className="info-box">
                         <p><strong>Typ:</strong> Tonstreu</p>
                         <p><strong>Hergestellt aus:</strong> Bentonit-Ton</p>
@@ -60,7 +60,7 @@ function EcoLitter() {
                     </div>
                 </div>
                 <div className="eco-litter-type">
-                    <h2 className="sub-header">Maisstreu</h2>
+                    <h2>Maisstreu</h2>
                     <div className="info-box">
                         <p><strong>Typ:</strong> Maisstreu</p>
                         <p><strong>Hergestellt aus:</strong> Gemahlenem Mais</p>
@@ -101,7 +101,7 @@ function EcoLitter() {
                     </div>
                 </div>
                 <div className="eco-litter-type">
-                    <h2 className="sub-header">Holzstreu</h2>
+                    <h2>Holzstreu</h2>
                     <div className="info-box">
                         <p><strong>Typ:</strong> Holzstreu</p>
                         <p><strong>Hergestellt aus:</strong> Komprimiertem Sägemehl oder Holzpellets</p>

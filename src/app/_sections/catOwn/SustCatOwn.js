@@ -43,7 +43,7 @@ function SustCatOwn() {
             </div>
 
             {}
-            <h2 className="sub-header">Gesunde Rezeptideen für selbstgemachtes Katzenfutter</h2>
+            <h2>Gesunde Rezeptideen für selbstgemachtes Katzenfutter</h2>
             <div className="recipe-text-sustCatOwn">
                 <h3>Eier auf Rind, garniert mit Naturjoghurt</h3>
                 <p><strong>Du brauchst dafür:</strong></p>

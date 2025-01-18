@@ -1,38 +1,155 @@
-.info-dropdown {
-    display: inline-block;
-    flex-direction: column;
-    width: auto;
+@import url('https://fonts.googleapis.com/css2?family=Droid+Serif&display=swap');
+
+.introduction {
     position: relative;
-    z-index: 1000 !important;
-}
-
-.dropdown-item {
-    display: flex;
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    pointer-events: none;
     align-items: center;
-    padding: 10px;
-    cursor: pointer;
-    width: 100%;
-    justify-content: flex-end;
-    z-index: 1000 !important;
+    max-width: 90%;
 }
 
-.dropdown-item:hover {
-    background-color: #f0f0f0;
-    z-index: 1000 !important;
+.intro_header_and_text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    pointer-events: none;
 }
 
-.dropdown-item img {
-    margin-right: 10px;
-    z-index: 1000 !important;
+.introduction .content {
+    z-index: -20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
 }
 
-.categoryName {
-    font-family: 'Pacifico', cursive;
+.introduction h1 {
+    position: relative;
+    pointer-events: none;
+    font-family: 'Pacifico', serif;
     color: var(--primary-color);
-    z-index: 1000 !important;
+    text-shadow: 0 5px 10px var(--shadow-color), 0 3px 3px var(--shadow-color2);
+    font-size: clamp(2rem, 5vw, 6rem); /* Dynamically scale based on viewport */
+    white-space: nowrap; /* Prevent line breaks */
+    text-align: center; /* Center align text */
+    margin: 0 auto; /* Center text horizontally */
+    padding: 0 5vw; /* Keep consistent spacing to sides */
 }
 
-.icon-image {
-    margin-left: 10px;
-    z-index: 1000 !important;
+.introduction h2 {
+    position: relative;
+    pointer-events: none;
+    font-family: 'Pacifico', serif;
+    color: var(--primary-color);
+    animation-name: scaleup;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    text-shadow: 0 5px 10px var(--shadow-color), 0 3px 3px var(--shadow-color2);
+    font-size: clamp(1.5rem, 4vw, 3rem); /* Scale h2 dynamically */
+    text-align: center;
+    margin: 0 auto;
+    padding: 0 5vw;
+}
+
+@keyframes scaleup {
+    from {
+        transform: scale(1.0);
+    }
+    to {
+        transform: scale(1.025);
+    }
+}
+
+.introduction p {
+    position: relative;
+    color: var(--text-color);
+    align-items: center;
+    font-family: var(--font-family), serif;
+    text-align: justify;
+    max-width: 40%;
+    pointer-events: none;
+}
+
+.tipps {
+    margin-top: 1%;
+    width: 60%;
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    line-height: 2;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    position: relative;
+    pointer-events: all;
+}
+
+.tipps::before {
+    content: '';
+    position: absolute;
+    top: -3%;
+    left: -3%;
+    width: 106%;
+    height: 106%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2); /* Aura effect */
+    background-color: var(--secondary-color);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.intro_footer {
+    margin-top: 1%;
+    width: 60%;
+    font-family: var(--font-family), serif;
+    color: var(--text-color);
+    line-height: 2;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    position: relative;
+    pointer-events: all;
+}
+
+.intro_footer::before {
+    content: '';
+    position: absolute;
+    top: -3%;
+    left: -3%;
+    width: 106%;
+    height: 106%;
+    border-radius: 12px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2); /* Aura effect */
+    background-color: var(--secondary-color);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.intro_footer .highlight {
+    color: var(--primary-color);
+    font-family: 'Pacifico', serif;
+    font-size: 1em;
+}
+
+.inline-icon-text {
+    display: inline-flex;
+    align-items: center;
+}
+
+.inline-icon-text svg {
+    margin-right: 8px; /* Adjust the value as needed */
 }
