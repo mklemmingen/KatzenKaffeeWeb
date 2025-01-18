@@ -2,11 +2,10 @@ import React from 'react';
 import 'chart.js/auto';
 import '../_styles/Introduction.css';
 import "../globals.css";
-import {FaComment, FaMap} from "react-icons/fa";
+import {FaCat, FaComment, FaMap} from "react-icons/fa";
 import {MdDarkMode} from "react-icons/md";
 import {FaMusic} from "react-icons/fa6";
-import { FaCat } from "react-icons/fa";
-import { HiCursorClick } from "react-icons/hi";
+import {HiCursorClick} from "react-icons/hi";
 
 const Introduction = () => {
 

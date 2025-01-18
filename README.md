@@ -14,6 +14,7 @@ url: katzenkaffee.vercel.app
 - Main-Page: Diagram Katzen in Europa (selbst erstellt)
 - Main-Page: Diagram Katzen in Deutschland (selbst erstellt)
 - Back-To-Top-Button auf main page
+- Header Responsiveness und Hamburger Menü
 
 **Marty Lauterbach**
 
