@@ -30,12 +30,12 @@ function StatCatGlobal() {
     }));
 
     return (
-        <div>
+        <>
             <div>
                 <div className="full-container-headline">
                     <Image src="assets/svg/world-svgrepo-com.svg" alt="Icon" width={50} height={50} />
                     <h2>Katzenpopulation in Europa</h2>
-                    <h2 className="author">Michael</h2>
+                    <p className="author">Michael</p>
                 </div>
                 <p>
                     Die größte Katzenpopulation Europas wurde im Jahr 2022 in <b>Russland</b> gezählt, wo etwa <b>23,3 Millionen</b> Katzen lebten.{" "}
@@ -70,10 +70,9 @@ function StatCatGlobal() {
                             boxShadow: "0 3px 3px rgba(0, 0, 0, 0.1)",
                             zIndex: 1000,
                             display: "flex",
-                            justifyContent: "flex-end", // Beide Elemente (Icon und Text) nach rechts verschieben
-                            alignItems: "center", // Vertikale Ausrichtung des Inhalts
+                            justifyContent: "flex-end",
+                            alignItems: "center",
                             right: 0,
-
                         }}
                     >
                         <FaMousePointer style={{ marginRight: "10px", fontSize: "18px" }} />
@@ -110,7 +109,7 @@ function StatCatGlobal() {
                 </p>
                 <br />
             </div>
-        </div>
+        </>
     );
 }
 
