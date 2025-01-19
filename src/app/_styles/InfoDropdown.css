@@ -17,8 +17,10 @@
 }
 
 .dropdown-item:hover {
-    background-color: #f0f0f0;
+    background-color: var(--primary-color);
+    color: white;
     z-index: 1000 !important;
+    border-radius: 5%;
 }
 
 .dropdown-item img {
