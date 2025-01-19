@@ -32,6 +32,12 @@ function Page() {
                             Jonny McLaughlin
                         </span>
                     </li>
+                    <li>
+                        <span className="playful-keyword">Yarn ball at the german diagram <br/></span>
+                        <span className="link-class" onClick={() => handleLinkClick("https://pixabay.com/users/clker-free-vector-images-3736/")}>
+                            By clker-free-vector-images from Pixabay
+                        </span>
+                    </li>
                 </ul>
             </div>
             <h1 className="playful-header">Bildnachweise</h1>

@@ -1,5 +1,4 @@
 .support-container {
-    margin-top: 5%;
     display: flex;
     justify-content: space-between;
     max-width: 75%;
@@ -8,7 +7,6 @@
     color: var(--text-color);
     position: relative;
     z-index: 10;
-    margin-bottom: 13%;
 }
 
 .support-container::before {

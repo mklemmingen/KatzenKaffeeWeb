@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis} from 'recharts';
 import '../../globals.css';
 import Image from "next/image";
+import CustomDot from "@/app/_components/CustomDot";
 import CustomizedDot from "../../_components/CustomizedDot";
 
 function StatCatGermany() {
@@ -20,7 +21,7 @@ function StatCatGermany() {
         const primaryColor = getComputedStyle(document.documentElement)
             .getPropertyValue("--primary-color")
             .trim();
-        setPrimaryColor(primaryColor || "#8884d8"); // Default color if --primary-color is not set
+        setPrimaryColor(primaryColor);
     }, []);
 
     const chartData = years.map((year, index) => ({
@@ -29,17 +30,18 @@ function StatCatGermany() {
     }));
 
     return (
-        <>
+        <div>
             <div>
                 <div className="full-container-headline">
                     <Image src='assets/svg/berlin-brandenburg-gate-svgrepo-com.svg' alt="Icon" width={50} height={50} />
                     <h2>Hauskatzen in Deutschland</h2>
-                    <p className="author"> Michael </p>
+                    <h2 className="author"> Michael </h2>
                 </div>
                 <p> Die Zahl der Katzen in deutschen Haushalten stieg von <b>7 Millionen</b> im Jahr 2000 auf über <b>15 Millionen</b> im Jahr 2023. Dank ihres unabhängigen Charakters und geringen Pflegeaufwands sind sie beliebte Haustiere. Katzen regulieren Nagetiere, stellen jedoch eine Gefahr für Vögel und andere Tiere dar, insbesondere Streunerkatzen, die eine Gefahr für die <b>Biodiversität</b> bedeuten.</p>
                 <br />
                 <h2>Entwicklung 2000 - 2023</h2>
 
+                {/* Recharts Line Chart */}
                 <ResponsiveContainer width="100%" height={400}>
                     <LineChart data={chartData}>
                         <CartesianGrid strokeDasharray="2 2" />
@@ -58,7 +60,7 @@ function StatCatGermany() {
                             dataKey="cats"
                             stroke={primaryColor}
                             strokeWidth={3}
-                            dot={{ r: 8, fill: "rgba(129, 104, 142, 1)", stroke: primaryColor, strokeWidth: 2 }}
+                            dot={<CustomDot />} // custom dot component
                             activeDot={<CustomizedDot radius={45}/>}
                         />
                         
@@ -70,7 +72,7 @@ function StatCatGermany() {
                 </p>
                 <br />
             </div>
-        </>
+        </div>
     );
 }
 
