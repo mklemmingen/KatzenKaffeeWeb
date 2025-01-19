@@ -15,6 +15,7 @@
     --font-family: 'Roboto', Arial, sans-serif;
     --high-contrast-text: #000;
     --high-contrast-bg: #fff;
+    --white-gray: #9da1a8;
     --shadow-color: rgba(0, 0, 0, 0.25);
     --shadow-color2: rgba(0, 0, 0, 0.22);
 }
@@ -26,6 +27,7 @@
     --text-color: #fff;
     --background-color: #000;
     --section-background: #333;
+    --white-gray: #676a70;
     --shadow-color: black;
     --shadow-color2: black;
 }

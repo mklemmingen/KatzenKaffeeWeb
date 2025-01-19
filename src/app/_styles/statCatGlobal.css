@@ -9,7 +9,8 @@
     flex: 1;
     padding: 15px;
     font-size: 15px;
-    background-color: #e0e0e0;
+    background-color: var(--background-color);
+    color: var(--text-color);
     cursor: pointer;
     position: relative;
     transition: all 0.5s ease;
@@ -17,13 +18,11 @@
 }
 
 .tabs button.active {
-    background-color: #5D415A;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     font-weight: bold;
 }
 
 .tabs button:hover {
-    background-color: #8E44AD;
-    color: white;
     transform: scale(1.05);
 }

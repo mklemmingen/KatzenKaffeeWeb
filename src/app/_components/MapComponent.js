@@ -38,7 +38,7 @@ const MapComponent = () => {
   const pieData = countries.map((country, index) => ({
     name: country,
     value: catPopulations[index],
-    fill: country === activeCountry ? getColorForPopulation(population) : "#ddd",
+    fill: country === activeCountry ? getColorForPopulation(population) : "var(--white-gray)",
   }));
 
   return (
@@ -48,7 +48,7 @@ const MapComponent = () => {
         <div
           style={{
             position: "absolute",
-            backgroundColor: "#f5f5f5",
+            backgroundColor: "var(--background-color)",
             padding: "15px",
             borderRadius: "10px",
             boxShadow: "0 3px 3px rgba(0, 0, 0, 0.1)",
@@ -97,7 +97,7 @@ const MapComponent = () => {
                   key={geo.rsmKey}
                   geography={geo}
                   fill={fillColor}
-                  stroke="#FFFFFF"
+                  stroke="var(--text-color)"
                   style={{
                     hover: {
                       fill: "#8E44AD", // Hover

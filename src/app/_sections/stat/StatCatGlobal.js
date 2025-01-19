@@ -21,7 +21,7 @@ function StatCatGlobal() {
         const primaryColor = getComputedStyle(document.documentElement)
             .getPropertyValue("--primary-color")
             .trim();
-        setPrimaryColor(primaryColor || "#8884d8"); // Default color if --primary-color is not set
+        setPrimaryColor(primaryColor);
     }, []);
 
     const data = countries.map((country, index) => ({
@@ -61,11 +61,13 @@ function StatCatGlobal() {
                 <div>
                     {/* Hover Infobox */}
                     <div
+                        className="UserLead"
                         style={{
                             maxWidth: "275px",
                             position: "absolute",
-                            backgroundColor: "#f5f5f5",
                             padding: "10px 20px",
+                            backgroundColor: "var(--background-color)",
+                            color: "var(--text-color)",
                             borderRadius: "10px",
                             boxShadow: "0 3px 3px rgba(0, 0, 0, 0.1)",
                             zIndex: 1000,
@@ -82,14 +84,14 @@ function StatCatGlobal() {
 
                 {/* Bedingte Anzeige der Visualisierung */}
                 {activeTab === 'barChart' && (
-                    <ResponsiveContainer width="100%" height={400}>
+                    <ResponsiveContainer width="100%" height={400} >
                         <BarChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 10 }}>
                             <CartesianGrid strokeDasharray="2 2" />
                             <XAxis dataKey="country" tick={{ fontSize: 10 }} />
                             <YAxis tick={{ fontSize: 10 }} domain={[0, 20]} />
                             <Tooltip
                                 contentStyle={{
-                                    backgroundColor: "#f5f5f5",
+                                    backgroundColor: "var(--background-color)",
                                     border: `2px solid ${primaryColor}`,
                                 }}
                             />
