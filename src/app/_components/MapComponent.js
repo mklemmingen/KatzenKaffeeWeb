@@ -34,10 +34,7 @@ const MapComponent = () => {
     return index >= 0 ? catPopulations[index] : null;
   };
 
-  // Summe Katzen
-  const totalPopulation = catPopulations.reduce((total, pop) => total + pop, 0);
-
-  // Anteile für das Kreisdiagramm berechnen
+  // .map() gibt Array zurück, pieData wird an Pie-Komponente übergeben
   const pieData = countries.map((country, index) => ({
     name: country,
     value: catPopulations[index],
@@ -45,7 +42,7 @@ const MapComponent = () => {
   }));
 
   return (
-    <div>
+    <>
       {/* Infobox für aktives Land */}
       {activeCountry && population !== null && (
         <div
@@ -66,11 +63,11 @@ const MapComponent = () => {
               <Pie
                 data={pieData}
                 dataKey="value"
-                innerRadius={40} // Innenradius für das Donut-Design
+                innerRadius={40} // Innenradius Donut-Design
                 outerRadius={60} // Außenradius
                 startAngle={90}
                 endAngle={450}
-                animationDuration={0} // Animation sofort beenden
+                animationDuration={0}
               >
                 {pieData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -120,7 +117,7 @@ const MapComponent = () => {
           }
         </Geographies>
       </ComposableMap>
-    </div>
+    </>
   );
 };
 
