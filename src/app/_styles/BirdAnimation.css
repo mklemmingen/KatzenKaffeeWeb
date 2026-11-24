@@ -1,21 +1,4 @@
-.bird-animation-container {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
+/* birds fly above the cats but stay behind the section content */
+.pixel-birds-canvas {
     z-index: 0;
-}
-
-.bird-animation-frame {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 32px;   /* 16px tile x2, keep in sync with SIZE in BirdAnimation.js */
-    height: 32px;
-    background-size: 128px 128px;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
-    will-change: transform;
-    pointer-events: auto;
-    cursor: pointer;
 }
