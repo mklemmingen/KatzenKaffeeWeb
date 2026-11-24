@@ -38,7 +38,7 @@ function Header() {
     const handlePlay = () => {
         if (audioRef.current) {
             if (audioRef.current.paused) {
-                audioRef.current.play();
+                audioRef.current.play().catch(() => { /* blocked or failed to load */ });
             } else {
                 audioRef.current.pause();
             }
@@ -88,8 +88,8 @@ function Header() {
                     </button>
                 </div>
             </nav>
-            <audio ref={audioRef} loop>
-                <source src="/1 hour of aesthetic & calm lofi music.mp3" type="audio/mpeg"/>
+            <audio ref={audioRef} loop preload="none">
+                <source src="/lofi-music.mp3" type="audio/mpeg"/>
                 Your browser does not support the audio element.
             </audio>
         </header>

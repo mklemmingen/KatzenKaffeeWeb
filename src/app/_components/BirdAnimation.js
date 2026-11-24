@@ -1,155 +1,210 @@
 "use client";
 
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import '../_styles/BirdAnimation.css';
-import "../globals.css"
 
-const birdSprites = {
-    blueJay: '/assets/birds/spritesheet_blue jay.png',
-    cardinal: '/assets/birds/spritesheet_cardinal.png',
-    cedarWaxwing: '/assets/birds/spritesheet_cedar waxwing.png',
-    chickadee: '/assets/birds/spritesheet_chickadee.png',
-    crow: '/assets/birds/spritesheet_crow.png',
-    houseFinch: '/assets/birds/spritesheet_house finch.png',
-    hummingbird: '/assets/birds/spritesheet_hummingbird.png',
-    magpie: '/assets/birds/spritesheet_magpie.png',
-    redRobin: '/assets/birds/spritesheet_red robin.png',
-    stellersJay: '/assets/birds/spritesheet_steller\'s jay.png',
-    whiteDove: '/assets/birds/spritesheet_white dove.png',
-    woodThrush: '/assets/birds/spritesheet_wood thrush.png'
+/*
+ * Bird sheets are 64x64: 4 rows x 4 columns of 16px tiles, birds face west.
+ *   row 0: flying (4 frames)
+ *   row 1: standing, wings up, hit (col 3)
+ *   row 2: hopping / pecking (4 frames)
+ *   row 3: resting (4 frames)
+ */
+const TILE = 16;
+const SCALE = 2;
+const SIZE = TILE * SCALE;
+const MAX_FPS = 30;
+
+const BIRD_SHEETS = [
+    'blue jay', 'cardinal', 'cedar waxwing', 'chickadee', 'crow', 'house finch',
+    'hummingbird', 'magpie', 'red robin', "steller's jay", 'white_dove', 'wood_thrush',
+].map(name => `url("${encodeURI(`/assets/birds/spritesheet_${name}.png`)}")`);
+
+const BIRD_SOUNDS = [1, 2, 3, 4].map(n => `/assets/birds/bird${n}.mp3`);
+
+const ANIMS = {
+    flying: {row: 0, cols: [0, 1, 2, 3], fps: 10, speed: 70},
+    pecking: {row: 2, cols: [0, 1, 2, 3], fps: 4, speed: 0},
+    resting: {row: 3, cols: [0, 1, 2, 3], fps: 3, speed: 0},
+    hit: {row: 1, cols: [3], fps: 1, speed: 0},
 };
 
-const birdSounds = {
-    bird1: '/assets/birds/sounds/bird1.mp3',
-    bird2: '/assets/birds/sounds/bird2.mp3',
-    bird3: '/assets/birds/sounds/bird3.mp3',
-    bird4: '/assets/birds/sounds/bird4.mp3',
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+function playChirp() {
+    const audio = new Audio(pick(BIRD_SOUNDS));
+    audio.volume = 0.5;
+    audio.play().catch(() => { /* autoplay blocked: stay silent */ });
 }
 
-const categories = {
-    flying: 4,
-    walking: 2,
-    sitting: 3,
-    damage: 1
-};
-
-const speeds = {
-    flying: 3,
-    walking: 1,
-    sitting: 0
-};
-
-const getFrameStyle = (sprite, category, frame, isMirrored, x, y) => {
-    const frameSize = 16;
-    const row = categories[category];
-    return {
-        backgroundImage: `url(${sprite})`,
-        backgroundPosition: `-${frame * frameSize}px -${row * frameSize}px`,
-        width: `${frameSize}px`,
-        height: `${frameSize}px`,
-        transform: `${isMirrored ? 'scaleX(-1)' : 'none'} `,
-        transformOrigin: 'center center',
-        left: `${x}px`,
-        top: `${y}px`,
-        position: 'absolute'
-    };
-};
-
 const BirdAnimation = ({numberOfBirds}) => {
-    const [birds, setBirds] = useState([]);
-    const frameRate = 8;
-    const frameDuration = 1000 / frameRate;
-    const lastFrameTime = useRef(0);
+    const containerRef = useRef(null);
 
     useEffect(() => {
-        const birdKeys = Object.keys(birdSprites);
-        const selectedBirds = Array.from({length: numberOfBirds}, () => ({
-            type: birdKeys[Math.floor(Math.random() * birdKeys.length)],
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
-            targetX: Math.random() * window.innerWidth,
-            targetY: Math.random() * window.innerHeight,
-            category: 'flying',
-            frame: 0,
-            speed: speeds['flying'],
-            stateTimer: Math.random() * 5000 + 5000,
-            isMirrored: true
-        }));
-        setBirds(selectedBirds);
+        const container = containerRef.current;
+        if (!container) return undefined;
+
+        const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+        let width = container.clientWidth;
+        let height = container.clientHeight;
+        let visible = false;
+        let rafId = 0;
+        let lastTime = 0;
+
+        const randomPos = () => [
+            Math.random() * Math.max(0, width - SIZE),
+            Math.random() * Math.max(0, height - SIZE),
+        ];
+
+        const setState = (bird, state, timer = 0) => {
+            bird.state = state;
+            bird.animTime = 0;
+            bird.timer = timer;
+            bird.tile = -1; // force a background-position update
+        };
+
+        const takeOff = (bird, speedFactor = 1) => {
+            [bird.tx, bird.ty] = randomPos();
+            bird.speedFactor = speedFactor;
+            setState(bird, 'flying');
+        };
+
+        const land = (bird) => {
+            setState(bird, Math.random() < 0.5 ? 'pecking' : 'resting', 3000 + Math.random() * 6000);
+        };
+
+        // DOM elements are created once and moved with transforms: no React re-render per frame
+        const fragment = document.createDocumentFragment();
+        const birds = Array.from({length: numberOfBirds}, () => {
+            const el = document.createElement('div');
+            el.className = 'bird-animation-frame';
+            el.style.backgroundImage = pick(BIRD_SHEETS);
+            fragment.appendChild(el);
+            const [x, y] = randomPos();
+            const bird = {el, x, y, tx: x, ty: y, mirrored: Math.random() < 0.5, speedFactor: 1};
+            if (Math.random() < 0.6) land(bird);
+            else takeOff(bird);
+            bird.animTime = Math.random() * 4;
+            return bird;
+        });
+        container.appendChild(fragment);
+
+        const render = (bird) => {
+            const anim = ANIMS[bird.state];
+            const col = anim.cols[Math.floor(bird.animTime * anim.fps) % anim.cols.length];
+            const tile = anim.row * 4 + col;
+            if (tile !== bird.tile) {
+                bird.tile = tile;
+                bird.el.style.backgroundPosition = `-${col * SIZE}px -${anim.row * SIZE}px`;
+            }
+            bird.el.style.transform =
+                `translate3d(${Math.round(bird.x)}px, ${Math.round(bird.y)}px, 0)${bird.mirrored ? ' scaleX(-1)' : ''}`;
+        };
+
+        const step = (bird, dt) => {
+            bird.animTime += dt;
+            const anim = ANIMS[bird.state];
+            if (anim.speed === 0) {
+                bird.timer -= dt * 1000;
+                if (bird.timer <= 0) {
+                    if (bird.state === 'hit') takeOff(bird, 2.5);
+                    else if (Math.random() < 0.25) setState(bird, bird.state === 'pecking' ? 'resting' : 'pecking', 2000 + Math.random() * 4000);
+                    else takeOff(bird);
+                }
+                return;
+            }
+            const dx = bird.tx - bird.x;
+            const dy = bird.ty - bird.y;
+            const dist = Math.hypot(dx, dy);
+            const move = anim.speed * bird.speedFactor * dt;
+            if (Math.abs(dx) > 1) bird.mirrored = dx > 0; // sheet faces west; mirror to face east
+            if (dist <= move) {
+                bird.x = bird.tx;
+                bird.y = bird.ty;
+                land(bird);
+            } else {
+                bird.x += (dx / dist) * move;
+                bird.y += (dy / dist) * move;
+            }
+        };
+
+        const frame = (now) => {
+            rafId = 0;
+            if (!visible) return;
+            if (lastTime && now - lastTime < 1000 / MAX_FPS - 1) {
+                rafId = requestAnimationFrame(frame);
+                return;
+            }
+            const dt = lastTime ? Math.min((now - lastTime) / 1000, 0.1) : 0;
+            lastTime = now;
+            for (const bird of birds) {
+                step(bird, dt);
+                render(bird);
+            }
+            rafId = requestAnimationFrame(frame);
+        };
+
+        const start = () => {
+            if (rafId || !visible) return;
+            if (reducedMotion) {
+                birds.forEach(render);
+                return;
+            }
+            lastTime = 0;
+            rafId = requestAnimationFrame(frame);
+        };
+        const stop = () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = 0;
+        };
+
+        birds.forEach(render);
+
+        const io = new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            if (visible) start();
+            else stop();
+        }, {rootMargin: '200px'});
+        io.observe(container);
+
+        const ro = new ResizeObserver(() => {
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            if (!w || !h || (w === width && h === height)) return;
+            const sx = width ? w / width : 1;
+            const sy = height ? h / height : 1;
+            width = w;
+            height = h;
+            for (const bird of birds) {
+                bird.x = Math.min(bird.x * sx, w - SIZE);
+                bird.y = Math.min(bird.y * sy, h - SIZE);
+                bird.tx = Math.min(bird.tx * sx, w - SIZE);
+                bird.ty = Math.min(bird.ty * sy, h - SIZE);
+                render(bird);
+            }
+        });
+        ro.observe(container);
+
+        const onClick = (event) => {
+            const bird = birds.find(b => b.el === event.target);
+            if (!bird || bird.state === 'hit') return;
+            playChirp();
+            setState(bird, 'hit', 250);
+            render(bird);
+        };
+        container.addEventListener('click', onClick);
+
+        return () => {
+            stop();
+            io.disconnect();
+            ro.disconnect();
+            container.removeEventListener('click', onClick);
+            birds.forEach(b => b.el.remove());
+        };
     }, [numberOfBirds]);
 
-    const chooseNewTarget = useCallback((bird) => {
-        bird.targetX = Math.random() * window.innerWidth;
-        bird.targetY = Math.random() * window.innerHeight;
-        bird.stateTimer = Math.random() * 5000 + 5000; // Reset state timer
-    }, []);
-
-    const handleBirdClick = (birdType) => {
-        const soundKeys = Object.keys(birdSounds);
-        const randomSoundKey = soundKeys[Math.floor(Math.random() * soundKeys.length)];
-        const audio = new Audio(birdSounds[randomSoundKey]);
-        audio.play().then(() => {
-            console.log('Audio played successfully');
-        }).catch((error) => {
-            console.error('Error playing audio:', error);
-        });
-    };
-
-    const animate = useCallback((timestamp) => {
-        if (timestamp - lastFrameTime.current < frameDuration) {
-            requestAnimationFrame(animate);
-            return;
-        }
-        lastFrameTime.current = timestamp;
-
-        setBirds((prevBirds) => prevBirds.map((bird) => {
-            const distanceX = bird.targetX - bird.x;
-            const distanceY = bird.targetY - bird.y;
-            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-
-            bird.isMirrored = distanceX > 0; // Mirror if moving east
-
-            if (distance > 10) {
-                const angle = Math.atan2(distanceY, distanceX);
-                bird.x += Math.cos(angle) * bird.speed;
-                bird.y += Math.sin(angle) * bird.speed;
-            } else if (bird.category !== 'sitting') {
-                bird.category = 'sitting';
-                bird.speed = speeds['sitting'];
-                bird.stateTimer = Math.random() * 5000;
-            }
-
-            bird.stateTimer -= frameDuration;
-            if (bird.stateTimer <= 0) {
-                chooseNewTarget(bird);
-            }
-
-            // Update frame for flying animation
-            if (bird.category === 'flying') {
-                bird.frame = (bird.frame + 1) % 4;
-            }
-
-            return {...bird};
-        }));
-
-        requestAnimationFrame(animate);
-    }, [frameDuration, chooseNewTarget]);
-
-    useEffect(() => {
-        requestAnimationFrame(animate);
-    }, [animate]);
-
-    return (
-        <div className="bird-animation-container">
-            {birds.map((bird, index) => {
-                const sprite = birdSprites[bird.type];
-                const style = getFrameStyle(sprite, bird.category, bird.frame, bird.isMirrored, bird.x, bird.y);
-                return <div key={index} style={style} className="bird-animation-frame"
-                            onClick={() => handleBirdClick(bird.type)}></div>;
-            })}
-        </div>
-    );
+    return <div ref={containerRef} className="bird-animation-container" aria-hidden="true"/>;
 };
 
 BirdAnimation.propTypes = {

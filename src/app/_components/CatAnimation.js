@@ -1,462 +1,438 @@
 'use client';
 
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useRef} from 'react';
+import PropTypes from 'prop-types';
 import '../_styles/CatAnimation.css';
-import "../globals.css";
-import BirdAnimation from "@/app/_components/BirdAnimation";
 
-const spriteFiles = [
-    'black_0.png', 'black_1.png', 'black_2.png', 'black_3.png', 'black_4.png',
-    'blue_0.png', 'blue_1.png', 'blue_2.png', 'blue_3.png',
-    'brown_0.png', 'brown_1.png', 'brown_2.png', 'brown_3.png', 'brown_4.png', 'brown_5.png',
-    'brown_6.png', 'brown_7.png', 'brown_8.png',
-    'calico_0.png', 'cotton_candy_blue_0.png', 'cotton_candy_pink_0.png',
-    'creme_0.png', 'creme_1.png', 'dark_0.png',
-    'game_boy_0.png', 'game_boy_1.png', 'game_boy_2.png',
-    'ghost_0.png', 'gold_0.png',
-    'grey_0.png', 'grey_1.png', 'grey_2.png',
-    'hairless_0.png', 'hairless_1.png',
-    'indigo_0.png', 'orange_0.png', 'orange_1.png', 'orange_2.png', 'orange_3.png',
-    'peach_0.png', 'pink_0.png', 'radioactive_0.png',
-    'red_0.png', 'red_1.png', 'seal_point_0.png', 'teal_0.png',
-    'white_0.png', 'white_grey_0.png', 'white_grey_1.png', 'yellow_0.png'
+/*
+ * Sprite sheet layout (every sheet in /assets/cats is 768x512, 32x32 tiles):
+ *   - 8 horizontal bands of 64px (2 tile rows), one per facing direction,
+ *     top to bottom: S, SW, W, NW, N, NE, E, SE
+ *   - 6 blocks of 128px (4 tile columns), each block holds two animations
+ *     (top row / bottom row of the band).
+ */
+const TILE = 32;
+const CAT_SCALE = 3;
+const CAT_SIZE = TILE * CAT_SCALE;
+const COFFEE_SIZE = 32;
+const SPRITE_FPS = 8;
+const MAX_FPS = 30;
+const PALETTE_SIZE = 8; // distinct cat sheets loaded per page, shared by all instances
+
+// looping movement cycles
+const MOVES = {
+    walking: {block: 4, row: 0, frames: 4, speed: 28},  // px per second
+    running: {block: 5, row: 0, frames: 4, speed: 80},
+};
+
+// [block, row, column] tiles
+const seq = (block, row, cols) => cols.map(col => [block, row, col]);
+const SIT_DOWN = [...seq(0, 0, [0, 1, 2, 3]), ...seq(0, 1, [0, 1])];   // standing -> sitting
+const LOOK_AROUND = [...seq(1, 0, [0, 1, 2, 3]), ...seq(1, 1, [0])];  // sitting -> looking at you
+const LIE_DOWN = [...seq(2, 0, [0, 1, 2, 3]), ...seq(2, 1, [0, 1, 2, 3])]; // sitting -> lying
+
+// Idle poses are transitions, not loops: play forward on entry, freeze on the last
+// tile for the wait, then play backwards to stand up again before walking off.
+const IDLES = [
+    {tiles: SIT_DOWN, weight: 2},
+    {tiles: [...SIT_DOWN, ...LOOK_AROUND], weight: 1},
+    {tiles: [...SIT_DOWN, ...LIE_DOWN], weight: 2},
 ];
+const IDLE_WEIGHT = IDLES.reduce((s, i) => s + i.weight, 0);
 
-const coffeeFiles = [
+function pickIdle() {
+    let r = Math.random() * IDLE_WEIGHT;
+    for (const idle of IDLES) {
+        r -= idle.weight;
+        if (r < 0) return idle.tiles;
+    }
+    return IDLES[0].tiles;
+}
+
+// screen-space octant (0 = east, clockwise because y points down) -> sheet band
+const OCTANT_TO_BAND = [6, 7, 0, 1, 2, 3, 4, 5];
+
+const CAT_SHEETS = [
+    'black_0', 'black_1', 'black_2', 'black_3', 'black_4',
+    'blue_0', 'blue_1', 'blue_2', 'blue_3',
+    'brown_0', 'brown_1', 'brown_2', 'brown_3', 'brown_4', 'brown_5',
+    'brown_6', 'brown_7', 'brown_8',
+    'calico_0', 'cotton_candy_blue_0', 'cotton_candy_pink_0',
+    'creme_0', 'creme_1', 'dark_0',
+    'game_boy_0', 'game_boy_1', 'game_boy_2',
+    'ghost_0', 'gold_0',
+    'grey_0', 'grey_1', 'grey_2',
+    'hairless_0', 'hairless_1',
+    'indigo_0', 'orange_0', 'orange_1', 'orange_2', 'orange_3',
+    'peach_0', 'pink_0', 'radioactive_0',
+    'red_0', 'red_1', 'seal_point_0', 'teal_0',
+    'white_0', 'white_grey_0', 'white_grey_1', 'yellow_0',
+].map(name => `/assets/cats/${name}.png`);
+
+const COFFEE_SPRITES = [
     'CoffeeDropMachine.png', 'coffeeFilterMachine.png', 'coffeeGrinder.png',
-    'coffeeMachine.png', "coffeeMilk.png", "frenchpress.png"
-];
+    'coffeeMachine.png', 'coffeeMilk.png', 'frenchpress.png',
+].map(name => `/assets/coffee/${name}`);
 
-const catScale = 3;
-const coffeeScale = 1;
-const tileWidth = 32;
-const tileHeight = 32;
-const categories = [
-    {name: 'sitting', startX: 0, startY: tileHeight},
-    {name: 'looking', startX: 128, startY: tileHeight},
-    {name: 'laying', startX: 256, startY: tileHeight},
-    {name: 'walking', startX: 384, startY: tileHeight},
-    {name: 'running', startX: 512, startY: tileHeight}
-];
-const directions = [
-    {name: 'south', index: 0, angle: Math.PI / 2},
-    {name: 'south-west', index: 1, angle: (3 * Math.PI) / 4},
-    {name: 'west', index: 2, angle: Math.PI},
-    {name: 'north-west', index: 3, angle: (5 * Math.PI) / 4},
-    {name: 'north', index: 4, angle: (3 * Math.PI) / 2},
-    {name: 'north-east', index: 5, angle: (7 * Math.PI) / 4},
-    {name: 'east', index: 6, angle: 0},
-    {name: 'south-east', index: 7, angle: Math.PI / 4}
-];
-const meowSounds = [
-    '/assets/snd/meow.mp3',
-    '/assets/snd/meow2.mp3',
-    '/assets/snd/meow3.mp3',
-    '/assets/snd/meow5.mp3',
-    '/assets/snd/meow6.mp3'
-];
-const speeds = {
-    laying: 0,
-    sitting: 0,
-    looking: 0,
-    walking: 3,
-    running: 6
-};
+const MEOWS = ['meow', 'meow2', 'meow3', 'meow5', 'meow6'].map(n => `/assets/snd/${n}.mp3`);
 
-const getDirectionFromAngle = (angle) => {
-    const normalizedAngle = (angle + 2 * Math.PI) % (2 * Math.PI);
-    if (normalizedAngle >= 0 && normalizedAngle < Math.PI / 8) return 'west';
-    if (normalizedAngle >= Math.PI / 8 && normalizedAngle < 3 * Math.PI / 8) return 'south-west';
-    if (normalizedAngle >= 3 * Math.PI / 8 && normalizedAngle < 5 * Math.PI / 8) return 'south';
-    if (normalizedAngle >= 5 * Math.PI / 8 && normalizedAngle < 7 * Math.PI / 8) return 'south-east';
-    if (normalizedAngle >= 7 * Math.PI / 8 && normalizedAngle < 9 * Math.PI / 8) return 'east';
-    if (normalizedAngle >= 9 * Math.PI / 8 && normalizedAngle < 11 * Math.PI / 8) return 'north-east';
-    if (normalizedAngle >= 11 * Math.PI / 8 && normalizedAngle < 13 * Math.PI / 8) return 'north';
-    if (normalizedAngle >= 13 * Math.PI / 8 && normalizedAngle < 15 * Math.PI / 8) return 'north-west';
-    return 'west';
-};
+/* ---------- shared, page-wide caches ---------- */
 
+// url -> {img, ready}. A failed image never becomes ready and is simply not drawn,
+// so one broken or slow file can never block the animation from starting.
+const imageCache = new Map();
 
-const extractTiles = (spriteSheet, categories) => {
-    const tiles = {};
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = tileWidth;
-    canvas.height = tileHeight;
+function getImage(url) {
+    let entry = imageCache.get(url);
+    if (!entry) {
+        const img = new Image();
+        entry = {img, ready: false};
+        img.decoding = 'async';
+        img.onload = () => {
+            entry.ready = true;
+        };
+        img.src = url;
+        imageCache.set(url, entry);
+    }
+    return entry;
+}
 
-    categories.forEach((category) => {
-        tiles[category.name] = {};
-        directions.forEach((direction) => {
-            tiles[category.name][direction.name] = [];
-            for (let row = 0; row < 2; row++) {
-                for (let col = 0; col < 4; col++) {
-                    const sx = category.startX + col * tileWidth;
-                    const sy = spriteSheet.height - tileHeight * 2 * direction.index - row * tileHeight;
-                    if (sx < 768) {
-                        ctx.clearRect(0, 0, tileWidth, tileHeight);
-                        ctx.drawImage(spriteSheet, sx, sy, tileWidth, tileHeight, 0, 0, tileWidth, tileHeight);
-                        const imageData = ctx.getImageData(0, 0, tileWidth, tileHeight);
-                        const isEmpty = !imageData.data.some(channel => channel !== 0);
-                        if (!isEmpty) {
-                            tiles[category.name][direction.name].push({sx, sy, width: tileWidth, height: tileHeight});
-                        }
-                    }
-                }
+let palette = null;
+
+function getPalette() {
+    if (!palette) {
+        const shuffled = [...CAT_SHEETS];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        palette = shuffled.slice(0, PALETTE_SIZE);
+    }
+    return palette;
+}
+
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+function playRandomMeow() {
+    const audio = new Audio(pick(MEOWS));
+    audio.volume = 0.6;
+    audio.play().catch(() => { /* autoplay blocked or file missing: stay silent */ });
+}
+
+/* ---------- simulation ---------- */
+
+// keep cats to the outer quarters so they don't sit under the text column
+function randomX(width) {
+    const quarter = Math.max(0, width * 0.25 - CAT_SIZE);
+    return Math.random() < 0.5
+        ? Math.random() * quarter
+        : Math.max(0, width - CAT_SIZE - Math.random() * quarter);
+}
+
+const randomY = (height) => Math.random() * Math.max(0, height - CAT_SIZE);
+
+// cat.state: 'walking' | 'running' | 'idle'; idle has cat.phase: 'enter' | 'hold' | 'exit'
+function setIdle(cat, phase = 'enter') {
+    cat.state = 'idle';
+    cat.idle = pickIdle();
+    cat.phase = phase;
+    cat.animTime = 0;
+    cat.timer = 2500 + Math.random() * 5000;
+}
+
+function setMoving(cat, w, h, state) {
+    cat.state = state;
+    cat.animTime = 0;
+    cat.tx = randomX(w);
+    cat.ty = randomY(h);
+}
+
+function makeCat(sheets, w, h) {
+    const cat = {
+        sheet: getImage(pick(sheets)),
+        x: randomX(w), y: randomY(h),
+        tx: 0, ty: 0,
+        band: Math.floor(Math.random() * 8),
+        state: 'walking', idle: null, phase: null,
+        animTime: Math.random(), timer: 0,
+    };
+    // half the cats begin already settled (frozen pose), so the page doesn't open with
+    // everyone sitting down in sync
+    if (Math.random() < 0.5) setIdle(cat, 'hold');
+    else setMoving(cat, w, h, 'walking');
+    return cat;
+}
+
+// [block, row, column] of the tile to draw right now
+function currentTile(cat) {
+    const n = Math.floor(cat.animTime * SPRITE_FPS);
+    if (cat.state !== 'idle') {
+        const move = MOVES[cat.state];
+        return [move.block, move.row, n % move.frames];
+    }
+    const tiles = cat.idle;
+    const last = tiles.length - 1;
+    if (cat.phase === 'enter') return tiles[Math.min(n, last)];
+    if (cat.phase === 'exit') return tiles[Math.max(last - n, 0)];
+    return tiles[last];
+}
+
+function stepCat(cat, dt, w, h) {
+    cat.animTime += cat.startled ? dt * 2 : dt;
+    if (cat.state === 'idle') {
+        const played = Math.floor(cat.animTime * SPRITE_FPS);
+        if (cat.phase === 'enter' && played >= cat.idle.length) {
+            cat.phase = 'hold';
+            cat.animTime = 0;
+        } else if (cat.phase === 'hold') {
+            cat.timer -= dt * 1000;
+            if (cat.timer <= 0) {
+                cat.phase = 'exit';
+                cat.animTime = 0;
             }
-        });
-    });
-    return tiles;
-};
+        } else if (cat.phase === 'exit' && played >= cat.idle.length) {
+            setMoving(cat, w, h, cat.startled || Math.random() < 0.3 ? 'running' : 'walking');
+            cat.startled = false;
+        }
+        return;
+    }
+    const dx = cat.tx - cat.x;
+    const dy = cat.ty - cat.y;
+    const dist = Math.hypot(dx, dy);
+    const step = MOVES[cat.state].speed * dt;
+    if (dist <= step) {
+        cat.x = cat.tx;
+        cat.y = cat.ty;
+        setIdle(cat);
+        return;
+    }
+    const octant = ((Math.round(Math.atan2(dy, dx) / (Math.PI / 4)) % 8) + 8) % 8;
+    cat.band = OCTANT_TO_BAND[octant];
+    cat.x += (dx / dist) * step;
+    cat.y += (dy / dist) * step;
+}
 
-const isColliding = (rect1, rect2) => {
-    return (
-        rect1.x < rect2.x + rect2.width &&
-        rect1.x + rect1.width > rect2.x &&
-        rect1.y < rect2.y + rect2.height &&
-        rect1.y + rect1.height > rect2.y
-    );
-};
+const hits = (o, size, px, py) => px >= o.x && px < o.x + size && py >= o.y && py < o.y + size;
 
-const playRandomMeow = () => {
-    const randomMeow = meowSounds[Math.floor(Math.random() * meowSounds.length)];
-    const audio = new Audio(randomMeow);
-    audio.play().then(() => {
-        console.log('Meow sound played successfully');
-    }).catch(error => {
-        console.error('Error playing meow sound:', error);
-    });
-};
+/* ---------- component ---------- */
 
 const CatAnimation = ({numberOfCats}) => {
     const canvasRef = useRef(null);
-    const [hoveredCat, setHoveredCat] = useState(false);
-    const frameRate = 8;
-    const frameDuration = 1000 / frameRate;
-    const lastFrameTime = useRef(0);
-
-    const handleCatClick = (cat, event) => {
-        if (!canvasRef.current) return;
-        const rect = canvasRef.current.getBoundingClientRect();
-        const mouseX = event.clientX - rect.left;
-        const mouseY = event.clientY - rect.top;
-
-        if (isColliding(cat, {x: mouseX, y: mouseY, width: 1, height: 1})) {
-            playRandomMeow();
-            cat.targetX = Math.random() * canvasRef.current.width;
-            cat.targetY = Math.random() * canvasRef.current.height;
-            cat.category = categories.find(category => category.name === 'running');
-            cat.speed = speeds['running'];
-        }
-    };
 
     useEffect(() => {
         const canvas = canvasRef.current;
-        if (!canvas) return;
+        if (!canvas) return undefined;
         const ctx = canvas.getContext('2d');
+        if (!ctx) return undefined;
 
-        canvas.width = canvas.clientWidth;
-        canvas.height = canvas.clientHeight;
-        ctx.imageSmoothingEnabled = false;
+        const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
-        const resizeCanvas = () => {
-            if (!canvas) return;
-            canvas.width = canvas.clientWidth;
-            canvas.height = canvas.clientHeight;
+        let width = 0;
+        let height = 0;
+        let cats = null;
+        let coffee = null;
+        let visible = false;
+        let loopId = 0;
+        let lastTime = 0;
+
+        const spawn = () => {
+            const sheets = getPalette();
+            cats = Array.from({length: numberOfCats}, () => makeCat(sheets, width, height));
+            coffee = COFFEE_SPRITES.map(url => ({
+                sprite: getImage(url),
+                x: randomX(width), y: randomY(height),
+                tipped: 0,
+            }));
         };
 
-        const handleResize = () => {
-            resizeCanvas();
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                // Redraw or reset animations if needed
+        // The backing store is CSS-pixel sized (no devicePixelRatio): this is pixel art upscaled
+        // with `image-rendering: pixelated`, so a hi-dpi store would only cost 4x the memory.
+        // While the canvas is off-screen its backing store is released entirely.
+        const applySize = () => {
+            const w = visible ? Math.round(canvas.clientWidth) : 0;
+            const h = visible ? Math.round(canvas.clientHeight) : 0;
+            if (canvas.width !== w || canvas.height !== h) {
+                canvas.width = w;
+                canvas.height = h;
+            }
+            if (!visible || w === 0 || h === 0) return;
+            if (!cats) {
+                width = w;
+                height = h;
+                spawn();
+            } else if (w !== width || h !== height) {
+                const sx = w / width;
+                const sy = h / height;
+                const maxX = Math.max(0, w - CAT_SIZE);
+                const maxY = Math.max(0, h - CAT_SIZE);
+                width = w;
+                height = h;
+                for (const o of cats) {
+                    o.x = Math.min(o.x * sx, maxX);
+                    o.y = Math.min(o.y * sy, maxY);
+                    o.tx = Math.min(o.tx * sx, maxX);
+                    o.ty = Math.min(o.ty * sy, maxY);
+                }
+                for (const o of coffee) {
+                    o.x = Math.min(o.x * sx, maxX);
+                    o.y = Math.min(o.y * sy, maxY);
+                }
+            }
+            ctx.imageSmoothingEnabled = false; // resetting canvas size resets this flag
+        };
+
+        const draw = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (const c of coffee) {
+                if (!c.sprite.ready) continue;
+                const x = Math.round(c.x);
+                const y = Math.round(c.y);
+                if (c.tipped > 0) {
+                    ctx.save();
+                    ctx.translate(x + COFFEE_SIZE / 2, y + COFFEE_SIZE / 2);
+                    ctx.rotate(Math.PI / 2);
+                    ctx.drawImage(c.sprite.img, -COFFEE_SIZE / 2, -COFFEE_SIZE / 2, COFFEE_SIZE, COFFEE_SIZE);
+                    ctx.restore();
+                } else {
+                    ctx.drawImage(c.sprite.img, x, y, COFFEE_SIZE, COFFEE_SIZE);
+                }
+            }
+
+            // back-to-front so lower cats overlap the ones behind them
+            cats.sort((a, b) => a.y - b.y);
+            for (const cat of cats) {
+                if (!cat.sheet.ready) continue;
+                const [block, row, col] = currentTile(cat);
+                ctx.drawImage(
+                    cat.sheet.img,
+                    block * 128 + col * TILE,
+                    cat.band * 64 + row * TILE,
+                    TILE, TILE,
+                    Math.round(cat.x), Math.round(cat.y),
+                    CAT_SIZE, CAT_SIZE,
+                );
             }
         };
 
-        const adjustCanvasResolution = () => {
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = canvas.clientWidth * dpr;
-            canvas.height = canvas.clientHeight * dpr;
-            ctx.scale(dpr, dpr);
-        };
-
-        adjustCanvasResolution();
-
-        window.addEventListener('resize', handleResize);
-        resizeCanvas();
-
-        const getRandomX = () => {
-            const width = canvas.width;
-            const quarterWidth = width * 0.25;
-            const randomValue = Math.random();
-            return randomValue < 0.5 ? Math.random() * quarterWidth : width - quarterWidth + Math.random() * quarterWidth;
-        };
-
-        const cats = Array.from({length: numberOfCats}, () => {
-            const category = categories[Math.floor(Math.random() * categories.length)];
-            const direction = directions[Math.floor(Math.random() * directions.length)];
-            const spriteFile = spriteFiles[Math.floor(Math.random() * spriteFiles.length)];
-            return {
-                x: getRandomX(),
-                y: Math.random() * canvas.height,
-                direction: direction || directions[0],
-                frame: 0,
-                sprite: new Image(),
-                spriteFile: spriteFile,
-                category: category || categories[0],
-                tiles: {},
-                speed: speeds['walking'],
-                delay: 0,
-                targetX: getRandomX(),
-                targetY: Math.random() * canvas.height,
-                stateTimer: 0,
-                lastMeowTime: 0,
-                width: tileWidth * catScale,
-                height: tileHeight * catScale
-            };
-        });
-
-        const coffeeUtensils = coffeeFiles.map((file, index) => ({
-            x: getRandomX(),
-            y: Math.random() * canvas.height,
-            sprite: new Image(),
-            tipped: false,
-            tippingTimer: 0,
-            width: tileWidth * coffeeScale,
-            height: tileHeight * coffeeScale
-        }));
-
-        const loadSprites = () => {
-            let loadedCount = 0;
-
-            spriteFiles.forEach((spriteFile) => {
-                const spriteSheet = new Image();
-                spriteSheet.src = `/assets/cats/${spriteFile}`;
-                spriteSheet.onload = () => {
-                    cats.forEach(cat => {
-                        if (cat.spriteFile === spriteFile) {
-                            cat.tiles = extractTiles(spriteSheet, categories);
-                        }
-                    });
-                    loadedCount++;
-                    if (loadedCount === spriteFiles.length) {
-                        requestAnimationFrame(animate);
-                    }
-                };
-            });
-
-            coffeeFiles.forEach((coffeeFile, index) => {
-                const coffeeSprite = new Image();
-                coffeeSprite.src = `/assets/coffee/${coffeeFile}`;
-                coffeeSprite.onload = () => {
-                    coffeeUtensils[index].sprite = coffeeSprite;
-                    loadedCount++;
-                    if (loadedCount === spriteFiles.length + coffeeFiles.length) {
-                        requestAnimationFrame(animate);
-                    }
-                };
-            });
-        };
-
-        cats.forEach(cat => {
-            cat.sprite.src = `/assets/cats/${cat.spriteFile}`;
-        });
-
-        loadSprites();
-
-        const chooseTarget = (cat) => {
-            const canvas = canvasRef.current;
-            if (!canvas) return;
-            const rect = canvas.getBoundingClientRect();
-            const viewWidth = rect.width;
-            const viewHeight = rect.height;
-
-            cat.targetX = getRandomX();
-            cat.targetY = Math.random() * viewHeight;
-
-            cat.category = categories.find(category => category.name === (Math.random() < 0.5 ? 'walking' : 'running')) || categories[0];
-            cat.speed = speeds[cat.category.name];
-            cat.stateTimer = Math.random() * 3000 + 2000;
-        };
-
-        const isBlankBackground = (x, y, width, height) => {
-            const canvas = canvasRef.current;
-            if (!canvas) return false;
-            const ctx = canvas.getContext('2d');
-            const imageData = ctx.getImageData(x, y, width, height);
-            return !imageData.data.some(channel => channel !== 0);
-        };
-
-        const placeCoffeeUtensils = () => {
-            coffeeUtensils.forEach(utensil => {
-                let placed = false;
-                while (!placed) {
-                    utensil.x = getRandomX();
-                    utensil.y = Math.random() * (canvas.height - utensil.height);
-                    if (isBlankBackground(utensil.x, utensil.y, utensil.width, utensil.height)) {
-                        placed = true;
-                    }
-                }
-            });
-        };
-
-        const animate = (timestamp) => {
-            if (timestamp - lastFrameTime.current < frameDuration) {
-                requestAnimationFrame(animate);
+        const frame = (now) => {
+            loopId = 0;
+            if (!visible || !cats) return;
+            if (lastTime && now - lastTime < 1000 / MAX_FPS - 1) {
+                loopId = requestAnimationFrame(frame);
                 return;
             }
-            lastFrameTime.current = timestamp;
+            // clamp dt so cats don't teleport after the tab was in the background
+            const dt = lastTime ? Math.min((now - lastTime) / 1000, 0.1) : 0;
+            lastTime = now;
 
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            coffeeUtensils.forEach(utensil => {
-                if (utensil.tipped) {
-                    utensil.tippingTimer -= frameDuration;
-                    if (utensil.tippingTimer <= 0) {
-                        utensil.tipped = false;
-                    }
+            for (const cat of cats) {
+                stepCat(cat, dt, width, height);
+                if (cat.state === 'idle') continue;
+                const footX = cat.x + CAT_SIZE / 2;
+                const footY = cat.y + CAT_SIZE * 0.8;
+                for (const c of coffee) {
+                    if (c.tipped <= 0 && hits(c, COFFEE_SIZE, footX, footY)) c.tipped = 2000;
                 }
-                ctx.drawImage(
-                    utensil.sprite,
-                    utensil.x,
-                    utensil.y,
-                    utensil.width,
-                    utensil.height
-                );
-            });
+            }
+            for (const c of coffee) if (c.tipped > 0) c.tipped -= dt * 1000;
 
-            let isHovering = false;
-
-            cats.forEach(cat => {
-                if (!cat.category) {
-                    console.error('Cat category is undefined:', cat);
-                    return;
-                }
-                const tilesForCategory = cat.tiles[cat.category.name];
-                if (tilesForCategory) {
-                    const tilesForDirection = tilesForCategory[cat.direction.name];
-                    if (tilesForDirection) {
-                        const tile = tilesForDirection[cat.frame];
-                        if (tile) {
-                            ctx.drawImage(
-                                cat.sprite,
-                                tile.sx,
-                                tile.sy,
-                                tile.width,
-                                tile.height,
-                                cat.x,
-                                cat.y,
-                                cat.width,
-                                cat.height
-                            );
-                        }
-
-                        if (cat.category.name !== 'laying' && cat.category.name !== 'sitting' && cat.category.name !== 'looking') {
-                            cat.frame = (cat.frame + 1) % tilesForDirection.length;
-                            if (cat.frame === 0) {
-                                cat.frame = 1;
-                            }
-
-                            const distanceX = cat.targetX - cat.x;
-                            const distanceY = cat.targetY - cat.y;
-                            const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-
-                            if (distance > 10) {
-                                const angle = Math.atan2(distanceY, distanceX);
-                                cat.direction = directions.find(dir => dir.name === getDirectionFromAngle(angle));
-                                cat.x += Math.cos(angle) * cat.speed;
-                                cat.y += Math.sin(angle) * cat.speed;
-                            } else {
-                                chooseTarget(cat);
-                            }
-                        } else {
-                            cat.stateTimer -= frameDuration;
-                            if (cat.stateTimer <= 0) {
-                                changeBehavior(cat);
-                            }
-                        }
-                    }
-                }
-
-                coffeeUtensils.forEach(utensil => {
-                    if (isColliding(cat, utensil) && !utensil.tipped) {
-                        utensil.tipped = true;
-                        utensil.tippingTimer = 2000;
-                    }
-                });
-
-                if (isColliding(cat, {x: mouseX, y: mouseY, width: 1, height: 1})) {
-                    isHovering = true;
-                }
-            });
-
-            setHoveredCat(isHovering);
-
-            requestAnimationFrame(animate);
+            draw();
+            loopId = requestAnimationFrame(frame);
         };
 
-        const changeBehavior = (cat) => {
-            const behaviors = ['laying', 'sitting', 'looking', 'walking', 'running'];
-            const currentBehavior = behaviors.indexOf(cat.category.name);
-            const nextBehavior = behaviors[(currentBehavior + 1) % behaviors.length];
-            cat.category = categories.find(category => category.name === nextBehavior);
-            cat.speed = speeds[nextBehavior];
-            cat.frame = 0;
-            cat.stateTimer = Math.random() * 5000 + 2000;
+        const start = () => {
+            if (!visible || !cats) return;
+            if (reducedMotion) {
+                // static picture; redraw a few times while sprite sheets finish loading
+                window.clearTimeout(loopId);
+                let n = 0;
+                const still = () => {
+                    loopId = 0;
+                    if (!visible || !cats) return;
+                    draw();
+                    if (++n < 12) loopId = window.setTimeout(still, 250);
+                };
+                still();
+                return;
+            }
+            if (loopId) return;
+            lastTime = 0;
+            loopId = requestAnimationFrame(frame);
         };
 
-        const updateAnimationBasedOnDirection = () => {
-            cats.forEach(cat => {
-                const angle = Math.atan2(cat.targetY - cat.y, cat.targetX - cat.x);
-                const newDirection = directions.find(dir => dir.name === getDirectionFromAngle(angle));
-                if (cat.direction !== newDirection) {
-                    cat.direction = newDirection;
-                    cat.frame = 0;
-                }
-            });
+        const stop = () => {
+            if (!loopId) return;
+            if (reducedMotion) window.clearTimeout(loopId);
+            else cancelAnimationFrame(loopId);
+            loopId = 0;
         };
 
-        const directionInterval = setInterval(updateAnimationBasedOnDirection, 500);
+        const io = new IntersectionObserver(([entry]) => {
+            visible = entry.isIntersecting;
+            applySize();
+            if (visible) start();
+            else stop();
+        }, {rootMargin: '200px'});
+        io.observe(canvas);
 
-        placeCoffeeUtensils();
+        const ro = new ResizeObserver(() => {
+            applySize();
+            start();
+        });
+        ro.observe(canvas);
 
-        let mouseX = 0;
-        let mouseY = 0;
-
-        const handleMouseMove = (event) => {
+        const toLocal = (event) => {
             const rect = canvas.getBoundingClientRect();
-            mouseX = event.clientX - rect.left;
-            mouseY = event.clientY - rect.top;
+            return [event.clientX - rect.left, event.clientY - rect.top];
+        };
+        const catAt = (px, py) => {
+            if (!cats) return null;
+            for (let i = cats.length - 1; i >= 0; i--) {
+                if (cats[i].sheet.ready && hits(cats[i], CAT_SIZE, px, py)) return cats[i];
+            }
+            return null;
         };
 
-        canvas.addEventListener('mousemove', handleMouseMove);
-
-        const handleClick = (event) => {
-            cats.forEach(cat => handleCatClick(cat, event));
+        const onMove = (event) => {
+            const cursor = catAt(...toLocal(event)) ? 'pointer' : '';
+            if (canvas.style.cursor !== cursor) canvas.style.cursor = cursor;
         };
-
-        canvas.addEventListener('click', handleClick);
-
-        handleResize()
+        const onClick = (event) => {
+            const cat = catAt(...toLocal(event));
+            if (!cat) return;
+            playRandomMeow();
+            if (cat.state !== 'idle') {
+                setMoving(cat, width, height, 'running');
+                return;
+            }
+            // startled: get up from wherever the pose currently is (double speed), then run off
+            const last = cat.idle.length - 1;
+            const shown = cat.phase === 'enter'
+                ? Math.min(Math.floor(cat.animTime * SPRITE_FPS), last)
+                : cat.phase === 'hold' ? last : last - Math.floor(cat.animTime * SPRITE_FPS);
+            cat.phase = 'exit';
+            cat.animTime = (last - Math.max(shown, 0)) / SPRITE_FPS;
+            cat.startled = true;
+        };
+        canvas.addEventListener('mousemove', onMove, {passive: true});
+        canvas.addEventListener('click', onClick);
 
         return () => {
-            clearInterval(directionInterval);
-            canvas.removeEventListener('mousemove', handleMouseMove);
-            canvas.removeEventListener('click', handleClick);
-            window.removeEventListener('resize', handleResize);
+            stop();
+            io.disconnect();
+            ro.disconnect();
+            canvas.removeEventListener('mousemove', onMove);
+            canvas.removeEventListener('click', onClick);
+            canvas.width = 0;
+            canvas.height = 0;
         };
-    }, [numberOfCats, frameDuration]);
+    }, [numberOfCats]);
 
-    return (
-        <canvas
-            ref={canvasRef}
-            className="cat-animation-canvas"
-            style={{cursor: hoveredCat ? 'pointer' : 'default'}}
-            aria-hidden="true"
-        >
-            <BirdAnimation numberOfBirds={numberOfCats * 2}/>
-        </canvas>
-    );
+    return <canvas ref={canvasRef} className="cat-animation-canvas" aria-hidden="true"/>;
+};
+
+CatAnimation.propTypes = {
+    numberOfCats: PropTypes.number.isRequired,
 };
 
 export default CatAnimation;
