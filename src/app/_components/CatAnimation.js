@@ -3,6 +3,7 @@
 import React, {useEffect, useRef} from 'react';
 import PropTypes from 'prop-types';
 import '../_styles/CatAnimation.css';
+import {playMeow} from '../_lib/meowSynth';
 
 /*
  * Sprite sheet layout (every sheet in /assets/cats is 768x512, 32x32 tiles):
@@ -74,7 +75,6 @@ const COFFEE_SPRITES = [
     'coffeeMachine.png', 'coffeeMilk.png', 'frenchpress.png',
 ].map(name => `/assets/coffee/${name}`);
 
-const MEOWS = ['meow', 'meow2', 'meow3', 'meow5', 'meow6'].map(n => `/assets/snd/${n}.mp3`);
 
 /* ---------- shared, page-wide caches ---------- */
 
@@ -113,11 +113,6 @@ function getPalette() {
 
 const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-function playRandomMeow() {
-    const audio = new Audio(pick(MEOWS));
-    audio.volume = 0.6;
-    audio.play().catch(() => { /* autoplay blocked or file missing: stay silent */ });
-}
 
 /* ---------- simulation ---------- */
 
@@ -400,7 +395,7 @@ const CatAnimation = ({numberOfCats}) => {
         const onClick = (event) => {
             const cat = catAt(...toLocal(event));
             if (!cat) return;
-            playRandomMeow();
+            playMeow();
             if (cat.state !== 'idle') {
                 setMoving(cat, width, height, 'running');
                 return;

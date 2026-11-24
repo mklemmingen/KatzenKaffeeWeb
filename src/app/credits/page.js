@@ -22,8 +22,14 @@ function Page() {
                     </li>
                     <li>
                         <span className="playful-keyword">Hintergrund Katzen Sprite-Sheets <br/></span>
-                        <span className="link-class" onClick={() => handleLinkClick("https://pop-shop-packs.itch.io/")}>
-                            Pop Shop von https://pop-shop-packs.itch.io/
+                        <span className="link-class" onClick={() => handleLinkClick("https://pop-shop-packs.itch.io/cats-pixel-asset-pack")}>
+                            &quot;Cats || Pixel Asset Pack&quot; von Pop Shop Packs, https://pop-shop-packs.itch.io/
+                        </span>
+                    </li>
+                    <li>
+                        <span className="playful-keyword">Hintergrund Vögel Sprite-Sheets <br/></span>
+                        <span className="link-class" onClick={() => handleLinkClick("https://pop-shop-packs.itch.io/garden-birds-pixel-character-asset-pack")}>
+                            &quot;Garden Birds || Pixel Asset Pack&quot; von Pop Shop Packs, https://pop-shop-packs.itch.io/
                         </span>
                     </li>
                     <li>
